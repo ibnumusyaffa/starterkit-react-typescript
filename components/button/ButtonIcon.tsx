@@ -92,11 +92,6 @@ type ButtonProps = {
   color?: 'primary' | 'secondary' | 'success' | 'warning' | 'info' | 'danger'
 
   children?: React.ReactNode
-  leftIcon?: React.ReactNode
-  rightIcon?: React.ReactNode
-
-  /** @default false */
-  fullWidth?: boolean
 
   /** @default false */
   loading?: boolean
@@ -106,7 +101,7 @@ type ButtonProps = {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const _Button = forwardRef<HTMLButtonElement, ButtonProps & { as: any }>(
+const _ButtonIcon = forwardRef<HTMLButtonElement, ButtonProps & { as: any }>(
   (props, ref) => {
     const {
       as,
@@ -114,9 +109,6 @@ const _Button = forwardRef<HTMLButtonElement, ButtonProps & { as: any }>(
       variant = 'solid',
       color = 'primary',
       children,
-      leftIcon,
-      rightIcon,
-      fullWidth = false,
       loading = false,
       disabled = false,
       ...otherProps
@@ -125,20 +117,18 @@ const _Button = forwardRef<HTMLButtonElement, ButtonProps & { as: any }>(
 
     const buttonStyle = cx(
       // base style
-      'focus:outline-none font-medium rounded',
+      'focus:outline-none font-medium rounded flex h-full items-center justify-center',
       {
         'opacity-50 cursor-not-allowed': disabled,
         'cursor-not-allowed': loading,
-        'w-full': fullWidth,
       },
       variantStyles({ variant, color }),
       // size style
       {
-        'h-6 text-xs': size === 'xs',
-        'h-8 text-sm': size === 'sm',
-        'h-10 text-base': size === 'md',
-        'h-12 text-lg': size === 'lg',
-        'h-14 text-xl': size === 'xl',
+        'h-8 text-sm p-1': size === 'sm',
+        'h-10 text-base p-1.5': size === 'md',
+        'h-12 text-lg p-2': size === 'lg',
+        'h-14 text-xl p-2.5': size === 'xl',
       },
 
       //button group
@@ -158,27 +148,23 @@ const _Button = forwardRef<HTMLButtonElement, ButtonProps & { as: any }>(
         disabled={disabled || loading}
         className={buttonStyle}
       >
-        <div className="relative flex h-full items-center justify-center  space-x-2 rounded-tr-none px-3">
-          {loading ? (
-            <Spinner
-              className={cx({
-                'h-3 w-3': size === 'xs',
-                'h-4 w-4': size === 'sm',
-                'h-5 w-5': size === 'md',
-                'h-6 w-6': size === 'lg',
-                'h-7 w-7': size === 'xl',
-              })}
-            ></Spinner>
-          ) : null}
-          {leftIcon && !loading ? <div>{leftIcon}</div> : null}
-          {children ? <div>{children}</div> : null}
-          {rightIcon ? <div>{rightIcon}</div> : null}
-        </div>
+        {loading ? (
+          <Spinner
+            className={cx({
+              'h-4 w-4': size === 'sm',
+              'h-5 w-5': size === 'md',
+              'h-6 w-6': size === 'lg',
+              'h-7 w-7': size === 'xl',
+            })}
+          ></Spinner>
+        ) : null}
+
+        {children && !loading ? <div>{children}</div> : null}
       </Element>
     )
   }
 )
 
-_Button.displayName = 'Button'
+_ButtonIcon.displayName = 'ButtonIcon'
 
-export const Button = createPolymorphicComponent<'button', ButtonProps>(_Button)
+export const ButtonIcon = createPolymorphicComponent<'button', ButtonProps>(_ButtonIcon)
