@@ -37,7 +37,7 @@ npm install
 npm run dev
 ```
 
-### 4. Change color to match your brand color in tailwind.config.js
+### 4. Change color to match your brand color in tailwind.config.ts
 
 ```javascript
 
