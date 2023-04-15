@@ -1,38 +1,92 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# React Starter
 
-## Getting Started
+Preview https://starterkit-react.vercel.app
 
-First, run the development server:
+## What's in the stack ?
+
+- Typescript 5.0
+- Next.js 13
+- React 18
+- [TailwindCSS 3](https://tailwindcss.com)
+- [Zustand](https://zustand-demo.pmnd.rs) for state management
+- [Tanstack Query](https://tanstack.com/query) for async state management (fetching, caching, synchronizing)
+- 30++ customizable components using TailwindCSS, [Radix UI](https://www.radix-ui.com/),React Aria
+- Absolute Import and Path Alias — Import components using `@/` prefix
+- ESLint — Find and fix problems in your code
+- Prettier — Format your code consistently
+
+## Quick Start
+
+### 1. Clone repo
+
+clone repo without commit history
+
+```bash
+git clone --depth=1 git@gitlab.badr.co.id:badr-interactive/starterkit-react-typescript.git my-project-name
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 4. Change color to match your brand color in tailwind.config.js
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```javascript
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+export default {
+  ...  
+  theme: {
+    extend: {
+      // adjust color to match brand color here
+      colors: {
+        primary: colors.sky,
+        secondary: colors.orange,
+        success: colors.emerald,
+        danger: colors.red,
+        info: colors.blue,
+        warning: colors.yellow,
+        gray: colors.gray, // choose your shade of grey (slate, gray, zinc, neutral, stone)
+      },
+      ...
+    },
+  },
+  ...
+} 
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- `npm run dev` — Starts the application in development mode at `http://localhost:3000`.
+- `npm run build` — Creates an optimized production build of your application.
+- `npm start` — Starts the application in production mode.
+- `npm run lint` — Check code using ESLint.
+- `npm run lint:fix` — Fix autofixable ESLint problem.
+- `npm run format:all` — Format code using Prettier for all files.
+- `npm run format:dirty` — Format code using Prettier for changed files only.
+- `npm run format:check` — Check code format using prettier.
 
-## Learn More
+## Path Mapping
 
-To learn more about Next.js, take a look at the following resources:
+To import components or files, use the `@` prefix.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```jsx
+// example
+import { Button } from '@/components/Button'
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+// To import images or other files from the public folder
+import avatar from '@/public/avatar.png'
+```
 
-## Deploy on Vercel
+## References
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [Tanstack Query tutorial](https://www.youtube.com/watch?v=r8Dg0KVnfMA)
+- [React Query: It’s Time to Break up with your "Global State”! –Tanner Linsley](https://www.youtube.com/watch?v=seU46c6Jz7E)
+- [Headless components in React and why I stopped using a UI library for our design system](https://medium.com/@nirbenyair/headless-components-in-react-and-why-i-stopped-using-ui-libraries-a8208197c268)
