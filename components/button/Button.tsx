@@ -3,11 +3,41 @@ import cx from 'clsx'
 import { Spinner } from '@/components/spinner'
 import { createPolymorphicComponent } from '../createPolymorphicComponent'
 
-type variantProps = {
-  variant: 'solid' | 'light' | 'default' | 'outline' | 'subtle'
-  color: 'primary' | 'secondary' | 'success' | 'warning' | 'info' | 'danger'
+type Variant = 'solid' | 'light' | 'default' | 'outline' | 'subtle'
+
+type Color = 'primary' | 'secondary' | 'success' | 'warning' | 'info' | 'danger'
+
+type ButtonProps = {
+  /** @default "md" */
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+
+  /** @default "solid" */
+  variant?: Variant
+
+  /** @default "primary" */
+  color?: Color
+
+  children?: React.ReactNode
+  leftIcon?: React.ReactNode
+  rightIcon?: React.ReactNode
+
+  /** @default false */
+  fullWidth?: boolean
+
+  /** @default false */
+  loading?: boolean
+
+  /** @default false */
+  disabled?: boolean
 }
-function variantStyles({ variant, color }: variantProps): object | string {
+
+function variantStyles({
+  variant,
+  color,
+}: {
+  variant: Variant
+  color: Color
+}): object | string {
   switch (variant) {
     case 'solid':
       return {
@@ -81,30 +111,6 @@ function variantStyles({ variant, color }: variantProps): object | string {
   }
 }
 
-type ButtonProps = {
-  /** @default "md" */
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
-
-  /** @default "solid" */
-  variant?: 'solid' | 'light' | 'default' | 'outline' | 'subtle'
-
-  /** @default "primary" */
-  color?: 'primary' | 'secondary' | 'success' | 'warning' | 'info' | 'danger'
-
-  children?: React.ReactNode
-  leftIcon?: React.ReactNode
-  rightIcon?: React.ReactNode
-
-  /** @default false */
-  fullWidth?: boolean
-
-  /** @default false */
-  loading?: boolean
-
-  /** @default false */
-  disabled?: boolean
-}
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const _Button = forwardRef<HTMLButtonElement, ButtonProps & { as: any }>(
   (props, ref) => {
@@ -121,6 +127,7 @@ const _Button = forwardRef<HTMLButtonElement, ButtonProps & { as: any }>(
       disabled = false,
       ...otherProps
     } = props
+
     const Element = as || 'button'
 
     const buttonStyle = cx(
