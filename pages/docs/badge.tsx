@@ -219,7 +219,7 @@ function Page() {
             color="success"
             variant="light"
             rounded="full"
-            leftSection={<ArrowUpIcon class="mr-1 h-4 w-4"></ArrowUpIcon>}
+            leftSection={<ArrowUpIcon className="mr-1 h-4 w-4"></ArrowUpIcon>}
           >
             20%
           </Badge>
@@ -227,7 +227,9 @@ function Page() {
             color="danger"
             variant="light"
             rounded="full"
-            leftSection={<ArrowDownIcon class="mr-1 h-4 w-4"></ArrowDownIcon>}
+            leftSection={
+              <ArrowDownIcon className="mr-1 h-4 w-4"></ArrowDownIcon>
+            }
           >
             20%
           </Badge>
@@ -237,19 +239,16 @@ function Page() {
       <div className="space-y-5">
         <div className="text-xl font-semibold text-gray-700">Polymorphic</div>
         <div className="flex flex-wrap gap-5">
-          <Badge as="button" variant="light">
-            render as button
+          <Badge asChild variant="light">
+            <button>render as button</button>
           </Badge>
-          <Badge
-            as="a"
-            href="http://google.com"
-            target="_blank"
-            variant="light"
-          >
-            rendar as link (a)
+          <Badge variant="light">
+            <a href="http://google.com" target="_blank">
+              rendar as link (a)
+            </a>
           </Badge>
-          <Badge as={Link} href="/docs/button" variant="light">
-            render as next/link
+          <Badge asChild variant="light">
+            <Link href="/docs/button"> render as next/link</Link>
           </Badge>
         </div>
       </div>

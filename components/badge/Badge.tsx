@@ -1,10 +1,10 @@
 import React, { forwardRef } from 'react'
 import cx from 'clsx'
-import { createPolymorphicComponent } from '../createPolymorphicComponent'
+import { Slot, Slottable } from '@radix-ui/react-slot'
 
-type Variant = 'solid' | 'light' | 'light-outline' | 'outline'
+export type Variant = 'solid' | 'light' | 'light-outline' | 'outline'
 
-type Color =
+export type Color =
   | 'primary'
   | 'secondary'
   | 'success'
@@ -101,7 +101,7 @@ function dotStyles({
   }
 }
 
-type BadgeProps = {
+type BadgeProps = React.ComponentProps<'span'> & {
   /** @default "md" */
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
@@ -123,13 +123,15 @@ type BadgeProps = {
 
   /** @default false */
   withDot?: boolean
+
+  /** @default false */
+  asChild?: boolean
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const _Badge = forwardRef<HTMLSpanElement, BadgeProps & { as: any }>(
-  (props, ref) => {
-    const {
-      as,
+export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
+  (
+    {
+      asChild,
       size = 'sm',
       variant = 'solid',
       color = 'primary',
@@ -139,56 +141,55 @@ const _Badge = forwardRef<HTMLSpanElement, BadgeProps & { as: any }>(
       leftSection,
       rightSection,
       rounded = 'sm',
-      ...otherProps
-    } = props
-
-    const Element = as || 'span'
+      ...props
+    },
+    forwardedRef
+  ) => {
+    const Component = asChild ? Slot : 'span'
 
     return (
-      <Element {...otherProps} ref={ref}>
-        <div
-          className={cx(
-            `box-border flex items-center justify-center leading-none  focus:outline-none `,
-            variantStyles({ variant, color }),
-            {
-              'rounded-none': rounded === 'none',
-              'rounded-sm': rounded === 'xs',
-              rounded: rounded === 'sm',
-              'rounded-md': rounded === 'md',
-              'rounded-lg': rounded === 'lg',
-              'rounded-xl': rounded === 'xl',
-              'rounded-full': rounded === 'full',
-            },
-            {
-              'py-1 px-2 text-xs': size === 'xs',
-              'py-1 px-2.5 text-sm': size === 'sm',
-              'py-1 px-3 text-base': size === 'md',
-              'py-1.5 px-4 text-lg': size === 'lg',
-              'py-2 px-5 text-xl': size === 'xl',
-            },
-            {
-              'w-full': fullWidth,
-            }
-          )}
-        >
-          {withDot ? (
-            <div
-              className={cx(
-                'mr-2 rounded-full',
-                'h-1.5 w-1.5',
-                dotStyles({ variant, color })
-              )}
-            ></div>
-          ) : null}
-          {leftSection ? leftSection : null}
-          <div className="whitespace-nowrap">{children}</div>
-          {rightSection ? rightSection : null}
-        </div>
-      </Element>
+      <Component
+        {...props}
+        className={cx(
+          `box-border flex items-center justify-center leading-none  focus:outline-none  whitespace-nowrap`,
+          variantStyles({ variant, color }),
+          {
+            'rounded-none': rounded === 'none',
+            'rounded-sm': rounded === 'xs',
+            rounded: rounded === 'sm',
+            'rounded-md': rounded === 'md',
+            'rounded-lg': rounded === 'lg',
+            'rounded-xl': rounded === 'xl',
+            'rounded-full': rounded === 'full',
+          },
+          {
+            'py-1 px-2 text-xs': size === 'xs',
+            'py-1 px-2.5 text-sm': size === 'sm',
+            'py-1 px-3 text-base': size === 'md',
+            'py-1.5 px-4 text-lg': size === 'lg',
+            'py-2 px-5 text-xl': size === 'xl',
+          },
+          {
+            'w-full': fullWidth,
+          }
+        )}
+        ref={forwardedRef}
+      >
+        {withDot ? (
+          <div
+            className={cx(
+              'mr-2 rounded-full',
+              'h-1.5 w-1.5',
+              dotStyles({ variant, color })
+            )}
+          ></div>
+        ) : null}
+        {leftSection ? leftSection : null}
+        <Slottable>{children}</Slottable>
+        {rightSection ? rightSection : null}
+      </Component>
     )
   }
 )
 
-_Badge.displayName = 'Badge'
-
-export const Badge = createPolymorphicComponent<'span', BadgeProps>(_Badge)
+Badge.displayName = 'Badge'
