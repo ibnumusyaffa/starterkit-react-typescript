@@ -1,14 +1,43 @@
-import '@/styles/globals.css'
-import type { AppProps } from 'next/app'
-import { Inter } from 'next/font/google'
 import React from 'react'
+import Head from 'next/head'
+import type { AppProps } from 'next/app'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { Inter } from 'next/font/google'
+
+import '@/styles/globals.css'
+import Layout from '@/layouts/docs'
+import { SSRProvider } from 'react-aria'
+
+// If loading a variable font, you don't need to specify the font weight
 const inter = Inter({
   subsets: ['latin'],
 })
-export default function App({ Component, pageProps }: AppProps) {
+
+// Create a client
+const queryClient = new QueryClient()
+
+function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <main className={inter.className}>
-      <Component {...pageProps} />
-    </main>
+    <SSRProvider>
+      <Head>
+        <title>Starterkit</title>
+      </Head>
+      <QueryClientProvider client={queryClient}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+      <div id="radix-portal"></div>
+
+      <style jsx global>{`
+        html {
+          font-family: ${inter.style.fontFamily};
+        }
+      `}</style>
+    </SSRProvider>
   )
 }
+
+export default MyApp

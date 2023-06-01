@@ -142,7 +142,7 @@ const _Badge = forwardRef<HTMLSpanElement, BadgeProps & { as: any }>(
       ...otherProps
     } = props
 
-    const Element = as || 'button'
+    const Element = as || 'span'
 
     return (
       <Element {...otherProps} ref={ref}>
@@ -191,4 +191,4 @@ const _Badge = forwardRef<HTMLSpanElement, BadgeProps & { as: any }>(
 
 _Badge.displayName = 'Badge'
 
-export const Badge = createPolymorphicComponent<'button', BadgeProps>(_Badge)
+export const Badge = createPolymorphicComponent<'span', BadgeProps>(_Badge)

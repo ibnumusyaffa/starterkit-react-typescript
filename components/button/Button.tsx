@@ -1,13 +1,13 @@
 import React, { forwardRef } from 'react'
 import cx from 'clsx'
+import { Slot, Slottable } from '@radix-ui/react-slot'
 import { Spinner } from '@/components/spinner'
-import { createPolymorphicComponent } from '../createPolymorphicComponent'
 
-type Variant = 'solid' | 'light' | 'default' | 'outline' | 'subtle'
+export type Variant = 'solid' | 'light' | 'default' | 'outline' | 'subtle'
 
-type Color = 'primary' | 'secondary' | 'success' | 'warning' | 'info' | 'danger'
+export type Color = 'primary' | 'secondary' | 'success' | 'warning' | 'info' | 'danger'
 
-type ButtonProps = {
+export type ButtonProps = React.ComponentProps<'button'> & {
   /** @default "md" */
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
@@ -29,6 +29,9 @@ type ButtonProps = {
 
   /** @default false */
   disabled?: boolean
+
+  /** @default false */
+  asChild?: boolean
 }
 
 function variantStyles({
@@ -111,11 +114,9 @@ function variantStyles({
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const _Button = forwardRef<HTMLButtonElement, ButtonProps & { as: any }>(
-  (props, ref) => {
-    const {
-      as,
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
       size = 'md',
       variant = 'solid',
       color = 'primary',
@@ -125,14 +126,16 @@ const _Button = forwardRef<HTMLButtonElement, ButtonProps & { as: any }>(
       fullWidth = false,
       loading = false,
       disabled = false,
-      ...otherProps
-    } = props
-
-    const Element = as || 'button'
+      asChild = false,
+      ...props
+    },
+    ref
+  ) => {
+    const Component = asChild ? Slot : 'button'
 
     const buttonStyle = cx(
       // base style
-      'focus:outline-none font-medium rounded',
+      'inline-flex items-center justify-center  space-x-2 px-3 focus:outline-none font-medium rounded',
       {
         'opacity-50 cursor-not-allowed': disabled,
         'cursor-not-allowed': loading,
@@ -159,33 +162,33 @@ const _Button = forwardRef<HTMLButtonElement, ButtonProps & { as: any }>(
     )
 
     return (
-      <Element
-        {...otherProps}
+      <Component
+        {...props}
         ref={ref}
         disabled={disabled || loading}
         className={buttonStyle}
       >
-        <div className="relative flex h-full items-center justify-center  space-x-2 rounded-tr-none px-3">
-          {loading ? (
-            <Spinner
-              className={cx({
-                'h-3 w-3': size === 'xs',
-                'h-4 w-4': size === 'sm',
-                'h-5 w-5': size === 'md',
-                'h-6 w-6': size === 'lg',
-                'h-7 w-7': size === 'xl',
-              })}
-            ></Spinner>
-          ) : null}
-          {leftIcon && !loading ? <div>{leftIcon}</div> : null}
-          {children ? <div>{children}</div> : null}
-          {rightIcon ? <div>{rightIcon}</div> : null}
-        </div>
-      </Element>
+        {loading ? (
+          <Spinner
+            className={cx({
+              'h-3 w-3': size === 'xs',
+              'h-4 w-4': size === 'sm',
+              'h-5 w-5': size === 'md',
+              'h-6 w-6': size === 'lg',
+              'h-7 w-7': size === 'xl',
+            })}
+          ></Spinner>
+        ) : null}
+        {leftIcon && !loading ? <div>{leftIcon}</div> : null}
+        {children ? <Slottable>{children}</Slottable> : null}
+        {rightIcon ? <div>{rightIcon}</div> : null}
+      </Component>
     )
   }
 )
 
-_Button.displayName = 'Button'
+Button.displayName = 'Button'
 
-export const Button = createPolymorphicComponent<'button', ButtonProps>(_Button)
+export function ButtonGroup({ children }: { children: React.ReactNode }) {
+  return <div className="is-group group relative flex">{children}</div>
+}

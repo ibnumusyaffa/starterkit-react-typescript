@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-interface UseUncontrolledProps<T> {
+interface UseControllableProps<T> {
   /** Value for controlled state */
   value?: T
 
@@ -14,12 +14,12 @@ interface UseUncontrolledProps<T> {
   onChange?(value: T): void
 }
 
-export function useUncontrolled<T>({
+export function useControllableState<T>({
   value,
   defaultValue,
   finalValue,
   onChange = () => {},
-}: UseUncontrolledProps<T>): [T, (value: T) => void, boolean] {
+}: UseControllableProps<T>): [T, (value: T) => void, boolean] {
   const [uncontrolledValue, setUncontrolledValue] = useState(
     defaultValue !== undefined ? defaultValue : finalValue
   )
