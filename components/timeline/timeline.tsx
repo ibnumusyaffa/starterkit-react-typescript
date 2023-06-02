@@ -1,6 +1,12 @@
 import React from 'react'
 import cx from 'clsx'
-export function TimelineBullet({ color = 'neutral', children }) {
+export function TimelineBullet({
+  color = 'neutral',
+  children,
+}: {
+  color?: 'warning' | 'danger' | 'success' | 'info' | 'neutral'
+  children: React.ReactNode
+}) {
   return (
     <div
       className={cx(
@@ -14,7 +20,7 @@ export function TimelineBullet({ color = 'neutral', children }) {
             color === 'success',
           'border-info-300 bg-info-100 text-indigo-700': color === 'info',
           'border-neutral-300 bg-gray-100 text-gray-700': color === 'neutral',
-        },
+        }
       )}
     >
       {children}
@@ -22,7 +28,7 @@ export function TimelineBullet({ color = 'neutral', children }) {
   )
 }
 
-export function TimelineContent({ children }) {
+export function TimelineContent({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex flex-1 items-center text-sm">
       <div className="space-y-1">{children}</div>
@@ -30,13 +36,13 @@ export function TimelineContent({ children }) {
   )
 }
 
-export function TimelineItem({ children }) {
+export function TimelineItem({ children }: { children: React.ReactNode }) {
   return (
     <div
       className={cx(
         'timeline relative mb-5 flex space-x-3',
         'before:absolute before:-bottom-5 before:top-0 before:left-4',
-        'before:border-l-2 before:border-gray-300 before:[&:last-child]:border-transparent',
+        'before:border-l-2 before:border-gray-300 before:[&:last-child]:border-transparent'
       )}
     >
       {children}
@@ -44,6 +50,6 @@ export function TimelineItem({ children }) {
   )
 }
 
-export function Timeline({ children }) {
+export function Timeline({ children }: { children: React.ReactNode }) {
   return <div>{children}</div>
 }
