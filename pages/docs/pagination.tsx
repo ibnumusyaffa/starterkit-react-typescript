@@ -4,7 +4,7 @@ import { Switch } from '@/components/switch'
 
 function Page() {
   const [page, setPage] = useState(1)
-  let [state, setState] = React.useState({
+  const [state, setState] = React.useState({
     withEdges: false,
     withPageNumber: true,
     disabled: false,
@@ -22,7 +22,7 @@ function Page() {
             <div>
               <Switch
                 checked={state.disabled}
-                onChange={(value) =>
+                onCheckedChange={(value) =>
                   setState((prev) => ({ ...prev, disabled: value }))
                 }
                 id="disabled"
@@ -36,7 +36,7 @@ function Page() {
             <div>
               <Switch
                 checked={state.withPageNumber}
-                onChange={(value) =>
+                onCheckedChange={(value) =>
                   setState((prev) => ({
                     ...prev,
                     withPageNumber: value,

@@ -151,7 +151,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
       <Component
         {...props}
         className={cx(
-          `box-border flex items-center justify-center leading-none  focus:outline-none  whitespace-nowrap`,
+          `box-border inline-flex h-fit items-center justify-center leading-none  focus:outline-none  whitespace-nowrap`,
           variantStyles({ variant, color }),
           {
             'rounded-none': rounded === 'none',
