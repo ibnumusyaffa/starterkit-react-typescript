@@ -1,16 +1,31 @@
 import React from 'react'
 import cx from 'clsx'
 
-export const TextArea = React.forwardRef(function TextArea(
+export type TextAreaProps = Omit<React.ComponentProps<'textarea'>, 'size'> & {
+  /** @default "md" */
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+
+  /** @default "solid" */
+  variant?: 'filled' | 'outline'
+
+  children?: React.ReactNode
+  leftIcon?: React.ReactNode
+  rightIcon?: React.ReactNode
+
+  /** @default false */
+  error?: boolean
+}
+
+export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(function TextArea(
   {
     error,
-    disabled = false,
+    disabled,
     size = 'md',
     variant = 'outline',
-    rows = '4',
+    rows = 4,
     ...props
   },
-  forwardedRef,
+  forwardedRef
 ) {
   return (
     <textarea
@@ -41,7 +56,7 @@ export const TextArea = React.forwardRef(function TextArea(
           'text-base': size === 'md',
           'text-lg': size === 'lg',
           'text-xl': size === 'xl',
-        },
+        }
       )}
     />
   )

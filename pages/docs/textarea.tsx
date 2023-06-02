@@ -12,33 +12,25 @@ function Page() {
       <div className="space-y-3">
         <div className="text-xl font-semibold text-gray-700">Variant</div>
         <div className="flex flex-wrap gap-5 md:w-1/2">
-          <TextArea
-            variant="outline"
-            placeholder="outline"
-            type="text"
-          ></TextArea>
-          <TextArea
-            variant="filled"
-            placeholder="filled"
-            type="text"
-          ></TextArea>
+          <TextArea variant="outline" placeholder="outline"></TextArea>
+          <TextArea variant="filled" placeholder="filled"></TextArea>
         </div>
       </div>
       <div className="space-y-3">
         <div className="text-xl font-semibold text-gray-700">State</div>
         <div className="flex flex-wrap gap-3 md:w-1/2">
-          <TextArea placeholder="disabled" disabled type="text"></TextArea>
-          <TextArea error placeholder="error" type="text"></TextArea>
+          <TextArea placeholder="disabled" disabled></TextArea>
+          <TextArea error placeholder="error"></TextArea>
         </div>
       </div>
       <div className="space-y-3">
         <div className="text-xl font-semibold text-gray-700">Size</div>
         <div className="space-y-5 md:w-1/2">
-          <TextArea size="xs" placeholder="xs" type="text"></TextArea>
-          <TextArea size="sm" placeholder="sm" type="text"></TextArea>
-          <TextArea size="md" placeholder="md" type="text"></TextArea>
-          <TextArea size="lg" placeholder="lg" type="text"></TextArea>
-          <TextArea size="xl" placeholder="xl" type="text"></TextArea>
+          <TextArea size="xs" placeholder="xs"></TextArea>
+          <TextArea size="sm" placeholder="sm"></TextArea>
+          <TextArea size="md" placeholder="md"></TextArea>
+          <TextArea size="lg" placeholder="lg"></TextArea>
+          <TextArea size="xl" placeholder="xl"></TextArea>
         </div>
       </div>
     </div>

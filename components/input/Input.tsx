@@ -14,12 +14,6 @@ export type InputProps = Omit<React.ComponentProps<'input'>, 'size'> & {
 
   /** @default false */
   error?: boolean
-
-  /** @default false */
-  disabled?: boolean
-
-  /** @default false */
-  asChild?: boolean
 }
 
 export const InputGroupCtx = createContext(false)
