@@ -314,12 +314,18 @@ function Page() {
         <div className="space-y-3">
           <div className="text-xl font-semibold text-gray-700">Polymorphic</div>
           <div className="flex flex-wrap gap-5">
-            <Button color={color} asChild>
+            <Button
+              color={color}
+              asChild
+              rightIcon={
+                <ArrowLongRightIcon className="h-5 w-5"></ArrowLongRightIcon>
+              }
+            >
               <a href="http://google.com" target="_blank">
                 Render as link (a)
               </a>
             </Button>
-            <Button color={color} asChild>
+            <Button loading color={color} asChild>
               <Link href="/docs/checkbox"> Render as Next/link</Link>
             </Button>
           </div>

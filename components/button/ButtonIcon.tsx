@@ -1,12 +1,10 @@
 import React, { forwardRef } from 'react'
 import cx from 'clsx'
+import { Slot, Slottable } from '@radix-ui/react-slot'
 import { Spinner } from '@/components/spinner'
-import { createPolymorphicComponent } from '../createPolymorphicComponent'
+import { Variant, Color } from './button-types'
 
-type Variant = 'solid' | 'light' | 'default' | 'outline' | 'subtle'
-type Color = 'primary' | 'secondary' | 'success' | 'warning' | 'info' | 'danger'
-
-type ButtonProps = {
+type ButtonProps = React.ComponentProps<'button'> & {
   /** @default "md" */
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
@@ -23,6 +21,9 @@ type ButtonProps = {
 
   /** @default false */
   disabled?: boolean
+
+  /** @default false */
+  asChild?: boolean
 }
 
 function variantStyles({
@@ -106,19 +107,21 @@ function variantStyles({
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const _ButtonIcon = forwardRef<HTMLButtonElement, ButtonProps & { as: any }>(
-  (props, ref) => {
-    const {
-      as,
+export const ButtonIcon = forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      asChild,
       size = 'md',
       variant = 'solid',
       color = 'primary',
       children,
       loading = false,
       disabled = false,
-      ...otherProps
-    } = props
-    const Element = as || 'button'
+      ...props
+    },
+    ref
+  ) => {
+    const Component = asChild ? Slot : 'button'
 
     const buttonStyle = cx(
       // base style
@@ -147,31 +150,29 @@ const _ButtonIcon = forwardRef<HTMLButtonElement, ButtonProps & { as: any }>(
     )
 
     return (
-      <Element
-        {...otherProps}
+      <Component
+        {...props}
         ref={ref}
         disabled={disabled || loading}
         className={buttonStyle}
       >
-        {loading ? (
-          <Spinner
-            className={cx({
-              'h-4 w-4': size === 'sm',
-              'h-5 w-5': size === 'md',
-              'h-6 w-6': size === 'lg',
-              'h-7 w-7': size === 'xl',
-            })}
-          ></Spinner>
-        ) : null}
-
-        {children && !loading ? <div>{children}</div> : null}
-      </Element>
+        <Slottable>
+          {loading ? (
+            <div>
+              <Spinner
+                className={cx({
+                  'h-4 w-4': size === 'sm',
+                  'h-5 w-5': size === 'md',
+                  'h-6 w-6': size === 'lg',
+                  'h-7 w-7': size === 'xl',
+                })}
+              ></Spinner>
+            </div>
+          ) : children}
+        </Slottable>
+      </Component>
     )
   }
 )
 
-_ButtonIcon.displayName = 'ButtonIcon'
-
-export const ButtonIcon = createPolymorphicComponent<'button', ButtonProps>(
-  _ButtonIcon
-)
+ButtonIcon.displayName = 'ButtonIcon'

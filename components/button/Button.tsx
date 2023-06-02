@@ -2,10 +2,7 @@ import React, { forwardRef } from 'react'
 import cx from 'clsx'
 import { Slot, Slottable } from '@radix-ui/react-slot'
 import { Spinner } from '@/components/spinner'
-
-export type Variant = 'solid' | 'light' | 'default' | 'outline' | 'subtle'
-
-export type Color = 'primary' | 'secondary' | 'success' | 'warning' | 'info' | 'danger'
+import { Variant, Color } from './button-types'
 
 export type ButtonProps = React.ComponentProps<'button'> & {
   /** @default "md" */
@@ -135,7 +132,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     const buttonStyle = cx(
       // base style
-      'inline-flex items-center justify-center  space-x-2 px-3 focus:outline-none font-medium rounded',
+      'inline-flex items-center justify-center px-3 focus:outline-none font-medium rounded',
       {
         'opacity-50 cursor-not-allowed': disabled,
         'cursor-not-allowed': loading,
@@ -170,7 +167,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {loading ? (
           <Spinner
-            className={cx({
+            className={cx('mr-2', {
               'h-3 w-3': size === 'xs',
               'h-4 w-4': size === 'sm',
               'h-5 w-5': size === 'md',
@@ -179,9 +176,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             })}
           ></Spinner>
         ) : null}
-        {leftIcon && !loading ? <div>{leftIcon}</div> : null}
+        {leftIcon && !loading ? <div className="mr-2">{leftIcon}</div> : null}
         {children ? <Slottable>{children}</Slottable> : null}
-        {rightIcon ? <div>{rightIcon}</div> : null}
+        {rightIcon ? <div className="ml-2">{rightIcon}</div> : null}
       </Component>
     )
   }

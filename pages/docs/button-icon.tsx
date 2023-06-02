@@ -1,11 +1,11 @@
 import React from 'react'
-import { ButtonIcon, ButtonGroup } from '@/components/button'
+import { ButtonIcon, ButtonGroup, Color } from '@/components/button'
 import { PencilIcon, TrashIcon, EyeIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import { NativeSelect } from '@/components/native-select'
 
 function Page() {
-  const [color, setColor] = React.useState('primary')
+  const [color, setColor] = React.useState<Color>('primary')
   return (
     <div className="space-y-5">
       <div className="space-y-2">
@@ -20,7 +20,7 @@ function Page() {
           <div className="flex flex-wrap gap-5">
             <NativeSelect
               value={color}
-              onChange={(e) => setColor(e.target.value)}
+              onChange={(e) => setColor(e.target.value as Color)}
               fullWidth={false}
             >
               <option value="primary">Primary</option>
@@ -181,16 +181,15 @@ function Page() {
         <div className="space-y-3">
           <div className="text-xl font-semibold text-gray-700">Polymorphic</div>
           <div className="flex flex-wrap gap-5">
-            <ButtonIcon
-              color={color}
-              as="a"
-              href="http://google.com"
-              target="_blank"
-            >
-              <PencilIcon className="h-5 w-5"></PencilIcon>
+            <ButtonIcon color={color} asChild>
+              <a href="http://google.com" target="_blank">
+                <PencilIcon className="h-5 w-5"></PencilIcon>
+              </a>
             </ButtonIcon>
-            <ButtonIcon color={color} as={Link} href="/docs/checkbox">
-              <PencilIcon className="h-5 w-5"></PencilIcon>
+            <ButtonIcon color={color} asChild>
+              <Link href="/docs/checkbox">
+                <PencilIcon className="h-5 w-5"></PencilIcon>
+              </Link>
             </ButtonIcon>
           </div>
         </div>
