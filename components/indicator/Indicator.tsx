@@ -1,12 +1,28 @@
 import React from 'react'
 import cx from 'clsx'
 
-function Label({ children }) {
+function Label({ children }: { children: React.ReactNode }) {
   return (
     <div className="translate-y-[-0.5px] text-xs leading-none text-white">
       {children}
     </div>
   )
+}
+
+export type IndicatorProps = {
+  position?:
+    | 'top-left'
+    | 'top-center'
+    | 'top-right'
+    | 'bottom-left'
+    | 'bottom-center'
+    | 'bottom-right'
+  animatePing?: boolean
+  color?: 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'danger'
+  label?: string
+  count?: number
+  children?: React.ReactNode
+  style?: React.CSSProperties
 }
 
 export function Indicator({
@@ -17,13 +33,13 @@ export function Indicator({
   count,
   children,
   style,
-}) {
+}: IndicatorProps) {
   return (
     <div className="flex">
       <div className="relative">
         <span
           style={style}
-          class={cx('absolute flex leading-none', {
+          className={cx('absolute flex leading-none', {
             'right-1/2 -translate-y-1/2 translate-x-1/2':
               position === 'top-center',
             'right-auto top-0 left-0 -translate-y-1/2 -translate-x-1/2 ':
@@ -51,7 +67,7 @@ export function Indicator({
                     'bg-info-500': color === 'info',
                     'bg-warning-500': color === 'warning',
                     'bg-danger-500': color === 'danger',
-                  },
+                  }
                 )}
               ></span>
             ) : null}
@@ -69,7 +85,7 @@ export function Indicator({
                     'bg-info-500': color === 'info',
                     'bg-warning-500': color === 'warning',
                     'bg-danger-500': color === 'danger',
-                  },
+                  }
                 )}
               ></div>
             ) : null}
@@ -87,7 +103,7 @@ export function Indicator({
                     'bg-info-500': color === 'info',
                     'bg-warning-500': color === 'warning',
                     'bg-danger-500': color === 'danger',
-                  },
+                  }
                 )}
               >
                 <Label>{count >= 100 ? '99+' : count}</Label>
@@ -107,7 +123,7 @@ export function Indicator({
                     'bg-info-500': color === 'info',
                     'bg-warning-500': color === 'warning',
                     'bg-danger-500': color === 'danger',
-                  },
+                  }
                 )}
               >
                 <Label>{label}</Label>
