@@ -8,6 +8,7 @@ import {
   Tbody,
   useTableSort,
   TableEmpty,
+  VerticalAlignment,
 } from '@/components/table'
 import { EmptyState } from '@/components/empty-state'
 import { Switch } from '@/components/switch'
@@ -17,7 +18,7 @@ import { Button } from '@/components/button'
 import { PlusIcon } from '@heroicons/react/24/outline'
 
 function Page() {
-  let [state, setState] = React.useState({
+  const [state, setState] = React.useState({
     empty: false,
     loading: false,
     withBorder: false,
@@ -28,12 +29,13 @@ function Page() {
     overflowXAuto: true,
   })
 
-  let { sort, handleChangeSort } = useTableSort({
+  const { sort, handleChangeSort } = useTableSort({
     column: 'name',
     direction: 'asc',
   })
 
-  let [verticalAlignment, setVerticalALignment] = React.useState('center')
+  const [verticalAlignment, setVerticalALignment] =
+    React.useState<VerticalAlignment>('center')
 
   return (
     <div>
@@ -46,7 +48,7 @@ function Page() {
           <div>
             <Switch
               checked={state.empty}
-              onChange={(value) =>
+              onCheckedChange={(value) =>
                 setState((prev) => ({ ...prev, empty: value }))
               }
               id="empty"
@@ -60,7 +62,7 @@ function Page() {
           <div>
             <Switch
               checked={state.loading}
-              onChange={(value) =>
+              onCheckedChange={(value) =>
                 setState((prev) => ({ ...prev, loading: value }))
               }
               id="loading"
@@ -74,7 +76,7 @@ function Page() {
           <div>
             <Switch
               checked={state.withBorder}
-              onChange={(value) =>
+              onCheckedChange={(value) =>
                 setState((prev) => ({ ...prev, withBorder: value }))
               }
               id="withBorder"
@@ -88,7 +90,7 @@ function Page() {
           <div>
             <Switch
               checked={state.withColumnBorders}
-              onChange={(value) =>
+              onCheckedChange={(value) =>
                 setState((prev) => ({
                   ...prev,
                   withColumnBorders: value,
@@ -105,7 +107,7 @@ function Page() {
           <div>
             <Switch
               checked={state.hightlightOnHover}
-              onChange={(value) =>
+              onCheckedChange={(value) =>
                 setState((prev) => ({
                   ...prev,
                   hightlightOnHover: value,
@@ -122,7 +124,7 @@ function Page() {
           <div>
             <Switch
               checked={state.striped}
-              onChange={(value) =>
+              onCheckedChange={(value) =>
                 setState((prev) => ({ ...prev, striped: value }))
               }
               id="striped"
@@ -136,7 +138,7 @@ function Page() {
           <div>
             <Switch
               checked={state.stickyHeader}
-              onChange={(value) =>
+              onCheckedChange={(value) =>
                 setState((prev) => ({
                   ...prev,
                   stickyHeader: value,
@@ -153,7 +155,7 @@ function Page() {
           <div>
             <Switch
               checked={state.overflowXAuto}
-              onChange={(value) =>
+              onCheckedChange={(value) =>
                 setState((prev) => ({
                   ...prev,
                   overflowXAuto: value,
@@ -171,7 +173,9 @@ function Page() {
           <NativeSelect
             size="xs"
             value={verticalAlignment}
-            onChange={(e) => setVerticalALignment(e.target.value)}
+            onChange={(e) =>
+              setVerticalALignment(e.target.value as VerticalAlignment)
+            }
           >
             <option value="top">Top</option>
             <option value="center">Center</option>

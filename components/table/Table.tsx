@@ -8,15 +8,41 @@ import {
   ArrowUpIcon,
 } from '@heroicons/react/24/solid'
 
-const TableCtx = createContext({
+export type Direction = 'asc' | 'desc' | undefined
+export type VerticalAlignment = 'top' | 'center' | 'bottom'
+
+export type SortParams = {
+  column?: string
+  direction: Direction
+}
+
+type ProviderParams = {
+  loading: boolean
+  withColumnBorders: boolean
+  striped: boolean
+  hightlightOnHover: boolean
+  stickyHeader: boolean
+  empty: boolean
+  sort?: SortParams
+  onChangeSort?: (params: SortParams) => void
+  verticalAlignment: VerticalAlignment
+}
+
+const TableCtx = createContext<ProviderParams>({
   loading: false,
   withColumnBorders: false,
   striped: false,
   hightlightOnHover: false,
   stickyHeader: false,
+  empty: false,
+  sort: {
+    column: '',
+    direction: 'asc',
+  },
+  verticalAlignment: 'top',
 })
 
-export function TableEmpty({ children }) {
+export function TableEmpty({ children }: { children: React.ReactNode }) {
   const { empty, loading } = useContext(TableCtx)
   return empty ? (
     <tbody>
@@ -29,7 +55,20 @@ export function TableEmpty({ children }) {
   ) : null
 }
 
-export function Th({ children, className, columnKey, sortable, ...props }) {
+type ThProps = React.ComponentProps<'th'> & {
+  children: React.ReactNode
+  className?: string
+  columnKey?: string
+  sortable?: boolean
+}
+
+export function Th({
+  children,
+  className,
+  columnKey,
+  sortable,
+  ...props
+}: ThProps) {
   const { withColumnBorders, stickyHeader, sort, onChangeSort } =
     useContext(TableCtx)
 
@@ -38,25 +77,26 @@ export function Th({ children, className, columnKey, sortable, ...props }) {
   }
 
   function toggleSort() {
-    if (!sortable) {
+    if (!sortable || !columnKey) {
       return
     }
 
-    let currentDirection = sort?.direction
-    let nextDirection = null
+    const currentDirection = sort?.direction
+
+    let nextDirection: Direction = undefined
     if (currentDirection === 'asc') {
       nextDirection = 'desc'
     }
 
     if (currentDirection === 'desc') {
-      nextDirection = null
+      nextDirection = undefined
     }
 
     if (!currentDirection) {
       nextDirection = 'asc'
     }
     onChangeSort?.({
-      column: nextDirection ? columnKey : null,
+      column: nextDirection ? columnKey : undefined,
       direction: nextDirection,
     })
   }
@@ -76,7 +116,7 @@ export function Th({ children, className, columnKey, sortable, ...props }) {
         {
           'cursor-pointer hover:bg-gray-50': sortable,
         },
-        className,
+        className
       )}
       onClick={toggleSort}
     >
@@ -102,7 +142,7 @@ export function Th({ children, className, columnKey, sortable, ...props }) {
   )
 }
 
-export function Td({ children, ...props }) {
+export function Td(props: React.ComponentProps<'td'>) {
   const { withColumnBorders, verticalAlignment } = useContext(TableCtx)
   return (
     <td
@@ -121,15 +161,16 @@ export function Td({ children, ...props }) {
           'align-top': verticalAlignment === 'top',
           'align-middle': verticalAlignment === 'center',
           'align-bottom': verticalAlignment === 'bottom',
-        },
+        }
       )}
     >
-      {children}
+      {props.children}
     </td>
   )
 }
 
-export function Tr({ children, selected, ...props }) {
+type TrProps = React.ComponentProps<'tr'> & { selected?: boolean }
+export function Tr({ children, selected, ...props }: TrProps) {
   const { striped, hightlightOnHover } = useContext(TableCtx)
   return (
     <tr
@@ -146,7 +187,7 @@ export function Tr({ children, selected, ...props }) {
   )
 }
 
-function Loading({ show }) {
+function Loading({ show }: { show?: boolean }) {
   return (
     <AnimatePresence>
       {show ? (
@@ -166,7 +207,7 @@ function Loading({ show }) {
             className={cx(
               'absolute inset-0',
               'bg-white',
-              'flex h-full w-full justify-center',
+              'flex h-full w-full justify-center'
             )}
           ></motion.div>
           <motion.div
@@ -191,49 +232,69 @@ function Loading({ show }) {
   )
 }
 
-export function Thead({ children, ...props }) {
+export function Thead(props: React.ComponentProps<'thead'>) {
   const currentCtxValue = useContext(TableCtx)
   return (
     <TableCtx.Provider
       value={{
         ...currentCtxValue,
+        // th inside thead always striped = false and highlightOnHover = false
         striped: false,
         hightlightOnHover: false,
       }}
     >
-      <thead {...props}>{children}</thead>
+      <thead {...props}>{props.children}</thead>
     </TableCtx.Provider>
   )
 }
 
-export function Tbody({ children, ...props }) {
+export function Tbody(props: React.ComponentProps<'tbody'>) {
   const { empty } = useContext(TableCtx)
   if (empty) {
     return null
   }
-  return <tbody {...props}>{children}</tbody>
+  return <tbody {...props}>{props.children}</tbody>
+}
+
+
+
+type TableProos = {
+  withBorder?: boolean
+  children?: React.ReactNode
+  loading?: boolean
+  withColumnBorders?: boolean
+  striped?: boolean
+  hightlightOnHover?: boolean
+  stickyHeader?: boolean
+  empty?: boolean
+  overflowXAuto?: boolean
+  layout?: 'fixed' | 'auto'
+  sort?: SortParams
+  onChangeSort?: (params: SortParams) => void
+  verticalAlignment?: VerticalAlignment
 }
 
 export function Table({
-  withBorder,
+  withBorder = false,
   children,
-  loading,
-  withColumnBorders,
-  striped,
-  hightlightOnHover,
-  stickyHeader,
-  empty,
+  loading = false,
+  withColumnBorders = false,
+  striped = false,
+  hightlightOnHover = false,
+  stickyHeader = false,
+  empty = false,
   overflowXAuto = true,
   layout = 'auto',
   sort,
   onChangeSort,
   verticalAlignment = 'top',
-}) {
+}: TableProos) {
   if (stickyHeader && overflowXAuto) {
     throw new Error(
-      'stickyHeader and overflowXAuto cannot be true at the same time',
+      'stickyHeader and overflowXAuto cannot be true at the same time'
     )
   }
+
   return (
     <TableCtx.Provider
       value={{
@@ -242,10 +303,10 @@ export function Table({
         striped,
         hightlightOnHover,
         stickyHeader,
+        empty,
         sort,
         onChangeSort,
         verticalAlignment,
-        empty,
       }}
     >
       <div className="relative w-full">
@@ -272,13 +333,13 @@ export function Table({
   )
 }
 
-export function useTableSort({ column = '', direction = 'asc' } = {}) {
-  let [sort, setSort] = React.useState({
+export function useTableSort({ column = '', direction = 'asc' }: SortParams) {
+  const [sort, setSort] = React.useState<SortParams>({
     column,
     direction,
   })
 
-  function handleChangeSort(value) {
+  function handleChangeSort(value: SortParams) {
     setSort(value)
   }
 
