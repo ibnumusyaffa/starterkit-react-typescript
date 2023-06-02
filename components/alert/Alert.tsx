@@ -1,6 +1,5 @@
 import React from 'react'
 import cx from 'clsx'
-
 import {
   ExclamationTriangleIcon,
   CheckCircleIcon,
@@ -9,7 +8,13 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/solid'
 
-function CloseButton({ type, onClick }) {
+type AlertType = 'danger' | 'warning' | 'success' | 'info' | 'neutral'
+
+type CloseButtonProps = {
+  type?: AlertType
+  onClick: React.MouseEventHandler<HTMLButtonElement>
+}
+function CloseButton({ type = 'danger', onClick }: CloseButtonProps) {
   return (
     <div className="absolute right-1.5 top-1.5">
       <button
@@ -32,7 +37,7 @@ function CloseButton({ type, onClick }) {
   )
 }
 
-function Icon({ type }) {
+function Icon({ type = 'danger' }: { type?: AlertType }) {
   const icon = {
     success: <CheckCircleIcon></CheckCircleIcon>,
     danger: <XCircleIcon></XCircleIcon>,
@@ -55,37 +60,45 @@ function Icon({ type }) {
   )
 }
 
+type AlertProps = {
+  type?: AlertType
+  title?: string
+  children?: React.ReactNode
+  closeable?: boolean
+  withIcon?: boolean
+}
 export function Alert({
   type = 'danger',
   title,
   children,
   closeable = false,
   withIcon,
-}) {
-  let [show, setShow] = React.useState(true)
-  const rootStyle = cx('relative rounded p-3 flex items-start space-x-3', {
-    'bg-warning-50 border-[1px] border-warning-300': type === 'warning',
-    'bg-danger-50 border-[1px] border-danger-300': type === 'danger',
-    'bg-success-50 border-[1px] border-success-300': type === 'success',
-    'bg-info-50 border-[1px] border-info-300': type === 'info',
-    'bg-gray-50 border-[1px] border-gray-300': type === 'neutral',
-  })
-
-  const textStyle = cx('flex-1  space-y-1', {
-    'text-warning-800': type === 'warning',
-    'text-danger-800': type === 'danger',
-    'text-success-800': type === 'success',
-    'text-info-800': type === 'info',
-    'text-gray-800': type === 'neutral',
-  })
+}: AlertProps) {
+  const [show, setShow] = React.useState(true)
 
   if (!show) {
     return null
   }
   return (
-    <div className={rootStyle}>
+    <div
+      className={cx('relative rounded p-3 flex items-start space-x-3', {
+        'bg-warning-50 border-[1px] border-warning-300': type === 'warning',
+        'bg-danger-50 border-[1px] border-danger-300': type === 'danger',
+        'bg-success-50 border-[1px] border-success-300': type === 'success',
+        'bg-info-50 border-[1px] border-info-300': type === 'info',
+        'bg-gray-50 border-[1px] border-gray-300': type === 'neutral',
+      })}
+    >
       {withIcon ? <Icon type={type}></Icon> : null}
-      <div className={textStyle}>
+      <div
+        className={cx('flex-1  space-y-1', {
+          'text-warning-800': type === 'warning',
+          'text-danger-800': type === 'danger',
+          'text-success-800': type === 'success',
+          'text-info-800': type === 'info',
+          'text-gray-800': type === 'neutral',
+        })}
+      >
         {title ? (
           <div className="font-medium leading-tight">{title}</div>
         ) : null}
