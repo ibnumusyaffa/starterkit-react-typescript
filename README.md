@@ -4,7 +4,7 @@ Preview https://starterkit-react.vercel.app
 
 ## What's in the stack ?
 
-- Typescript 5.0
+- Typescript 5.1
 - Next.js 13
 - React 18
 - [TailwindCSS 3](https://tailwindcss.com)
