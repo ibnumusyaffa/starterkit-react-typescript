@@ -117,17 +117,13 @@ function Page() {
             </div>
             <div className="flex space-x-5 md:w-1/2">
               <InputGroup>
-                <NativeSelect placeholder="Test" type="text">
+                <NativeSelect placeholder="Test">
                   <option>All Type</option>
                   <option>Type 1</option>
                   <option>Type 2</option>
                   <option>Type 3</option>
                 </NativeSelect>
-                <Input
-                  autofill="off"
-                  autoComplete="off"
-                  placeholder="Search..."
-                ></Input>
+                <Input autoComplete="off" placeholder="Search..."></Input>
                 <Button variant="default">Search</Button>
               </InputGroup>
             </div>
@@ -141,7 +137,7 @@ function Page() {
             </div>
             <div className="flex space-x-5 md:w-1/2">
               <InputGroup>
-                <Input autofill="off" autoComplete="off"></Input>
+                <Input autoComplete="off"></Input>
                 <Button variant="default">Button</Button>
               </InputGroup>
             </div>
@@ -156,9 +152,7 @@ function Page() {
             <div className="space-y-5 md:w-1/2">
               <InputPassword
                 placeholder="Type here"
-                autofill="off"
                 autoComplete="off"
-                type="text"
               ></InputPassword>
             </div>
           </div>

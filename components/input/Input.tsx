@@ -1,7 +1,7 @@
 import React, { useContext, createContext } from 'react'
 import cx from 'clsx'
 
-export type InputProps = React.ComponentProps<'input'> & {
+export type InputProps = Omit<React.ComponentProps<'input'>, 'size'> & {
   /** @default "md" */
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 

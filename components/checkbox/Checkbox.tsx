@@ -11,9 +11,6 @@ export type CheckboxProps = Omit<
   /** @default false */
   indeterminate?: boolean
 
-  /** @default false */
-  asChild?: boolean
-
   label?: string
 }
 
