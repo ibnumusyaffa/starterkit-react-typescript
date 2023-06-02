@@ -1,12 +1,20 @@
 import React from 'react'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
+
+type EmptyStateProps = {
+  title?: string
+  description?: string
+  secondaryAction?: React.ReactNode
+  primaryAction?: React.ReactNode
+  withIcon?: boolean
+}
 export function EmptyState({
   title,
   description,
   secondaryAction,
   primaryAction,
   withIcon,
-}) {
+}: EmptyStateProps) {
   return (
     <div className="flex h-full w-full flex-col items-center justify-center p-5">
       {withIcon ? (
