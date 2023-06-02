@@ -3,25 +3,32 @@ import cx from 'clsx'
 import * as SwitchPrimitive from '@radix-ui/react-switch'
 import { motion } from 'framer-motion'
 
-export const Switch = React.forwardRef(function Switch(
+type SwitchProps = SwitchPrimitive.SwitchProps & {
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+}
+
+export const Switch = React.forwardRef<
+  React.ElementRef<typeof SwitchPrimitive.Root>,
+  SwitchProps
+>(function Switch(
   {
     size = 'md',
     defaultChecked,
     checked,
-    onChange,
+    onCheckedChange,
     disabled,
     required,
     name,
     value,
   },
-  forwardedRef,
+  ref
 ) {
   return (
     <SwitchPrimitive.Root
-      ref={forwardedRef}
+      ref={ref}
       defaultChecked={defaultChecked}
       checked={checked}
-      onCheckedChange={onChange}
+      onCheckedChange={onCheckedChange}
       disabled={disabled}
       required={required}
       name={name}
@@ -40,8 +47,9 @@ export const Switch = React.forwardRef(function Switch(
           'h-[34px] w-[62px] px-[4px]': size === 'xl',
         },
         {
-          'focus:ring-primary-400 focus:ring-opacity-40 data-[state=checked]:bg-primary-500': true,
-        },
+          'focus:ring-primary-400 focus:ring-opacity-40 data-[state=checked]:bg-primary-500':
+            true,
+        }
       )}
     >
       <SwitchPrimitive.Thumb asChild>
@@ -56,7 +64,7 @@ export const Switch = React.forwardRef(function Switch(
               'h-[19px] w-[19px]': size === 'md',
               'h-[23px] w-[23px]': size === 'lg',
               'h-[27px] w-[27px]': size === 'xl',
-            },
+            }
           )}
         ></motion.span>
       </SwitchPrimitive.Thumb>
