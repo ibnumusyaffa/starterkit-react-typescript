@@ -59,15 +59,21 @@ function Page() {
         <div className="text-xl font-semibold text-gray-700">Polymorphic</div>
         <div className="flex flex-wrap gap-5">
           <div className="flex items-center space-x-4">
-            <Avatar as="button" onClick={() => alert('clicked')}></Avatar>
+            <Avatar  src="https://google.com/not-found" name="Ibnu M" asChild>
+              <button onClick={() => alert('clicked')}></button>
+            </Avatar>
             <div>Render as button</div>
           </div>
           <div className="flex items-center space-x-4">
-            <Avatar as="a" href="http://google.com" target="_blank"></Avatar>
+            <Avatar asChild>
+              <a href="http://google.com" target="_blank"></a>
+            </Avatar>
             <div>Render as link (a)</div>
           </div>
           <div className="flex items-center space-x-4">
-            <Avatar as={Link} href="/docs/button"></Avatar>
+            <Avatar>
+              <Link href="/docs/button"></Link>
+            </Avatar>
             <div>Render as next/link</div>
           </div>
         </div>

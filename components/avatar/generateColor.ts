@@ -1,4 +1,4 @@
-function getHashOfString(str) {
+function getHashOfString(str: string) {
   let hash = 0
   for (let i = 0; i < str.length; i++) {
     hash = str.charCodeAt(i) + ((hash << 5) - hash)
@@ -7,17 +7,17 @@ function getHashOfString(str) {
   return hash
 }
 
-function normalizeHash(hash, min, max) {
+function normalizeHash(hash: number, min: number, max: number) {
   return Math.floor((hash % (max - min)) + min)
 }
 
-function getRange(value, range) {
+function getRange(value: number, range: number) {
   return [Math.max(0, value - range), Math.min(value + range, 100)]
 }
 
-export function generateColor(name) {
+export function generateColor(name?: string) {
   if (!name) {
-    return null
+    return undefined
   }
   const range = 11
   const saturation = 55
