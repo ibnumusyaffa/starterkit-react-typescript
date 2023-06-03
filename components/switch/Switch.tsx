@@ -3,7 +3,9 @@ import cx from 'clsx'
 import * as SwitchPrimitive from '@radix-ui/react-switch'
 import { motion } from 'framer-motion'
 
-type SwitchProps = SwitchPrimitive.SwitchProps & {
+type SwitchProps = React.ComponentPropsWithoutRef<
+  typeof SwitchPrimitive.Root
+> & {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 }
 

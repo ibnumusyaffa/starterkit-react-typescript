@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-interface State {
+type State = {
   count: number
   inc: () => void
 }
