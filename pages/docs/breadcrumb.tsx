@@ -4,7 +4,7 @@ import { ChevronRightIcon } from '@heroicons/react/24/solid'
 import Link from 'next/link'
 function breadcrumb() {
   return (
-    <div className="space-y-5" zAA>
+    <div className="space-y-5">
       <div className="space-y-2">
         <div className="text-4xl font-semibold text-gray-700">Breadcrumb</div>
         <div className="text-gray-700">-</div>
@@ -47,10 +47,16 @@ function breadcrumb() {
           Usage with next/link
         </div>
         <div className="space-y-5">
-          <Breadcrumb as={Link}>
-            <BreadcrumbItem href="/docs/button">Home</BreadcrumbItem>
-            <BreadcrumbItem href="/docs/button">Product</BreadcrumbItem>
-            <BreadcrumbItem href="/docs/button">Bycycle</BreadcrumbItem>
+          <Breadcrumb>
+            <BreadcrumbItem asChild>
+              <Link href="/docs/button">Home</Link>
+            </BreadcrumbItem>
+            <BreadcrumbItem asChild>
+              <Link href="/docs/button">Product</Link>
+            </BreadcrumbItem>
+            <BreadcrumbItem asChild>
+              <Link href="/docs/button">Detail</Link>
+            </BreadcrumbItem>
           </Breadcrumb>
         </div>
       </div>
