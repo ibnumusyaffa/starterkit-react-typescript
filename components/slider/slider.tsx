@@ -2,42 +2,23 @@ import * as React from 'react'
 import * as SliderPrimitive from '@radix-ui/react-slider'
 import cx from 'clsx'
 import { useControllableState } from '@/hooks'
-export const Slider = React.forwardRef(function Switch(
-  {
-    value,
-    onValueChange,
-    onValueCommit,
-    defaultValue,
-    disabled,
-    step = 1,
-    min = 0,
-    max = 100,
-    name,
-    minStepsBetweenThumbs = 0,
-    ...props
-  },
-  forwardedRef
-) {
+export const Slider = React.forwardRef<
+  React.ElementRef<typeof SliderPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>
+>(({ value, onValueChange, defaultValue, disabled, ...props }, ref) => {
   const [_value, _onValueChange] = useControllableState({
     value: value,
     onChange: onValueChange,
     defaultValue: defaultValue ? defaultValue : [0],
   })
 
-  let [showTooltip, setShowTooltip] = React.useState(false)
+  const [showTooltip, setShowTooltip] = React.useState(false)
   return (
     <SliderPrimitive.Root
-      ref={forwardedRef}
+      ref={ref}
       {...props}
-      name={name}
-      minStepsBetweenThumbs={minStepsBetweenThumbs}
-      step={step}
-      min={min}
-      max={max}
       value={_value}
       onValueChange={_onValueChange}
-      onValueCommit={onValueCommit}
-      disabled={disabled}
       className={cx(
         'relative flex w-full touch-none select-none items-center data-[disabled]:opacity-50'
       )}
@@ -77,3 +58,5 @@ export const Slider = React.forwardRef(function Switch(
     </SliderPrimitive.Root>
   )
 })
+
+Slider.displayName = SliderPrimitive.Root.displayName
