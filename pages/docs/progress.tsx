@@ -3,7 +3,7 @@ import { Progress } from '@/components/progress'
 import { Button } from '@/components/button'
 
 function Page() {
-  let [progress, setProgress] = React.useState(25)
+  const [progress, setProgress] = React.useState(25)
   return (
     <div className="space-y-10">
       <div className="space-y-2">

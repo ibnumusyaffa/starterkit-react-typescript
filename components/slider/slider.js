@@ -16,7 +16,7 @@ export const Slider = React.forwardRef(function Switch(
     minStepsBetweenThumbs = 0,
     ...props
   },
-  forwardedRef,
+  forwardedRef
 ) {
   const [_value, _onValueChange] = useControllableState({
     value: value,
@@ -39,7 +39,7 @@ export const Slider = React.forwardRef(function Switch(
       onValueCommit={onValueCommit}
       disabled={disabled}
       className={cx(
-        'relative flex w-full touch-none select-none items-center data-[disabled]:opacity-50',
+        'relative flex w-full touch-none select-none items-center data-[disabled]:opacity-50'
       )}
     >
       <SliderPrimitive.Track className="relative h-2 w-full grow overflow-hidden rounded-full  bg-gray-200 shadow-inner">
