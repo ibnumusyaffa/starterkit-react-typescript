@@ -8,7 +8,7 @@ import {
 } from '@/components/alert-dialog'
 import { Button } from '@/components/button'
 function Page() {
-  let [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false)
   return (
     <div className="space-y-10">
       <div className="space-y-2">
