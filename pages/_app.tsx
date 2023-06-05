@@ -8,6 +8,7 @@ import { Inter } from 'next/font/google'
 import '@/styles/globals.css'
 import Layout from '@/layouts/docs'
 import { SSRProvider } from 'react-aria'
+import { ToastProvider } from '@/components/toast'
 
 // If loading a variable font, you don't need to specify the font weight
 const inter = Inter({
@@ -24,9 +25,12 @@ function MyApp({ Component, pageProps }: AppProps) {
         <title>Starterkit</title>
       </Head>
       <QueryClientProvider client={queryClient}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <ToastProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ToastProvider>
+
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
       <div id="radix-portal"></div>

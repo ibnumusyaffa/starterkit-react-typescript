@@ -10,10 +10,40 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/solid'
 
-const ToasCtx = createContext()
+type Position =
+  | 'top-right'
+  | 'top'
+  | 'top-left'
+  | 'bottom-right'
+  | 'bottom'
+  | 'bottom-left'
+
+type Status = 'success' | 'danger' | 'info' | 'warning'
+
+type Toast = {
+  title: string
+  description?: string
+  position?: Position
+  status?: Status
+  duration?: number
+}
+
+type ProviderParams = {
+  success: (options: Toast) => void
+  danger: (options: Toast) => void
+  info: (options: Toast) => void
+  warning: (options: Toast) => void
+}
+
+const ToastCtx = createContext<ProviderParams>({
+  success: () => {},
+  danger: () => {},
+  info: () => {},
+  warning: () => {},
+})
 
 const toastMotionVariants = {
-  initial: (props) => {
+  initial: (props: { position: Position }) => {
     const { position } = props
     const dir = ['top', 'bottom'].includes(position) ? 'y' : 'x'
 
@@ -45,7 +75,18 @@ const toastMotionVariants = {
   },
 }
 
-function Toast({ title, description, position, status, duration, onClose }) {
+type ToastProps = Toast & {
+  onClose: () => void
+}
+
+function Toast({
+  title,
+  description,
+  position,
+  status,
+  duration,
+  onClose,
+}: ToastProps) {
   return (
     <ToastPrimitive.Root
       duration={duration}
@@ -73,7 +114,7 @@ function Toast({ title, description, position, status, duration, onClose }) {
             'bg-danger-600 text-white': status === 'danger',
             'bg-warning-600 text-white': status === 'warning',
             'bg-info-600 text-white': status === 'info',
-          },
+          }
         )}
       >
         <div className="flex">
@@ -125,11 +166,12 @@ function Toast({ title, description, position, status, duration, onClose }) {
   )
 }
 export function useToast() {
-  return useContext(ToasCtx)
+  return useContext(ToastCtx)
 }
 
 let nextId = 0
-const positions = [
+
+const positions: Position[] = [
   'top',
   'top-left',
   'top-right',
@@ -137,8 +179,27 @@ const positions = [
   'bottom-left',
   'bottom-right',
 ]
-export function ToastProvider({ children, duration = 5000 }) {
-  const [queue, setQueue] = useState({
+
+type ToastWithId = Toast & {
+  id: number
+}
+
+type Queues = {
+  'top': ToastWithId[]
+  'top-left': ToastWithId[]
+  'top-right': ToastWithId[]
+  'bottom': ToastWithId[]
+  'bottom-left': ToastWithId[]
+  'bottom-right': ToastWithId[]
+}
+export function ToastProvider({
+  children,
+  duration = 5000,
+}: {
+  children: React.ReactNode
+  duration?: number
+}) {
+  const [queue, setQueue] = useState<Queues>({
     'top': [],
     'top-left': [],
     'top-right': [],
@@ -153,9 +214,10 @@ export function ToastProvider({ children, duration = 5000 }) {
     position = 'top-right',
     status = 'success',
     duration,
-  }) {
+  }: Toast) {
+    console.log("heeee");
     setQueue((prev) => {
-      const newToast = {
+      const newToast: ToastWithId = {
         id: nextId++,
         title,
         description,
@@ -172,7 +234,7 @@ export function ToastProvider({ children, duration = 5000 }) {
     })
   }
 
-  function removeToast(id, position) {
+  function removeToast(id: number, position: Position) {
     setQueue((prevState) => ({
       ...prevState,
       [position]: prevState[position].filter((i) => i.id !== id),
@@ -180,12 +242,12 @@ export function ToastProvider({ children, duration = 5000 }) {
   }
 
   return (
-    <ToasCtx.Provider
+    <ToastCtx.Provider
       value={{
-        success: (params) => toast({ ...params, status: 'success' }),
-        danger: (params) => toast({ ...params, status: 'danger' }),
-        info: (params) => toast({ ...params, status: 'info' }),
-        warning: (params) => toast({ ...params, status: 'warning' }),
+        success: (params: Toast) => toast({ ...params, status: 'success' }),
+        danger: (params: Toast) => toast({ ...params, status: 'danger' }),
+        info: (params: Toast) => toast({ ...params, status: 'info' }),
+        warning: (params: Toast) => toast({ ...params, status: 'warning' }),
       }}
     >
       {children}
@@ -223,6 +285,6 @@ export function ToastProvider({ children, duration = 5000 }) {
           </ToastPrimitive.Provider>
         )
       })}
-    </ToasCtx.Provider>
+    </ToastCtx.Provider>
   )
 }

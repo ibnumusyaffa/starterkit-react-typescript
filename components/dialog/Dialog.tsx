@@ -66,11 +66,13 @@ export function DialogCloseButton() {
   )
 }
 
+export type Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+
 type DialogProps = React.ComponentProps<typeof DialogPrimitive.Root> & {
   closeOnOverlayClick?: boolean
   verticalCentered?: boolean
   scrollBehavior?: 'inside' | 'outside'
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  size?: Size
 }
 
 export function Dialog({

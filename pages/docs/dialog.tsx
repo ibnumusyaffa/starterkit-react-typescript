@@ -5,6 +5,7 @@ import {
   DialogHeader,
   DialogFooter,
   DialogCloseButton,
+  Size
 } from '@/components/dialog'
 import { Button } from '@/components/button'
 
@@ -15,7 +16,7 @@ function Page() {
   const [open4, setOpen4] = useState(false)
   const [open5, setOpen5] = useState(false)
 
-  const [size, setSize] = useState('md')
+  const [size, setSize] = useState<Size>('md')
 
   return (
     <div className="space-y-10">

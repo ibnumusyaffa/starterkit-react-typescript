@@ -8,7 +8,7 @@
   "jsxSingleQuote": false,
   "printWidth": 80,
   "proseWrap": "preserve",
-  "quoteProps": "as-needed",
+  "quoteProps": "consistent",
   "requirePragma": false,
   "semi": false,
   "singleAttributePerLine": false,

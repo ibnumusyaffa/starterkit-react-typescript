@@ -3,7 +3,7 @@ import { useToast } from '@/components/toast'
 import { Button } from '@/components/button'
 
 export default function App() {
-  let toast = useToast()
+  const toast = useToast()
   return (
     <div className="space-y-10">
       <div className="space-y-2">
