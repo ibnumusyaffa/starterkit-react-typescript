@@ -9,8 +9,8 @@ import {
 import { Button } from '@/components/button'
 
 function Page() {
-  let [open1, setOpen1] = useState(false)
-  let [open2, setOpen2] = useState(false)
+  const [open1, setOpen1] = useState(false)
+  const [open2, setOpen2] = useState(false)
   return (
     <div className="space-y-10">
       <div className="space-y-2">
@@ -47,11 +47,7 @@ function Page() {
             Rackham.
           </DrawerContent>
           <DrawerFooter>
-            <Button
-              color="red"
-              variant="default"
-              onClick={() => setOpen1(!open1)}
-            >
+            <Button variant="default" onClick={() => setOpen1(!open1)}>
               Cancel
             </Button>
 
@@ -81,11 +77,7 @@ function Page() {
             Rackham.
           </DrawerContent>
           <DrawerFooter>
-            <Button
-              color="red"
-              variant="default"
-              onClick={() => setOpen2(!open2)}
-            >
+            <Button variant="default" onClick={() => setOpen2(!open2)}>
               Cancel
             </Button>
 

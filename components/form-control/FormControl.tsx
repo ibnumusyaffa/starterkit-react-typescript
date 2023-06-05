@@ -1,6 +1,6 @@
 import React from 'react'
 
-export function FormControl({ children }: { children: React.ReactNode }) {
+export function FormControl({ children }: { children?: React.ReactNode }) {
   return <div className="relative">{children}</div>
 }
 
@@ -9,7 +9,7 @@ export function FormLabel({
   required,
   ...props
 }: {
-  children: React.ReactNode
+  children?: React.ReactNode
   required?: boolean
 }) {
   return (
@@ -23,7 +23,7 @@ export function FormErrorMessage({
   children,
   ...props
 }: {
-  children: React.ReactNode
+  children?: React.ReactNode
   required?: boolean
 }) {
   return (
@@ -37,7 +37,7 @@ export function FormHelperText({
   children,
   ...props
 }: {
-  children: React.ReactNode
+  children?: React.ReactNode
   required?: boolean
 }) {
   return (

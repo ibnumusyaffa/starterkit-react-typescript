@@ -40,7 +40,7 @@ const contentMotionVariants = {
   },
 }
 
-export function DrawerHeader({ children }) {
+export function DrawerHeader({ children }: { children?: React.ReactNode }) {
   return (
     <div className="px-5 py-3 ">
       <div className="text-lg font-semibold text-gray-800">{children}</div>
@@ -48,11 +48,11 @@ export function DrawerHeader({ children }) {
   )
 }
 
-export function DrawerContent({ children }) {
+export function DrawerContent({ children }: { children?: React.ReactNode }) {
   return <div className="flex-1 overflow-auto px-5 py-2">{children}</div>
 }
 
-export function DrawerFooter({ children }) {
+export function DrawerFooter({ children }: { children?: React.ReactNode }) {
   return <div className="flex justify-end space-x-3 px-5 py-3">{children}</div>
 }
 export function DrawerCloseButton() {
@@ -60,7 +60,7 @@ export function DrawerCloseButton() {
     <DialogPrimitive.Close asChild>
       <button
         className={cx(
-          'absolute top-2 right-2 rounded p-0.5 text-gray-800 hover:bg-gray-200 active:bg-gray-300',
+          'absolute top-2 right-2 rounded p-0.5 text-gray-800 hover:bg-gray-200 active:bg-gray-300'
         )}
       >
         <XMarkIcon className="h-5 w-5"></XMarkIcon>
@@ -68,6 +68,13 @@ export function DrawerCloseButton() {
     </DialogPrimitive.Close>
   )
 }
+
+type DrawerProps = React.ComponentProps<typeof DialogPrimitive.Root> & {
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  placement?: 'left' | 'right'
+  closeOnOverlayClick?: boolean
+}
+
 export function Drawer({
   open,
   onOpenChange,
@@ -75,18 +82,19 @@ export function Drawer({
   closeOnOverlayClick = true,
   placement = 'left',
   size = 'xs',
-}) {
-  const ref = useRef()
+  ...props
+}: DrawerProps) {
+  const ref = useRef<HTMLDivElement>(null)
   useOnClickOutside(ref, () => {
     if (!closeOnOverlayClick) {
       return
     }
-    onOpenChange(false)
+    onOpenChange?.(false)
   })
 
   //workaround for radix bug
   const [, forceRender] = useState(0)
-  const containerRef = useRef(0)
+  const containerRef = useRef<HTMLElement>()
   useEffect(() => {
     containerRef.current = document.body
     forceRender((prev) => prev + 1)
@@ -94,7 +102,7 @@ export function Drawer({
   }, [])
 
   return (
-    <DialogPrimitive.Root open={open} onOpenChange={onOpenChange}>
+    <DialogPrimitive.Root {...props} open={open} onOpenChange={onOpenChange}>
       <AnimatePresence>
         {open ? (
           <DialogPrimitive.Portal forceMount container={containerRef.current}>
@@ -110,7 +118,7 @@ export function Drawer({
             <DialogPrimitive.Content asChild forceMount>
               <div
                 className={cx(
-                  'fixed top-0 left-0 z-10 flex w-screen  justify-center overflow-y-auto',
+                  'fixed top-0 left-0 z-10 flex w-screen  justify-center overflow-y-auto'
                 )}
               >
                 <motion.div
@@ -132,7 +140,7 @@ export function Drawer({
                       'w-[30rem]': size === 'md',
                       'w-[35rem]': size === 'lg',
                       'w-[45rem]': size === 'xl',
-                    },
+                    }
                   )}
                 >
                   {children}
