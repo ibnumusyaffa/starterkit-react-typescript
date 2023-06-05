@@ -4,16 +4,16 @@ Preview https://starterkit-react.vercel.app
 
 ## What's in the stack ?
 
-- Typescript 5.1
-- Next.js 13
-- React 18
-- [TailwindCSS 3](https://tailwindcss.com)
-- [Zustand](https://zustand-demo.pmnd.rs) for state management
-- [Tanstack Query](https://tanstack.com/query) for async state management (fetching, caching, synchronizing)
-- 30++ customizable components using TailwindCSS, [Radix UI](https://www.radix-ui.com/),React Aria
-- Absolute Import and Path Alias — Import components using `@/` prefix
-- ESLint — Find and fix problems in your code
-- Prettier — Format your code consistently
+- ⚡️ Next.js 13
+- ⚛️ React 18
+- ✨ TypeScript 5.1
+- 💨 [TailwindCSS 3](https://tailwindcss.com)
+- 💎 Prebuilt customizable components using TailwindCSS, [Radix UI](https://www.radix-ui.com/),React Aria
+- 🚀 [Tanstack Query](https://tanstack.com/query) for async state management (fetching, caching, synchronizing)
+- 🐻 [Zustand](https://zustand-demo.pmnd.rs) for state management
+- 📈 Absolute Import and Path Alias — Import components using `@/` prefix
+- 📏 ESLint — To find and fix problems in your code
+- 💖 Prettier — Format your code consistently
 
 ## Quick Start
 
@@ -62,7 +62,7 @@ export default {
 } 
 ```
 
-## Scripts
+## Available scripts
 
 - `npm run dev` — Starts the application in development mode at `http://localhost:3000`.
 - `npm run build` — Creates an optimized production build of your application.
