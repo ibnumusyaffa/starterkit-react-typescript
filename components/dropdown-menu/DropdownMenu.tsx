@@ -27,12 +27,20 @@ const motionVariants = {
     transition: { duration: 0.1, ease: 'easeIn' },
   },
 }
-const DropdownCtx = createContext(false)
-const DropdownSubCtx = createContext(false)
+type DropdownProviderParams = {
+  open?: boolean
+  setOpen?: (value: boolean) => void
+}
+const DropdownCtx = createContext<DropdownProviderParams>({})
+const DropdownSubCtx = createContext<DropdownProviderParams>({})
 
 export const DropdownMenuGroup = DropdownMenuPrimitive.Group
 
-export function DropdownMenuTrigger({ children }) {
+export function DropdownMenuTrigger({
+  children,
+}: {
+  children?: React.ReactNode
+}) {
   return (
     <DropdownMenuPrimitive.Trigger asChild>
       {children}
@@ -48,7 +56,7 @@ export function DropdownMenuArrow() {
           className={cx(
             'absolute h-2 w-2 rotate-45 bg-white',
             'border-r border-b border-gray-300 border-opacity-50',
-            'top-[-3px] left-0 right-0 ml-auto mr-auto',
+            'top-[-3px] left-0 right-0 ml-auto mr-auto'
           )}
         ></div>
       </div>
@@ -61,7 +69,7 @@ export function DropdownMenuRoot({
   open,
   onOpenChange,
   defaultOpen = false,
-}) {
+}: React.ComponentProps<typeof DropdownMenuPrimitive.Root>) {
   const [_open, _setOpen] = useControllableState({
     value: open,
     onChange: onOpenChange,
@@ -80,15 +88,22 @@ export function DropdownMenuRoot({
   )
 }
 
-export const DropdownMenuContent = React.forwardRef(function Button(
+type DropdownMenuContentProps = React.ComponentProps<
+  typeof DropdownMenuPrimitive.Content
+>
+
+export const DropdownMenuContent = React.forwardRef<
+  HTMLDivElement,
+  DropdownMenuContentProps
+>(function DropdownMenuContent(
   { children, side = 'bottom', align = 'center', ...props },
-  forwardedRef,
+  ref
 ) {
   const { open } = useContext(DropdownCtx)
 
   //workaround for radix bug
   const [, forceRender] = useState(0)
-  const containerRef = useRef(0)
+  const containerRef = useRef<HTMLElement>()
   useEffect(() => {
     containerRef.current = document.body
     forceRender((prev) => prev + 1)
@@ -103,11 +118,11 @@ export const DropdownMenuContent = React.forwardRef(function Button(
           forceMount
         >
           <DropdownMenuPrimitive.Content
-            asChild
             {...props}
+            asChild
             side={side}
             align={align}
-            ref={forwardedRef}
+            ref={ref}
             className="rounded bg-white px-0.5 py-0.5 shadow-lg ring-1 ring-black ring-opacity-10 focus:outline-none"
           >
             <motion.div
@@ -125,6 +140,14 @@ export const DropdownMenuContent = React.forwardRef(function Button(
   )
 })
 
+type DropdownMenuItemProps = React.ComponentProps<
+  typeof DropdownMenuPrimitive.Item
+> & {
+  color?: 'primary' | 'danger'
+  leftIcon?: React.ReactNode
+  rightIcon?: React.ReactNode
+}
+
 export function DropdownMenuItem({
   disabled,
   leftIcon,
@@ -132,10 +155,9 @@ export function DropdownMenuItem({
   color = 'primary',
   onSelect,
   ...props
-}) {
+}: DropdownMenuItemProps) {
   return (
     <DropdownMenuPrimitive.Item
-      forceMount
       disabled={disabled}
       onSelect={onSelect}
       className={cx(
@@ -149,7 +171,7 @@ export function DropdownMenuItem({
         color === 'danger' && [
           'text-danger-600',
           'data-[highlighted]:bg-danger-500 data-[highlighted]:text-white',
-        ],
+        ]
       )}
     >
       {leftIcon ? <div>{leftIcon}</div> : null}
@@ -159,28 +181,26 @@ export function DropdownMenuItem({
   )
 }
 
-export function DropdownMenuLabel(props) {
+export function DropdownMenuLabel({
+  children,
+}: {
+  children?: React.ReactNode
+}) {
   return (
-    <DropdownMenuPrimitive.Label
-      forceMount
-      className="mt-1.5 mb-2 flex items-center px-3 text-xs font-semibold text-gray-500 "
-    >
-      {props.children}
+    <DropdownMenuPrimitive.Label className="mt-1.5 mb-2 flex items-center px-3 text-xs font-semibold text-gray-500 ">
+      {children}
     </DropdownMenuPrimitive.Label>
   )
 }
 
 export function DropdownMenuSeparator() {
   return (
-    <DropdownMenuPrimitive.Separator
-      forceMount
-      className="mx-[-2px] my-2 border-b border-gray-300"
-    ></DropdownMenuPrimitive.Separator>
+    <DropdownMenuPrimitive.Separator className="mx-[-2px] my-2 border-b border-gray-300"></DropdownMenuPrimitive.Separator>
   )
 }
 
-export function DropdownMenuSub({ children }) {
-  let [open, setOpen] = useState(false)
+export function DropdownMenuSub({ children }: { children?: React.ReactNode }) {
+  const [open, setOpen] = useState(false)
   return (
     <DropdownSubCtx.Provider value={{ open, setOpen }}>
       <DropdownMenuPrimitive.Sub
@@ -193,21 +213,30 @@ export function DropdownMenuSub({ children }) {
     </DropdownSubCtx.Provider>
   )
 }
-export function DropdownMenuSubTrigger({ disabled, leftIcon, ...props }) {
+
+type DropdownMenuSubTriggerProps = React.ComponentProps<
+  typeof DropdownMenuPrimitive.SubTrigger
+> & {
+  leftIcon?: React.ReactNode
+}
+export function DropdownMenuSubTrigger({
+  disabled,
+  leftIcon,
+  children,
+}: DropdownMenuSubTriggerProps) {
   return (
     <DropdownMenuPrimitive.SubTrigger
-      forceMount
       disabled={disabled}
       className={cx(
         'relative flex items-center space-x-2 rounded px-3 py-2',
         'cursor-pointer  text-sm focus:outline-none',
         'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
         'text-gray-900',
-        'data-[highlighted]:bg-primary-500 data-[highlighted]:text-white',
+        'data-[highlighted]:bg-primary-500 data-[highlighted]:text-white'
       )}
     >
       {leftIcon ? <div>{leftIcon}</div> : null}
-      <div className="flex-1">{props.children}</div>
+      <div className="flex-1">{children}</div>
       <div className="h-3.5 w-3.5">
         <ChevronRightIcon></ChevronRightIcon>
       </div>
@@ -215,12 +244,14 @@ export function DropdownMenuSubTrigger({ disabled, leftIcon, ...props }) {
   )
 }
 
-export const DropdownMenuSubContent = React.forwardRef(function Button(
-  { children, ...props },
-  forwardedRef,
-) {
+type DropdownMenuSubContentProps = React.ComponentProps<
+  typeof DropdownMenuPrimitive.SubContent
+>
+export const DropdownMenuSubContent = React.forwardRef<
+  HTMLDivElement,
+  DropdownMenuSubContentProps
+>(function DropdownMenuSubContent({ children, ...props }, ref) {
   const { open } = useContext(DropdownSubCtx)
-
   return (
     <AnimatePresence>
       {open ? (
@@ -228,7 +259,7 @@ export const DropdownMenuSubContent = React.forwardRef(function Button(
           <DropdownMenuPrimitive.SubContent
             {...props}
             asChild
-            ref={forwardedRef}
+            ref={ref}
             className="rounded bg-white px-0.5 py-0.5 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
           >
             <motion.div

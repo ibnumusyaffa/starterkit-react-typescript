@@ -19,7 +19,7 @@ import {
   ArrowLeftOnRectangleIcon,
 } from '@heroicons/react/24/outline'
 function Page() {
-  let [open, setOpen] = React.useState(false)
+  const [open, setOpen] = React.useState(false)
   return (
     <div className="space-y-10">
       <div className="space-y-2">
