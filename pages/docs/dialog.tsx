@@ -9,13 +9,13 @@ import {
 import { Button } from '@/components/button'
 
 function Page() {
-  let [open1, setOpen1] = useState(false)
-  let [open2, setOpen2] = useState(false)
-  let [open3, setOpen3] = useState(false)
-  let [open4, setOpen4] = useState(false)
-  let [open5, setOpen5] = useState(false)
+  const [open1, setOpen1] = useState(false)
+  const [open2, setOpen2] = useState(false)
+  const [open3, setOpen3] = useState(false)
+  const [open4, setOpen4] = useState(false)
+  const [open5, setOpen5] = useState(false)
 
-  let [size, setSize] = useState('md')
+  const [size, setSize] = useState('md')
 
   return (
     <div className="space-y-10">
@@ -46,7 +46,7 @@ function Page() {
             </DialogContent>
             <DialogFooter>
               <Button
-                color="red"
+                color="danger"
                 variant="default"
                 onClick={() => setOpen1(!open1)}
               >
@@ -88,7 +88,7 @@ function Page() {
             </DialogContent>
             <DialogFooter>
               <Button
-                color="red"
+                color="danger"
                 variant="default"
                 onClick={() => setOpen2(!open2)}
               >
@@ -144,7 +144,7 @@ function Page() {
             </DialogContent>
             <DialogFooter>
               <Button
-                color="red"
+                color="danger"
                 variant="default"
                 onClick={() => setOpen3(!open3)}
               >
@@ -196,7 +196,7 @@ function Page() {
             </DialogContent>
             <DialogFooter>
               <Button
-                color="red"
+                color="danger"
                 variant="default"
                 onClick={() => setOpen4(!open4)}
               >
@@ -272,7 +272,7 @@ function Page() {
             </DialogContent>
             <DialogFooter>
               <Button
-                color="red"
+                color="danger"
                 variant="default"
                 onClick={() => setOpen5(!open5)}
               >

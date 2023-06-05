@@ -36,7 +36,7 @@ const contentMotion = {
   },
 }
 
-export function DialogHeader({ children }) {
+export function DialogHeader({ children }: { children?: React.ReactNode }) {
   return (
     <div className="px-5 py-3 ">
       <div className="text-lg font-semibold text-gray-800">{children}</div>
@@ -44,11 +44,11 @@ export function DialogHeader({ children }) {
   )
 }
 
-export function DialogContent({ children }) {
+export function DialogContent({ children }: { children?: React.ReactNode }) {
   return <div className="flex-1 overflow-auto px-5 py-2">{children}</div>
 }
 
-export function DialogFooter({ children }) {
+export function DialogFooter({ children }: { children?: React.ReactNode }) {
   return <div className="flex justify-end space-x-3 px-5 py-3">{children}</div>
 }
 
@@ -57,13 +57,20 @@ export function DialogCloseButton() {
     <DialogPrimitive.Close asChild>
       <button
         className={cx(
-          'absolute top-2 right-2 rounded p-0.5 text-gray-800 hover:bg-gray-200 active:bg-gray-300',
+          'absolute top-2 right-2 rounded p-0.5 text-gray-800 hover:bg-gray-200 active:bg-gray-300'
         )}
       >
         <XMarkIcon className="h-5 w-5"></XMarkIcon>
       </button>
     </DialogPrimitive.Close>
   )
+}
+
+type DialogProps = React.ComponentProps<typeof DialogPrimitive.Root> & {
+  closeOnOverlayClick?: boolean
+  verticalCentered?: boolean
+  scrollBehavior?: 'inside' | 'outside'
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 }
 
 export function Dialog({
@@ -74,18 +81,19 @@ export function Dialog({
   verticalCentered = false,
   scrollBehavior = 'inside',
   size = 'md',
-}) {
-  const ref = useRef()
+  ...props
+}: DialogProps) {
+  const ref = useRef<HTMLDivElement>(null)
   useOnClickOutside(ref, () => {
     if (!closeOnOverlayClick) {
       return
     }
-    onOpenChange(false)
+    onOpenChange?.(false)
   })
 
   //workaround for radix bug
   const [, forceRender] = useState(0)
-  const containerRef = useRef(0)
+  const containerRef = useRef<HTMLElement | null>(null)
   useEffect(() => {
     containerRef.current = document.body
     forceRender((prev) => prev + 1)
@@ -93,7 +101,7 @@ export function Dialog({
   }, [])
 
   return (
-    <DialogPrimitive.Root open={open} onOpenChange={onOpenChange}>
+    <DialogPrimitive.Root {...props} open={open} onOpenChange={onOpenChange}>
       <AnimatePresence>
         {open ? (
           <DialogPrimitive.Portal forceMount container={containerRef.current}>
@@ -114,7 +122,7 @@ export function Dialog({
                     'h-screen': scrollBehavior === 'outside',
                     'h-screen items-center': verticalCentered,
                     'h-screen items-start': !verticalCentered,
-                  },
+                  }
                 )}
               >
                 <motion.div
@@ -137,7 +145,7 @@ export function Dialog({
                       'max-w-[30rem]': size === 'md',
                       'max-w-[35rem]': size === 'lg',
                       'max-w-[45rem]': size === 'xl',
-                    },
+                    }
                   )}
                 >
                   {children}
