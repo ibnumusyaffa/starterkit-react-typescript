@@ -18,14 +18,13 @@ import {
 } from '@heroicons/react/24/outline'
 
 function Page() {
-  let [open, setOpen] = React.useState(false)
   return (
     <div className="space-y-10">
       <div className="space-y-2">
         <div className="text-4xl font-semibold text-gray-700">Context Menu</div>
         <div className="text-gray-700">-</div>
       </div>
-      <ContextMenuRoot onOpenChange={setOpen} open={open}>
+      <ContextMenuRoot>
         <ContextMenuTrigger>
           <div className="flex h-56 w-full items-center justify-center border border-gray-300 bg-gray-50 p-5">
             <div>Click right here</div>

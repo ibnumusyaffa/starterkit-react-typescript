@@ -1,10 +1,10 @@
 import React from 'react'
 import { Slider } from '@/components/slider'
 function Page() {
-  let [value1, setValue1] = React.useState([10])
-  let [value2, setValue2] = React.useState([0, 50])
-  let [value3, setValue3] = React.useState([20])
-  let [value4, setValue4] = React.useState(value3)
+  const [value1, setValue1] = React.useState([10])
+  const [value2, setValue2] = React.useState([0, 50])
+  const [value3, setValue3] = React.useState([20])
+  const [value4, setValue4] = React.useState(value3)
   return (
     <div className="space-y-10">
       <div className="space-y-2">
