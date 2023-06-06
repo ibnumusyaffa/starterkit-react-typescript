@@ -9,7 +9,13 @@ import * as PopoverPrimitive from '@radix-ui/react-popover'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useControllableState } from '@/hooks'
 import cx from 'clsx'
-const PopoverCtx = createContext()
+
+type PopoverProviderParams = {
+  open?: boolean
+  setOpen?: (value: boolean) => void
+}
+
+const PopoverCtx = createContext<PopoverProviderParams>({})
 function usePopover() {
   const context = useContext(PopoverCtx)
   if (context === undefined) {
@@ -18,7 +24,7 @@ function usePopover() {
   return context
 }
 
-export function PopoverTrigger({ children }) {
+export function PopoverTrigger({ children }: { children?: React.ReactNode }) {
   return <PopoverPrimitive.Trigger asChild>{children}</PopoverPrimitive.Trigger>
 }
 
@@ -27,7 +33,8 @@ export function PopoverRoot({
   open,
   onOpenChange,
   defaultOpen = false,
-}) {
+  ...props
+}: React.ComponentProps<typeof PopoverPrimitive.Root>) {
   const [_open, _setOpen] = useControllableState({
     value: open,
     onChange: onOpenChange,
@@ -37,6 +44,7 @@ export function PopoverRoot({
   return (
     <PopoverCtx.Provider value={{ open: _open, setOpen: _setOpen }}>
       <PopoverPrimitive.Root
+        {...props}
         open={_open}
         defaultOpen={_open}
         onOpenChange={(value) => _setOpen(value)}
@@ -56,7 +64,7 @@ export function PopoverArrow() {
             'absolute h-2 w-2 rotate-45',
             'left-0 right-0 ml-auto mr-auto',
             'top-[-3.5px] bg-white shadow-md',
-            'border-r border-b border-black border-opacity-[0.15]',
+            'border-r border-b border-black border-opacity-[0.15]'
           )}
         ></div>
       </div>
@@ -68,12 +76,13 @@ export function PopoverContent({
   children,
   side = 'bottom',
   align = 'center',
-}) {
+  ...props
+}: React.ComponentProps<typeof PopoverPrimitive.Content>) {
   const { open } = usePopover()
 
   //workaround for radix bug
   const [, forceRender] = useState(0)
-  const containerRef = useRef(0)
+  const containerRef = useRef<HTMLElement>()
   useEffect(() => {
     containerRef.current = document.body
     forceRender((prev) => prev + 1)
@@ -85,6 +94,7 @@ export function PopoverContent({
       {open ? (
         <PopoverPrimitive.Portal forceMount container={containerRef.current}>
           <PopoverPrimitive.Content
+            {...props}
             side={side}
             align={align}
             asChild
