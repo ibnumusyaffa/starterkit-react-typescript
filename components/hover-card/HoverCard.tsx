@@ -9,9 +9,15 @@ import * as HoverCardPrimitive from '@radix-ui/react-hover-card'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useControllableState } from '@/hooks'
 import cx from 'clsx'
-const HoverCardCtx = createContext()
 
-export function HoverCardTrigger({ children }) {
+type HoverCardProviderParams = {
+  open?: boolean
+  setOpen?: (value: boolean) => void
+}
+
+const HoverCardCtx = createContext<HoverCardProviderParams>({})
+
+export function HoverCardTrigger({ children }: { children?: React.ReactNode }) {
   return (
     <HoverCardPrimitive.Trigger asChild>{children}</HoverCardPrimitive.Trigger>
   )
@@ -24,13 +30,12 @@ export function HoverCardRoot({
   defaultOpen = false,
   openDelay = 700,
   closeDelay = 300,
-}) {
+}: React.ComponentProps<typeof HoverCardPrimitive.Root>) {
   const [_open, _setOpen] = useControllableState({
     value: open,
     onChange: onOpenChange,
     defaultValue: defaultOpen,
   })
-
   return (
     <HoverCardCtx.Provider value={{ open: _open, setOpen: _setOpen }}>
       <HoverCardPrimitive.Root
@@ -55,7 +60,7 @@ export function HoverCardArrow() {
             'absolute h-2 w-2 rotate-45',
             'left-0 right-0 ml-auto mr-auto',
             'top-[-3.5px] bg-white shadow-md',
-            'border-r border-b border-black border-opacity-[0.15]',
+            'border-r border-b border-black border-opacity-[0.15]'
           )}
         ></div>
       </div>
@@ -67,12 +72,13 @@ export function HoverCardContent({
   children,
   side = 'bottom',
   align = 'center',
-}) {
+  ...props
+}: React.ComponentProps<typeof HoverCardPrimitive.Content>) {
   const { open } = useContext(HoverCardCtx)
 
   //workaround for radix bug
   const [, forceRender] = useState(0)
-  const containerRef = useRef(0)
+  const containerRef = useRef<HTMLElement>()
   useEffect(() => {
     containerRef.current = document.body
     forceRender((prev) => prev + 1)
@@ -84,6 +90,7 @@ export function HoverCardContent({
       {open ? (
         <HoverCardPrimitive.Portal forceMount container={containerRef.current}>
           <HoverCardPrimitive.Content
+            {...props}
             side={side}
             align={align}
             asChild
