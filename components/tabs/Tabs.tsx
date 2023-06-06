@@ -1,22 +1,46 @@
 import React, { createContext, useContext } from 'react'
-import * as Tabs from '@radix-ui/react-tabs'
+import * as TabsPrimitive from '@radix-ui/react-tabs'
 import cx from 'clsx'
-const TabCtx = createContext({ orientation: 'horizontal' })
+import { Slot, Slottable } from '@radix-ui/react-slot'
+
+export type Variant = 'default' | 'outline' | 'pills'
+
+type TabsProviderPrams = {
+  variant: Variant
+  orientation?: 'vertical' | 'horizontal'
+  grow?: boolean
+  align?: 'start' | 'center' | 'end'
+}
+
+const TabCtx = createContext<TabsProviderPrams>({
+  orientation: 'horizontal',
+  variant: 'default',
+  grow: true,
+  align: 'start',
+})
+
+type TabsTriggerProps = React.ComponentPropsWithoutRef<
+  typeof TabsPrimitive.Trigger
+> & {
+  asChild?: boolean
+  leftSection?: React.ReactNode
+  rightSection?: React.ReactNode
+}
 
 export function TabsTrigger({
   children,
-  as,
+  asChild,
   disabled,
   leftSection,
   rightSection,
   ...props
-}) {
-  const Component = as ? as : 'button'
+}: TabsTriggerProps) {
+  const Component = asChild ? Slot : 'button'
   const { orientation, variant, grow } = useContext(TabCtx)
 
-  const variantStyle = {
+  const variantStyle: Record<Variant, string> = {
     default: cx(
-      'px-5 py-3 font-medium text-gray-700  border-transparent group ',
+      'flex items-center px-3 py-3 font-medium text-gray-700  border-transparent group ',
       'data-[state=active]:bg-primary-50 data-[state=active]:text-primary-700',
       {
         'border-b-[3px] data-[state=active]:border-b-primary-500':
@@ -28,10 +52,10 @@ export function TabsTrigger({
       {
         'hover:bg-gray-50': !disabled,
         'cursor-not-allowed opacity-50': disabled,
-      },
+      }
     ),
     outline: cx(
-      'px-5 py-3 font-medium text-gray-700 border-transparent group',
+      'flex items-center px-3 py-3 font-medium text-gray-700 border-transparent group',
       'data-[state=active]:bg-white data-[state=active]:border-gray-300',
       {
         '-mb-[1px] rounded-tl rounded-tr border-t border-l border-r':
@@ -42,10 +66,10 @@ export function TabsTrigger({
       },
       {
         'cursor-not-allowed opacity-50': disabled,
-      },
+      }
     ),
     pills: cx(
-      'px-5 py-2 font-medium rounded text-gray-500 group',
+      'flex items-center px-3 py-2 font-medium rounded text-gray-500 group',
       'data-[state=active]:bg-primary-500 data-[state=active]:text-white',
       'data-[state=active]:ring-1 ring-black ring-opacity-5 data-[state=active]:shadow-sm',
       {
@@ -53,26 +77,24 @@ export function TabsTrigger({
       },
       {
         'cursor-not-allowed opacity-50': disabled,
-      },
+      }
     ),
   }
   return (
-    <Tabs.Trigger {...props} asChild disabled={disabled}>
+    <TabsPrimitive.Trigger {...props} asChild disabled={disabled}>
       <Component className={variantStyle[variant]}>
-        <span className="flex space-x-3">
-          {leftSection}
-          <span className="whitespace-nowrap">{children}</span>
-          {rightSection}
-        </span>
+        <div className='mr-2'> {leftSection}</div>
+        <Slottable>{children}</Slottable>
+        <div className='ml-2'> {rightSection}</div>
       </Component>
-    </Tabs.Trigger>
+    </TabsPrimitive.Trigger>
   )
 }
 
-export function TabsList({ children }) {
+export function TabsList({ children }: { children?: React.ReactNode }) {
   const { orientation, variant, align } = useContext(TabCtx)
   return (
-    <Tabs.List
+    <TabsPrimitive.List
       className={cx(
         'flex max-w-full',
         {
@@ -94,13 +116,16 @@ export function TabsList({ children }) {
           // 'rounded border border-gray-200 bg-gray-50 p-1.5': true,
           'flex-row': orientation === 'horizontal',
           'flex-col': orientation === 'vertical',
-        },
+        }
       )}
     >
       {children}
-    </Tabs.List>
+    </TabsPrimitive.List>
   )
 }
+
+type TabsRootProps = React.ComponentProps<typeof TabsPrimitive.Tabs> &
+  TabsProviderPrams
 
 export function TabsRoot({
   orientation,
@@ -109,10 +134,10 @@ export function TabsRoot({
   grow,
   activationMode = 'manual',
   ...props
-}) {
+}: TabsRootProps) {
   return (
     <TabCtx.Provider value={{ orientation, variant, align, grow }}>
-      <Tabs.Root
+      <TabsPrimitive.Root
         {...props}
         activationMode={activationMode}
         orientation={orientation}
@@ -122,15 +147,17 @@ export function TabsRoot({
         })}
       >
         {props.children}
-      </Tabs.Root>
+      </TabsPrimitive.Root>
     </TabCtx.Provider>
   )
 }
 
-export function TabsContent(props) {
+export function TabsContent(
+  props: React.ComponentProps<typeof TabsPrimitive.Content>
+) {
   return (
-    <Tabs.Content className="p-3" {...props}>
+    <TabsPrimitive.Content className="p-3" {...props}>
       {props.children}
-    </Tabs.Content>
+    </TabsPrimitive.Content>
   )
 }

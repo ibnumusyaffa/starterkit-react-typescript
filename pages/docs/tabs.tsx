@@ -1,11 +1,17 @@
 import React from 'react'
-import { TabsRoot, TabsList, TabsTrigger, TabsContent } from '@/components/tabs'
+import {
+  TabsRoot,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+  Variant,
+} from '@/components/tabs'
 import { Radio } from '@/components/radio'
 import { Cog6ToothIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 
 function Page() {
-  let [variant, setVariant] = React.useState('default')
+  const [variant, setVariant] = React.useState<Variant>('default')
   return (
     <div className="space-y-10">
       <div className="space-y-2">
@@ -19,19 +25,19 @@ function Page() {
           <div className="flex space-x-5">
             <Radio
               checked={variant === 'default'}
-              onChange={(e) => setVariant(e.target.value)}
+              onChange={(e) => setVariant(e.target.value as Variant)}
               label="Default"
               value="default"
             ></Radio>
             <Radio
               checked={variant === 'outline'}
-              onChange={(e) => setVariant(e.target.value)}
+              onChange={(e) => setVariant(e.target.value as Variant)}
               label="Outline"
               value="outline"
             ></Radio>
             <Radio
               checked={variant === 'pills'}
-              onChange={(e) => setVariant(e.target.value)}
+              onChange={(e) => setVariant(e.target.value as Variant)}
               label="Pills"
               value="pills"
             ></Radio>
@@ -57,11 +63,20 @@ function Page() {
                 >
                   With Icon
                 </TabsTrigger>
-                <TabsTrigger value="tab4" disabled>
-                  Disabled
+
+                <TabsTrigger
+                  rightSection={
+                    <Cog6ToothIcon className="h-5 w-5"></Cog6ToothIcon>
+                  }
+                  value="tab4"
+                >
+                  With Icon
                 </TabsTrigger>
-                <TabsTrigger as={Link} href="/docs/button" value="tab5">
-                  Render as next/link
+                <TabsTrigger value="tab5" asChild>
+                  <button onClick={() => alert('here')}>Button</button>
+                </TabsTrigger>
+                <TabsTrigger asChild value="tab6">
+                  <Link href="/docs/button"> Render as next/link</Link>
                 </TabsTrigger>
               </TabsList>
               <TabsContent value="tab1">Tab1</TabsContent>
