@@ -1,5 +1,5 @@
 import { useCalendar, useLocale } from 'react-aria'
-import { useCalendarState } from 'react-stately'
+import { CalendarStateOptions, useCalendarState } from 'react-stately'
 import { GregorianCalendar } from '@internationalized/date'
 import { CalendarButton } from './Button'
 import { CalendarGrid } from './CalendarGrid'
@@ -10,7 +10,7 @@ import {
   ChevronDoubleLeftIcon,
 } from '@heroicons/react/24/solid'
 
-function createCalendar(identifier) {
+function createCalendar(identifier: string) {
   switch (identifier) {
     case 'gregory':
       return new GregorianCalendar()
@@ -19,25 +19,23 @@ function createCalendar(identifier) {
   }
 }
 
-export function Calendar(props) {
-  let { locale } = useLocale()
-  let state = useCalendarState({
+export function Calendar(props: CalendarStateOptions) {
+  const { locale } = useLocale()
+  const state = useCalendarState({
     ...props,
     locale,
     createCalendar,
   })
 
-  let { calendarProps, prevButtonProps, nextButtonProps, title } = useCalendar(
-    props,
-    state,
-  )
+  const { calendarProps, prevButtonProps, nextButtonProps, title } =
+    useCalendar(props, state)
 
   return (
     <div {...calendarProps} className="px-3.5 py-3.5">
       {/* {JSON.stringify(state)} */}
       <div className="mb-5 flex items-center justify-between space-x-1">
         <CalendarButton
-          isDisabled={state.focusedDate?.year <= state.minValue?.year}
+          isDisabled={state.focusedDate?.year <= (state.minValue?.year ?? 0)}
           onPress={() => state.focusPreviousSection(true)}
         >
           <ChevronDoubleLeftIcon className="h-4 w-4 text-gray-600"></ChevronDoubleLeftIcon>
@@ -52,7 +50,7 @@ export function Calendar(props) {
           <ChevronRightIcon className="h-4 w-4 text-gray-600"></ChevronRightIcon>
         </CalendarButton>
         <CalendarButton
-          isDisabled={state.focusedDate?.year >= state.maxValue?.year}
+          isDisabled={state.focusedDate?.year >= (state.maxValue?.year ?? 0)}
           onPress={() => state.focusNextSection(true)}
         >
           <ChevronDoubleRightIcon className="h-4 w-4 text-gray-600"></ChevronDoubleRightIcon>

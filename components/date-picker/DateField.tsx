@@ -2,18 +2,23 @@ import { useRef } from 'react'
 import { useDateFieldState } from 'react-stately'
 import { useDateField, useDateSegment, useLocale } from 'react-aria'
 import { createCalendar } from '@internationalized/date'
+import type {
+  DateFieldStateOptions,
+  DateSegment,
+  DateFieldState,
+} from 'react-stately'
 import cx from 'clsx'
 
-export function DateField(props) {
-  let { locale } = useLocale()
-  let state = useDateFieldState({
+export function DateField(props: DateFieldStateOptions) {
+  const { locale } = useLocale()
+  const state = useDateFieldState({
     ...props,
     locale,
     createCalendar,
   })
 
-  let ref = useRef()
-  let { fieldProps } = useDateField(props, state, ref)
+  const ref = useRef<HTMLDivElement>(null)
+  const { fieldProps } = useDateField(props, state, ref)
 
   return (
     <div {...fieldProps} ref={ref} className="flex">
@@ -23,9 +28,15 @@ export function DateField(props) {
     </div>
   )
 }
-function DateSegment({ segment, state }) {
-  let ref = useRef()
-  let { segmentProps } = useDateSegment(segment, state, ref)
+function DateSegment({
+  segment,
+  state,
+}: {
+  segment: DateSegment
+  state: DateFieldState
+}) {
+  const ref = useRef<HTMLDivElement>(null)
+  const { segmentProps } = useDateSegment(segment, state, ref)
 
   return (
     <div
@@ -41,7 +52,7 @@ function DateSegment({ segment, state }) {
         {
           'text-gray-500': !segment.isEditable,
           'text-gray-800': segment.isEditable,
-        },
+        }
       )}
     >
       {/* Always reserve space for the placeholder, to prevent layout shift when editing. */}

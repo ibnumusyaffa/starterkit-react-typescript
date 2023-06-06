@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { useRangeCalendarState } from 'react-stately'
+import { RangeCalendarStateOptions, useRangeCalendarState } from 'react-stately'
 import { useRangeCalendar, useLocale } from 'react-aria'
 import { createCalendar } from '@internationalized/date'
 import { CalendarButton } from './Button'
@@ -11,17 +11,19 @@ import {
   ChevronDoubleLeftIcon,
 } from '@heroicons/react/24/solid'
 
-export function RangeCalendar(props) {
-  let { locale } = useLocale()
-  let state = useRangeCalendarState({
+export function RangeCalendar(
+  props: RangeCalendarStateOptions & { multiCalendar?: boolean }
+) {
+  const { locale } = useLocale()
+  const state = useRangeCalendarState({
     ...props,
     visibleDuration: { months: props.multiCalendar ? 2 : 1 },
     locale,
     createCalendar,
   })
 
-  let ref = useRef()
-  let { calendarProps, prevButtonProps, nextButtonProps, title } =
+  const ref = useRef<HTMLDivElement>(null)
+  const { calendarProps, prevButtonProps, nextButtonProps, title } =
     useRangeCalendar(props, state, ref)
 
   return (

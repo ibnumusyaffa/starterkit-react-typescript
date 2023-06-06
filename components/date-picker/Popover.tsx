@@ -1,6 +1,10 @@
-import React, { useEffect } from 'react'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useEffect, useRef } from 'react'
 import { DismissButton, Overlay, usePopover } from 'react-aria'
 import { motion } from 'framer-motion'
+import type { AriaPopoverProps } from 'react-aria'
+import type { OverlayTriggerState } from 'react-stately'
+
 const motionVariants = {
   initial: {
     opacity: 0,
@@ -21,14 +25,19 @@ const motionVariants = {
   },
 }
 
-export function Popover({ children, state, ...props }) {
-  let popoverRef = React.useRef(null)
-  let { popoverProps, underlayProps } = usePopover(
+interface PopoverProps extends Omit<AriaPopoverProps, 'popoverRef'> {
+  children: React.ReactNode
+  state: OverlayTriggerState
+}
+
+export function Popover({ children, state, ...props }: PopoverProps) {
+  const popoverRef = useRef<HTMLDivElement>(null)
+  const { popoverProps, underlayProps } = usePopover(
     {
       ...props,
       popoverRef,
     },
-    state,
+    state
   )
 
   const [, forceRender] = React.useState(0)
@@ -42,7 +51,7 @@ export function Popover({ children, state, ...props }) {
     <Overlay>
       <div {...underlayProps} className="fixed inset-0" />
       <motion.div
-        {...popoverProps}
+       {...(popoverProps as any)}
         ref={popoverRef}
         variants={motionVariants}
         initial="initial"

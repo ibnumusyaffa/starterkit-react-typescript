@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 import React from 'react'
 import {
   useCalendarCell,
@@ -10,12 +11,23 @@ import {
   isSameDay,
   getDayOfWeek,
   isSameMonth,
+  CalendarDate,
+  DateValue,
 } from '@internationalized/date'
 import cx from 'clsx'
-export function CalendarCell({ state, date, currentMonth }) {
-  let ref = React.useRef(null)
-  let { locale } = useLocale()
-  let {
+import type { CalendarState, RangeCalendarState } from 'react-stately'
+export function CalendarCell({
+  state,
+  date,
+  currentMonth,
+}: {
+  date: CalendarDate
+  state: CalendarState | RangeCalendarState
+  currentMonth: DateValue
+}) {
+  const ref = React.useRef(null)
+  const { locale } = useLocale()
+  const {
     cellProps,
     buttonProps,
     isSelected,
@@ -29,25 +41,27 @@ export function CalendarCell({ state, date, currentMonth }) {
 
   // The start and end date of the selected range will have
   // an emphasized appearance.
-  let isSelectionStart = state.highlightedRange
-    ? isSameDay(date, state.highlightedRange.start)
-    : isSelected
-  let isSelectionEnd = state.highlightedRange
-    ? isSameDay(date, state.highlightedRange.end)
-    : isSelected
+  let isSelectionStart =
+    'highlightedRange' in state
+      ? isSameDay(date, state?.highlightedRange?.start)
+      : isSelected
+  let isSelectionEnd =
+    'highlightedRange' in state
+      ? isSameDay(date, state?.highlightedRange?.end)
+      : isSelected
 
-  let dayOfWeek = getDayOfWeek(date, locale)
-  let isRoundedLeft =
+  const dayOfWeek = getDayOfWeek(date, locale)
+  const isRoundedLeft =
     isSelected && (isSelectionStart || dayOfWeek === 0 || date.day === 1)
-  let isRoundedRight =
+  const isRoundedRight =
     isSelected &&
     (isSelectionEnd ||
       dayOfWeek === 6 ||
       date.day === date.calendar.getDaysInMonth(date))
 
-  let { focusProps, isFocusVisible, isFocused } = useFocusRing()
+  const { focusProps, isFocusVisible, isFocused } = useFocusRing()
 
-  let isOutsideMonth = !isSameMonth(currentMonth, date)
+  const isOutsideMonth = !isSameMonth(currentMonth, date)
 
   return (
     <td
@@ -76,7 +90,7 @@ export function CalendarCell({ state, date, currentMonth }) {
               'cursor-default text-gray-300': allDisabled,
               'text-red-600': isWeekend(date, locale) && !allDisabled,
               'bg-primary-500 text-white': isSelectionStart || isSelectionEnd,
-            },
+            }
           )}
         >
           {formattedDate}

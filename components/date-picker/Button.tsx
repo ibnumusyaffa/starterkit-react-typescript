@@ -1,10 +1,15 @@
-import { useRef } from 'react'
-import { useButton, useFocusRing, mergeProps } from 'react-aria'
+import React, { useRef } from 'react'
+import {
+  useButton,
+  useFocusRing,
+  mergeProps,
+  AriaButtonProps,
+} from 'react-aria'
 import cx from 'clsx'
-export function CalendarButton(props) {
-  let ref = useRef()
-  let { buttonProps } = useButton(props, ref)
-  let { focusProps, isFocused } = useFocusRing()
+export function CalendarButton(props: AriaButtonProps<'button'>) {
+  const ref = useRef<HTMLButtonElement>(null)
+  const { buttonProps } = useButton(props, ref)
+  const { focusProps, isFocused } = useFocusRing()
   return (
     <button
       {...mergeProps(buttonProps, focusProps)}
@@ -15,7 +20,7 @@ export function CalendarButton(props) {
           'hover:bg-gray-100 active:bg-gray-200': !props.isDisabled,
           'cursor-not-allowed opacity-50': props.isDisabled,
           'outline-none ring-2 ring-primary-500 ring-opacity-20': isFocused,
-        },
+        }
       )}
     >
       {props.children}
@@ -23,9 +28,9 @@ export function CalendarButton(props) {
   )
 }
 
-export function FieldButton(props) {
-  let ref = useRef()
-  let { buttonProps } = useButton(props, ref)
+export function FieldButton(props: AriaButtonProps<'button'>) {
+  const ref = useRef<HTMLButtonElement>(null)
+  const { buttonProps } = useButton(props, ref)
   return (
     <button
       {...buttonProps}
@@ -36,7 +41,7 @@ export function FieldButton(props) {
           'hover:bg-gray-100  active:bg-gray-200': !props.isDisabled,
 
           'cursor-not-allowed opacity-50': props.isDisabled,
-        },
+        }
       )}
     >
       {props.children}
