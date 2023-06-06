@@ -8,7 +8,6 @@ import React, {
 import * as ContextMenuPrimitive from '@radix-ui/react-context-menu'
 import cx from 'clsx'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useControllableState } from '@/hooks'
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
 
 const motionVariants = {
@@ -26,12 +25,21 @@ const motionVariants = {
     transition: { duration: 0.09, ease: 'easeIn' },
   },
 }
-const ContextCtx = createContext(false)
-const ContextSubCtx = createContext(false)
+
+type ContexMenuProviderParams = {
+  open?: boolean
+  setOpen?: (value: boolean) => void
+}
+const ContextCtx = createContext<ContexMenuProviderParams>({})
+const ContextSubCtx = createContext<ContexMenuProviderParams>({})
 
 export const ContextMenuGroup = ContextMenuPrimitive.Group
 
-export function ContextMenuTrigger({ children }) {
+export function ContextMenuTrigger({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
     <ContextMenuPrimitive.Trigger asChild>
       {children}
@@ -47,7 +55,7 @@ export function ContextMenuArrow() {
           className={cx(
             'absolute h-2 w-2 rotate-45 bg-white',
             'border-r border-b border-gray-300 border-opacity-50',
-            'top-[-3px] left-0 right-0 ml-auto mr-auto',
+            'top-[-3px] left-0 right-0 ml-auto mr-auto'
           )}
         ></div>
       </div>
@@ -57,21 +65,17 @@ export function ContextMenuArrow() {
 
 export function ContextMenuRoot({
   children,
-  open,
   onOpenChange,
-  defaultOpen = false,
-}) {
-  const [_open, _setOpen] = useControllableState({
-    value: open,
-    onChange: onOpenChange,
-    defaultValue: defaultOpen,
-  })
+}: React.ComponentProps<typeof ContextMenuPrimitive.Root>) {
+  const [open, setOpen] = useState(false)
+
   return (
-    <ContextCtx.Provider value={{ open: _open, setOpen: _setOpen }}>
+    <ContextCtx.Provider value={{ open }}>
       <ContextMenuPrimitive.Root
-        open={_open}
-        defaultOpen={_open}
-        onOpenChange={(value) => _setOpen(value)}
+        onOpenChange={(value) => {
+          setOpen(value)
+          onOpenChange?.(value)
+        }}
       >
         {children}
       </ContextMenuPrimitive.Root>
@@ -79,15 +83,19 @@ export function ContextMenuRoot({
   )
 }
 
-export const ContextMenuContent = React.forwardRef(function Button(
-  { children, side = 'bottom', align = 'center', ...props },
-  forwardedRef,
-) {
+type ContextMenuContentProps = React.ComponentProps<
+  typeof ContextMenuPrimitive.Content
+>
+
+export const ContextMenuContent = React.forwardRef<
+  HTMLDivElement,
+  ContextMenuContentProps
+>(function ContextMenuContent({ children, ...props }, ref) {
   const { open } = useContext(ContextCtx)
 
   //workaround for radix bug
   const [, forceRender] = useState(0)
-  const containerRef = useRef(0)
+  const containerRef = useRef<HTMLElement>()
   useEffect(() => {
     containerRef.current = document.body
     forceRender((prev) => prev + 1)
@@ -104,9 +112,7 @@ export const ContextMenuContent = React.forwardRef(function Button(
           <ContextMenuPrimitive.Content
             asChild
             {...props}
-            side={side}
-            align={align}
-            ref={forwardedRef}
+            ref={ref}
             className="rounded bg-white px-0.5 py-0.5 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
           >
             <motion.div
@@ -124,6 +130,14 @@ export const ContextMenuContent = React.forwardRef(function Button(
   )
 })
 
+type ContextMenuItemProps = React.ComponentProps<
+  typeof ContextMenuPrimitive.Item
+> & {
+  leftIcon?: React.ReactNode
+  rightIcon?: React.ReactNode
+  color?: 'primary' | 'danger'
+}
+
 export function ContextMenuItem({
   disabled,
   leftIcon,
@@ -131,10 +145,9 @@ export function ContextMenuItem({
   color = 'primary',
   onSelect,
   ...props
-}) {
+}: ContextMenuItemProps) {
   return (
     <ContextMenuPrimitive.Item
-      forceMount
       disabled={disabled}
       onSelect={onSelect}
       className={cx(
@@ -148,7 +161,7 @@ export function ContextMenuItem({
         color === 'danger' && [
           'text-danger-600',
           'data-[highlighted]:bg-danger-500 data-[highlighted]:text-white',
-        ],
+        ]
       )}
     >
       {leftIcon ? <div>{leftIcon}</div> : null}
@@ -158,12 +171,9 @@ export function ContextMenuItem({
   )
 }
 
-export function ContextMenuLabel(props) {
+export function ContextMenuLabel(props: { children: React.ReactNode }) {
   return (
-    <ContextMenuPrimitive.Label
-      forceMount
-      className="mt-1.5 mb-2 flex items-center px-3 text-xs font-semibold text-gray-500 "
-    >
+    <ContextMenuPrimitive.Label className="mt-1.5 mb-2 flex items-center px-3 text-xs font-semibold text-gray-500 ">
       {props.children}
     </ContextMenuPrimitive.Label>
   )
@@ -171,20 +181,16 @@ export function ContextMenuLabel(props) {
 
 export function ContextMenuSeparator() {
   return (
-    <ContextMenuPrimitive.Separator
-      forceMount
-      className="mx-[-2px] my-2 border-b border-gray-300"
-    ></ContextMenuPrimitive.Separator>
+    <ContextMenuPrimitive.Separator className="mx-[-2px] my-2 border-b border-gray-300"></ContextMenuPrimitive.Separator>
   )
 }
 
-export function ContextMenuSub({ children }) {
-  let [open, setOpen] = useState(false)
+export function ContextMenuSub({ children }: { children: React.ReactNode }) {
+  const [open, setOpen] = useState(false)
   return (
     <ContextSubCtx.Provider value={{ open, setOpen }}>
       <ContextMenuPrimitive.Sub
         open={open}
-        defaultOpen={open}
         onOpenChange={(value) => setOpen(value)}
       >
         {children}
@@ -192,17 +198,27 @@ export function ContextMenuSub({ children }) {
     </ContextSubCtx.Provider>
   )
 }
-export function ContextMenuSubTrigger({ disabled, leftIcon, ...props }) {
+
+type ContextMenuSubTriggerProps = React.ComponentProps<
+  typeof ContextMenuPrimitive.SubTrigger
+> & {
+  leftIcon?: React.ReactNode
+}
+
+export function ContextMenuSubTrigger({
+  disabled,
+  leftIcon,
+  ...props
+}: ContextMenuSubTriggerProps) {
   return (
     <ContextMenuPrimitive.SubTrigger
-      forceMount
       disabled={disabled}
       className={cx(
         'relative flex items-center space-x-2 rounded px-3 py-2',
         'cursor-pointer  text-sm focus:outline-none',
         'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
         'text-gray-900',
-        'data-[highlighted]:bg-primary-500 data-[highlighted]:text-white',
+        'data-[highlighted]:bg-primary-500 data-[highlighted]:text-white'
       )}
     >
       {leftIcon ? <div>{leftIcon}</div> : null}
@@ -214,10 +230,14 @@ export function ContextMenuSubTrigger({ disabled, leftIcon, ...props }) {
   )
 }
 
-export const ContextMenuSubContent = React.forwardRef(function Button(
-  { children, ...props },
-  forwardedRef,
-) {
+type ContextMenuSubContentProps = React.ComponentProps<
+  typeof ContextMenuPrimitive.SubContent
+>
+
+export const ContextMenuSubContent = React.forwardRef<
+  HTMLDivElement,
+  ContextMenuSubContentProps
+>(function ContextMenuSubContent({ children, ...props }, ref) {
   const { open } = useContext(ContextSubCtx)
 
   return (
@@ -227,7 +247,7 @@ export const ContextMenuSubContent = React.forwardRef(function Button(
           <ContextMenuPrimitive.SubContent
             {...props}
             asChild
-            ref={forwardedRef}
+            ref={ref}
             className="rounded bg-white px-0.5 py-0.5 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
           >
             <motion.div

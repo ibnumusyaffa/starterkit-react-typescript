@@ -27,12 +27,12 @@ const motionVariants = {
     transition: { duration: 0.1, ease: 'easeIn' },
   },
 }
-type DropdownProviderParams = {
+type DropdownMenuProviderParams = {
   open?: boolean
   setOpen?: (value: boolean) => void
 }
-const DropdownCtx = createContext<DropdownProviderParams>({})
-const DropdownSubCtx = createContext<DropdownProviderParams>({})
+const DropdownCtx = createContext<DropdownMenuProviderParams>({})
+const DropdownSubCtx = createContext<DropdownMenuProviderParams>({})
 
 export const DropdownMenuGroup = DropdownMenuPrimitive.Group
 
