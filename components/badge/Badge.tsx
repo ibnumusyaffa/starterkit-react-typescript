@@ -143,7 +143,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
       rounded = 'sm',
       ...props
     },
-    forwardedRef
+    ref
   ) => {
     const Component = asChild ? Slot : 'span'
 
@@ -173,7 +173,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
             'w-full': fullWidth,
           }
         )}
-        ref={forwardedRef}
+        ref={ref}
       >
         {withDot ? (
           <div

@@ -8,12 +8,12 @@ export const AccordionRoot = AccordionPrimitive.Root
 export const AccordionItem = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
->(function AccordionItem(props, forwardedRef) {
+>(function AccordionItem(props, ref) {
   return (
     <AccordionPrimitive.Item
       {...props}
       className={cx('border-b border-gray-200')}
-      ref={forwardedRef}
+      ref={ref}
     >
       {props.children}
     </AccordionPrimitive.Item>

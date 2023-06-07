@@ -58,7 +58,7 @@ export const NativeSelect = React.forwardRef<
     fullWidth,
     ...props
   },
-  forwardedRef
+  ref
 ) {
   const isGroup = useContext(InputGroupCtx)
   const Root = isGroup ? React.Fragment : DefaultContainer
@@ -74,7 +74,7 @@ export const NativeSelect = React.forwardRef<
       <select
         {...props}
         data-error={error}
-        ref={forwardedRef}
+        ref={ref}
         disabled={disabled}
         className={cx(
           // base style
