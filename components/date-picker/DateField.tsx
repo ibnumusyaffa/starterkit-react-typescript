@@ -1,15 +1,17 @@
 import { useRef } from 'react'
 import { useDateFieldState } from 'react-stately'
-import { useDateField, useDateSegment, useLocale } from 'react-aria'
+import {
+  AriaDateFieldProps,
+  DateValue,
+  useDateField,
+  useDateSegment,
+  useLocale,
+} from 'react-aria'
 import { createCalendar } from '@internationalized/date'
-import type {
-  DateFieldStateOptions,
-  DateSegment,
-  DateFieldState,
-} from 'react-stately'
+import type { DateSegment, DateFieldState } from 'react-stately'
 import cx from 'clsx'
 
-export function DateField(props: DateFieldStateOptions) {
+export function DateField<T extends DateValue>(props: AriaDateFieldProps<T>) {
   const { locale } = useLocale()
   const state = useDateFieldState({
     ...props,

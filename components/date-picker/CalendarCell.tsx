@@ -19,13 +19,13 @@ import type { CalendarState, RangeCalendarState } from 'react-stately'
 export function CalendarCell({
   state,
   date,
-  currentMonth,
+  currentMonth
 }: {
   date: CalendarDate
   state: CalendarState | RangeCalendarState
   currentMonth: DateValue
 }) {
-  const ref = React.useRef(null)
+  const ref = React.useRef<HTMLDivElement>(null)
   const { locale } = useLocale()
   const {
     cellProps,
@@ -41,14 +41,12 @@ export function CalendarCell({
 
   // The start and end date of the selected range will have
   // an emphasized appearance.
-  let isSelectionStart =
-    'highlightedRange' in state
-      ? isSameDay(date, state?.highlightedRange?.start)
-      : isSelected
-  let isSelectionEnd =
-    'highlightedRange' in state
-      ? isSameDay(date, state?.highlightedRange?.end)
-      : isSelected
+  let isSelectionStart = false;
+  let isSelectionEnd = false;
+  if ('highlightedRange' in state && state.highlightedRange) {
+    isSelectionStart = isSameDay(date, state.highlightedRange.start);
+    isSelectionEnd = isSameDay(date, state.highlightedRange.end);
+  }
 
   const dayOfWeek = getDayOfWeek(date, locale)
   const isRoundedLeft =

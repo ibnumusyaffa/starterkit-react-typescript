@@ -1,5 +1,5 @@
-import { useCalendar, useLocale } from 'react-aria'
-import { CalendarStateOptions, useCalendarState } from 'react-stately'
+import { CalendarProps, DateValue, useCalendar, useLocale } from 'react-aria'
+import {  useCalendarState } from 'react-stately'
 import { GregorianCalendar } from '@internationalized/date'
 import { CalendarButton } from './Button'
 import { CalendarGrid } from './CalendarGrid'
@@ -19,7 +19,7 @@ function createCalendar(identifier: string) {
   }
 }
 
-export function Calendar(props: CalendarStateOptions) {
+export function Calendar<T extends DateValue>(props: CalendarProps<T>) {
   const { locale } = useLocale()
   const state = useCalendarState({
     ...props,
@@ -32,7 +32,6 @@ export function Calendar(props: CalendarStateOptions) {
 
   return (
     <div {...calendarProps} className="px-3.5 py-3.5">
-      {/* {JSON.stringify(state)} */}
       <div className="mb-5 flex items-center justify-between space-x-1">
         <CalendarButton
           isDisabled={state.focusedDate?.year <= (state.minValue?.year ?? 0)}

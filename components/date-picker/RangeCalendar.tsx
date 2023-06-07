@@ -1,6 +1,11 @@
 import { useRef } from 'react'
-import { RangeCalendarStateOptions, useRangeCalendarState } from 'react-stately'
-import { useRangeCalendar, useLocale } from 'react-aria'
+import { useRangeCalendarState } from 'react-stately'
+import {
+  useRangeCalendar,
+  useLocale,
+  RangeCalendarProps,
+  DateValue,
+} from 'react-aria'
 import { createCalendar } from '@internationalized/date'
 import { CalendarButton } from './Button'
 import { CalendarGrid } from './CalendarGrid'
@@ -11,8 +16,8 @@ import {
   ChevronDoubleLeftIcon,
 } from '@heroicons/react/24/solid'
 
-export function RangeCalendar(
-  props: RangeCalendarStateOptions & { multiCalendar?: boolean }
+export function RangeCalendar<T extends DateValue>(
+  props: RangeCalendarProps<T> & { multiCalendar?: boolean }
 ) {
   const { locale } = useLocale()
   const state = useRangeCalendarState({
@@ -46,6 +51,7 @@ export function RangeCalendar(
         </CalendarButton>
       </div>
       <div className="flex gap-5">
+     
         <CalendarGrid state={state} />
         {props.multiCalendar ? (
           <CalendarGrid state={state} offset={{ months: 1 }} />

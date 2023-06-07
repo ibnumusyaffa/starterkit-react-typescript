@@ -1,5 +1,10 @@
 import React from 'react'
-import { useDateRangePicker, I18nProvider } from 'react-aria'
+import {
+  useDateRangePicker,
+  I18nProvider,
+  AriaDateRangePickerProps,
+  DateValue,
+} from 'react-aria'
 import { useDateRangePickerState } from 'react-stately'
 import cx from 'clsx'
 import { FieldButton } from './Button'
@@ -9,42 +14,17 @@ import { Dialog } from './Dialog'
 import { Popover } from './Popover'
 import { CalendarIcon } from '@heroicons/react/24/outline'
 import { AnimatePresence } from 'framer-motion'
-import { parseDateTime, parseDate } from '@internationalized/date'
 
-function modifyProps(props) {
-  let defaultParser = ['hour', 'minute', 'second'].includes(props.granularity)
-    ? parseDateTime
-    : parseDate
-
-  function parse(value) {
-    return {
-      start: value.start ? defaultParser(value.start) : value.start,
-      end: value.end ? defaultParser(value.end) : value.end,
-    }
+export function DateRangePicker<T extends DateValue>(
+  props: AriaDateRangePickerProps<T> & {
+    error?: boolean
+    required?: boolean
+    multiCalendar?: boolean
   }
-  return {
-    ...props,
-    isDisabled: props.disabled,
-    value: props.value ? parse(props.value) : undefined,
-    defaultValue: props.defaultValue ? parse(props.defaultValue) : undefined,
-    onChange: props.onChange
-      ? (value) =>
-          props.onChange({
-            start: value.start.toString(),
-            end: value.end.toString(),
-          })
-      : undefined,
-    minValue: props.minValue ? defaultParser(props.minValue) : undefined,
-    maxValue: props.maxValue ? defaultParser(props.maxValue) : undefined,
-  }
-}
-
-export function DateRangePicker(props) {
-  const newProps = modifyProps(props)
-
-  let state = useDateRangePickerState(newProps)
-  let ref = React.useRef(null)
-  let {
+) {
+  const state = useDateRangePickerState(props)
+  const ref = React.useRef(null)
+  const {
     groupProps,
     labelProps,
     startFieldProps,
@@ -52,16 +32,16 @@ export function DateRangePicker(props) {
     buttonProps,
     dialogProps,
     calendarProps,
-  } = useDateRangePicker(newProps, state, ref)
+  } = useDateRangePicker(props, state, ref)
 
-  const allError = state.validationState === 'invalid' || newProps.error
+  const allError = state.validationState === 'invalid' || props.error
 
   return (
     <I18nProvider locale="en-UK">
       <div className="relative flex w-full flex-col text-left">
         <div {...labelProps} className="mb-2 block font-medium text-gray-700">
-          {newProps.label}
-          {newProps.required ? (
+          {props.label}
+          {props.required ? (
             <span className="ml-1 text-danger-500">*</span>
           ) : null}
         </div>
@@ -73,7 +53,7 @@ export function DateRangePicker(props) {
             'h-10',
             'focus-within:ring-2  focus-within:ring-opacity-25',
             {
-              'cursor-not-allowed bg-gray-100 opacity-75': newProps.isDisabled,
+              'cursor-not-allowed bg-gray-100 opacity-75': props.isDisabled,
             },
             {
               'border-gray-300': !allError,
@@ -84,7 +64,7 @@ export function DateRangePicker(props) {
                 allError,
               'focus-within:border-primary-500 focus-within:ring-primary-500':
                 !allError,
-            },
+            }
           )}
         >
           <div className="flex flex-1 px-2">
@@ -94,11 +74,7 @@ export function DateRangePicker(props) {
             </span>
             <DateField {...endFieldProps} />
           </div>
-          <FieldButton
-            isDisabled={newProps.isDisabled}
-            {...buttonProps}
-            isPressed={state.isOpen}
-          >
+          <FieldButton isDisabled={props.isDisabled} {...buttonProps}>
             <CalendarIcon className="h-4 w-4 text-gray-700"></CalendarIcon>
           </FieldButton>
         </div>
@@ -107,7 +83,7 @@ export function DateRangePicker(props) {
             <Popover state={state} triggerRef={ref} placement="bottom start">
               <Dialog {...dialogProps}>
                 <RangeCalendar
-                  multiCalendar={newProps.multiCalendar}
+                  multiCalendar={props.multiCalendar}
                   {...calendarProps}
                 />
               </Dialog>
