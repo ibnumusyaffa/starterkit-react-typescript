@@ -21,7 +21,7 @@ const motionVariants = {
     opacity: 0,
     y: '3%',
     x: 0,
-    transition: { duration: 2, ease: 'easeIn' },
+    transition: { duration: 0.2, ease: 'easeIn' },
   },
 }
 
