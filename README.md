@@ -1,6 +1,6 @@
 # React Starter
 
-Preview https://starterkit-react.vercel.app
+[https://starterkit-react-typescript.vercel.app](https://starterkit-react-typescript.vercel.app)
 
 ## What's in the stack ?
 
