@@ -16,5 +16,7 @@
   "tabWidth": 2,
   "trailingComma": "es5",
   "useTabs": false,
-  "vueIndentScriptAndStyle": false
+  "vueIndentScriptAndStyle": false,
+  "prettier.prettierPath": "./node_modules/prettier/"
 }
+
