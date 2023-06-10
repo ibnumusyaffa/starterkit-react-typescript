@@ -21,42 +21,38 @@ function Button(props: AriaButtonProps<'button'>) {
   )
 }
 
-export function InputNumber({
-  error,
-  size = 'md',
-  icon,
-  hideStepper,
-  ...props
-}: AriaNumberFieldProps & {
+type InputNumberProps = AriaNumberFieldProps & {
   hideStepper?: boolean
   icon?: React.ReactNode
   error?: boolean
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
-}) {
-  const { locale } = useLocale()
-  const state = useNumberFieldState({ ...props, locale })
-  const inputRef = useRef<HTMLInputElement>(null)
-  const {
-    labelProps,
-    groupProps,
-    inputProps,
-    incrementButtonProps,
-    decrementButtonProps,
-  } = useNumberField(props, state, inputRef)
+}
+export const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
+  ({ error, size = 'md', icon, hideStepper, ...props }, ref) => {
+    const { locale } = useLocale()
+    const state = useNumberFieldState({ ...props, locale })
 
-  const [isFocusWithin, setFocusWithin] = useState(false)
-  const { focusWithinProps } = useFocusWithin({
-    onFocusWithinChange: (isFocusWithin) => setFocusWithin(isFocusWithin),
-  })
+    const fallbackRef = useRef<HTMLInputElement>(null)
+    const inputRef = (ref as React.RefObject<HTMLInputElement>) || fallbackRef
 
-  return (
-    <div>
-      <label {...labelProps}>{props.label}</label>
+    const {
+      groupProps,
+      inputProps,
+      incrementButtonProps,
+      decrementButtonProps,
+    } = useNumberField(props, state, inputRef)
+
+    const [isFocusWithin, setFocusWithin] = useState(false)
+    const { focusWithinProps } = useFocusWithin({
+      onFocusWithinChange: (isFocusWithin) => setFocusWithin(isFocusWithin),
+    })
+
+    return (
       <div {...groupProps}>
         <div
           {...focusWithinProps}
           className={cx(
-            'inline-flex border rounded relative overflow-hidden text-gray-800',
+            'flex border rounded relative overflow-hidden text-gray-800',
             {
               'border-primary-500  ring-2 ring-primary-500 ring-opacity-25':
                 isFocusWithin && !error,
@@ -69,11 +65,11 @@ export function InputNumber({
               'border-danger-500': !isFocusWithin && error,
             },
             {
-              'h-6 text-xs file:text-xs': size === 'xs',
-              'h-8 text-sm file:text-sm': size === 'sm',
-              'h-10 text-base file:text-base': size === 'md',
-              'h-12 text-lg file:text-lg': size === 'lg',
-              'h-14 text-xl file:text-xl': size === 'xl',
+              'h-6 text-xs': size === 'xs',
+              'h-8 text-sm': size === 'sm',
+              'h-10 text-base': size === 'md',
+              'h-12 text-lg': size === 'lg',
+              'h-14 text-xl': size === 'xl',
             }
           )}
         >
@@ -90,10 +86,17 @@ export function InputNumber({
           <input
             {...inputProps}
             className={cx(
-              'border-none focus:outline-none focus:ring-0 disabled:opacity-75 disabled:bg-gray-100 ',
+              'w-full border-none focus:outline-none focus:ring-0 disabled:opacity-75 disabled:bg-gray-100 ',
               {
                 'px-3': !icon,
                 'pl-0 pr-3': icon,
+              },
+              {
+                'text-xs': size === 'xs',
+                'text-sm': size === 'sm',
+                'text-base': size === 'md',
+                'text-lg': size === 'lg',
+                'text-xl': size === 'xl',
               }
             )}
             ref={inputRef}
@@ -111,6 +114,8 @@ export function InputNumber({
           )}
         </div>
       </div>
-    </div>
-  )
-}
+    )
+  }
+)
+
+InputNumber.displayName = 'InputNumber'
