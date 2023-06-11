@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, useRef, useEffect } from 'react'
 import cx from 'clsx'
 import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog'

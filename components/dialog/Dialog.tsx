@@ -1,3 +1,4 @@
+"use client"
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 import React, { useState, useRef, useEffect } from 'react'
 import cx from 'clsx'

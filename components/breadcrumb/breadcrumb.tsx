@@ -1,3 +1,4 @@
+"use client"
 import clsx from 'clsx'
 import React, { useContext, createContext } from 'react'
 import { Slot, Slottable } from '@radix-ui/react-slot'

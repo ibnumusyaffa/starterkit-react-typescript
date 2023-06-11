@@ -1,3 +1,4 @@
+"use client"
 import * as ProgressPrimitive from '@radix-ui/react-progress'
 import cx from 'clsx'
 import React from 'react'

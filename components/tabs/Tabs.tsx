@@ -1,3 +1,4 @@
+"use client"
 import React, { createContext, useContext } from 'react'
 import * as TabsPrimitive from '@radix-ui/react-tabs'
 import cx from 'clsx'

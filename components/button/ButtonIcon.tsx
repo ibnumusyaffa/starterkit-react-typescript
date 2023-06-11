@@ -1,3 +1,4 @@
+"use client"
 import React, { forwardRef } from 'react'
 import cx from 'clsx'
 import { Slot, Slottable } from '@radix-ui/react-slot'

@@ -1,4 +1,5 @@
 import { CalendarProps, DateValue, useCalendar, useLocale } from 'react-aria'
+"use client"
 import {  useCalendarState } from 'react-stately'
 import { GregorianCalendar } from '@internationalized/date'
 import { CalendarButton } from './Button'

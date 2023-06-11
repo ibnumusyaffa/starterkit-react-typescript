@@ -1,3 +1,4 @@
+"use client"
 import React, { createContext, useContext } from 'react'
 import * as AvatarPrimitive from '@radix-ui/react-avatar'
 import { UserIcon } from '@heroicons/react/24/solid'
