@@ -206,7 +206,11 @@ const menus = [
   },
 ]
 
-function Menu({ onClick }) {
+function Menu({
+  onClick,
+}: {
+  onClick?: React.MouseEventHandler<HTMLAnchorElement> | undefined
+}) {
   const router = useRouter()
   return (
     <div className="space-y-5">
@@ -223,7 +227,7 @@ function Menu({ onClick }) {
                     <div
                       key={child.title}
                       className={cx(
-                        'pointer-events-none mb-1.5 cursor-not-allowed text-sm text-gray-400 ',
+                        'pointer-events-none mb-1.5 cursor-not-allowed text-sm text-gray-400 '
                       )}
                     >
                       {child.title}
@@ -238,7 +242,7 @@ function Menu({ onClick }) {
                         {
                           'font-medium text-primary-700':
                             router.asPath === child.href,
-                        },
+                        }
                       )}
                     >
                       {child.title}
@@ -253,8 +257,8 @@ function Menu({ onClick }) {
     </div>
   )
 }
-function Index({ children }) {
-  let [showMenu, setShowMenu] = useState(false)
+function Index({ children }: { children: React.ReactNode }) {
+  const [showMenu, setShowMenu] = useState(false)
   return (
     <div className="relative z-0">
       <div className="sticky top-0 z-[1]  flex h-14 items-center space-x-3 border-b border-gray-300 bg-white px-5 md:px-9">
