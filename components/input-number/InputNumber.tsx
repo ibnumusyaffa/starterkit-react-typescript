@@ -26,11 +26,15 @@ type InputNumberProps = AriaNumberFieldProps & {
   icon?: React.ReactNode
   error?: boolean
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  locale?: string
 }
 export const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
-  ({ error, size = 'md', icon, hideStepper, ...props }, ref) => {
-    const { locale } = useLocale()
-    const state = useNumberFieldState({ ...props, locale })
+  ({ error, size = 'md', icon, hideStepper, locale, ...props }, ref) => {
+    const defaultLocale = useLocale()
+    const state = useNumberFieldState({
+      ...props,
+      locale: locale ? locale : defaultLocale.locale,
+    })
 
     const fallbackRef = useRef<HTMLInputElement>(null)
     const inputRef = (ref as React.RefObject<HTMLInputElement>) || fallbackRef
@@ -103,11 +107,11 @@ export const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
           />
           {hideStepper ? null : (
             <div className={`flex flex-col border-l border-inherit`}>
-              <Button {...decrementButtonProps}>
+              <Button {...incrementButtonProps}>
                 <ChevronUpIcon className="w-3 h-3"></ChevronUpIcon>
               </Button>
               <div className="border-t border-inherit"></div>
-              <Button {...incrementButtonProps}>
+              <Button {...decrementButtonProps}>
                 <ChevronDownIcon className="w-3 h-3"></ChevronDownIcon>
               </Button>
             </div>
