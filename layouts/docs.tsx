@@ -268,7 +268,7 @@ function Index({ children }: { children: React.ReactNode }) {
           </button>
         </div>
 
-        <div className="font-semibold uppercase">Starterkit</div>
+        <div className="font-semibold uppercase">Design System</div>
       </div>
       <div className="fixed hidden h-[calc(100vh-3.5rem)] w-1/6 overflow-y-auto px-12 py-6 md:block">
         <Menu></Menu>
