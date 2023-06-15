@@ -30,6 +30,10 @@ const menus = [
         href: '/docs/input',
       },
       {
+        title: 'Input',
+        href: '/docs/input-number',
+      },
+      {
         title: 'Native Select',
         href: '/docs/native-select',
       },
