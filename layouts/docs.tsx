@@ -75,11 +75,6 @@ const menus = [
         href: '/docs/avatar',
       },
       {
-        title: 'List',
-        href: '/docs/list',
-        soon: true,
-      },
-      {
         title: 'Empty State',
         href: '/docs/empty-state',
       },
@@ -179,11 +174,6 @@ const menus = [
         title: 'Breadcrumb',
         href: '/docs/breadcrumb',
       },
-      {
-        title: 'Stepper',
-        href: '/docs/stepper',
-        soon: true,
-      },
     ],
   },
   {
@@ -222,18 +212,6 @@ function Menu({
             </div>
             <div className=" text-gray-800">
               {menu.children.map((child) => {
-                if (child.soon) {
-                  return (
-                    <div
-                      key={child.title}
-                      className={cx(
-                        'pointer-events-none mb-1.5 cursor-not-allowed text-sm text-gray-400 '
-                      )}
-                    >
-                      {child.title}
-                    </div>
-                  )
-                }
                 return (
                   <Link key={child.title} href={child.href} onClick={onClick}>
                     <div
