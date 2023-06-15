@@ -1,3 +1,4 @@
+"use client"
 import { useDialog } from 'react-aria'
 import React from 'react'
 import type { AriaDialogProps } from 'react-aria'

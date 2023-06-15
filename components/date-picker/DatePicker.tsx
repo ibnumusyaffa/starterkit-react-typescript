@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import { useDatePicker, I18nProvider, AriaDatePickerProps } from 'react-aria'
 import { useDatePickerState } from 'react-stately'

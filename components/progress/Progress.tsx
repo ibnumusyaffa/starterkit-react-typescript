@@ -1,3 +1,4 @@
+"use client"
 import * as ProgressPrimitive from '@radix-ui/react-progress'
 import cx from 'clsx'
 import React from 'react'
@@ -18,7 +19,7 @@ type ProgressProps = React.ComponentPropsWithoutRef<
 const Progress = React.forwardRef<
   React.ElementRef<typeof ProgressPrimitive.Root>,
   ProgressProps
->(({ value, withStripe, size, ...props }, ref) => {
+>(({ value, withStripe, size = "sm", ...props }, ref) => {
   const style = withStripe ? stripedStyle : {}
   return (
     <ProgressPrimitive.Root

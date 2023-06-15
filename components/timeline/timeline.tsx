@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import cx from 'clsx'
 export function TimelineBullet({

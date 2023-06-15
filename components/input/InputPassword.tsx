@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from 'react'
 import { Input } from './Input'
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'

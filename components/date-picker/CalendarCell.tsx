@@ -1,3 +1,4 @@
+"use client"
 /* eslint-disable prefer-const */
 import React from 'react'
 import {
