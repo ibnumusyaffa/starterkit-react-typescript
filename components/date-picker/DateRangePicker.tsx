@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import React from 'react'
 import {
   useDateRangePicker,
@@ -21,6 +21,7 @@ export function DateRangePicker<T extends DateValue>(
     error?: boolean
     required?: boolean
     multiCalendar?: boolean
+    locale?: string
   }
 ) {
   const state = useDateRangePickerState(props)
@@ -38,7 +39,7 @@ export function DateRangePicker<T extends DateValue>(
   const allError = state.validationState === 'invalid' || props.error
 
   return (
-    <I18nProvider locale="en-UK">
+    <I18nProvider locale={props.locale}>
       <div className="relative flex w-full flex-col text-left">
         <div {...labelProps} className="mb-2 block font-medium text-gray-700">
           {props.label}

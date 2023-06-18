@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import React from 'react'
 import { useDatePicker, I18nProvider, AriaDatePickerProps } from 'react-aria'
 import { useDatePickerState } from 'react-stately'
@@ -12,9 +12,12 @@ import { CalendarIcon } from '@heroicons/react/24/outline'
 import { AnimatePresence } from 'framer-motion'
 import { DateValue } from '@internationalized/date'
 
-
 export function DatePicker<T extends DateValue>(
-  props: AriaDatePickerProps<T> & { error?: boolean; required?: boolean }
+  props: AriaDatePickerProps<T> & {
+    error?: boolean
+    required?: boolean
+    locale?: string
+  }
 ) {
   const state = useDatePickerState(props)
   const ref = React.useRef(null)
@@ -30,7 +33,7 @@ export function DatePicker<T extends DateValue>(
   const allError = state.validationState === 'invalid' || props.error
 
   return (
-    <I18nProvider locale="en-UK">
+    <I18nProvider locale={props.locale}>
       <div className="relative flex w-full flex-col text-left">
         <div {...labelProps} className="mb-2 block font-medium text-gray-700">
           {props.label}

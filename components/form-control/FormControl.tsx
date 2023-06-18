@@ -13,7 +13,7 @@ export function FormLabel({
   required?: boolean
 }) {
   return (
-    <label {...props} className="mb-2 block font-medium text-gray-700">
+    <label {...props} className="mb-2 block font-normal text-gray-700">
       {children}
       {required ? <span className="ml-1 text-danger-500">*</span> : null}
     </label>

@@ -1,4 +1,4 @@
-"use client"
+'use client'
 /* eslint-disable prefer-const */
 import React from 'react'
 import {
@@ -20,7 +20,7 @@ import type { CalendarState, RangeCalendarState } from 'react-stately'
 export function CalendarCell({
   state,
   date,
-  currentMonth
+  currentMonth,
 }: {
   date: CalendarDate
   state: CalendarState | RangeCalendarState
@@ -42,11 +42,13 @@ export function CalendarCell({
 
   // The start and end date of the selected range will have
   // an emphasized appearance.
-  let isSelectionStart = false;
-  let isSelectionEnd = false;
+  let isSelectionStart = false
+  let isSelectionEnd = false
+  let isRange = false
   if ('highlightedRange' in state && state.highlightedRange) {
-    isSelectionStart = isSameDay(date, state.highlightedRange.start);
-    isSelectionEnd = isSameDay(date, state.highlightedRange.end);
+    isRange = true
+    isSelectionStart = isSameDay(date, state.highlightedRange.start)
+    isSelectionEnd = isSameDay(date, state.highlightedRange.end)
   }
 
   const dayOfWeek = getDayOfWeek(date, locale)
@@ -73,7 +75,7 @@ export function CalendarCell({
         {...mergeProps(buttonProps, focusProps)}
         ref={ref}
         className={cx('group h-8 w-8 outline-none', {
-          'bg-primary-50': isSelected,
+          'bg-primary-100': isSelected,
           '!hidden': isOutsideVisibleRange || isOutsideMonth,
           'rounded-l': isRoundedLeft,
           'rounded-r': isRoundedRight,
@@ -83,12 +85,18 @@ export function CalendarCell({
           className={cx(
             'flex h-full w-full items-center justify-center rounded text-sm',
             {
-              'ring-2 ring-primary-300  group-focus:z-10':
+              'ring-2 ring-primary-300  group-focus:z-10 ring-offset-1':
                 isFocusVisible || isFocused,
+
+              'bg-primary-500 hover:bg-primary-600 text-white':
+                (isSelected && !isRange) || isSelectionStart || isSelectionEnd,
+
+              'hover:bg-primary-200':
+                isSelected && isRange && !(isSelectionStart || isSelectionEnd),
               'text-gray-700 hover:bg-gray-100': !allDisabled && !isSelected,
               'cursor-default text-gray-300': allDisabled,
+
               'text-red-600': isWeekend(date, locale) && !allDisabled,
-              'bg-primary-500 text-white': isSelectionStart || isSelectionEnd,
             }
           )}
         >

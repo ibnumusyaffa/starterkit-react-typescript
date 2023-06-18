@@ -30,7 +30,7 @@ const menus = [
         href: '/docs/input',
       },
       {
-        title: 'Input',
+        title: 'Input Number',
         href: '/docs/input-number',
       },
       {

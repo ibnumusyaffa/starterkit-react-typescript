@@ -108,11 +108,23 @@ export const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
           {hideStepper ? null : (
             <div className={`flex flex-col border-l border-inherit`}>
               <Button {...incrementButtonProps}>
-                <ChevronUpIcon className="w-3 h-3"></ChevronUpIcon>
+                <ChevronUpIcon
+                  className={cx({
+                    'h-2.5 w-2.5': size === 'xs' || size === 'sm',
+                    'h-3 w-3': size === 'md',
+                    'h-4 w-4': size === 'xl' || size === 'lg',
+                  })}
+                ></ChevronUpIcon>
               </Button>
               <div className="border-t border-inherit"></div>
               <Button {...decrementButtonProps}>
-                <ChevronDownIcon className="w-3 h-3"></ChevronDownIcon>
+                <ChevronDownIcon
+                  className={cx({
+                    'h-2.5 w-2.5': size === 'xs' || size === 'sm',
+                    'h-3 w-3': size === 'md',
+                    'h-4 w-4': size === 'xl' || size === 'lg',
+                  })}
+                ></ChevronDownIcon>
               </Button>
             </div>
           )}
