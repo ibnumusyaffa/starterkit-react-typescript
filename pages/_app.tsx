@@ -7,7 +7,6 @@ import { Inter } from 'next/font/google'
 
 import '@/styles/globals.css'
 import Layout from '@/layouts/docs'
-import { SSRProvider } from 'react-aria'
 import { ToastProvider } from '@/components/toast'
 
 // If loading a variable font, you don't need to specify the font weight
@@ -20,7 +19,7 @@ const queryClient = new QueryClient()
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <SSRProvider>
+    <React.Fragment>
       <Head>
         <title>Starterkit</title>
       </Head>
@@ -34,13 +33,12 @@ function MyApp({ Component, pageProps }: AppProps) {
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
       <div id="radix-portal"></div>
-
       <style jsx global>{`
         html {
           font-family: ${inter.style.fontFamily};
         }
       `}</style>
-    </SSRProvider>
+    </React.Fragment>
   )
 }
 

@@ -17,7 +17,6 @@ function Page() {
     <div className="space-y-5">
       <div className="space-y-2">
         <div className="text-4xl font-semibold text-gray-700">Input Number</div>
-        <div className="bg-red-500 text-white p-2">For now, this component only work in react strictMode = false</div>
       </div>
 
       <div className="space-y-10">
