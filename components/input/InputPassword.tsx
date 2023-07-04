@@ -1,15 +1,16 @@
-"use client"
+'use client'
 import React, { useState } from 'react'
 import { Input } from './Input'
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
-
+import cx from 'clsx'
 type InputPasswordProps = Omit<React.ComponentProps<typeof Input>, 'type'>
 
 export const InputPassword = React.forwardRef<
   HTMLInputElement,
   InputPasswordProps
->((props: InputPasswordProps, ref) => {
+>((props, ref) => {
   const [type, setType] = useState('password')
+  const size = props.size ? props.size : 'md'
   return (
     <Input
       {...props}
@@ -20,9 +21,25 @@ export const InputPassword = React.forwardRef<
           onClick={() => setType(type === 'password' ? 'text' : 'password')}
         >
           {type === 'password' ? (
-            <EyeIcon className="h-4 w-4"></EyeIcon>
+            <EyeIcon
+              className={cx({
+                'h-3 w-3': size === 'xs',
+                'h-3.5 w-3.5': size === 'sm',
+                'h-4 w-4': size === 'md',
+                'h-5 w-5': size === 'lg',
+                'h-6 w-6': size === 'xl',
+              })}
+            ></EyeIcon>
           ) : (
-            <EyeSlashIcon className="h-4 w-4"></EyeSlashIcon>
+            <EyeSlashIcon
+              className={cx({
+                'h-3 w-3': size === 'xs',
+                'h-3.5 w-3.5': size === 'sm',
+                'h-4 w-4': size === 'md',
+                'h-5 w-5': size === 'lg',
+                'h-6 w-6': size === 'xl',
+              })}
+            ></EyeSlashIcon>
           )}
         </button>
       }

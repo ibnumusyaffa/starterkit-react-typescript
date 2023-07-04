@@ -34,6 +34,14 @@ const menus = [
         href: '/docs/input-number',
       },
       {
+        title: 'Input Password',
+        href: '/docs/input-password',
+      },
+      {
+        title: 'Input Search',
+        href: '/docs/input-search',
+      },
+      {
         title: 'Native Select',
         href: '/docs/native-select',
       },
