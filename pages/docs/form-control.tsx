@@ -1,7 +1,8 @@
+import { Button } from '@/components/button'
 import {
   FormControl,
   FormErrorMessage,
-  FormHelperText,
+  FormDescription,
   FormLabel,
 } from '@/components/form-control'
 import { Input } from '@/components/input'
@@ -9,17 +10,26 @@ import React from 'react'
 
 function Page() {
   return (
-    <div className="space-y-5">
-      <FormControl>
-        <FormLabel required>Email address</FormLabel>
-        <Input placeholder="Email"></Input>
-        <FormHelperText>Well never share your email.</FormHelperText>
-      </FormControl>
-      <FormControl>
-        <FormLabel required>Address</FormLabel>
-        <Input placeholder="Address" error></Input>
-        <FormErrorMessage>Address is required.</FormErrorMessage>
-      </FormControl>
+    <div className="space-y-5 w-full md:w-1/2">
+      <form className='space-y-5'>
+        <FormControl>
+          <FormLabel required>Email</FormLabel>
+          <Input type="text" placeholder="Email"></Input>
+          <FormDescription>Well never share your email.</FormDescription>
+        </FormControl>
+        <FormControl>
+          <FormLabel required>First name</FormLabel>
+          <Input
+            name="first_name"
+            placeholder="First name"
+            error
+          ></Input>
+          <FormErrorMessage>First name is required.</FormErrorMessage>
+        </FormControl>
+        <div>
+          <Button type='button' fullWidth>Submit</Button>
+        </div>
+      </form>
     </div>
   )
 }
