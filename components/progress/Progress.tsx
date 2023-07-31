@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import * as ProgressPrimitive from '@radix-ui/react-progress'
 import cx from 'clsx'
 import React from 'react'
@@ -13,20 +13,19 @@ type ProgressProps = React.ComponentPropsWithoutRef<
   typeof ProgressPrimitive.Root
 > & {
   withStripe?: boolean
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  size?: 'sm' | 'md' | 'lg' | 'xl'
 }
 
 const Progress = React.forwardRef<
   React.ElementRef<typeof ProgressPrimitive.Root>,
   ProgressProps
->(({ value, withStripe, size = "sm", ...props }, ref) => {
+>(({ value, withStripe, size = 'sm', ...props }, ref) => {
   const style = withStripe ? stripedStyle : {}
   return (
     <ProgressPrimitive.Root
       ref={ref}
       value={value}
       className={cx('w-full overflow-hidden rounded bg-gray-200', {
-        'h-1': size === 'xs',
         'h-2': size === 'sm',
         'h-3': size === 'md',
         'h-4': size === 'lg',

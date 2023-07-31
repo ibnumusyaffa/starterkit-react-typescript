@@ -63,13 +63,6 @@ function Page() {
         <div className="text-xl font-semibold text-gray-700">Size</div>
         <div className="flex flex-wrap gap-5">
           <Checkbox
-            label="size xs"
-            name="name"
-            value="1"
-            defaultChecked
-            size="xs"
-          ></Checkbox>
-          <Checkbox
             label="size sm"
             name="name"
             value="1"

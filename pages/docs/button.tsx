@@ -98,9 +98,6 @@ function Page() {
         <div className="space-y-3">
           <div className="text-xl font-semibold text-gray-700">Size</div>
           <div className="flex flex-wrap gap-5">
-            <Button color={color} size="xs">
-              Button xs
-            </Button>
             <Button color={color} size="sm">
               Button sm
             </Button>

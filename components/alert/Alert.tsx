@@ -9,7 +9,7 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/solid'
 
-type AlertType = 'danger' | 'warning' | 'success' | 'info' | 'neutral'
+export type AlertType = 'danger' | 'warning' | 'success' | 'info' | 'neutral'
 
 type CloseButtonProps = {
   type?: AlertType
@@ -61,7 +61,7 @@ function Icon({ type = 'danger' }: { type?: AlertType }) {
   )
 }
 
-type AlertProps = {
+export type AlertProps = {
   type?: AlertType
   title?: string
   children?: React.ReactNode

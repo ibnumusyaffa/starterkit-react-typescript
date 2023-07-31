@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import React from 'react'
 import cx from 'clsx'
 
@@ -7,7 +7,7 @@ export type RadioProps = Omit<
   'type' | 'size'
 > & {
   /** @default "sm" */
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  size?: 'sm' | 'md' | 'lg' | 'xl'
 
   label?: string
 }
@@ -45,7 +45,6 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
               'cursor-not-allowed bg-gray-100 checked:opacity-50': disabled,
             },
             {
-              'h-4 w-4': size === 'xs',
               'h-5 w-5': size === 'sm',
               'h-6 w-6': size === 'md',
               'h-7 w-7': size === 'lg',
@@ -59,7 +58,6 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
           className={cx(
             'leading-tight text-gray-700',
             {
-              'text-xs': size === 'xs',
               'text-sm': size === 'sm',
               'text-base': size === 'md',
               'text-lg': size === 'lg',

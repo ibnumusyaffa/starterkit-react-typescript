@@ -7,7 +7,7 @@ export type CheckboxProps = Omit<
   'type' | 'size'
 > & {
   /** @default "md" */
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  size?:  'sm' | 'md' | 'lg' | 'xl'
 
   /** @default false */
   indeterminate?: boolean
@@ -40,7 +40,6 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         'text-gray-600 peer-checked:opacity-50': disabled,
       },
       {
-        'h-2.5 w-2.5': size === 'xs',
         'h-3 w-3': size === 'sm',
         'h-3.5 w-3.5': size === 'md',
         'h-4 w-4': size === 'lg',
@@ -65,7 +64,6 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               'bg-white checked:border-current checked:bg-current',
               'text-primary-500',
               {
-                'h-4 w-4': size === 'xs',
                 'h-5 w-5': size === 'sm',
                 'h-6 w-6': size === 'md',
                 'h-7 w-7': size === 'lg',
@@ -108,7 +106,6 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               className={cx(
                 'leading-tight text-gray-700',
                 {
-                  'text-xs': size === 'xs',
                   'text-sm': size === 'sm',
                   'text-base': size === 'md',
                   'text-lg': size === 'lg',

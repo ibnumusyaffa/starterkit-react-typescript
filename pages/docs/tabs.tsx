@@ -61,7 +61,7 @@ function Page() {
                   }
                   value="tab3"
                 >
-                  With Icon
+                  Left Icon
                 </TabsTrigger>
 
                 <TabsTrigger
@@ -70,7 +70,7 @@ function Page() {
                   }
                   value="tab4"
                 >
-                  With Icon
+                  Right Icon
                 </TabsTrigger>
                 <TabsTrigger value="tab5" asChild>
                   <button onClick={() => alert('here')}>Button</button>

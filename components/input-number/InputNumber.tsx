@@ -25,7 +25,7 @@ type InputNumberProps = AriaNumberFieldProps & {
   hideStepper?: boolean
   icon?: React.ReactNode
   error?: boolean
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  size?: 'sm' | 'md' | 'lg' | 'xl'
   locale?: string
 }
 export const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
@@ -69,7 +69,6 @@ export const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
               'border-danger-500': !isFocusWithin && error,
             },
             {
-              'h-6 text-xs': size === 'xs',
               'h-8 text-sm': size === 'sm',
               'h-10 text-base': size === 'md',
               'h-12 text-lg': size === 'lg',
@@ -96,7 +95,6 @@ export const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
                 'pl-0 pr-3': icon,
               },
               {
-                'text-xs': size === 'xs',
                 'text-sm': size === 'sm',
                 'text-base': size === 'md',
                 'text-lg': size === 'lg',
@@ -110,7 +108,7 @@ export const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
               <Button {...incrementButtonProps}>
                 <ChevronUpIcon
                   className={cx({
-                    'h-2.5 w-2.5': size === 'xs' || size === 'sm',
+                    'h-2.5 w-2.5': size === 'sm',
                     'h-3 w-3': size === 'md',
                     'h-4 w-4': size === 'xl' || size === 'lg',
                   })}
@@ -120,7 +118,7 @@ export const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
               <Button {...decrementButtonProps}>
                 <ChevronDownIcon
                   className={cx({
-                    'h-2.5 w-2.5': size === 'xs' || size === 'sm',
+                    'h-2.5 w-2.5': size === 'sm',
                     'h-3 w-3': size === 'md',
                     'h-4 w-4': size === 'xl' || size === 'lg',
                   })}

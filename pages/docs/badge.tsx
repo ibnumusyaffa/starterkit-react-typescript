@@ -20,7 +20,7 @@ function Page() {
         <div className="space-y-5">
           <div className="flex flex-wrap gap-5">
             <div className="w-24">light</div>
-            <Badge color="primary" variant="light">
+            <Badge ref={null} color="primary" variant="light">
               Badge
             </Badge>
             <Badge color="secondary" variant="light">

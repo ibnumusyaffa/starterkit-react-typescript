@@ -41,7 +41,7 @@ function Page() {
           <div className="space-y-3">
             <div className="text-xl font-semibold text-gray-700">Size</div>
             <div className="space-y-5 md:w-1/2">
-              <Input size="xs" placeholder="xs" type="text"></Input>
+           
               <Input size="sm" placeholder="sm" type="text"></Input>
               <Input size="md" placeholder="md" type="text"></Input>
               <Input size="lg" placeholder="lg" type="text"></Input>

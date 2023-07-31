@@ -114,10 +114,7 @@ function Page() {
         <div className="space-y-3">
           <div className="text-xl font-semibold text-gray-700">Size</div>
           <div className="space-y-3 md:w-1/2">
-            <FormControl>
-              <FormLabel>xs</FormLabel>
-              <InputNumber size="xs"></InputNumber>
-            </FormControl>
+          
             <FormControl>
               <FormLabel>sm</FormLabel>
               <InputNumber size="sm"></InputNumber>

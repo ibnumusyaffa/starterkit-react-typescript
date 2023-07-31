@@ -171,7 +171,7 @@ function Page() {
         <div className="flex flex-col space-y-2">
           <label className="text-gray-700">verticalAlignment</label>
           <NativeSelect
-            size="xs"
+            size="sm"
             value={verticalAlignment}
             onChange={(e) =>
               setVerticalALignment(e.target.value as VerticalAlignment)

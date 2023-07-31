@@ -1,10 +1,10 @@
-"use client"
+'use client'
 import React, { useContext, createContext } from 'react'
 import cx from 'clsx'
 
 export type InputProps = Omit<React.ComponentProps<'input'>, 'size'> & {
   /** @default "md" */
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  size?: 'sm' | 'md' | 'lg' | 'xl'
 
   /** @default "solid" */
   variant?: 'filled' | 'outline'
@@ -74,7 +74,6 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             },
             //size style
             {
-              'h-6 text-xs file:text-xs': size === 'xs',
               'h-8 text-sm file:text-sm': size === 'sm',
               'h-10 text-base file:text-base': size === 'md',
               'h-12 text-lg file:text-lg': size === 'lg',
@@ -83,7 +82,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             {
               //add padding to left side when leftIcon is true
               'pl-3': !leftIcon,
-              'pl-7': size === 'xs' && leftIcon,
+
               'pl-8': size === 'sm' && leftIcon,
               'pl-9': size === 'md' && leftIcon,
               'pl-10': size === 'lg' && leftIcon,
@@ -91,7 +90,6 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
               //add padding to right side when rightIcon is true
               'pr-3': !leftIcon,
-              'pr-7': size === 'xs' && rightIcon,
               'pr-8': size === 'sm' && rightIcon,
               'pr-9': size === 'md' && rightIcon,
               'pr-10': size === 'lg' && rightIcon,

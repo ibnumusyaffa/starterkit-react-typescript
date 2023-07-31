@@ -100,7 +100,7 @@ export function AlertDialogContent({
   )
 }
 
-type AlertDialogProps = React.ComponentProps<typeof AlertDialogPrimitive.Root>
+export type AlertDialogProps = React.ComponentProps<typeof AlertDialogPrimitive.Root>
 
 export function AlertDialog(props: AlertDialogProps) {
   //workaround for radix bug

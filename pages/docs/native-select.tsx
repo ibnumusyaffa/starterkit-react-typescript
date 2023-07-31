@@ -41,9 +41,7 @@ function Page() {
           <div className="space-y-3">
             <div className="text-xl font-semibold text-gray-700">Size</div>
             <div className="space-y-5 md:w-1/2">
-              <NativeSelect fullWidth size="xs" placeholder="Test">
-                <option>xs</option>
-              </NativeSelect>
+            
               <NativeSelect fullWidth size="sm" placeholder="Test">
                 <option>sm</option>
               </NativeSelect>

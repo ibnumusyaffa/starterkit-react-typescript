@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import React from 'react'
 import cx from 'clsx'
 import * as SwitchPrimitive from '@radix-ui/react-switch'
@@ -7,7 +7,7 @@ import { motion } from 'framer-motion'
 type SwitchProps = React.ComponentPropsWithoutRef<
   typeof SwitchPrimitive.Root
 > & {
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  size?: 'sm' | 'md' | 'lg' | 'xl'
 }
 
 export const Switch = React.forwardRef<

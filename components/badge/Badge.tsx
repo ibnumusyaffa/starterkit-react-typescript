@@ -102,7 +102,7 @@ function dotStyles({
   }
 }
 
-type BadgeProps = React.ComponentProps<'span'> & {
+type BadgeProps = React.ComponentPropsWithoutRef<'span'> & {
   /** @default "md" */
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 

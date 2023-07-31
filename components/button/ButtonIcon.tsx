@@ -7,7 +7,7 @@ import { Variant, Color } from './button-types'
 
 type ButtonProps = React.ComponentProps<'button'> & {
   /** @default "md" */
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  size?: 'sm' | 'md' | 'lg' | 'xl'
 
   /** @default "solid" */
   variant?: 'solid' | 'light' | 'default' | 'outline' | 'subtle'

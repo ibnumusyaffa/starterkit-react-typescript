@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import React, { useContext } from 'react'
 import cx from 'clsx'
 import { InputGroupCtx } from '@/components/input/Input'
@@ -6,7 +6,7 @@ export type Variant = 'filled' | 'outline'
 
 export type NativeSelectProps = Omit<React.ComponentProps<'select'>, 'size'> & {
   /** @default "md" */
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  size?: 'sm' | 'md' | 'lg' | 'xl'
 
   /** @default "outline" */
   variant?: Variant
@@ -98,7 +98,6 @@ export const NativeSelect = React.forwardRef<
           },
           //size style
           {
-            'h-6 text-xs': size === 'xs',
             'h-8 text-sm': size === 'sm',
             'h-10 text-base': size === 'md',
             'h-12 text-lg': size === 'lg',
@@ -106,7 +105,7 @@ export const NativeSelect = React.forwardRef<
           },
           {
             //add padding to left side when leftIcon is true
-            'pl-7': size === 'xs' && leftIcon,
+
             'pl-8': size === 'sm' && leftIcon,
             'pl-9': size === 'md' && leftIcon,
             'pl-10': size === 'lg' && leftIcon,

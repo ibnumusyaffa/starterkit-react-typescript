@@ -7,7 +7,7 @@ import { Variant, Color } from './button-types'
 
 export type ButtonProps = React.ComponentProps<'button'> & {
   /** @default "md" */
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  size?: 'sm' | 'md' | 'lg' | 'xl'
 
   /** @default "solid" */
   variant?: Variant
@@ -142,7 +142,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       variantStyles({ variant, color }),
       // size style
       {
-        'h-6 text-xs': size === 'xs',
         'h-8 text-sm': size === 'sm',
         'h-10 text-base': size === 'md',
         'h-12 text-lg': size === 'lg',
@@ -169,7 +168,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {loading ? (
           <Spinner
             className={cx('mr-2', {
-              'h-3 w-3': size === 'xs',
               'h-4 w-4': size === 'sm',
               'h-5 w-5': size === 'md',
               'h-6 w-6': size === 'lg',

@@ -26,7 +26,6 @@ function Page() {
       <div className="space-y-3">
         <div className="text-xl font-semibold text-gray-700">Size</div>
         <div className="space-y-5 md:w-1/2">
-          <TextArea size="xs" placeholder="xs"></TextArea>
           <TextArea size="sm" placeholder="sm"></TextArea>
           <TextArea size="md" placeholder="md"></TextArea>
           <TextArea size="lg" placeholder="lg"></TextArea>

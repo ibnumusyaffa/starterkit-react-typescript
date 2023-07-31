@@ -1,10 +1,10 @@
-"use client"
+'use client'
 import React from 'react'
 import cx from 'clsx'
 
 export type TextAreaProps = Omit<React.ComponentProps<'textarea'>, 'size'> & {
   /** @default "md" */
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  size?: 'sm' | 'md' | 'lg' | 'xl'
 
   /** @default "solid" */
   variant?: 'filled' | 'outline'
@@ -46,7 +46,6 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
 
           //size style
           {
-            'text-xs': size === 'xs',
             'text-sm': size === 'sm',
             'text-base': size === 'md',
             'text-lg': size === 'lg',
