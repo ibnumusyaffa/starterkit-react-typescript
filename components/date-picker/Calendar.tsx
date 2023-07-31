@@ -7,8 +7,6 @@ import { CalendarGrid } from './CalendarGrid'
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
-  ChevronDoubleRightIcon,
-  ChevronDoubleLeftIcon,
 } from '@heroicons/react/24/solid'
 
 function createCalendar(identifier: string) {
@@ -34,12 +32,7 @@ export function Calendar<T extends DateValue>(props: CalendarProps<T>) {
   return (
     <div {...calendarProps} className="px-3.5 py-3.5">
       <div className="mb-5 flex items-center justify-between space-x-1">
-        <CalendarButton
-          isDisabled={state.focusedDate?.year <= (state.minValue?.year ?? 0)}
-          onPress={() => state.focusPreviousSection(true)}
-        >
-          <ChevronDoubleLeftIcon className="h-4 w-4 text-gray-600"></ChevronDoubleLeftIcon>
-        </CalendarButton>
+      
         <CalendarButton {...prevButtonProps}>
           <ChevronLeftIcon className="h-4 w-4 text-gray-600"></ChevronLeftIcon>
         </CalendarButton>
@@ -48,12 +41,6 @@ export function Calendar<T extends DateValue>(props: CalendarProps<T>) {
         </h2>
         <CalendarButton {...nextButtonProps}>
           <ChevronRightIcon className="h-4 w-4 text-gray-600"></ChevronRightIcon>
-        </CalendarButton>
-        <CalendarButton
-          isDisabled={state.focusedDate?.year >= (state.maxValue?.year ?? 0)}
-          onPress={() => state.focusNextSection(true)}
-        >
-          <ChevronDoubleRightIcon className="h-4 w-4 text-gray-600"></ChevronDoubleRightIcon>
         </CalendarButton>
       </div>
       <CalendarGrid state={state} />
