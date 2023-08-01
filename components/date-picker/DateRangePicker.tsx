@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   useDateRangePicker,
   I18nProvider,
@@ -38,6 +38,12 @@ export function DateRangePicker<T extends DateValue>(
 
   const allError = state.validationState === 'invalid' || props.error
 
+  //this is hack for framer motion
+  const [isOpen, setIsOpen] = useState(false)
+  useEffect(() => {
+    setIsOpen(state.isOpen)
+  }, [state.isOpen])
+  
   return (
     <I18nProvider locale={props.locale}>
       <div className="relative flex w-full flex-col text-left">
@@ -81,7 +87,7 @@ export function DateRangePicker<T extends DateValue>(
           </FieldButton>
         </div>
         <AnimatePresence>
-          {state.isOpen && (
+          {isOpen && (
             <Popover state={state} triggerRef={ref} placement="bottom start">
               <Dialog {...dialogProps}>
                 <RangeCalendar

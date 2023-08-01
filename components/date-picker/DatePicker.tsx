@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDatePicker, I18nProvider, AriaDatePickerProps } from 'react-aria'
 import { useDatePickerState } from 'react-stately'
 import cx from 'clsx'
@@ -31,6 +31,12 @@ export function DatePicker<T extends DateValue>(
   } = useDatePicker(props, state, ref)
 
   const allError = state.validationState === 'invalid' || props.error
+
+  //this is hack for framer motion
+  const [isOpen, setIsOpen] = useState(false)
+  useEffect(() => {
+    setIsOpen(state.isOpen)
+  }, [state.isOpen])
 
   return (
     <I18nProvider locale={props.locale}>
@@ -71,7 +77,7 @@ export function DatePicker<T extends DateValue>(
           </FieldButton>
         </div>
         <AnimatePresence>
-          {state.isOpen && (
+          {isOpen && (
             <Popover state={state} triggerRef={ref} placement="bottom start">
               <Dialog {...dialogProps}>
                 <Calendar {...calendarProps} />
