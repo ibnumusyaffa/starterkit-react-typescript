@@ -19,7 +19,7 @@ export function CalendarButton(props: AriaButtonProps<'button'>) {
         'flex h-6 w-6 items-center justify-center rounded bg-white border border-gray-300 shadow-xs',
         {
           'hover:bg-primary-50 active:bg-primary-100': !props.isDisabled,
-          'cursor-not-allowed opacity-50': props.isDisabled,
+          'cursor-not-allowed opacity-30': props.isDisabled,
           'outline-none ring-2 ring-primary-500 ring-opacity-20': isFocused,
         }
       )}
