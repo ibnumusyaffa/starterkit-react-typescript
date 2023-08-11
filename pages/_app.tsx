@@ -3,15 +3,16 @@ import Head from 'next/head'
 import type { AppProps } from 'next/app'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import { Inter } from 'next/font/google'
+import { Inter as Font } from 'next/font/google'
 
 import '@/styles/globals.css'
 import Layout from '@/layouts/docs'
 import { ToastProvider } from '@/components/toast'
 
 // If loading a variable font, you don't need to specify the font weight
-const inter = Inter({
-  subsets: ['latin'],
+const font = Font({
+  weight: "400",
+  subsets:["latin"]
 })
 
 // Create a client
@@ -19,7 +20,7 @@ const queryClient = new QueryClient()
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <React.Fragment>
+    <main className={font.className}>
       <Head>
         <title>Starterkit</title>
       </Head>
@@ -32,13 +33,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
-      <div id="radix-portal"></div>
-      <style jsx global>{`
-        html {
-          font-family: ${inter.style.fontFamily};
-        }
-      `}</style>
-    </React.Fragment>
+    </main>
   )
 }
 
