@@ -1,8 +1,8 @@
-"use client"
-import React from 'react'
-import { useMemo } from 'react'
+'use client'
+import React, { useMemo } from 'react'
 import cx from 'clsx'
 import { ChevronLeft, ChevronRight } from './icons'
+
 const LEFT_DOT = 'left'
 const RIGHT_DOT = 'right'
 

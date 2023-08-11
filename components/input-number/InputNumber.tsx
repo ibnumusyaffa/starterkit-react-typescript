@@ -1,7 +1,13 @@
-import { AriaButtonProps, AriaNumberFieldProps, useButton } from 'react-aria'
 import React, { useRef, useState } from 'react'
+import {
+  AriaButtonProps,
+  AriaNumberFieldProps,
+  useButton,
+  useLocale,
+  useNumberField,
+  useFocusWithin,
+} from 'react-aria'
 import { useNumberFieldState } from 'react-stately'
-import { useLocale, useNumberField, useFocusWithin } from 'react-aria'
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline'
 import cx from 'clsx'
 
