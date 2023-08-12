@@ -23,7 +23,7 @@ function Page() {
         <div className="space-y-3">
           <div className="text-xl font-semibold text-gray-700">Value</div>
           <div className="flex space-x-5 md:w-1/2">
-            <InputNumber value={value1} onChange={setValue1}></InputNumber>
+            <InputNumber label="example" value={value1} onChange={setValue1}></InputNumber>
           </div>
         </div>
       </div>
@@ -32,7 +32,7 @@ function Page() {
         <div className="space-y-3">
           <div className="text-xl font-semibold text-gray-700">Disabled</div>
           <div className="flex space-x-5 md:w-1/2">
-            <InputNumber isDisabled></InputNumber>
+            <InputNumber label="example" isDisabled></InputNumber>
           </div>
         </div>
       </div>
@@ -41,7 +41,7 @@ function Page() {
         <div className="space-y-3">
           <div className="text-xl font-semibold text-gray-700">Read Only</div>
           <div className="flex space-x-5 md:w-1/2">
-            <InputNumber value={10} isReadOnly></InputNumber>
+            <InputNumber label="example" value={10} isReadOnly></InputNumber>
           </div>
         </div>
       </div>
@@ -52,7 +52,7 @@ function Page() {
             Hide Stepper
           </div>
           <div className="flex space-x-5 md:w-1/2">
-            <InputNumber
+            <InputNumber label="example"
               value={value1}
               onChange={setValue1}
               hideStepper
@@ -65,7 +65,7 @@ function Page() {
         <div className="space-y-3">
           <div className="text-xl font-semibold text-gray-700">Error</div>
           <div className="flex space-x-5 md:w-1/2">
-            <InputNumber error></InputNumber>
+            <InputNumber label="example" error></InputNumber>
           </div>
         </div>
       </div>
@@ -74,7 +74,7 @@ function Page() {
         <div className="space-y-3">
           <div className="text-xl font-semibold text-gray-700">With Icon</div>
           <div className="flex space-x-5 md:w-1/2">
-            <InputNumber
+            <InputNumber label="example"
               icon={<CheckIcon className="w-4 h-4"> </CheckIcon>}
             ></InputNumber>
           </div>
@@ -87,7 +87,7 @@ function Page() {
             Maximum/Minimum value
           </div>
           <div className="flex space-x-5 md:w-1/2">
-            <InputNumber
+            <InputNumber label="example"
               value={value2}
               onChange={setValue2}
               minValue={10}
@@ -101,7 +101,7 @@ function Page() {
         <div className="space-y-3">
           <div className="text-xl font-semibold text-gray-700">Step</div>
           <div className="flex space-x-5 md:w-1/2">
-            <InputNumber
+            <InputNumber label="example"
               value={value3}
               onChange={setValue3}
               step={5}
@@ -117,19 +117,19 @@ function Page() {
           
             <FormControl>
               <FormLabel>sm</FormLabel>
-              <InputNumber size="sm"></InputNumber>
+              <InputNumber label="example" size="sm"></InputNumber>
             </FormControl>
             <FormControl>
               <FormLabel>md</FormLabel>
-              <InputNumber size="md"></InputNumber>
+              <InputNumber label="example" size="md"></InputNumber>
             </FormControl>
             <FormControl>
               <FormLabel>lg</FormLabel>
-              <InputNumber size="lg"></InputNumber>
+              <InputNumber label="example" size="lg"></InputNumber>
             </FormControl>
             <FormControl>
               <FormLabel>xl</FormLabel>
-              <InputNumber size="xl"></InputNumber>
+              <InputNumber label="example" size="xl"></InputNumber>
             </FormControl>
           </div>
         </div>
@@ -139,7 +139,7 @@ function Page() {
         <div className="space-y-3">
           <div className="text-xl font-semibold text-gray-700">Decimals</div>
           <div className="flex space-x-5 md:w-1/2">
-            <InputNumber
+            <InputNumber label="example"
               formatOptions={{
                 signDisplay: 'always',
                 minimumFractionDigits: 2,
@@ -156,7 +156,7 @@ function Page() {
         <div className="space-y-3">
           <div className="text-xl font-semibold text-gray-700">Percentages</div>
           <div className="flex space-x-5 md:w-1/2">
-            <InputNumber
+            <InputNumber label="example"
               value={value5}
               onChange={setValue5}
               formatOptions={{ style: 'percent' }}
@@ -169,7 +169,7 @@ function Page() {
         <div className="space-y-3">
           <div className="text-xl font-semibold text-gray-700">Currency</div>
           <div className="flex space-x-5 md:w-1/2">
-            <InputNumber
+            <InputNumber label="example"
               value={value6}
               onChange={setValue6}
               formatOptions={{
@@ -189,7 +189,7 @@ function Page() {
         <div className="space-y-3">
           <div className="text-xl font-semibold text-gray-700">Unit</div>
           <div className="flex space-x-5 md:w-1/2">
-            <InputNumber
+            <InputNumber label="example"
               value={value7}
               onChange={setValue7}
               formatOptions={{
@@ -208,15 +208,15 @@ function Page() {
           <div className="space-y-3 md:w-1/2">
             <FormControl>
               <FormLabel>default</FormLabel>
-              <InputNumber value={value8} onChange={setValue8}></InputNumber>
+              <InputNumber label="example" value={value8} onChange={setValue8}></InputNumber>
             </FormControl>
             <FormControl>
               <FormLabel>id-ID</FormLabel>
-              <InputNumber locale='id-ID' value={value9} onChange={setValue9}></InputNumber>
+              <InputNumber label="example" locale='id-ID' value={value9} onChange={setValue9}></InputNumber>
             </FormControl>
             <FormControl>
               <FormLabel>en-US</FormLabel>
-              <InputNumber locale='en-US'  value={value10} onChange={setValue10}></InputNumber>
+              <InputNumber label="example" locale='en-US'  value={value10} onChange={setValue10}></InputNumber>
             </FormControl>
           </div>
         </div>
