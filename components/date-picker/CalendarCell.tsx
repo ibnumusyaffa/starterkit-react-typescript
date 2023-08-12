@@ -44,7 +44,7 @@ export function CalendarCell({
   // an emphasized appearance.
   let isSelectionStart = false
   let isSelectionEnd = false
-  let isRange = 'highlightedRange' in state && state.highlightedRange ? true :false
+  let isRange = false
   if ('highlightedRange' in state && state.highlightedRange) {
     isRange = true
     isSelectionStart = isSameDay(date, state.highlightedRange.start)

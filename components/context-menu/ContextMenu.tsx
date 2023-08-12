@@ -17,12 +17,10 @@ const motionVariants = {
   },
   animate: {
     opacity: 1,
-
     transition: { duration: 0.1, ease: 'easeOut' },
   },
   exit: {
     opacity: 0,
-
     transition: { duration: 0.09, ease: 'easeIn' },
   },
 }
