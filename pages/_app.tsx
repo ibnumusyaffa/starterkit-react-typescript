@@ -11,8 +11,7 @@ import { ToastProvider } from '@/components/toast'
 
 // If loading a variable font, you don't need to specify the font weight
 const font = Font({
-  weight: "400",
-  subsets:["latin"]
+  subsets: ['latin'],
 })
 
 // Create a client
@@ -20,9 +19,14 @@ const queryClient = new QueryClient()
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <main className={font.className}>
+    <>
+      <style jsx global>{`
+        html {
+          font-family: ${font.style.fontFamily};
+        }
+      `}</style>
       <Head>
-        <title>Starterkit</title>
+        <title>My Awesome App</title>
       </Head>
       <QueryClientProvider client={queryClient}>
         <ToastProvider>
@@ -33,7 +37,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
-    </main>
+    </>
   )
 }
 

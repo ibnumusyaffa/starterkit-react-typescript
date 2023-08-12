@@ -44,7 +44,7 @@ export function CalendarCell({
   // an emphasized appearance.
   let isSelectionStart = false
   let isSelectionEnd = false
-  let isRange = false
+  let isRange = 'highlightedRange' in state && state.highlightedRange ? true :false
   if ('highlightedRange' in state && state.highlightedRange) {
     isRange = true
     isSelectionStart = isSameDay(date, state.highlightedRange.start)
@@ -52,6 +52,8 @@ export function CalendarCell({
   }
 
   const dayOfWeek = getDayOfWeek(date, locale)
+
+
   const isRoundedLeft =
     isSelected && (isSelectionStart || dayOfWeek === 0 || date.day === 1)
   const isRoundedRight =
@@ -88,11 +90,14 @@ export function CalendarCell({
               'ring-2 ring-primary-300  group-focus:z-10 ring-offset-1':
                 isFocusVisible || isFocused,
 
+              //selected in start or end
               'bg-primary-500 hover:bg-primary-600 text-white':
                 (isSelected && !isRange) || isSelectionStart || isSelectionEnd,
 
+              //selected but not in start or end
               'hover:bg-primary-200':
                 isSelected && isRange && !(isSelectionStart || isSelectionEnd),
+
               'text-gray-700 hover:bg-gray-100': !allDisabled && !isSelected,
               'cursor-default text-gray-300': allDisabled,
 
