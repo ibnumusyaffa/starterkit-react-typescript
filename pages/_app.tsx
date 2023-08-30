@@ -34,7 +34,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             <Component {...pageProps} />
           </Layout>
         </ToastProvider>
-
+          
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </>

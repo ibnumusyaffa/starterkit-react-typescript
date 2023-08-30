@@ -9,6 +9,7 @@ import {
   DrawerHeader,
   DrawerCloseButton,
 } from '@/components/drawer'
+import { useTheme } from '@/hooks/useTheme'
 const menus = [
   {
     title: 'Forms',
@@ -214,6 +215,7 @@ function Menu({
   onClick?: React.MouseEventHandler<HTMLAnchorElement> | undefined
 }) {
   const router = useRouter()
+
   return (
     <div className="space-y-5">
       {menus.map((menu) => {
@@ -249,16 +251,41 @@ function Menu({
 }
 function Index({ children }: { children: React.ReactNode }) {
   const [showMenu, setShowMenu] = useState(false)
+
+  const { theme, setTheme } = useTheme()
   return (
     <div className="relative z-0">
-      <div className="sticky top-0 z-[1]  flex h-14 items-center space-x-3 border-b border-gray-300 bg-white px-5 md:px-9">
+      <div className="sticky top-0 z-[1]  flex h-14 items-center space-x-3 border-b border-gray-300 bg-white px-5 md:px-9 justify-between">
         <div className="block md:hidden">
           <button className="block md:hidden" onClick={() => setShowMenu(true)}>
             <Bars3Icon className="h-5 w-5 md:hidden"></Bars3Icon>
           </button>
         </div>
 
-        <div className="font-semibold uppercase">Design System</div>
+        <div className="font-semibold uppercase hidden md:block">Design System</div>
+        <div className="flex items-center space-x-3">
+          <div className='hidden md:block'>Select Theme</div>
+          <div className="flex space-x-3">
+            <button
+              onClick={() => setTheme('purple')}
+              className={`bg-purple-500 ${
+                theme == 'purple' ? 'ring-2' : ''
+              } ring-offset-1 ring-purple-400 rounded-full w-5 h-5`}
+            ></button>
+            <button
+              onClick={() => setTheme('pink')}
+              className={`bg-pink-500 ${
+                theme == 'pink' ? 'ring-2' : ''
+              } ring-offset-1 ring-pink-400 rounded-full w-5 h-5`}
+            ></button>
+            <button
+              onClick={() => setTheme('')}
+              className={`bg-sky-500 ${
+                theme == '' ? 'ring-2' : ''
+              } ring-offset-1 ring-sky-400 rounded-full w-5 h-5`}
+            ></button>
+          </div>
+        </div>
       </div>
       <div className="fixed hidden h-[calc(100vh-3.5rem)] w-1/6 overflow-y-auto px-12 py-6 md:block">
         <Menu></Menu>

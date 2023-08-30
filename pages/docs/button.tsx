@@ -9,6 +9,7 @@ import { NativeSelect } from '@/components/native-select'
 
 function Page() {
   const [color, setColor] = React.useState<Color>('primary')
+
   return (
     <div className="space-y-5">
       <div className="space-y-2">

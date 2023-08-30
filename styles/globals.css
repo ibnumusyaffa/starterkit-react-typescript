@@ -2,3 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-primary-50: 240 249 255;
+  --color-primary-100: 224 242 254;
+  --color-primary-200: 186 230 253;
+  --color-primary-300: 125 211 252;
+  --color-primary-400: 56 189 248;
+  --color-primary-500: 14 165 233;
+  --color-primary-600: 2 132 199;
+  --color-primary-700: 3 105 161;
+  --color-primary-800: 7 89 133;
+  --color-primary-900: 12 74 110;
+  --color-primary-950: 8 47 73;
+}
+
+.purple {
+  --color-primary-50: 250 245 255;
+  --color-primary-100: 243 232 255;
+  --color-primary-200: 233 213 255;
+  --color-primary-300: 216 180 254;
+  --color-primary-400: 192 132 252;
+  --color-primary-500: 168 85 247;
+  --color-primary-600: 147 51 234;
+  --color-primary-700: 126 34 206;
+  --color-primary-800: 107 33 168;
+  --color-primary-900: 88 28 135;
+  --color-primary-950: 59 7 100;
+}
+
+.pink {
+  --color-primary-50: 253 242 248;
+  --color-primary-100: 252 231 243;
+  --color-primary-200: 251 207 232;
+  --color-primary-300: 249 168 212;
+  --color-primary-400: 244 114 182;
+  --color-primary-500: 236 72 153;
+  --color-primary-600: 219 39 119;
+  --color-primary-700: 190 24 93;
+  --color-primary-800: 157 23 77;
+  --color-primary-900: 131 24 67;
+  --color-primary-950: 80 7 36;
+}
+
