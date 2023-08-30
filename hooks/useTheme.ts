@@ -12,7 +12,7 @@ export function useTheme() {
 
   function setTheme(newTheme: string) {
     localStorage.setItem('theme', newTheme)
-    document.body.className = newTheme
+    document.documentElement.className = newTheme
     _setTheme(newTheme)
   }
 
