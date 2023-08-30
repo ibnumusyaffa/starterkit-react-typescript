@@ -11,6 +11,7 @@ export default {
     extend: {
       // adjust color to match brand color here
       colors: {
+        //read more: https://tailwindcss.com/docs/customizing-colors
         primary: {
           '50':  'rgb(var(--color-primary-50) / <alpha-value>)',
           '100': 'rgb(var(--color-primary-100) / <alpha-value>)',

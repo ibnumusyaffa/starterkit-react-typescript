@@ -1,5 +1,5 @@
-/* this is for reference only */
 /* tailwind rgb colors for dinamic theming */
+/* read more: https://tailwindcss.com/docs/customizing-colors */
 :root {
   --color-slate-50: 248 250 252;
   --color-slate-100: 241 245 249;
