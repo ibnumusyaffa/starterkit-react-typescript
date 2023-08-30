@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import React, { useRef } from 'react'
 import {
   useButton,
@@ -36,14 +36,10 @@ export function FieldButton(props: AriaButtonProps<'button'>) {
     <button
       {...buttonProps}
       ref={ref}
-      className={cx(
-        'h-full rounded-r border-l border-gray-300 bg-gray-50 px-2 outline-none',
-        {
-          'hover:bg-gray-100  active:bg-gray-200': !props.isDisabled,
-
-          'cursor-not-allowed opacity-50': props.isDisabled,
-        }
-      )}
+      className={cx('h-8 rounded px-2 outline-none', {
+        'hover:bg-gray-100  active:bg-gray-200': !props.isDisabled,
+        'cursor-not-allowed opacity-50': props.isDisabled,
+      })}
     >
       {props.children}
     </button>

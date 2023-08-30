@@ -57,7 +57,7 @@ export function DateRangePicker<T extends DateValue>(
           {...groupProps}
           ref={ref}
           className={cx(
-            'flex items-center justify-center rounded border ',
+            'flex items-center justify-center rounded border pr-1',
             'h-10',
             'focus-within:ring-2  focus-within:ring-opacity-25',
             {
