@@ -73,7 +73,7 @@ export function DatePicker<T extends DateValue>(
             <DateField {...fieldProps} />
           </div>
           <FieldButton isDisabled={props.isDisabled} {...buttonProps}>
-            <CalendarIcon className="h-4 w-4 text-gray-700"></CalendarIcon>
+            <CalendarIcon className="h-4 w-4 text-gray-800"></CalendarIcon>
           </FieldButton>
         </div>
         <AnimatePresence>
