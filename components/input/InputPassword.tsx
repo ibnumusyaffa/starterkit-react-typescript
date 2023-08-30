@@ -18,6 +18,7 @@ export const InputPassword = React.forwardRef<
       type={type}
       rightIcon={
         <button
+          type="button"
           onClick={() => setType(type === 'password' ? 'text' : 'password')}
         >
           {type === 'password' ? (
