@@ -1,37 +1,9 @@
-"use client"
 import { useRef } from 'react'
-import { useDateFieldState } from 'react-stately'
-import {
-  AriaDateFieldProps,
-  DateValue,
-  useDateField,
-  useDateSegment,
-  useLocale,
-} from 'react-aria'
-import { createCalendar } from '@internationalized/date'
+import { useDateSegment } from '@react-aria/datepicker'
 import type { DateSegment as DateSegmentType, DateFieldState } from 'react-stately'
 import cx from 'clsx'
 
-export function DateField(props: AriaDateFieldProps<DateValue>) {
-  const { locale } = useLocale()
-  const state = useDateFieldState({
-    ...props,
-    locale,
-    createCalendar,
-  })
-
-  const ref = useRef<HTMLDivElement>(null)
-  const { fieldProps } = useDateField(props, state, ref)
-
-  return (
-    <div {...fieldProps} ref={ref} className="flex">
-      {state.segments.map((segment, i) => (
-        <DateSegment key={i} segment={segment} state={state} />
-      ))}
-    </div>
-  )
-}
-function DateSegment({
+export function DateSegment({
   segment,
   state,
 }: {
@@ -59,7 +31,6 @@ function DateSegment({
       )}
     >
       {/* Always reserve space for the placeholder, to prevent layout shift when editing. */}
-
       {segment.isPlaceholder ? segment.placeholder : segment.text}
     </div>
   )

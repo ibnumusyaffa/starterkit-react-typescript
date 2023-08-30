@@ -15,8 +15,8 @@ import {
   ChevronRightIcon
 } from '@heroicons/react/24/solid'
 
-export function RangeCalendar<T extends DateValue>(
-  props: RangeCalendarProps<T> & { multiCalendar?: boolean }
+export function RangeCalendar(
+  props: RangeCalendarProps<DateValue> & { multiCalendar?: boolean }
 ) {
   const { locale } = useLocale()
   const state = useRangeCalendarState({

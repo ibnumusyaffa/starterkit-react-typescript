@@ -79,6 +79,7 @@ function Page() {
           </div>
           <div className="space-y-3">
             <DatePicker
+              name="aaa"
               value={value6}
               onChange={setValue6}
               minValue={parseDate('2023-01-10')}

@@ -12,8 +12,8 @@ import { CalendarIcon } from '@heroicons/react/24/outline'
 import { AnimatePresence } from 'framer-motion'
 import { DateValue } from '@internationalized/date'
 
-export function DatePicker<T extends DateValue>(
-  props: AriaDatePickerProps<T> & {
+export function DatePicker(
+  props: AriaDatePickerProps<DateValue> & {
     error?: boolean
     required?: boolean
     locale?: string
@@ -41,12 +41,17 @@ export function DatePicker<T extends DateValue>(
   return (
     <I18nProvider locale={props.locale}>
       <div className="relative flex w-full flex-col text-left">
-        <div {...labelProps} className="mb-2 block font-medium text-gray-700">
-          {props.label}
-          {props.required ? (
-            <span className="ml-1 text-danger-500">*</span>
-          ) : null}
-        </div>
+        {props.label ? (
+          <div
+            {...labelProps}
+            className="mb-2 block leading-none font-medium text-gray-700"
+          >
+            {props.label}
+            {props.required ? (
+              <span className="ml-1 text-danger-500">*</span>
+            ) : null}
+          </div>
+        ) : null}
         <div
           {...groupProps}
           ref={ref}

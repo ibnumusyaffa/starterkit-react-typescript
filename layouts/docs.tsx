@@ -112,6 +112,10 @@ const menus = [
         title: 'Date Range Picker',
         href: '/docs/date-range-picker',
       },
+      {
+        title: 'InputTime',
+        href: '/docs/input-time',
+      },
     ],
   },
   {
