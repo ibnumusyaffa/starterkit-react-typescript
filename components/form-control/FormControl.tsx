@@ -8,12 +8,12 @@ export function FormLabel({
   children,
   required,
   ...props
-}: {
+}: React.ComponentProps<'label'> & {
   children?: React.ReactNode
   required?: boolean
 }) {
   return (
-    <label {...props} className="block leading-none font-medium text-gray-700">
+    <label {...props} className="text-sm block leading-none font-medium text-gray-700">
       {children}
       {required ? <span className="ml-1 text-danger-500">*</span> : null}
     </label>
@@ -33,16 +33,6 @@ export function FormErrorMessage({
   )
 }
 
-export function FormDescription({
-  children,
-  ...props
-}: {
-  children?: React.ReactNode
-  required?: boolean
-}) {
-  return (
-    <div {...props} className=" leading-none text-sm text-gray-600">
-      {children}
-    </div>
-  )
+export function FormDescription({ children }: { children?: React.ReactNode }) {
+  return <div className=" leading-none text-sm text-gray-600">{children}</div>
 }
