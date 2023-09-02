@@ -47,6 +47,10 @@ const menus = [
         href: '/docs/native-select',
       },
       {
+        title: 'React Select',
+        href: '/docs/react-select',
+      },
+      {
         title: 'Checkbox',
         href: '/docs/checkbox',
       },
@@ -277,10 +281,10 @@ function Index({ children }: { children: React.ReactNode }) {
               } ring-offset-1 ring-purple-400 rounded-full w-5 h-5`}
             ></button>
             <button
-              onClick={() => setTheme('pink')}
-              className={`bg-pink-500 ${
+              onClick={() => setTheme('green')}
+              className={`bg-green-500 ${
                 theme == 'pink' ? 'ring-2' : ''
-              } ring-offset-1 ring-pink-400 rounded-full w-5 h-5`}
+              } ring-offset-1 ring-green-400 rounded-full w-5 h-5`}
             ></button>
             <button
               onClick={() => setTheme('')}
