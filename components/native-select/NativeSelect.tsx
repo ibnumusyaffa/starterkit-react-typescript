@@ -79,7 +79,7 @@ export const NativeSelect = React.forwardRef<
         disabled={disabled}
         className={cx(
           // base style
-          'rounded pr-10 leading-tight text-gray-800',
+          'form-select rounded pr-10 leading-tight text-gray-800',
           '!py-0 focus:border-primary-500 focus:outline-none focus:ring-primary-500 focus:ring-opacity-25',
 
           'data-[error]:border-danger-500 data-[error]:focus:ring-danger-500 data-[error]:focus:ring-opacity-25',

@@ -58,7 +58,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
             disabled={disabled}
             onChange={onChange}
             className={cx(
-              'shadow-xs peer appearance-none rounded !bg-none',
+              'form-checkbox shadow-xs peer appearance-none rounded !bg-none',
               'border-2 border-gray-300 focus:ring-2 focus:!ring-primary-500 focus:!ring-opacity-40',
               'disabled:text-gray-200 disabled:checked:border-gray-300',
               'bg-white checked:border-current checked:bg-current',

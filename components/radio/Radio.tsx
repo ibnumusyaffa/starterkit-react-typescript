@@ -39,7 +39,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
           defaultChecked={defaultChecked}
           onChange={onChange}
           className={cx(
-            'border-2 border-gray-300',
+            'form-radio border-2 border-gray-300',
             'text-primary-500 focus:ring-primary-500 focus:ring-opacity-40',
             {
               'cursor-not-allowed bg-gray-100 checked:opacity-50': disabled,
