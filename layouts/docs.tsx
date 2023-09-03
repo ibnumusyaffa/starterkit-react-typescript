@@ -283,7 +283,7 @@ function Index({ children }: { children: React.ReactNode }) {
             <button
               onClick={() => setTheme('green')}
               className={`bg-green-500 ${
-                theme == 'pink' ? 'ring-2' : ''
+                theme == 'green' ? 'ring-2' : ''
               } ring-offset-1 ring-green-400 rounded-full w-5 h-5`}
             ></button>
             <button
