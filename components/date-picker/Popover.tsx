@@ -58,7 +58,7 @@ export function Popover({ children, state, ...props }: PopoverProps) {
         initial="initial"
         animate="animate"
         exit="exit"
-        className="mt-2 rounded  bg-white  shadow-lg outline-none ring-1 ring-black ring-opacity-10"
+        className="mt-2 rounded  bg-white  shadow-lg outline-none ring-1 ring-black ring-opacity-10 pointer-events-auto"
       >
         <DismissButton onDismiss={state.close} />
         {children}

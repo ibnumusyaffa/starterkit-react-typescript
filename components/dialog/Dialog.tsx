@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 import React, { useState, useRef, useEffect } from 'react'
 import cx from 'clsx'
@@ -108,53 +108,89 @@ export function Dialog({
       <AnimatePresence>
         {open ? (
           <DialogPrimitive.Portal forceMount container={containerRef.current}>
-            <DialogPrimitive.Overlay asChild forceMount>
-              <motion.div
-                variants={overlayMotion}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                className="fixed inset-0 bg-black bg-opacity-50"
-              ></motion.div>
-            </DialogPrimitive.Overlay>
-            <DialogPrimitive.Content asChild forceMount>
-              <div
-                className={cx(
-                  'fixed top-0 left-0 flex w-screen  justify-center overflow-y-auto ',
-                  {
-                    'h-screen': scrollBehavior === 'outside',
-                    'h-screen items-center': verticalCentered,
-                    'h-screen items-start': !verticalCentered,
-                  }
-                )}
-              >
-                <motion.div
-                  ref={ref}
-                  variants={contentMotion}
-                  initial="initial"
-                  animate="animate"
-                  exit="exit"
-                  className={cx(
-                    'relative my-[3.75rem] flex w-full flex-col',
-                    'rounded-md bg-white',
-                    'focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75',
+            {scrollBehavior === 'inside' ? (
+              <React.Fragment>
+                <DialogPrimitive.Overlay asChild forceMount>
+                  <motion.div
+                    variants={overlayMotion}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    className="fixed inset-0 bg-black bg-opacity-50 h-screen"
+                  ></motion.div>
+                </DialogPrimitive.Overlay>
+                <DialogPrimitive.Content asChild forceMount>
+                  <motion.div
+                    variants={contentMotion}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    className={cx(
+                      'absolute  mx-auto flex w-full flex-col',
+                      'rounded-md bg-white',
+                      'focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75',
+                      {
+                        'left-0 right-0 top-0 bottom-0 my-10':
+                          !verticalCentered,
+                        'top-0 left-0 right-0 bottom-0 my-auto h-min':
+                          verticalCentered,
+                      },
+                      {
+                        'max-h-[calc(100%-7.5rem)]':
+                          scrollBehavior === 'inside',
+                      },
+                      {
+                        'max-w-[20rem]': size === 'xs',
+                        'max-w-[25rem]': size === 'sm',
+                        'max-w-[30rem]': size === 'md',
+                        'max-w-[35rem]': size === 'lg',
+                        'max-w-[45rem]': size === 'xl',
+                      }
+                    )}
+                  >
+                    {children}
+                  </motion.div>
+                </DialogPrimitive.Content>
+              </React.Fragment>
+            ) : (
+              <React.Fragment>
+                <DialogPrimitive.Overlay asChild forceMount>
+                  <motion.div
+                    variants={overlayMotion}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    className={cx(
+                      'fixed top-0 left-0 flex w-screen bg-black bg-opacity-50  overflow-y-auto justify-center h-screen  items-start py-10'
+                    )}
+                  >
+                    <DialogPrimitive.Content asChild forceMount>
+                      <motion.div
+                        variants={contentMotion}
+                        initial="initial"
+                        animate="animate"
+                        exit="exit"
+                        className={cx(
+                          '  mx-auto  w-full',
+                          'rounded-md bg-white',
+                          'focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75',
 
-                    {
-                      'max-h-[calc(100%-7.5rem)]': scrollBehavior === 'inside',
-                    },
-                    {
-                      'max-w-[20rem]': size === 'xs',
-                      'max-w-[25rem]': size === 'sm',
-                      'max-w-[30rem]': size === 'md',
-                      'max-w-[35rem]': size === 'lg',
-                      'max-w-[45rem]': size === 'xl',
-                    }
-                  )}
-                >
-                  {children}
-                </motion.div>
-              </div>
-            </DialogPrimitive.Content>
+                          {
+                            'max-w-[20rem]': size === 'xs',
+                            'max-w-[25rem]': size === 'sm',
+                            'max-w-[30rem]': size === 'md',
+                            'max-w-[35rem]': size === 'lg',
+                            'max-w-[45rem]': size === 'xl',
+                          }
+                        )}
+                      >
+                        {children}
+                      </motion.div>
+                    </DialogPrimitive.Content>
+                  </motion.div>
+                </DialogPrimitive.Overlay>
+              </React.Fragment>
+            )}
           </DialogPrimitive.Portal>
         ) : null}
       </AnimatePresence>
