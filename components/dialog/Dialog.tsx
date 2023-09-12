@@ -126,7 +126,7 @@ export function Dialog({
                     animate="animate"
                     exit="exit"
                     className={cx(
-                      'absolute  mx-auto flex w-full flex-col',
+                      'absolute mx-auto flex w-full flex-col',
                       'rounded-md bg-white',
                       'focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75',
                       {
@@ -171,7 +171,7 @@ export function Dialog({
                         animate="animate"
                         exit="exit"
                         className={cx(
-                          '  mx-auto  w-full',
+                          'relative mx-auto w-full',
                           'rounded-md bg-white',
                           'focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75',
 
