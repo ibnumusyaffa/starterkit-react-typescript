@@ -127,13 +127,12 @@ export function Dialog({
                     exit="exit"
                     className={cx(
                       'absolute mx-auto flex w-full flex-col',
-                      'rounded-md bg-white',
+                      'top-0 left-0 right-0 bottom-0',
+                      'rounded-md bg-white h-min',
                       'focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75',
                       {
-                        'left-0 right-0 top-0 bottom-0 my-10':
-                          !verticalCentered,
-                        'top-0 left-0 right-0 bottom-0 my-auto h-min':
-                          verticalCentered,
+                        'my-10': !verticalCentered,
+                        'my-auto': verticalCentered,
                       },
                       {
                         'max-h-[calc(100%-7.5rem)]':
@@ -161,7 +160,8 @@ export function Dialog({
                     animate="animate"
                     exit="exit"
                     className={cx(
-                      'fixed top-0 left-0 flex w-screen bg-black bg-opacity-50  overflow-y-auto justify-center h-screen  items-start py-10'
+                      'fixed top-0 bg-black bg-opacity-50  overflow-y-auto  py-10',
+                      'flex w-screen justify-center h-screen items-start'
                     )}
                   >
                     <DialogPrimitive.Content asChild forceMount>
