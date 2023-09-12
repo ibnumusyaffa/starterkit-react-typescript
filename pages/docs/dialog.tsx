@@ -9,9 +9,6 @@ import {
 } from '@/components/dialog'
 
 import { Button } from '@/components/button'
-import { DatePicker } from '@/components/date-picker'
-import { DateValue } from '@internationalized/date'
-import { DateRangePicker } from '@/components/date-picker'
 
 function Page() {
   const [open1, setOpen1] = useState(false)
@@ -21,8 +18,6 @@ function Page() {
   const [open5, setOpen5] = useState(false)
 
   const [size, setSize] = useState<Size>('md')
-
-  const [value1, setValue1] = React.useState<DateValue | null>(null)
 
   return (
     <div className="space-y-10">
@@ -40,12 +35,6 @@ function Page() {
             <DialogCloseButton></DialogCloseButton>
             <DialogHeader>Modal Title</DialogHeader>
             <DialogContent>
-              <DatePicker
-                value={value1}
-                onChange={setValue1}
-                label="Controlled"
-              ></DatePicker>
-              <DateRangePicker label="Single Calendar"></DateRangePicker>
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industrys standard dummy text
               ever since the 1500s, when an unknown printer took a galley of
@@ -122,7 +111,11 @@ function Page() {
           <Button variant="default" onClick={() => setOpen3(!open3)}>
             Overflow Inside
           </Button>
-          <Dialog verticalCentered open={open3} onOpenChange={(value) => setOpen3(value)}>
+          <Dialog
+            verticalCentered
+            open={open3}
+            onOpenChange={(value) => setOpen3(value)}
+          >
             <DialogCloseButton></DialogCloseButton>
             <DialogHeader>Modal Title</DialogHeader>
             <DialogContent>
@@ -154,7 +147,6 @@ function Page() {
               containing Lorem Ipsum passages, and more recently with desktop
               publishing software like Aldus PageMaker including versions of
               Lorem Ipsum
-              <DatePicker label="Uncontrolled"></DatePicker>
             </DialogContent>
             <DialogFooter>
               <Button
@@ -168,7 +160,7 @@ function Page() {
               <Button variant="solid">Submit</Button>
             </DialogFooter>
           </Dialog>
-          <Button  variant="default" onClick={() => setOpen4(!open4)}>
+          <Button variant="default" onClick={() => setOpen4(!open4)}>
             Overflow Outside
           </Button>
           <Dialog
@@ -207,7 +199,6 @@ function Page() {
               containing Lorem Ipsum passages, and more recently with desktop
               publishing software like Aldus PageMaker including versions of
               Lorem Ipsum
-              <DatePicker label="Uncontrolled"></DatePicker>
             </DialogContent>
             <DialogFooter>
               <Button
