@@ -135,8 +135,7 @@ export function Dialog({
                         'my-auto': verticalCentered,
                       },
                       {
-                        'max-h-[calc(100%-7.5rem)]':
-                          scrollBehavior === 'inside',
+                        'max-h-[calc(100%-5rem)]': scrollBehavior === 'inside',
                       },
                       {
                         'max-w-[20rem]': size === 'xs',
@@ -160,8 +159,8 @@ export function Dialog({
                     animate="animate"
                     exit="exit"
                     className={cx(
-                      'fixed top-0 bg-black bg-opacity-50  overflow-y-auto  py-10',
-                      'flex w-screen justify-center h-screen items-start'
+                      'absolute top-0 bg-black bg-opacity-50 overflow-y-auto',
+                      'flex w-screen justify-center py-10 h-screen'
                     )}
                   >
                     <DialogPrimitive.Content asChild forceMount>
@@ -172,9 +171,11 @@ export function Dialog({
                         exit="exit"
                         className={cx(
                           'relative mx-auto w-full',
-                          'rounded-md bg-white',
+                          'rounded-md bg-white h-min',
                           'focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75',
-
+                          {
+                            'my-auto': verticalCentered,
+                          },
                           {
                             'max-w-[20rem]': size === 'xs',
                             'max-w-[25rem]': size === 'sm',
