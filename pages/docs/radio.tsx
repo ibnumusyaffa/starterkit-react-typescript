@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { Radio } from '@/components/radio'
 
 function Page() {

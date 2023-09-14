@@ -5,6 +5,7 @@ import Head from 'next/head'
 import { I18nProvider } from '@/locales'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+
 import id from '@/locales/id'
 
 import '@/styles/globals.css'

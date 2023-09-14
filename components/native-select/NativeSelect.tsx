@@ -2,6 +2,7 @@
 
 import React, { useContext } from 'react'
 import cx from 'clsx'
+
 import { InputGroupCtx } from '@/components/input/Input'
 
 export type Variant = 'filled' | 'outline'

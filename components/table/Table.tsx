@@ -8,6 +8,7 @@ import {
 } from '@heroicons/react/24/solid'
 import cx from 'clsx'
 import { AnimatePresence, motion } from 'framer-motion'
+
 import { Spinner } from '@/components/spinner'
 
 export type Direction = 'asc' | 'desc' | undefined

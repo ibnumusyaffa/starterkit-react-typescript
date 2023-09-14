@@ -5,6 +5,7 @@ import {
   ArrowUpIcon,
   SignalIcon,
 } from '@heroicons/react/24/solid'
+
 import { Badge } from '@/components/badge'
 
 function Page() {

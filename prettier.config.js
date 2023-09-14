@@ -22,6 +22,7 @@ const config = {
     '^(react/(.*)$)|^(react$)',
     '^(next/(.*)$)|^(next$)',
     '<THIRD_PARTY_MODULES>',
+    '',
     '^@/hooks/(.*)$',
     '^@/layouts/(.*)$',
     '^@/components/(.*)$',
@@ -31,7 +32,10 @@ const config = {
     '^[./]',
   ],
   importOrderParserPlugins: ['typescript', 'jsx', 'decorators-legacy'],
-  plugins: ['@ianvs/prettier-plugin-sort-imports'],
+  plugins: [
+    '@ianvs/prettier-plugin-sort-imports',
+    'prettier-plugin-tailwindcss',
+  ],
 }
 
 module.exports = config

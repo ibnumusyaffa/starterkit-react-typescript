@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { InputPassword } from '@/components/input'
 
 function Page() {

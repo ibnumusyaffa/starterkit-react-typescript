@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+
 import { Avatar, AvatarGroup, AvatarMore } from '@/components/avatar'
 
 function Page() {
