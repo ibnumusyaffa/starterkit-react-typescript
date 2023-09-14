@@ -1,6 +1,6 @@
 import React from 'react'
-import { Avatar, AvatarGroup, AvatarMore } from '@/components/avatar'
 import Link from 'next/link'
+import { Avatar, AvatarGroup, AvatarMore } from '@/components/avatar'
 
 function Page() {
   const src =
@@ -59,7 +59,7 @@ function Page() {
         <div className="text-xl font-semibold text-gray-700">Polymorphic</div>
         <div className="flex flex-wrap gap-5">
           <div className="flex items-center space-x-4">
-            <Avatar  src="https://google.com/not-found" name="Ibnu M" asChild>
+            <Avatar src="https://google.com/not-found" name="Ibnu M" asChild>
               <button onClick={() => alert('clicked')}></button>
             </Avatar>
             <div>Render as button</div>

@@ -1,7 +1,8 @@
 import React from 'react'
-import { Breadcrumb, BreadcrumbItem } from '@/components/breadcrumb'
-import { ChevronRightIcon } from '@heroicons/react/24/solid'
 import Link from 'next/link'
+import { ChevronRightIcon } from '@heroicons/react/24/solid'
+import { Breadcrumb, BreadcrumbItem } from '@/components/breadcrumb'
+
 function breadcrumb() {
   return (
     <div className="space-y-5">

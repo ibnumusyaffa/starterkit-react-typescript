@@ -1,6 +1,6 @@
-import { DatePicker } from '@/components/date-picker'
-import { DateValue, parseDate } from '@internationalized/date'
 import React from 'react'
+import { DateValue, parseDate } from '@internationalized/date'
+import { DatePicker } from '@/components/date-picker'
 
 function Page() {
   const [value1, setValue1] = React.useState<DateValue | null>(null)

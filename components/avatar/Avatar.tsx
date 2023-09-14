@@ -1,10 +1,12 @@
-"use client"
+'use client'
+
 import React, { createContext, useContext } from 'react'
-import * as AvatarPrimitive from '@radix-ui/react-avatar'
 import { UserIcon } from '@heroicons/react/24/solid'
-import { generateColor } from './generateColor'
-import cx from 'clsx'
+import * as AvatarPrimitive from '@radix-ui/react-avatar'
 import { Slot, Slottable } from '@radix-ui/react-slot'
+import cx from 'clsx'
+
+import { generateColor } from './generateColor'
 
 const AvatarCtx = createContext({ isGroup: false })
 
@@ -18,10 +20,10 @@ function getInitials(name: string) {
     : firstName.charAt(0)
 }
 
-export type AvatarProps =  {
+export type AvatarProps = {
   /** @default "md" */
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
-  children?:React.ReactNode
+  children?: React.ReactNode
 
   name?: string
   src?: string

@@ -1,15 +1,16 @@
-"use client"
+'use client'
+
 import React, {
   createContext,
   useContext,
-  useState,
-  useRef,
   useEffect,
+  useRef,
+  useState,
 } from 'react'
-import * as PopoverPrimitive from '@radix-ui/react-popover'
-import { motion, AnimatePresence } from 'framer-motion'
 import { useControllableState } from '@/hooks'
+import * as PopoverPrimitive from '@radix-ui/react-popover'
 import cx from 'clsx'
+import { AnimatePresence, motion } from 'framer-motion'
 
 type PopoverProviderParams = {
   open?: boolean
@@ -65,7 +66,7 @@ export function PopoverArrow() {
             'absolute h-2 w-2 rotate-45',
             'left-0 right-0 ml-auto mr-auto',
             'top-[-3.5px] bg-white shadow-md',
-            'border-r border-b border-black border-opacity-[0.15]'
+            'border-b border-r border-black border-opacity-[0.15]'
           )}
         ></div>
       </div>

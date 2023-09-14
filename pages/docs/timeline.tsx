@@ -1,17 +1,17 @@
 import React from 'react'
 import {
-  XMarkIcon,
-  PaperAirplaneIcon,
-  CheckIcon,
   ChatBubbleBottomCenterTextIcon,
+  CheckIcon,
   ClipboardDocumentIcon,
+  PaperAirplaneIcon,
   PencilSquareIcon,
+  XMarkIcon,
 } from '@heroicons/react/24/outline'
 import {
   Timeline,
   TimelineBullet,
-  TimelineItem,
   TimelineContent,
+  TimelineItem,
 } from '@/components/timeline'
 
 function Page() {

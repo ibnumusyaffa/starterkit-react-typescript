@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
+import { Button } from '@/components/button'
 import {
   Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogFooter,
   DialogCloseButton,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
   Size,
 } from '@/components/dialog'
-
-import { Button } from '@/components/button'
 
 function Page() {
   const [open1, setOpen1] = useState(false)
@@ -147,7 +146,6 @@ function Page() {
               containing Lorem Ipsum passages, and more recently with desktop
               publishing software like Aldus PageMaker including versions of
               Lorem Ipsum
-              
             </DialogContent>
             <DialogFooter>
               <Button
@@ -183,7 +181,6 @@ function Page() {
               containing Lorem Ipsum passages, and more recently with desktop
               publishing software like Aldus PageMaker including versions of
               Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and
-
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industrys standard dummy text
               ever since the 1500s, when an unknown printer took a galley of
@@ -194,7 +191,6 @@ function Page() {
               containing Lorem Ipsum passages, and more recently with desktop
               publishing software like Aldus PageMaker including versions of
               Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and
-
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industrys standard dummy text
               ever since the 1500s, when an unknown printer took a galley of
@@ -205,7 +201,6 @@ function Page() {
               containing Lorem Ipsum passages, and more recently with desktop
               publishing software like Aldus PageMaker including versions of
               Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and
-            
             </DialogContent>
             <DialogFooter>
               <Button

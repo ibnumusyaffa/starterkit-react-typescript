@@ -1,13 +1,12 @@
 import React from 'react'
+import { Button } from '@/components/button'
 import {
+  TooltipContent,
   TooltipRoot,
   TooltipTrigger,
-  TooltipContent,
 } from '@/components/tooltip'
-import { Button } from '@/components/button'
 
 function Page() {
-
   const sides = ['top', 'right', 'bottom', 'left'] as const
   const aligns = ['start', 'center', 'end'] as const
   return (

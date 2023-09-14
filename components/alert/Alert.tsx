@@ -1,13 +1,14 @@
-"use client"
+'use client'
+
 import React from 'react'
-import cx from 'clsx'
 import {
-  ExclamationTriangleIcon,
   CheckCircleIcon,
-  XCircleIcon,
+  ExclamationTriangleIcon,
   InformationCircleIcon,
+  XCircleIcon,
   XMarkIcon,
 } from '@heroicons/react/24/solid'
+import cx from 'clsx'
 
 export type AlertType = 'danger' | 'warning' | 'success' | 'info' | 'neutral'
 
@@ -82,12 +83,12 @@ export function Alert({
   }
   return (
     <div
-      className={cx('relative rounded p-3 flex items-start space-x-3', {
-        'bg-warning-50 border-[1px] border-warning-300': type === 'warning',
-        'bg-danger-50 border-[1px] border-danger-300': type === 'danger',
-        'bg-success-50 border-[1px] border-success-300': type === 'success',
-        'bg-info-50 border-[1px] border-info-300': type === 'info',
-        'bg-gray-50 border-[1px] border-gray-300': type === 'neutral',
+      className={cx('relative flex items-start space-x-3 rounded p-3', {
+        'border-[1px] border-warning-300 bg-warning-50': type === 'warning',
+        'border-[1px] border-danger-300 bg-danger-50': type === 'danger',
+        'border-[1px] border-success-300 bg-success-50': type === 'success',
+        'border-[1px] border-info-300 bg-info-50': type === 'info',
+        'border-[1px] border-gray-300 bg-gray-50': type === 'neutral',
       })}
     >
       {withIcon ? <Icon type={type}></Icon> : null}

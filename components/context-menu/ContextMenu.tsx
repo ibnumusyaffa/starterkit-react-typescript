@@ -1,15 +1,16 @@
-"use client"
+'use client'
+
 import React, {
   createContext,
   useContext,
-  useState,
-  useRef,
   useEffect,
+  useRef,
+  useState,
 } from 'react'
+import { ChevronRightIcon } from '@heroicons/react/24/outline'
 import * as ContextMenuPrimitive from '@radix-ui/react-context-menu'
 import cx from 'clsx'
-import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronRightIcon } from '@heroicons/react/24/outline'
+import { AnimatePresence, motion } from 'framer-motion'
 
 const motionVariants = {
   initial: {
@@ -53,8 +54,8 @@ export function ContextMenuArrow() {
         <div
           className={cx(
             'absolute h-2 w-2 rotate-45 bg-white',
-            'border-r border-b border-gray-300 border-opacity-50',
-            'top-[-3px] left-0 right-0 ml-auto mr-auto'
+            'border-b border-r border-gray-300 border-opacity-50',
+            'left-0 right-0 top-[-3px] ml-auto mr-auto'
           )}
         ></div>
       </div>
@@ -172,7 +173,7 @@ export function ContextMenuItem({
 
 export function ContextMenuLabel(props: { children: React.ReactNode }) {
   return (
-    <ContextMenuPrimitive.Label className="mt-1.5 mb-2 flex items-center px-3 text-xs font-semibold text-gray-500 ">
+    <ContextMenuPrimitive.Label className="mb-2 mt-1.5 flex items-center px-3 text-xs font-semibold text-gray-500 ">
       {props.children}
     </ContextMenuPrimitive.Label>
   )

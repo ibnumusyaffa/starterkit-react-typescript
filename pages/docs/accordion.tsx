@@ -1,10 +1,10 @@
-import {
-  AccordionRoot,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from '@/components/accordion'
 import React from 'react'
+import {
+  AccordionContent,
+  AccordionItem,
+  AccordionRoot,
+  AccordionTrigger,
+} from '@/components/accordion'
 
 function Page() {
   return (

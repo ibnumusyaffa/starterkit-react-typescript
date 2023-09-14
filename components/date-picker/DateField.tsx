@@ -1,6 +1,8 @@
-"use client"
+'use client'
+
 import { useRef } from 'react'
-import { useDateFieldState } from 'react-stately'
+import { createCalendar } from '@internationalized/date'
+import cx from 'clsx'
 import {
   AriaDateFieldProps,
   DateValue,
@@ -8,9 +10,11 @@ import {
   useDateSegment,
   useLocale,
 } from 'react-aria'
-import { createCalendar } from '@internationalized/date'
-import type { DateSegment as DateSegmentType, DateFieldState } from 'react-stately'
-import cx from 'clsx'
+import { useDateFieldState } from 'react-stately'
+import type {
+  DateFieldState,
+  DateSegment as DateSegmentType,
+} from 'react-stately'
 
 export function DateField(props: AriaDateFieldProps<DateValue>) {
   const { locale } = useLocale()

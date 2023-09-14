@@ -1,6 +1,7 @@
-"use client"
-import { useDialog } from 'react-aria'
+'use client'
+
 import React from 'react'
+import { useDialog } from 'react-aria'
 import type { AriaDialogProps } from 'react-aria'
 
 interface DialogProps extends AriaDialogProps {

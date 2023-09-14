@@ -1,10 +1,11 @@
-"use client"
-import * as DialogPrimitive from '@radix-ui/react-dialog'
+'use client'
+
 import React, { useEffect, useRef, useState } from 'react'
-import cx from 'clsx'
-import { motion, AnimatePresence } from 'framer-motion'
-import { XMarkIcon } from '@heroicons/react/24/solid'
 import { useOnClickOutside } from '@/hooks'
+import { XMarkIcon } from '@heroicons/react/24/solid'
+import * as DialogPrimitive from '@radix-ui/react-dialog'
+import cx from 'clsx'
+import { AnimatePresence, motion } from 'framer-motion'
 
 const overlayMotion = {
   initial: {
@@ -61,7 +62,7 @@ export function DrawerCloseButton() {
     <DialogPrimitive.Close asChild>
       <button
         className={cx(
-          'absolute top-2 right-2 rounded p-0.5 text-gray-800 hover:bg-gray-200 active:bg-gray-300'
+          'absolute right-2 top-2 rounded p-0.5 text-gray-800 hover:bg-gray-200 active:bg-gray-300'
         )}
       >
         <XMarkIcon className="h-5 w-5"></XMarkIcon>
@@ -119,7 +120,7 @@ export function Drawer({
             <DialogPrimitive.Content asChild forceMount>
               <div
                 className={cx(
-                  'fixed top-0 left-0 z-10 flex w-screen  justify-center overflow-y-auto'
+                  'fixed left-0 top-0 z-10 flex w-screen  justify-center overflow-y-auto'
                 )}
               >
                 <motion.div

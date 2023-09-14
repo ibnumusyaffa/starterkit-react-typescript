@@ -1,21 +1,20 @@
 import React from 'react'
+import { PlusIcon } from '@heroicons/react/24/outline'
+import { Button } from '@/components/button'
+import { EmptyState } from '@/components/empty-state'
+import { NativeSelect } from '@/components/native-select'
+import { Switch } from '@/components/switch'
 import {
   Table,
-  Th,
-  Tr,
-  Td,
-  Thead,
-  Tbody,
-  useTableSort,
   TableEmpty,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
+  useTableSort,
   VerticalAlignment,
 } from '@/components/table'
-import { EmptyState } from '@/components/empty-state'
-import { Switch } from '@/components/switch'
-import { NativeSelect } from '@/components/native-select'
-import { Button } from '@/components/button'
-
-import { PlusIcon } from '@heroicons/react/24/outline'
 
 function Page() {
   const [state, setState] = React.useState({

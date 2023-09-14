@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import {
   AlertDialog,
-  AlertDialogFooter,
-  AlertDialogContent,
   AlertDialogCancel,
   AlertDialogCloseButton,
+  AlertDialogContent,
+  AlertDialogFooter,
 } from '@/components/alert-dialog'
 import { Button } from '@/components/button'
+
 function Page() {
   const [open, setOpen] = useState(false)
   return (

@@ -1,14 +1,14 @@
 import React from 'react'
+import Link from 'next/link'
+import { Cog6ToothIcon } from '@heroicons/react/24/outline'
+import { Radio } from '@/components/radio'
 import {
-  TabsRoot,
-  TabsList,
-  TabsTrigger,
   TabsContent,
+  TabsList,
+  TabsRoot,
+  TabsTrigger,
   Variant,
 } from '@/components/tabs'
-import { Radio } from '@/components/radio'
-import { Cog6ToothIcon } from '@heroicons/react/24/outline'
-import Link from 'next/link'
 
 function Page() {
   const [variant, setVariant] = React.useState<Variant>('default')

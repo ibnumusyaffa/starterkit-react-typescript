@@ -1,15 +1,15 @@
 import React from 'react'
+import { MicrophoneIcon } from '@heroicons/react/24/outline'
+import { MagnifyingGlassIcon } from '@heroicons/react/24/solid'
+import { Button } from '@/components/button'
 import {
   Input,
   InputGroup,
-  InputRightAddon,
   InputLeftAddon,
   InputPassword,
+  InputRightAddon,
 } from '@/components/input'
-import { Button } from '@/components/button'
 import { NativeSelect } from '@/components/native-select'
-import { MagnifyingGlassIcon } from '@heroicons/react/24/solid'
-import { MicrophoneIcon } from '@heroicons/react/24/outline'
 
 function Page() {
   return (
@@ -41,7 +41,6 @@ function Page() {
           <div className="space-y-3">
             <div className="text-xl font-semibold text-gray-700">Size</div>
             <div className="space-y-5 md:w-1/2">
-           
               <Input size="sm" placeholder="sm" type="text"></Input>
               <Input size="md" placeholder="md" type="text"></Input>
               <Input size="lg" placeholder="lg" type="text"></Input>

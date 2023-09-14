@@ -1,22 +1,24 @@
 'use client'
+
 /* eslint-disable prefer-const */
 import React from 'react'
 import {
-  useCalendarCell,
-  useLocale,
-  useFocusRing,
-  mergeProps,
-} from 'react-aria'
-import {
-  isWeekend,
-  isSameDay,
-  getDayOfWeek,
-  isSameMonth,
   CalendarDate,
   DateValue,
+  getDayOfWeek,
+  isSameDay,
+  isSameMonth,
+  isWeekend,
 } from '@internationalized/date'
 import cx from 'clsx'
+import {
+  mergeProps,
+  useCalendarCell,
+  useFocusRing,
+  useLocale,
+} from 'react-aria'
 import type { CalendarState, RangeCalendarState } from 'react-stately'
+
 export function CalendarCell({
   state,
   date,
@@ -53,7 +55,6 @@ export function CalendarCell({
 
   const dayOfWeek = getDayOfWeek(date, locale)
 
-
   const isRoundedLeft =
     isSelected && (isSelectionStart || dayOfWeek === 0 || date.day === 1)
   const isRoundedRight =
@@ -87,11 +88,11 @@ export function CalendarCell({
           className={cx(
             'flex h-full w-full items-center justify-center rounded text-sm',
             {
-              'ring-2 ring-primary-300  group-focus:z-10 ring-offset-1':
+              'ring-2 ring-primary-300  ring-offset-1 group-focus:z-10':
                 isFocusVisible || isFocused,
 
               //selected in start or end
-              'bg-primary-500 hover:bg-primary-600 text-white':
+              'bg-primary-500 text-white hover:bg-primary-600':
                 (isSelected && !isRange) || isSelectionStart || isSelectionEnd,
 
               //selected but not in start or end

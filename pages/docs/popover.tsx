@@ -1,11 +1,11 @@
 import React from 'react'
+import { Button } from '@/components/button'
 import {
+  PopoverArrow,
+  PopoverContent,
   PopoverRoot,
   PopoverTrigger,
-  PopoverContent,
-  PopoverArrow,
 } from '@/components/popover'
-import { Button } from '@/components/button'
 
 function Page() {
   return (

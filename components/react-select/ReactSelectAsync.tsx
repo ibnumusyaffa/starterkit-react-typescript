@@ -1,10 +1,10 @@
 import React from 'react'
 import cx from 'clsx'
+import type { GroupBase, OptionsOrGroups } from 'react-select'
 import {
   AsyncPaginate,
   WithAsyncPaginateType,
 } from 'react-select-async-paginate'
-import type { GroupBase, OptionsOrGroups } from 'react-select'
 
 export type OptionType = {
   value: number

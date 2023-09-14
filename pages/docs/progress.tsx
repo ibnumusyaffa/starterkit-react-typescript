@@ -1,6 +1,6 @@
 import React from 'react'
-import { Progress } from '@/components/progress'
 import { Button } from '@/components/button'
+import { Progress } from '@/components/progress'
 
 function Page() {
   const [progress, setProgress] = React.useState(25)

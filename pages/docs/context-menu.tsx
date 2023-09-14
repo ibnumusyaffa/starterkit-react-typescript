@@ -1,21 +1,21 @@
 import React from 'react'
 import {
-  ContextMenuRoot,
-  ContextMenuTrigger,
+  ArrowLeftOnRectangleIcon,
+  Cog6ToothIcon,
+} from '@heroicons/react/24/outline'
+import {
+  ContextMenuArrow,
   ContextMenuContent,
   ContextMenuGroup,
   ContextMenuItem,
   ContextMenuLabel,
+  ContextMenuRoot,
   ContextMenuSeparator,
-  ContextMenuArrow,
   ContextMenuSub,
-  ContextMenuSubTrigger,
   ContextMenuSubContent,
+  ContextMenuSubTrigger,
+  ContextMenuTrigger,
 } from '@/components/context-menu'
-import {
-  Cog6ToothIcon,
-  ArrowLeftOnRectangleIcon,
-} from '@heroicons/react/24/outline'
 
 function Page() {
   return (

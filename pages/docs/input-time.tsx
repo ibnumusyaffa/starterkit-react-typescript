@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { InputTime } from '@/components/input-time'
 import { Time } from '@internationalized/date'
 import { TimeValue } from 'react-aria'
+import { InputTime } from '@/components/input-time'
 
 export default function Home() {
   const [value, setValue] = useState<TimeValue>(new Time(11, 45))

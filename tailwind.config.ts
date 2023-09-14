@@ -1,5 +1,6 @@
 import type { Config } from 'tailwindcss'
 import colors from 'tailwindcss/colors'
+
 export default {
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',

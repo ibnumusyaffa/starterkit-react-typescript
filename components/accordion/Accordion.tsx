@@ -1,8 +1,9 @@
-"use client"
+'use client'
+
 import React from 'react'
+import { ChevronDownIcon } from '@heroicons/react/24/solid'
 import * as AccordionPrimitive from '@radix-ui/react-accordion'
 import cx from 'clsx'
-import { ChevronDownIcon } from '@heroicons/react/24/solid'
 
 export const AccordionRoot = AccordionPrimitive.Root
 
@@ -52,11 +53,11 @@ export const AccordionContent = React.forwardRef<
     <AccordionPrimitive.Content
       {...props}
       className={cx(
-        'overflow-hidden text-sm text-gray-700 transition-all data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up'
+        'overflow-hidden text-sm text-gray-700 transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down'
       )}
       ref={ref}
     >
-      <div className="px-3 pt-2 pb-3">{props.children}</div>
+      <div className="px-3 pb-3 pt-2">{props.children}</div>
     </AccordionPrimitive.Content>
   )
 })

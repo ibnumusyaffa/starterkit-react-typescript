@@ -1,6 +1,6 @@
 import React from 'react'
-import { Divider } from '@/components/divider'
 import { Button } from '@/components/button'
+import { Divider } from '@/components/divider'
 
 function Page() {
   return (

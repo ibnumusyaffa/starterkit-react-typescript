@@ -1,23 +1,23 @@
 import React from 'react'
 import {
-  DropdownMenuRoot,
-  DropdownMenuTrigger,
+  ArrowLeftOnRectangleIcon,
+  Cog6ToothIcon,
+} from '@heroicons/react/24/outline'
+import { Button } from '@/components/button'
+import {
+  DropdownMenuArrow,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuRoot,
   DropdownMenuSeparator,
-  DropdownMenuArrow,
   DropdownMenuSub,
-  DropdownMenuSubTrigger,
   DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
 } from '@/components/dropdown-menu'
-import { Button } from '@/components/button'
 
-import {
-  Cog6ToothIcon,
-  ArrowLeftOnRectangleIcon,
-} from '@heroicons/react/24/outline'
 function Page() {
   const [open, setOpen] = React.useState(false)
   return (

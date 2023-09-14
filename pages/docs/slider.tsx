@@ -1,5 +1,6 @@
 import React from 'react'
 import { Slider } from '@/components/slider'
+
 function Page() {
   const [value1, setValue1] = React.useState([10])
   const [value2, setValue2] = React.useState([0, 50])

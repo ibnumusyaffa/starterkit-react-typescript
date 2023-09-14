@@ -1,15 +1,16 @@
-"use client"
-import * as TooltipPrimitive from '@radix-ui/react-tooltip'
+'use client'
+
 import React, {
   createContext,
   useContext,
-  useState,
-  useRef,
   useEffect,
+  useRef,
+  useState,
 } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import { useControllableState } from '@/hooks'
+import * as TooltipPrimitive from '@radix-ui/react-tooltip'
 import cx from 'clsx'
+import { AnimatePresence, motion } from 'framer-motion'
 
 type ProviderParams = {
   open?: boolean
@@ -134,7 +135,7 @@ export const TooltipContent = React.forwardRef<
                         ' left-0 right-0 ml-auto mr-auto',
                         {
                           'top-[-4px] bg-gray-800': color === 'dark',
-                          'top-[-3.5px] border-r border-b border-black border-opacity-[0.15] bg-white shadow-md':
+                          'top-[-3.5px] border-b border-r border-black border-opacity-[0.15] bg-white shadow-md':
                             color === 'light',
                         }
                       )}

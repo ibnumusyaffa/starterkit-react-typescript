@@ -1,13 +1,14 @@
-"use client"
+'use client'
+
 import React, { createContext, useContext } from 'react'
-import cx from 'clsx'
-import { Spinner } from '@/components/spinner'
-import { motion, AnimatePresence } from 'framer-motion'
 import {
-  ArrowsUpDownIcon,
   ArrowDownIcon,
+  ArrowsUpDownIcon,
   ArrowUpIcon,
 } from '@heroicons/react/24/solid'
+import cx from 'clsx'
+import { AnimatePresence, motion } from 'framer-motion'
+import { Spinner } from '@/components/spinner'
 
 export type Direction = 'asc' | 'desc' | undefined
 export type VerticalAlignment = 'top' | 'center' | 'bottom'
@@ -256,8 +257,6 @@ export function Tbody(props: React.ComponentProps<'tbody'>) {
   }
   return <tbody {...props}>{props.children}</tbody>
 }
-
-
 
 type TableProos = {
   withBorder?: boolean

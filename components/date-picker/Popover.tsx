@@ -1,8 +1,9 @@
-"use client"
+'use client'
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useRef } from 'react'
-import { DismissButton, Overlay, usePopover } from 'react-aria'
 import { motion } from 'framer-motion'
+import { DismissButton, Overlay, usePopover } from 'react-aria'
 import type { AriaPopoverProps } from 'react-aria'
 import type { OverlayTriggerState } from 'react-stately'
 
@@ -52,13 +53,13 @@ export function Popover({ children, state, ...props }: PopoverProps) {
     <Overlay>
       <div {...underlayProps} className="fixed inset-0" />
       <motion.div
-       {...(popoverProps as any)}
+        {...(popoverProps as any)}
         ref={popoverRef}
         variants={motionVariants}
         initial="initial"
         animate="animate"
         exit="exit"
-        className="mt-2 rounded  bg-white  shadow-lg outline-none ring-1 ring-black ring-opacity-10 pointer-events-auto"
+        className="pointer-events-auto mt-2  rounded  bg-white shadow-lg outline-none ring-1 ring-black ring-opacity-10"
       >
         <DismissButton onDismiss={state.close} />
         {children}

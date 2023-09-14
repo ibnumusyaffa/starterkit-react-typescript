@@ -1,9 +1,9 @@
 import React from 'react'
 import {
+  HoverCardArrow,
+  HoverCardContent,
   HoverCardRoot,
   HoverCardTrigger,
-  HoverCardContent,
-  HoverCardArrow,
 } from '@/components/hover-card'
 
 function Page() {

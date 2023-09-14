@@ -1,10 +1,11 @@
 'use client'
-import * as DialogPrimitive from '@radix-ui/react-dialog'
-import React, { useState, useRef, useEffect } from 'react'
-import cx from 'clsx'
-import { motion, AnimatePresence } from 'framer-motion'
-import { XMarkIcon } from '@heroicons/react/24/solid'
+
+import React, { useEffect, useRef, useState } from 'react'
 import { useOnClickOutside } from '@/hooks'
+import { XMarkIcon } from '@heroicons/react/24/solid'
+import * as DialogPrimitive from '@radix-ui/react-dialog'
+import cx from 'clsx'
+import { AnimatePresence, motion } from 'framer-motion'
 
 const overlayMotion = {
   initial: {
@@ -58,7 +59,7 @@ export function DialogCloseButton() {
     <DialogPrimitive.Close asChild>
       <button
         className={cx(
-          'absolute top-2 right-2 rounded p-0.5 text-gray-800 hover:bg-gray-200 active:bg-gray-300'
+          'absolute right-2 top-2 rounded p-0.5 text-gray-800 hover:bg-gray-200 active:bg-gray-300'
         )}
       >
         <XMarkIcon className="h-5 w-5"></XMarkIcon>
@@ -116,7 +117,7 @@ export function Dialog({
                     initial="initial"
                     animate="animate"
                     exit="exit"
-                    className="fixed inset-0 bg-black bg-opacity-50 h-screen"
+                    className="fixed inset-0 h-screen bg-black bg-opacity-50"
                   ></motion.div>
                 </DialogPrimitive.Overlay>
                 <DialogPrimitive.Content asChild forceMount>
@@ -127,8 +128,8 @@ export function Dialog({
                     exit="exit"
                     className={cx(
                       'absolute mx-auto flex w-full flex-col',
-                      'top-0 left-0 right-0 bottom-0',
-                      'rounded-md bg-white h-min',
+                      'bottom-0 left-0 right-0 top-0',
+                      'h-min rounded-md bg-white',
                       'focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75',
                       {
                         'my-10': !verticalCentered,
@@ -159,8 +160,8 @@ export function Dialog({
                     animate="animate"
                     exit="exit"
                     className={cx(
-                      'absolute top-0 bg-black bg-opacity-50 overflow-y-auto',
-                      'flex w-screen justify-center py-10 h-screen'
+                      'absolute top-0 overflow-y-auto bg-black bg-opacity-50',
+                      'flex h-screen w-screen justify-center py-10'
                     )}
                   >
                     <DialogPrimitive.Content asChild forceMount>
@@ -171,7 +172,7 @@ export function Dialog({
                         exit="exit"
                         className={cx(
                           'relative mx-auto w-full',
-                          'rounded-md bg-white h-min',
+                          'h-min rounded-md bg-white',
                           'focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75',
                           {
                             'my-auto': verticalCentered,

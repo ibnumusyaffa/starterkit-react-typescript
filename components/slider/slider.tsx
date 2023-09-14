@@ -1,8 +1,10 @@
-"use client"
+'use client'
+
 import * as React from 'react'
+import { useControllableState } from '@/hooks'
 import * as SliderPrimitive from '@radix-ui/react-slider'
 import cx from 'clsx'
-import { useControllableState } from '@/hooks'
+
 export const Slider = React.forwardRef<
   React.ElementRef<typeof SliderPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>

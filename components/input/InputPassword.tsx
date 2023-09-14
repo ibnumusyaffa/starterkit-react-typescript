@@ -1,8 +1,11 @@
 'use client'
+
 import React, { useState } from 'react'
-import { Input } from './Input'
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
 import cx from 'clsx'
+
+import { Input } from './Input'
+
 type InputPasswordProps = Omit<React.ComponentProps<typeof Input>, 'type'>
 
 export const InputPassword = React.forwardRef<

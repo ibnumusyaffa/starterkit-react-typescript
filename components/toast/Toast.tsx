@@ -1,15 +1,16 @@
-"use client"
-import React, { useState, createContext, useContext } from 'react'
-import * as ToastPrimitive from '@radix-ui/react-toast'
-import { motion, AnimatePresence } from 'framer-motion'
-import cx from 'clsx'
+'use client'
+
+import React, { createContext, useContext, useState } from 'react'
 import {
-  ExclamationCircleIcon,
   CheckCircleIcon,
+  ExclamationCircleIcon,
   InformationCircleIcon,
   XCircleIcon,
   XMarkIcon,
 } from '@heroicons/react/24/solid'
+import * as ToastPrimitive from '@radix-ui/react-toast'
+import cx from 'clsx'
+import { AnimatePresence, motion } from 'framer-motion'
 
 type Position =
   | 'top-right'
@@ -149,7 +150,7 @@ function Toast({
 
         <ToastPrimitive.Close asChild>
           <button
-            className={cx('absolute top-1.5 right-1.5 rounded p-0.5', {
+            className={cx('absolute right-1.5 top-1.5 rounded p-0.5', {
               'hover:bg-success-700 active:bg-success-800':
                 status === 'success',
               'hover:bg-danger-700 active:bg-danger-800': status === 'danger',
@@ -216,7 +217,7 @@ export function ToastProvider({
     status = 'success',
     duration,
   }: Toast) {
-    console.log("heeee");
+    console.log('heeee')
     setQueue((prev) => {
       const newToast: ToastWithId = {
         id: nextId++,
@@ -268,11 +269,11 @@ export function ToastProvider({
             <ToastPrimitive.Viewport asChild>
               <ul
                 className={cx('fixed z-20 flex gap-y-5', {
-                  'top-5 right-5 flex-col-reverse items-end':
+                  'right-5 top-5 flex-col-reverse items-end':
                     position === 'top-right',
-                  'top-5 left-5 flex-col-reverse items-start':
+                  'left-5 top-5 flex-col-reverse items-start':
                     position === 'top-left',
-                  'top-5 left-1/2 -translate-x-1/2 flex-col-reverse items-center':
+                  'left-1/2 top-5 -translate-x-1/2 flex-col-reverse items-center':
                     position === 'top',
                   'bottom-5 right-10 flex-col items-end':
                     position === 'bottom-right',

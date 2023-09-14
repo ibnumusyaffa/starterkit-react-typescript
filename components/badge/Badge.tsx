@@ -1,7 +1,8 @@
-"use client"
+'use client'
+
 import React, { forwardRef } from 'react'
-import cx from 'clsx'
 import { Slot, Slottable } from '@radix-ui/react-slot'
+import cx from 'clsx'
 
 export type Variant = 'solid' | 'light' | 'light-outline' | 'outline'
 
@@ -152,23 +153,23 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
       <Component
         {...props}
         className={cx(
-          `box-border inline-flex h-fit items-center justify-center leading-none  focus:outline-none  whitespace-nowrap`,
+          `box-border inline-flex h-fit items-center justify-center whitespace-nowrap  leading-none  focus:outline-none`,
           variantStyles({ variant, color }),
           {
             'rounded-none': rounded === 'none',
             'rounded-sm': rounded === 'xs',
-            rounded: rounded === 'sm',
+            'rounded': rounded === 'sm',
             'rounded-md': rounded === 'md',
             'rounded-lg': rounded === 'lg',
             'rounded-xl': rounded === 'xl',
             'rounded-full': rounded === 'full',
           },
           {
-            'py-1 px-2 text-xs': size === 'xs',
-            'py-1 px-2.5 text-sm': size === 'sm',
-            'py-1 px-3 text-base': size === 'md',
-            'py-1.5 px-4 text-lg': size === 'lg',
-            'py-2 px-5 text-xl': size === 'xl',
+            'px-2 py-1 text-xs': size === 'xs',
+            'px-2.5 py-1 text-sm': size === 'sm',
+            'px-3 py-1 text-base': size === 'md',
+            'px-4 py-1.5 text-lg': size === 'lg',
+            'px-5 py-2 text-xl': size === 'xl',
           },
           {
             'w-full': fullWidth,

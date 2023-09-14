@@ -1,6 +1,6 @@
 import React from 'react'
-import Select from 'react-select'
 import cx from 'clsx'
+import Select from 'react-select'
 
 export function ReactSelect(props: React.ComponentProps<typeof Select>) {
   return (

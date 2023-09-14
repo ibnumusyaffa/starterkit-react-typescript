@@ -1,13 +1,12 @@
-"use client"
-import { CalendarProps, DateValue, useCalendar, useLocale } from 'react-aria'
-import {  useCalendarState } from 'react-stately'
+'use client'
+
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid'
 import { GregorianCalendar } from '@internationalized/date'
+import { CalendarProps, DateValue, useCalendar, useLocale } from 'react-aria'
+import { useCalendarState } from 'react-stately'
+
 import { CalendarButton } from './Button'
 import { CalendarGrid } from './CalendarGrid'
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-} from '@heroicons/react/24/solid'
 
 function createCalendar(identifier: string) {
   switch (identifier) {
@@ -32,7 +31,6 @@ export function Calendar<T extends DateValue>(props: CalendarProps<T>) {
   return (
     <div {...calendarProps} className="px-3.5 py-3.5">
       <div className="mb-5 flex items-center justify-between space-x-1">
-      
         <CalendarButton {...prevButtonProps}>
           <ChevronLeftIcon className="h-4 w-4 text-gray-600"></ChevronLeftIcon>
         </CalendarButton>

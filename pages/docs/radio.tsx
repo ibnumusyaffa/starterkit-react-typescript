@@ -32,7 +32,6 @@ function Page() {
       <div className="space-y-5">
         <div className="text-xl font-semibold text-gray-700">Size</div>
         <div className="flex flex-wrap gap-5">
-         
           <Radio
             size="sm"
             color="sky"

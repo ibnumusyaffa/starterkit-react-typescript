@@ -1,5 +1,6 @@
 import React from 'react'
 import { Indicator } from '@/components/indicator'
+
 function Page() {
   return (
     <div className="space-y-10">

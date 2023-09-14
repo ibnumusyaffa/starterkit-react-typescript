@@ -1,5 +1,6 @@
 'use client'
-import React, { useContext, createContext } from 'react'
+
+import React, { createContext, useContext } from 'react'
 import cx from 'clsx'
 
 export type InputProps = Omit<React.ComponentProps<'input'>, 'size'> & {
@@ -58,7 +59,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
             //type="file"
             'file:-ml-3 file:mr-3 file:h-full',
-            'file:py-2 file:px-4',
+            'file:px-4 file:py-2',
             'file:font-medium file:leading-none file:text-gray-700',
             'file:border-0 file:bg-gray-50 file:ring-1 file:ring-gray-300 ',
 

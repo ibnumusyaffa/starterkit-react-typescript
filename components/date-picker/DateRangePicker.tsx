@@ -1,20 +1,22 @@
 'use client'
+
 import React, { useEffect, useState } from 'react'
+import { CalendarIcon } from '@heroicons/react/24/outline'
+import cx from 'clsx'
+import { AnimatePresence } from 'framer-motion'
 import {
-  useDateRangePicker,
-  I18nProvider,
   AriaDateRangePickerProps,
   DateValue,
+  I18nProvider,
+  useDateRangePicker,
 } from 'react-aria'
 import { useDateRangePickerState } from 'react-stately'
-import cx from 'clsx'
+
 import { FieldButton } from './Button'
-import { RangeCalendar } from './RangeCalendar'
 import { DateField } from './DateField'
 import { Dialog } from './Dialog'
 import { Popover } from './Popover'
-import { CalendarIcon } from '@heroicons/react/24/outline'
-import { AnimatePresence } from 'framer-motion'
+import { RangeCalendar } from './RangeCalendar'
 
 export function DateRangePicker(
   props: AriaDateRangePickerProps<DateValue> & {
@@ -50,7 +52,7 @@ export function DateRangePicker(
         {props.label ? (
           <div
             {...labelProps}
-            className="mb-2 block leading-none font-medium text-gray-700"
+            className="mb-2 block font-medium leading-none text-gray-700"
           >
             {props.label}
             {props.required ? (

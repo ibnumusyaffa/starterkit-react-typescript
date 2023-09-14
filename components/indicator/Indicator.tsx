@@ -42,15 +42,15 @@ export function Indicator({
           className={cx('absolute flex leading-none', {
             'right-1/2 -translate-y-1/2 translate-x-1/2':
               position === 'top-center',
-            'right-auto top-0 left-0 -translate-y-1/2 -translate-x-1/2 ':
+            'left-0 right-auto top-0 -translate-x-1/2 -translate-y-1/2 ':
               position === 'top-left',
-            'left-auto top-0 right-0 -translate-y-1/2 translate-x-1/2':
+            'left-auto right-0 top-0 -translate-y-1/2 translate-x-1/2':
               position === 'top-right',
-            'bottom-0 right-1/2 translate-y-1/2 translate-x-1/2':
+            'bottom-0 right-1/2 translate-x-1/2 translate-y-1/2':
               position === 'bottom-center',
-            'right-auto bottom-0 left-0 translate-y-1/2 -translate-x-1/2':
+            'bottom-0 left-0 right-auto -translate-x-1/2 translate-y-1/2':
               position === 'bottom-left',
-            'left-auto bottom-0 right-0 translate-y-1/2 translate-x-1/2':
+            'bottom-0 left-auto right-0 translate-x-1/2 translate-y-1/2':
               position === 'bottom-right',
           })}
         >

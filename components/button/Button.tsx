@@ -1,9 +1,11 @@
 'use client'
+
 import React, { forwardRef } from 'react'
-import cx from 'clsx'
 import { Slot, Slottable } from '@radix-ui/react-slot'
+import cx from 'clsx'
 import { Spinner } from '@/components/spinner'
-import { Variant, Color } from './button-types'
+
+import { Color, Variant } from './button-types'
 
 export type ButtonProps = React.ComponentProps<'button'> & {
   /** @default "md" */

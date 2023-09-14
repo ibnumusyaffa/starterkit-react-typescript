@@ -1,10 +1,11 @@
-"use client"
-import React, { useState, useRef, useEffect } from 'react'
-import cx from 'clsx'
-import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog'
-import { motion, AnimatePresence } from 'framer-motion'
+'use client'
+
+import React, { useEffect, useRef, useState } from 'react'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import { XMarkIcon } from '@heroicons/react/24/solid'
+import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog'
+import cx from 'clsx'
+import { AnimatePresence, motion } from 'framer-motion'
 
 const panelMotion = {
   initial: {
@@ -52,7 +53,7 @@ export function AlertDialogCloseButton() {
     <AlertDialogPrimitive.Cancel asChild>
       <button
         className={cx(
-          'absolute top-2 right-2 rounded p-0.5 text-gray-800 hover:bg-gray-200 active:bg-gray-300'
+          'absolute right-2 top-2 rounded p-0.5 text-gray-800 hover:bg-gray-200 active:bg-gray-300'
         )}
       >
         <XMarkIcon className="h-5 w-5"></XMarkIcon>
@@ -100,7 +101,9 @@ export function AlertDialogContent({
   )
 }
 
-export type AlertDialogProps = React.ComponentProps<typeof AlertDialogPrimitive.Root>
+export type AlertDialogProps = React.ComponentProps<
+  typeof AlertDialogPrimitive.Root
+>
 
 export function AlertDialog(props: AlertDialogProps) {
   //workaround for radix bug

@@ -1,12 +1,12 @@
 import React from 'react'
+import { ArrowLongRightIcon } from '@heroicons/react/24/solid'
+import { Button } from '@/components/button'
 import {
   NativeSelect,
   NativeSelectGroup,
   NativeSelectLeftAddon,
   NativeSelectRightAddon,
 } from '@/components/native-select'
-import { Button } from '@/components/button'
-import { ArrowLongRightIcon } from '@heroicons/react/24/solid'
 
 function Page() {
   return (
@@ -41,7 +41,6 @@ function Page() {
           <div className="space-y-3">
             <div className="text-xl font-semibold text-gray-700">Size</div>
             <div className="space-y-5 md:w-1/2">
-            
               <NativeSelect fullWidth size="sm" placeholder="Test">
                 <option>sm</option>
               </NativeSelect>

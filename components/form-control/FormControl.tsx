@@ -13,7 +13,10 @@ export function FormLabel({
   required?: boolean
 }) {
   return (
-    <label {...props} className="text-sm block leading-none font-medium text-gray-700">
+    <label
+      {...props}
+      className="block text-sm font-medium leading-none text-gray-700"
+    >
       {children}
       {required ? <span className="ml-1 text-danger-500">*</span> : null}
     </label>
@@ -27,12 +30,12 @@ export function FormErrorMessage({
   required?: boolean
 }) {
   return (
-    <div {...props} className=" leading-none text-sm text-danger-500">
+    <div {...props} className=" text-sm leading-none text-danger-500">
       {children}
     </div>
   )
 }
 
 export function FormDescription({ children }: { children?: React.ReactNode }) {
-  return <div className=" leading-none text-sm text-gray-600">{children}</div>
+  return <div className=" text-sm leading-none text-gray-600">{children}</div>
 }

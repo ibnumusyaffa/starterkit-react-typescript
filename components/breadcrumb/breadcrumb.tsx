@@ -1,7 +1,8 @@
-"use client"
-import clsx from 'clsx'
-import React, { useContext, createContext } from 'react'
+'use client'
+
+import React, { createContext, useContext } from 'react'
 import { Slot, Slottable } from '@radix-ui/react-slot'
+import clsx from 'clsx'
 
 type BreadcrumbProps = {
   children?: React.ReactNode

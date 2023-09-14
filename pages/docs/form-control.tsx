@@ -1,16 +1,16 @@
+import React from 'react'
 import { Button } from '@/components/button'
 import {
   FormControl,
-  FormErrorMessage,
   FormDescription,
+  FormErrorMessage,
   FormLabel,
 } from '@/components/form-control'
 import { Input } from '@/components/input'
-import React from 'react'
 
 function Page() {
   return (
-    <div className="space-y-5 w-full md:w-1/2">
+    <div className="w-full space-y-5 md:w-1/2">
       <form className="space-y-7">
         <FormControl>
           <FormLabel required>Email</FormLabel>
@@ -24,7 +24,7 @@ function Page() {
         </FormControl>
         <FormControl>
           <FormLabel>Last name</FormLabel>
-          <Input name="first_name" placeholder="Last name" ></Input>
+          <Input name="first_name" placeholder="Last name"></Input>
         </FormControl>
         <div>
           <Button type="button" fullWidth>

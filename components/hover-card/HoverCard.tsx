@@ -1,15 +1,16 @@
-"use client"
+'use client'
+
 import React, {
   createContext,
   useContext,
-  useState,
-  useRef,
   useEffect,
+  useRef,
+  useState,
 } from 'react'
-import * as HoverCardPrimitive from '@radix-ui/react-hover-card'
-import { motion, AnimatePresence } from 'framer-motion'
 import { useControllableState } from '@/hooks'
+import * as HoverCardPrimitive from '@radix-ui/react-hover-card'
 import cx from 'clsx'
+import { AnimatePresence, motion } from 'framer-motion'
 
 type HoverCardProviderParams = {
   open?: boolean
@@ -61,7 +62,7 @@ export function HoverCardArrow() {
             'absolute h-2 w-2 rotate-45',
             'left-0 right-0 ml-auto mr-auto',
             'top-[-3.5px] bg-white shadow-md',
-            'border-r border-b border-black border-opacity-[0.15]'
+            'border-b border-r border-black border-opacity-[0.15]'
           )}
         ></div>
       </div>

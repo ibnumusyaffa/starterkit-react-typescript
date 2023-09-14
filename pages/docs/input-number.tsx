@@ -1,7 +1,8 @@
 import React from 'react'
-import { InputNumber } from '@/components/input-number'
 import { CheckIcon } from '@heroicons/react/24/outline'
 import { FormControl, FormLabel } from '@/components/form-control'
+import { InputNumber } from '@/components/input-number'
+
 function Page() {
   const [value1, setValue1] = React.useState(0)
   const [value2, setValue2] = React.useState(10)
@@ -23,7 +24,11 @@ function Page() {
         <div className="space-y-3">
           <div className="text-xl font-semibold text-gray-700">Value</div>
           <div className="flex space-x-5 md:w-1/2">
-            <InputNumber label="example" value={value1} onChange={setValue1}></InputNumber>
+            <InputNumber
+              label="example"
+              value={value1}
+              onChange={setValue1}
+            ></InputNumber>
           </div>
         </div>
       </div>
@@ -52,7 +57,8 @@ function Page() {
             Hide Stepper
           </div>
           <div className="flex space-x-5 md:w-1/2">
-            <InputNumber label="example"
+            <InputNumber
+              label="example"
               value={value1}
               onChange={setValue1}
               hideStepper
@@ -74,8 +80,9 @@ function Page() {
         <div className="space-y-3">
           <div className="text-xl font-semibold text-gray-700">With Icon</div>
           <div className="flex space-x-5 md:w-1/2">
-            <InputNumber label="example"
-              icon={<CheckIcon className="w-4 h-4"> </CheckIcon>}
+            <InputNumber
+              label="example"
+              icon={<CheckIcon className="h-4 w-4"> </CheckIcon>}
             ></InputNumber>
           </div>
         </div>
@@ -87,7 +94,8 @@ function Page() {
             Maximum/Minimum value
           </div>
           <div className="flex space-x-5 md:w-1/2">
-            <InputNumber label="example"
+            <InputNumber
+              label="example"
               value={value2}
               onChange={setValue2}
               minValue={10}
@@ -101,7 +109,8 @@ function Page() {
         <div className="space-y-3">
           <div className="text-xl font-semibold text-gray-700">Step</div>
           <div className="flex space-x-5 md:w-1/2">
-            <InputNumber label="example"
+            <InputNumber
+              label="example"
               value={value3}
               onChange={setValue3}
               step={5}
@@ -114,7 +123,6 @@ function Page() {
         <div className="space-y-3">
           <div className="text-xl font-semibold text-gray-700">Size</div>
           <div className="space-y-3 md:w-1/2">
-          
             <FormControl>
               <FormLabel>sm</FormLabel>
               <InputNumber label="example" size="sm"></InputNumber>
@@ -139,7 +147,8 @@ function Page() {
         <div className="space-y-3">
           <div className="text-xl font-semibold text-gray-700">Decimals</div>
           <div className="flex space-x-5 md:w-1/2">
-            <InputNumber label="example"
+            <InputNumber
+              label="example"
               formatOptions={{
                 signDisplay: 'always',
                 minimumFractionDigits: 2,
@@ -156,7 +165,8 @@ function Page() {
         <div className="space-y-3">
           <div className="text-xl font-semibold text-gray-700">Percentages</div>
           <div className="flex space-x-5 md:w-1/2">
-            <InputNumber label="example"
+            <InputNumber
+              label="example"
               value={value5}
               onChange={setValue5}
               formatOptions={{ style: 'percent' }}
@@ -169,7 +179,8 @@ function Page() {
         <div className="space-y-3">
           <div className="text-xl font-semibold text-gray-700">Currency</div>
           <div className="flex space-x-5 md:w-1/2">
-            <InputNumber label="example"
+            <InputNumber
+              label="example"
               value={value6}
               onChange={setValue6}
               formatOptions={{
@@ -189,7 +200,8 @@ function Page() {
         <div className="space-y-3">
           <div className="text-xl font-semibold text-gray-700">Unit</div>
           <div className="flex space-x-5 md:w-1/2">
-            <InputNumber label="example"
+            <InputNumber
+              label="example"
               value={value7}
               onChange={setValue7}
               formatOptions={{
@@ -208,15 +220,29 @@ function Page() {
           <div className="space-y-3 md:w-1/2">
             <FormControl>
               <FormLabel>default</FormLabel>
-              <InputNumber label="example" value={value8} onChange={setValue8}></InputNumber>
+              <InputNumber
+                label="example"
+                value={value8}
+                onChange={setValue8}
+              ></InputNumber>
             </FormControl>
             <FormControl>
               <FormLabel>id-ID</FormLabel>
-              <InputNumber label="example" locale='id-ID' value={value9} onChange={setValue9}></InputNumber>
+              <InputNumber
+                label="example"
+                locale="id-ID"
+                value={value9}
+                onChange={setValue9}
+              ></InputNumber>
             </FormControl>
             <FormControl>
               <FormLabel>en-US</FormLabel>
-              <InputNumber label="example" locale='en-US'  value={value10} onChange={setValue10}></InputNumber>
+              <InputNumber
+                label="example"
+                locale="en-US"
+                value={value10}
+                onChange={setValue10}
+              ></InputNumber>
             </FormControl>
           </div>
         </div>

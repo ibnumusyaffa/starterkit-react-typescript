@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import cx from 'clsx'
 import { Bars3Icon } from '@heroicons/react/24/solid'
+import cx from 'clsx'
+import { useTheme } from '@/hooks/useTheme'
 import {
   Drawer,
+  DrawerCloseButton,
   DrawerContent,
   DrawerHeader,
-  DrawerCloseButton,
 } from '@/components/drawer'
-import { useTheme } from '@/hooks/useTheme'
+
 const menus = [
   {
     title: 'Forms',
@@ -263,34 +264,36 @@ function Index({ children }: { children: React.ReactNode }) {
   const { theme, setTheme } = useTheme()
   return (
     <div className="relative z-0">
-      <div className="sticky top-0 z-[1]  flex h-14 items-center space-x-3 border-b border-gray-300 bg-white px-5 md:px-9 justify-between">
+      <div className="sticky top-0 z-[1]  flex h-14 items-center justify-between space-x-3 border-b border-gray-300 bg-white px-5 md:px-9">
         <div className="block md:hidden">
           <button className="block md:hidden" onClick={() => setShowMenu(true)}>
             <Bars3Icon className="h-5 w-5 md:hidden"></Bars3Icon>
           </button>
         </div>
 
-        <div className="font-semibold uppercase hidden md:block">Design System</div>
+        <div className="hidden font-semibold uppercase md:block">
+          Design System
+        </div>
         <div className="flex items-center space-x-3">
-          <div className='hidden md:block'>Select Theme</div>
+          <div className="hidden md:block">Select Theme</div>
           <div className="flex space-x-3">
             <button
               onClick={() => setTheme('purple')}
               className={`bg-purple-500 ${
                 theme == 'purple' ? 'ring-2' : ''
-              } ring-offset-1 ring-purple-400 rounded-full w-5 h-5`}
+              } h-5 w-5 rounded-full ring-purple-400 ring-offset-1`}
             ></button>
             <button
               onClick={() => setTheme('green')}
               className={`bg-emerald-500 ${
                 theme == 'green' ? 'ring-2' : ''
-              } ring-offset-1 ring-emerald-400 rounded-full w-5 h-5`}
+              } h-5 w-5 rounded-full ring-emerald-400 ring-offset-1`}
             ></button>
             <button
               onClick={() => setTheme('')}
               className={`bg-sky-500 ${
                 theme == '' ? 'ring-2' : ''
-              } ring-offset-1 ring-sky-400 rounded-full w-5 h-5`}
+              } h-5 w-5 rounded-full ring-sky-400 ring-offset-1`}
             ></button>
           </div>
         </div>

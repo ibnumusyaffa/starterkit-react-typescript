@@ -1,16 +1,18 @@
 'use client'
-import React, { useState, useEffect } from 'react'
-import { useDatePicker, I18nProvider, AriaDatePickerProps } from 'react-aria'
-import { useDatePickerState } from 'react-stately'
+
+import React, { useEffect, useState } from 'react'
+import { CalendarIcon } from '@heroicons/react/24/outline'
+import { DateValue } from '@internationalized/date'
 import cx from 'clsx'
+import { AnimatePresence } from 'framer-motion'
+import { AriaDatePickerProps, I18nProvider, useDatePicker } from 'react-aria'
+import { useDatePickerState } from 'react-stately'
+
 import { FieldButton } from './Button'
 import { Calendar } from './Calendar'
 import { DateField } from './DateField'
 import { Dialog } from './Dialog'
 import { Popover } from './Popover'
-import { CalendarIcon } from '@heroicons/react/24/outline'
-import { AnimatePresence } from 'framer-motion'
-import { DateValue } from '@internationalized/date'
 
 export function DatePicker(
   props: AriaDatePickerProps<DateValue> & {
@@ -44,7 +46,7 @@ export function DatePicker(
         {props.label ? (
           <div
             {...labelProps}
-            className="mb-2 block leading-none font-medium text-gray-700"
+            className="mb-2 block font-medium leading-none text-gray-700"
           >
             {props.label}
             {props.required ? (

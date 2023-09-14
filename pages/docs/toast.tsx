@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { useToast } from '@/components/toast'
 import { Button } from '@/components/button'
+import { useToast } from '@/components/toast'
 
 export default function App() {
   const toast = useToast()

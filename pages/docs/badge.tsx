@@ -1,11 +1,11 @@
 import React from 'react'
-import { Badge } from '@/components/badge'
 import Link from 'next/link'
 import {
-  ArrowUpIcon,
   ArrowDownIcon,
+  ArrowUpIcon,
   SignalIcon,
 } from '@heroicons/react/24/solid'
+import { Badge } from '@/components/badge'
 
 function Page() {
   // let colors = ['sky', 'red', 'green'];

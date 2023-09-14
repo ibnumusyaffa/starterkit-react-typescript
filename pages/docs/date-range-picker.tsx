@@ -1,6 +1,6 @@
-import { DateRangePicker } from '@/components/date-picker'
 import React from 'react'
 import { DateRange } from 'react-aria'
+import { DateRangePicker } from '@/components/date-picker'
 
 function Page() {
   const [value, setValue] = React.useState<DateRange>()

@@ -1,8 +1,9 @@
-"use client"
+'use client'
+
 import React, { createContext, useContext } from 'react'
+import { Slot, Slottable } from '@radix-ui/react-slot'
 import * as TabsPrimitive from '@radix-ui/react-tabs'
 import cx from 'clsx'
-import { Slot, Slottable } from '@radix-ui/react-slot'
 
 export type Variant = 'default' | 'outline' | 'pills'
 
@@ -84,9 +85,9 @@ export function TabsTrigger({
   return (
     <TabsPrimitive.Trigger {...props} asChild disabled={disabled}>
       <Component className={variantStyle[variant]}>
-        <div className='mr-2'> {leftSection}</div>
+        <div className="mr-2"> {leftSection}</div>
         <Slottable>{children}</Slottable>
-        <div className='ml-2'> {rightSection}</div>
+        <div className="ml-2"> {rightSection}</div>
       </Component>
     </TabsPrimitive.Trigger>
   )

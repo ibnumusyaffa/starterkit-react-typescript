@@ -1,10 +1,10 @@
+import React, { useState } from 'react'
 import {
+  LoadedOptions,
+  OptionType,
   ReactSelect,
   ReactSelectAsync,
-  OptionType,
-  LoadedOptions,
 } from '@/components/react-select'
-import React, { useState } from 'react'
 
 const options: OptionType[] = []
 for (let i = 0; i < 50; ++i) {

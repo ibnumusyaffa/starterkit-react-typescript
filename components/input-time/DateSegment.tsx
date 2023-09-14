@@ -1,7 +1,10 @@
 import { useRef } from 'react'
 import { useDateSegment } from '@react-aria/datepicker'
-import type { DateSegment as DateSegmentType, DateFieldState } from 'react-stately'
 import cx from 'clsx'
+import type {
+  DateFieldState,
+  DateSegment as DateSegmentType,
+} from 'react-stately'
 
 export function DateSegment({
   segment,

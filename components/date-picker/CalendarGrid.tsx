@@ -1,13 +1,15 @@
-"use client"
+'use client'
+
 import React from 'react'
-import { useCalendarGrid, useLocale } from 'react-aria'
 import {
-  getWeeksInMonth,
-  endOfMonth,
   DateDuration,
+  endOfMonth,
+  getWeeksInMonth,
 } from '@internationalized/date'
-import { CalendarCell } from './CalendarCell'
+import { useCalendarGrid, useLocale } from 'react-aria'
 import { CalendarState, RangeCalendarState } from 'react-stately'
+
+import { CalendarCell } from './CalendarCell'
 
 export function CalendarGrid({
   state,

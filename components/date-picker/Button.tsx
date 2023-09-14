@@ -1,12 +1,14 @@
 'use client'
+
 import React, { useRef } from 'react'
+import cx from 'clsx'
 import {
+  AriaButtonProps,
+  mergeProps,
   useButton,
   useFocusRing,
-  mergeProps,
-  AriaButtonProps,
 } from 'react-aria'
-import cx from 'clsx'
+
 export function CalendarButton(props: AriaButtonProps<'button'>) {
   const ref = useRef<HTMLButtonElement>(null)
   const { buttonProps } = useButton(props, ref)
@@ -16,7 +18,7 @@ export function CalendarButton(props: AriaButtonProps<'button'>) {
       {...mergeProps(buttonProps, focusProps)}
       ref={ref}
       className={cx(
-        'flex h-6 w-6 items-center justify-center rounded bg-white border border-gray-300 shadow-xs',
+        'shadow-xs flex h-6 w-6 items-center justify-center rounded border border-gray-300 bg-white',
         {
           'hover:bg-primary-50 active:bg-primary-100': !props.isDisabled,
           'cursor-not-allowed opacity-30': props.isDisabled,

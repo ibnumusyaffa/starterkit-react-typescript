@@ -16,7 +16,6 @@ function Page() {
           <div className="space-y-3">
             <div className="text-xl font-semibold text-gray-700">Size</div>
             <div className="space-y-5 md:w-1/2">
-          
               <InputSearch size="sm" placeholder="sm"></InputSearch>
               <InputSearch size="md" placeholder="md"></InputSearch>
               <InputSearch size="lg" placeholder="lg"></InputSearch>

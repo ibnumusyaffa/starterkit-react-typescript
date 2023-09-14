@@ -1,7 +1,8 @@
 'use client'
+
+import React from 'react'
 import * as ProgressPrimitive from '@radix-ui/react-progress'
 import cx from 'clsx'
-import React from 'react'
 
 const stripedStyle: React.CSSProperties = {
   backgroundSize: '20px 20px',

@@ -1,15 +1,15 @@
 import React, { useRef, useState } from 'react'
+import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline'
+import cx from 'clsx'
 import {
   AriaButtonProps,
   AriaNumberFieldProps,
   useButton,
+  useFocusWithin,
   useLocale,
   useNumberField,
-  useFocusWithin,
 } from 'react-aria'
 import { useNumberFieldState } from 'react-stately'
-import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline'
-import cx from 'clsx'
 
 function Button(props: AriaButtonProps<'button'>) {
   const ref = useRef<HTMLButtonElement>(null)
@@ -20,7 +20,7 @@ function Button(props: AriaButtonProps<'button'>) {
     <button
       {...buttonProps}
       ref={ref}
-      className="h-full w-6 leading-none flex items-center justify-center disabled:opacity-50 disabled:bg-gray-100 active:bg-gray-100"
+      className="flex h-full w-6 items-center justify-center leading-none active:bg-gray-100 disabled:bg-gray-100 disabled:opacity-50"
     >
       {children}
     </button>
@@ -62,7 +62,7 @@ export const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
         <div
           {...focusWithinProps}
           className={cx(
-            'flex border rounded relative overflow-hidden text-gray-800',
+            'relative flex overflow-hidden rounded border text-gray-800',
             {
               'border-primary-500  ring-2 ring-primary-500 ring-opacity-25':
                 isFocusWithin && !error,
@@ -95,7 +95,7 @@ export const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
           <input
             {...inputProps}
             className={cx(
-              'w-full border-none focus:outline-none focus:ring-0 disabled:opacity-75 disabled:bg-gray-100 ',
+              'w-full border-none focus:outline-none focus:ring-0 disabled:bg-gray-100 disabled:opacity-75 ',
               {
                 'px-3': !icon,
                 'pl-0 pr-3': icon,

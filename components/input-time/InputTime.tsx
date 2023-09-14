@@ -1,10 +1,12 @@
 import { useRef } from 'react'
+import { useTimeField } from '@react-aria/datepicker'
 import { useLocale } from '@react-aria/i18n'
 import { useTimeFieldState } from '@react-stately/datepicker'
-import { useTimeField } from '@react-aria/datepicker'
-import { DateSegment } from './DateSegment'
 import cx from 'clsx'
-import { TimeValue, AriaTimeFieldProps } from 'react-aria'
+import { AriaTimeFieldProps, TimeValue } from 'react-aria'
+
+import { DateSegment } from './DateSegment'
+
 type InputTimeProps = AriaTimeFieldProps<TimeValue> & {
   error?: boolean
   required?: boolean
@@ -25,7 +27,7 @@ export function InputTime(props: InputTimeProps) {
       {props.label ? (
         <div
           {...labelProps}
-          className="mb-2 block leading-none font-medium text-gray-700"
+          className="mb-2 block font-medium leading-none text-gray-700"
         >
           {props.label}
           {props.required ? (

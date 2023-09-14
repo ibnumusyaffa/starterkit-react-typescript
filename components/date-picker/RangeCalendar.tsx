@@ -1,19 +1,18 @@
 'use client'
+
 import { useRef } from 'react'
-import { useRangeCalendarState } from 'react-stately'
-import {
-  useRangeCalendar,
-  useLocale,
-  RangeCalendarProps,
-  DateValue,
-} from 'react-aria'
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid'
 import { createCalendar } from '@internationalized/date'
+import {
+  DateValue,
+  RangeCalendarProps,
+  useLocale,
+  useRangeCalendar,
+} from 'react-aria'
+import { useRangeCalendarState } from 'react-stately'
+
 import { CalendarButton } from './Button'
 import { CalendarGrid } from './CalendarGrid'
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon
-} from '@heroicons/react/24/solid'
 
 export function RangeCalendar(
   props: RangeCalendarProps<DateValue> & { multiCalendar?: boolean }

@@ -1,6 +1,8 @@
-"use client"
+'use client'
+
 import React from 'react'
 import cx from 'clsx'
+
 export function TimelineBullet({
   color = 'neutral',
   children,
@@ -42,7 +44,7 @@ export function TimelineItem({ children }: { children: React.ReactNode }) {
     <div
       className={cx(
         'timeline relative mb-5 flex space-x-3',
-        'before:absolute before:-bottom-5 before:top-0 before:left-4',
+        'before:absolute before:-bottom-5 before:left-4 before:top-0',
         'before:border-l-2 before:border-gray-300 before:[&:last-child]:border-transparent'
       )}
     >

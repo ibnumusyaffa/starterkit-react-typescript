@@ -1,8 +1,11 @@
 'use client'
+
 import React from 'react'
-import { Input } from './Input'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid'
 import cx from 'clsx'
+
+import { Input } from './Input'
+
 type InputSearchProps = Omit<React.ComponentProps<typeof Input>, 'type'>
 
 export const InputSearch = React.forwardRef<HTMLInputElement, InputSearchProps>(
