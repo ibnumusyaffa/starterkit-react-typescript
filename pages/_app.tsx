@@ -2,18 +2,17 @@ import React from 'react'
 import type { AppProps } from 'next/app'
 import { Inter as Font } from 'next/font/google'
 import Head from 'next/head'
-import { I18nProvider } from '@/locales'
+// import { I18nProvider } from '@/locales'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
-import id from '@/locales/id'
+// import id from '@/locales/id'
 
 import '@/styles/globals.css'
 
 import Layout from '@/layouts/docs'
 import { ToastProvider } from '@/components/toast'
 
-// If loading a variable font, you don't need to specify the font weight
 const font = Font({
   subsets: ['latin'],
 })
@@ -34,11 +33,11 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <QueryClientProvider client={queryClient}>
         <ToastProvider>
-          <I18nProvider locale={pageProps.locale} fallbackLocale={id}>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </I18nProvider>
+          {/* <I18nProvider locale={pageProps.locale} fallbackLocale={id}> */}
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+          {/* </I18nProvider> */}
         </ToastProvider>
 
         <ReactQueryDevtools initialIsOpen={false} />

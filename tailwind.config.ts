@@ -54,7 +54,7 @@ export default {
   plugins: [
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     require('@tailwindcss/forms')({
-      strategy: 'class', // only generate classes
+      strategy: 'class'
     }),
   ],
 } satisfies Config

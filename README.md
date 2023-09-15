@@ -6,14 +6,15 @@
 
 - ⚡️ Next.js 13
 - ⚛️ React 18
-- ✨ TypeScript 5.1
-- 💨 [TailwindCSS 3](https://tailwindcss.com)
+- 🛠️ TypeScript 5.1
+- 🎨 [TailwindCSS 3](https://tailwindcss.com)
 - 💎 Prebuilt customizable components using TailwindCSS, [Radix UI](https://www.radix-ui.com/),React Aria
 - 🚀 [Tanstack Query](https://tanstack.com/query) for async state management (fetching, caching, synchronizing)
-- 🐻 [Zustand](https://zustand-demo.pmnd.rs) for state management
-- 📈 Absolute Import and Path Alias — Import components using `@/` prefix
-- 📏 ESLint — To find and fix problems in your code
-- 💖 Prettier — Format your code consistently
+- 💾 [Zustand](https://zustand-demo.pmnd.rs) for state management
+- 📁 Absolute Import and Path Alias — Import components using `@/` prefix
+- 🔍 ESLint — To find and fix problems in your code
+- 📝 Prettier — Format your code consistently
+- 🌍 Internationalization (i18n) with [next-international](https://github.com/QuiiBz/next-international) 
 
 ## Quick Start
 
