@@ -24,7 +24,8 @@ const sleep = (ms: number) =>
 
 export const loadOptions = async (
   search: string,
-  prevOptions: LoadedOptions
+  prevOptions: LoadedOptions,
+  additional: unknown
 ) => {
   await sleep(500)
 
@@ -38,7 +39,7 @@ export const loadOptions = async (
       label.toLowerCase().includes(searchLower)
     )
   }
-
+  console.log(additional)
   const hasMore = filteredOptions.length > prevOptions.length + 10
   const slicedOptions = filteredOptions.slice(
     prevOptions.length,
@@ -64,6 +65,7 @@ function Page() {
           <div className="text-xl font-semibold text-gray-700">Default</div>
           <div className="md:w-1/2">
             <ReactSelect
+              disabled
               options={[
                 { label: 'Option 1', value: '1' },
                 { label: 'Option 2', value: '2' },
@@ -79,9 +81,14 @@ function Page() {
           </div>
           <div className="md:w-1/2">
             <ReactSelectAsync
+              disabled
               value={value}
               loadOptions={loadOptions}
               onChange={onChange}
+              additional={{
+                page: 1,
+                params: 1,
+              }}
             />
           </div>
         </div>

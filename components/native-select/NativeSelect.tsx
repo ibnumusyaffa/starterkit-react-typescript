@@ -21,9 +21,6 @@ export type NativeSelectProps = Omit<React.ComponentProps<'select'>, 'size'> & {
   fullWidth?: boolean
 
   /** @default false */
-  loading?: boolean
-
-  /** @default false */
   disabled?: boolean
 
   /** @default false */
