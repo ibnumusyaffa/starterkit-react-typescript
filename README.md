@@ -16,6 +16,37 @@
 - 📝 Prettier — Format your code consistently
 - 🌍 Internationalization (i18n) with [next-international](https://github.com/QuiiBz/next-international) 
 
+## Feature Based Folder Structure
+
+```md
+├── components  # global components used across the entire application
+│   ├── button
+│   └── dialog
+├── features  # feature spesific components or code in general
+│   ├── login
+│   ├── products-management
+│   ├── roles-management
+│   ├── settings
+│   └── users-management
+├── hooks  # global hooks used across the entire application
+├── layouts # layout only component
+├── lib  re-exporting different libraries preconfigured for the application
+│   └── axios.ts
+├── locales
+│   ├── en.ts
+│   └── id.ts
+├── pages
+├── public
+├── services  # All REST API endpoint
+│   ├── login.ts
+│   └── users.ts
+├── store  # Global state
+├── styles # Global CSS
+├── types  # Shared types
+└── utils  # Shared utility functions
+
+```
+
 ## Quick Start
 
 ### 1. Clone repo
