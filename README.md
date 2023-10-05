@@ -30,7 +30,7 @@
 │   └── users-management
 ├── hooks  # global hooks used across the entire application
 ├── layouts # layout only component
-├── lib  re-exporting different libraries preconfigured for the application
+├── lib  # re-exporting different libraries preconfigured for the application
 │   └── axios.ts
 ├── locales
 │   ├── en.ts
