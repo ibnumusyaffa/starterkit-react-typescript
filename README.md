@@ -23,7 +23,7 @@
 ├── components  # global components used across the entire application
 │   ├── button
 │   └── dialog
-├── features  # feature spesific components or code in general
+├── features  # feature spesific code or components
 │   ├── login
 │   ├── products-management
 │   ├── roles-management
