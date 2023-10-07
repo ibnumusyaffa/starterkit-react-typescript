@@ -10,13 +10,14 @@
 - 🎨 [TailwindCSS 3](https://tailwindcss.com)
 - 💎 Prebuilt customizable components using TailwindCSS, [Radix UI](https://www.radix-ui.com/),React Aria
 - 🚀 [Tanstack Query](https://tanstack.com/query) for async state management (fetching, caching, synchronizing)
+- 📋 React Hook Form + Zod 
 - 💾 [Zustand](https://zustand-demo.pmnd.rs) for state management
 - 📁 Absolute Import and Path Alias — Import components using `@/` prefix
 - 🔍 ESLint — To find and fix problems in your code
 - 📝 Prettier — Format your code consistently
 - 🌍 Internationalization (i18n) with [next-international](https://github.com/QuiiBz/next-international) 
 
-## Feature Based Folder Structure
+## Default Project Structure
 
 ```md
 ├── components  # global components used across the entire application
