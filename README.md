@@ -19,32 +19,37 @@
 
 ## Default Project Structure
 
-```md
-├── components  # global components used across the entire application
-│   ├── button
-│   └── dialog
-├── features  # feature spesific code or components
+```md.
+├── components # global components used across the entire application
+│   ├── button.tsx
+│   └── input.tsx
+├── features # feature spesific code or components
+│   ├── checkout
 │   ├── login
-│   ├── products-management
-│   ├── roles-management
-│   ├── settings
-│   └── users-management
-├── hooks  # global hooks used across the entire application
-├── layouts # layout only component
-├── lib  # re-exporting different libraries preconfigured for the application
+│   ├── orders
+│   ├── products
+│   ├── profile
+│   └── users
+├── hooks # global hooks
+├── layouts # layout components
+├── lib # re-exporting different libraries preconfigured for the application
 │   └── axios.ts
 ├── locales
 │   ├── en.ts
 │   └── id.ts
 ├── pages
 ├── public
-├── services  # All REST API endpoint
+├── services # all REST api 
 │   ├── login.ts
 │   └── users.ts
-├── store  # Global state
-├── styles # Global CSS
-├── types  # Shared types
-└── utils  # Shared utility functions
+├── store # global state
+├── styles # global style
+├── types # shared types for entire application
+└── utils # utils or helper
+    ├── array.ts # use meaningfull name instead generic name
+    ├── date-time.ts
+    ├── math.ts
+    └── strings.ts
 
 ```
 
