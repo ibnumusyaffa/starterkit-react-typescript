@@ -58,10 +58,10 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             'focus:border-primary-500 focus:outline-none focus:ring-primary-500 focus:ring-opacity-25',
 
             //type="file"
-            'file:-ml-3 file:mr-3 file:h-full',
+            'file:-ml-3 file:mr-3 file:h-full !py-0',
             'file:px-4 file:py-2',
             'file:font-medium file:leading-none file:text-gray-700',
-            'file:border-0 file:bg-gray-50 file:ring-1 file:ring-gray-300 ',
+            'file:border-0 file:bg-gray-100 file:ring-1 file:ring-gray-300 ',
 
             'data-[error]:border-danger-500 data-[error]:focus:ring-danger-500 data-[error]:focus:ring-opacity-25',
 
