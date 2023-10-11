@@ -12,10 +12,12 @@
 - 🚀 [Tanstack Query](https://tanstack.com/query) for async state management (fetching, caching, synchronizing)
 - 📋 React Hook Form + Zod 
 - 💾 [Zustand](https://zustand-demo.pmnd.rs) for state management
+- 📅 Day.js for datetime formatting
 - 📁 Absolute Import and Path Alias — Import components using `@/` prefix
 - 🔍 ESLint — To find and fix problems in your code
 - 📝 Prettier — Format your code consistently
 - 🌍 Internationalization (i18n) with [next-international](https://github.com/QuiiBz/next-international) 
+
 
 ## Default Project Structure
 
