@@ -45,128 +45,96 @@ function Page() {
       </div>
       <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
         <div className="flex space-x-3">
-          <div>
-            <Switch
-              checked={state.empty}
-              onCheckedChange={(value) =>
-                setState((prev) => ({ ...prev, empty: value }))
-              }
-              id="empty"
-            ></Switch>
-          </div>
-          <label className="text-gray-700" htmlFor="empty">
-            empty
-          </label>
+          <Switch
+            checked={state.empty}
+            onCheckedChange={(value) =>
+              setState((prev) => ({ ...prev, empty: value }))
+            }
+            id="empty"
+            label="empty"
+          ></Switch>
         </div>
         <div className="flex space-x-3">
-          <div>
-            <Switch
-              checked={state.loading}
-              onCheckedChange={(value) =>
-                setState((prev) => ({ ...prev, loading: value }))
-              }
-              id="loading"
-            ></Switch>
-          </div>
-          <label className="text-gray-700" htmlFor="loading">
-            Loading
-          </label>
+          <Switch
+            checked={state.loading}
+            onCheckedChange={(value) =>
+              setState((prev) => ({ ...prev, loading: value }))
+            }
+            id="loading"
+            label="loading"
+          ></Switch>
         </div>
         <div className="flex space-x-3">
-          <div>
-            <Switch
-              checked={state.withBorder}
-              onCheckedChange={(value) =>
-                setState((prev) => ({ ...prev, withBorder: value }))
-              }
-              id="withBorder"
-            ></Switch>
-          </div>
-          <label className="text-gray-700" htmlFor="withBorder">
-            withBorder
-          </label>
+          <Switch
+            checked={state.withBorder}
+            onCheckedChange={(value) =>
+              setState((prev) => ({ ...prev, withBorder: value }))
+            }
+            id="withBorder"
+            label="withBorder"
+          ></Switch>
         </div>
         <div className="flex space-x-3">
-          <div>
-            <Switch
-              checked={state.withColumnBorders}
-              onCheckedChange={(value) =>
-                setState((prev) => ({
-                  ...prev,
-                  withColumnBorders: value,
-                }))
-              }
-              id="withColumnBorders"
-            ></Switch>
-          </div>
-          <label className="text-gray-700" htmlFor="withColumnBorders">
-            withColumnBorders
-          </label>
+          <Switch
+            checked={state.withColumnBorders}
+            onCheckedChange={(value) =>
+              setState((prev) => ({
+                ...prev,
+                withColumnBorders: value,
+              }))
+            }
+            id="withColumnBorders"
+            label="withColumnBorders"
+          ></Switch>
         </div>
         <div className="flex space-x-3">
-          <div>
-            <Switch
-              checked={state.hightlightOnHover}
-              onCheckedChange={(value) =>
-                setState((prev) => ({
-                  ...prev,
-                  hightlightOnHover: value,
-                }))
-              }
-              id="hightlightOnHover"
-            ></Switch>
-          </div>
-          <label className="text-gray-700" htmlFor="hightlightOnHover">
-            hightlightOnHover
-          </label>
+          <Switch
+            checked={state.hightlightOnHover}
+            onCheckedChange={(value) =>
+              setState((prev) => ({
+                ...prev,
+                hightlightOnHover: value,
+              }))
+            }
+            id="hightlightOnHover"
+            label="hightlightOnHover"
+          ></Switch>
         </div>
         <div className="flex space-x-3">
-          <div>
-            <Switch
-              checked={state.striped}
-              onCheckedChange={(value) =>
-                setState((prev) => ({ ...prev, striped: value }))
-              }
-              id="striped"
-            ></Switch>
-          </div>
-          <label className="text-gray-700" htmlFor="striped">
-            striped
-          </label>
+          <Switch
+            checked={state.striped}
+            onCheckedChange={(value) =>
+              setState((prev) => ({ ...prev, striped: value }))
+            }
+            id="striped"
+            label="striped"
+          ></Switch>
         </div>
         <div className="flex space-x-3">
-          <div>
-            <Switch
-              checked={state.stickyHeader}
-              onCheckedChange={(value) =>
-                setState((prev) => ({
-                  ...prev,
-                  stickyHeader: value,
-                }))
-              }
-              id="stickyHeader"
-            ></Switch>
-          </div>
-          <label className="text-gray-700" htmlFor="stickyHeader">
-            stickyHeader
-          </label>
+          <Switch
+            checked={state.stickyHeader}
+            onCheckedChange={(value) =>
+              setState((prev) => ({
+                ...prev,
+                stickyHeader: value,
+              }))
+            }
+            id="stickyHeader"
+            label="stickyHeader"
+          ></Switch>
         </div>
         <div className="flex space-x-3">
-          <div>
-            <Switch
-              checked={state.overflowXAuto}
-              onCheckedChange={(value) =>
-                setState((prev) => ({
-                  ...prev,
-                  overflowXAuto: value,
-                }))
-              }
-              id="overflowXAuto"
-            ></Switch>
-          </div>
-          <label className="text-gray-700" htmlFor="overflowXAuto">
-            overflowXAuto
-          </label>
+          <Switch
+            checked={state.overflowXAuto}
+            onCheckedChange={(value) =>
+              setState((prev) => ({
+                ...prev,
+                overflowXAuto: value,
+              }))
+            }
+            id="overflowXAuto"
+            label="overflowXAuto"
+          ></Switch>
         </div>
         <div className="flex flex-col space-y-2">
           <label className="text-gray-700">verticalAlignment</label>

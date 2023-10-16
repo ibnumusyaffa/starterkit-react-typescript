@@ -13,20 +13,16 @@ function Demo() {
         <div className="text-xl font-semibold text-gray-700">State</div>
         <div className="flex flex-wrap gap-5">
           <div className="text-md flex items-center justify-center space-x-3 text-gray-700">
-            <Switch size="md" checked={false}></Switch>
-            <label>unchecked</label>
+            <Switch size="md" checked={false} label="unchecked"></Switch>
           </div>
           <div className="text-md flex items-center justify-center space-x-3 text-gray-700">
-            <Switch size="md" disabled></Switch>
-            <label>disabled unchecked</label>
+            <Switch id="switch-1" size="md" label="disabled unchecked"></Switch>
           </div>
           <div className="text-md flex items-center justify-center space-x-3 text-gray-700">
-            <Switch size="md" checked></Switch>
-            <label>checked</label>
+            <Switch size="md" checked label="checked"></Switch>
           </div>
           <div className="text-md flex items-center justify-center space-x-3 text-gray-700">
-            <Switch size="md" checked disabled></Switch>
-            <label>disable checked</label>
+            <Switch size="md" checked disabled label="disable checked"></Switch>
           </div>
         </div>
       </div>
@@ -35,23 +31,19 @@ function Demo() {
         <div className="text-xl font-semibold text-gray-700">Size</div>
         <div className="flex flex-wrap gap-5">
           <div className="flex items-center justify-center space-x-3 text-sm text-gray-700">
-            <Switch size="sm"></Switch>
-            <label>sm</label>
+            <Switch size="sm" label="sm"></Switch>
           </div>
 
           <div className="text-md flex items-center justify-center space-x-3 text-gray-700">
-            <Switch size="md"></Switch>
-            <label>md</label>
+            <Switch size="md" label="md"></Switch>
           </div>
 
           <div className="flex items-center justify-center space-x-3 text-lg text-gray-700">
-            <Switch size="lg"></Switch>
-            <label>lg</label>
+            <Switch size="lg" label="lg"></Switch>
           </div>
 
           <div className="flex items-center justify-center space-x-3 text-xl text-gray-700">
-            <Switch size="xl"></Switch>
-            <label>xl</label>
+            <Switch size="xl" label="xl"></Switch>
           </div>
         </div>
       </div>

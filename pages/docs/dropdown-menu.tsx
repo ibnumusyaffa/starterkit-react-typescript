@@ -37,18 +37,6 @@ function Page() {
           <DropdownMenuContent>
             <DropdownMenuArrow></DropdownMenuArrow>
             <DropdownMenuGroup>
-              <DropdownMenuLabel>
-                <div className="flex space-x-2">
-                  <div>
-                    <div className="h-8 w-8 rounded-full bg-pink-500"></div>
-                  </div>
-                  <div className="text-sm">
-                    <div className="font-semibold">Ibnu Musyaffa</div>
-                    <div className="font-normal">Software engineer</div>
-                  </div>
-                </div>
-              </DropdownMenuLabel>
-              <DropdownMenuSeparator></DropdownMenuSeparator>
               <DropdownMenuLabel>Application</DropdownMenuLabel>
               <DropdownMenuItem
                 leftIcon={<Cog6ToothIcon className="h-5 w-5" />}
