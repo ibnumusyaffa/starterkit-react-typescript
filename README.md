@@ -4,7 +4,7 @@
 
 ## What's in the stack ?
 
-- ⚡️ Next.js 13
+- ⚡️ Next.js 14
 - ⚛️ React 18
 - 🛠️ TypeScript 5.1
 - 🎨 [TailwindCSS 3](https://tailwindcss.com)
