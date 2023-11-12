@@ -55,7 +55,7 @@ function Page() {
         <Pagination
           page={page}
           onChange={(page) => setPage(page)}
-          total={50}
+          totalPages={10}
           {...state}
         ></Pagination>
       </div>

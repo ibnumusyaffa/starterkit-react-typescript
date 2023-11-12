@@ -72,7 +72,7 @@ type UsePaginationParams = {
   page?: number
 
   /** Total amount of items */
-  total: number
+  totalPages: number
 
   /** Siblings amount on left/right side of selected page, defaults to 1 */
   siblings?: number
@@ -85,18 +85,18 @@ type UsePaginationParams = {
 }
 export function usePagination({
   page = 1,
-  total,
+  totalPages,
   siblings = 1,
   boundaries = 1,
   onChange,
 }: UsePaginationParams) {
-  const _total = Math.max(Math.trunc(total), 0)
+  const _totalPages = Math.max(Math.trunc(totalPages), 0)
 
   const setPage = (pageNumber: number) => {
     if (pageNumber <= 0) {
       onChange?.(1)
-    } else if (pageNumber > _total) {
-      onChange?.(_total)
+    } else if (pageNumber > _totalPages) {
+      onChange?.(_totalPages)
     } else {
       onChange?.(pageNumber)
     }
@@ -105,26 +105,26 @@ export function usePagination({
   const next = () => onChange?.(page + 1)
   const previous = () => onChange?.(page - 1)
   const first = () => onChange?.(1)
-  const last = () => onChange?.(_total)
+  const last = () => onChange?.(_totalPages)
 
   const paginationRange = useMemo(() => {
     const totalPageNumbers = siblings * 2 + 3 + boundaries * 2
-    if (totalPageNumbers >= _total) {
-      return range(1, _total)
+    if (totalPageNumbers >= _totalPages) {
+      return range(1, _totalPages)
     }
 
     const leftSiblingIndex = Math.max(page - siblings, boundaries)
-    const rightSiblingIndex = Math.min(page + siblings, _total - boundaries)
+    const rightSiblingIndex = Math.min(page + siblings, _totalPages - boundaries)
 
     const shouldShowLeftDots = leftSiblingIndex > boundaries + 2
-    const shouldShowRightDots = rightSiblingIndex < _total - (boundaries + 1)
+    const shouldShowRightDots = rightSiblingIndex < _totalPages - (boundaries + 1)
 
     if (!shouldShowLeftDots && shouldShowRightDots) {
       const leftItemCount = siblings * 2 + boundaries + 2
       return [
         ...range(1, leftItemCount),
         LEFT_DOT,
-        ...range(_total - (boundaries - 1), _total),
+        ...range(_totalPages - (boundaries - 1), _totalPages),
       ]
     }
 
@@ -133,7 +133,7 @@ export function usePagination({
       return [
         ...range(1, boundaries),
         LEFT_DOT,
-        ...range(_total - rightItemCount, _total),
+        ...range(_totalPages - rightItemCount, _totalPages),
       ]
     }
 
@@ -142,9 +142,9 @@ export function usePagination({
       LEFT_DOT,
       ...range(leftSiblingIndex, rightSiblingIndex),
       RIGHT_DOT,
-      ...range(_total - boundaries + 1, _total),
+      ...range(_totalPages - boundaries + 1, _totalPages),
     ]
-  }, [_total, siblings, page, boundaries])
+  }, [_totalPages, siblings, page, boundaries])
 
   return {
     range: paginationRange,
@@ -161,8 +161,8 @@ type PaginationProps = {
   /**  active page number */
   page?: number
 
-  /** Total amount of items */
-  total: number
+  /** Total number of page */
+  totalPages: number
 
   /** Siblings amount on left/right side of selected page, defaults to 1 */
   siblings?: number
@@ -186,18 +186,18 @@ export function Pagination({
   withPageNumber = true,
   page = 1,
   onChange,
-  total,
+  totalPages,
   disabled,
 }: PaginationProps) {
   const { range, setPage, next, previous, active } = usePagination({
     page,
     siblings,
-    total,
+    totalPages,
     onChange,
     boundaries,
   })
 
-  disabled = disabled || total === 0
+  disabled = disabled || totalPages === 0
 
   return (
     <div className="is-group group flex">
@@ -233,7 +233,7 @@ export function Pagination({
           )
         })}
 
-      <Item onClick={next} disabled={active === total || disabled}>
+      <Item onClick={next} disabled={active === totalPages || disabled}>
         <div className="flex items-center space-x-1 px-2">
           <div className="hidden md:block">Next</div>
           <div>
