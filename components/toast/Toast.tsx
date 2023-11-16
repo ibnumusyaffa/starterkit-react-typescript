@@ -23,7 +23,7 @@ type Position =
 type Status = 'success' | 'danger' | 'info' | 'warning'
 
 type Toast = {
-  title: string
+  title?: string
   description?: string
   position?: Position
   status?: Status

@@ -160,6 +160,7 @@ export function DropdownMenuItem({
 }: DropdownMenuItemProps) {
   return (
     <DropdownMenuPrimitive.Item
+      {...props}
       disabled={disabled}
       onSelect={onSelect}
       className={cx(
