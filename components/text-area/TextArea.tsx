@@ -35,7 +35,7 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
           'form-textarea w-full rounded text-gray-800',
           'focus:border-primary-500 focus:outline-none focus:ring-primary-500 focus:ring-opacity-25',
 
-          'data-[error]:border-danger-500 data-[error]:focus:ring-danger-500 data-[error]:focus:ring-opacity-25',
+          'data-[error=true]:border-danger-500 data-[error=true]:focus:ring-danger-500 data-[error=true]:focus:ring-opacity-25',
           {
             'border-0 bg-gray-100 focus:border focus:border-gray-300 focus:bg-white focus:ring-2':
               variant === 'filled',

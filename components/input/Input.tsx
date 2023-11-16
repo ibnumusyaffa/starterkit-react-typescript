@@ -63,7 +63,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             'file:font-medium file:leading-none file:text-gray-700',
             'file:border-0 file:bg-gray-100 file:ring-1 file:ring-gray-300 ',
 
-            'data-[error]:border-danger-500 data-[error]:focus:ring-danger-500 data-[error]:focus:ring-opacity-25',
+            'data-[error=true]:border-danger-500 data-[error=true]:focus:ring-danger-500 data-[error=true]:focus:ring-opacity-25',
 
             // variant style
             {

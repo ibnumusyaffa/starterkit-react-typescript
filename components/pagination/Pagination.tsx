@@ -3,7 +3,7 @@
 import React, { useMemo } from 'react'
 import cx from 'clsx'
 
-import { ChevronLeft, ChevronRight } from './icons'
+import { ChevronLeft, ChevronRight } from './Icons'
 
 const LEFT_DOT = 'left'
 const RIGHT_DOT = 'right'
