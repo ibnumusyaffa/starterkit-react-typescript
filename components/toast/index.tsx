@@ -10,7 +10,7 @@ import cx from 'clsx'
 import toast, { ToastPosition } from 'react-hot-toast'
 
 type Status = 'success' | 'danger' | 'info' | 'warning'
-type ToastProps = {
+type Toast = {
   title?: string
   description?: string
   position?: ToastPosition
@@ -23,7 +23,7 @@ const base = ({
   title,
   position = 'top-right',
   duration,
-}: ToastProps) => {
+}: Toast) => {
   toast.custom(
     (t) => (
       <div
@@ -85,6 +85,8 @@ const base = ({
     }
   )
 }
+
+type ToastProps = Omit<Toast, 'status'>
 const custom = {
   success: (params: ToastProps) => base({ ...params, status: 'success' }),
   danger: (params: ToastProps) => base({ ...params, status: 'danger' }),
