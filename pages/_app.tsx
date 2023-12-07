@@ -32,7 +32,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <title>My Awesome App</title>
       </Head>
       <QueryClientProvider client={queryClient}>
-        <Toaster />
+        <Toaster gutter={12} />
 
         {/* <I18nProvider locale={pageProps.locale} fallbackLocale={id}> */}
         <Layout>
