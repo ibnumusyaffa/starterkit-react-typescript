@@ -5,13 +5,13 @@ import Head from 'next/head'
 // import { I18nProvider } from '@/locales'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { Toaster } from 'react-hot-toast'
 
 // import id from '@/locales/id'
 
 import '@/styles/globals.css'
 
 import Layout from '@/layouts/docs'
-import { ToastProvider } from '@/components/toast'
 
 const font = Font({
   subsets: ['latin'],
@@ -32,13 +32,13 @@ function MyApp({ Component, pageProps }: AppProps) {
         <title>My Awesome App</title>
       </Head>
       <QueryClientProvider client={queryClient}>
-        <ToastProvider>
-          {/* <I18nProvider locale={pageProps.locale} fallbackLocale={id}> */}
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-          {/* </I18nProvider> */}
-        </ToastProvider>
+        <Toaster />
+
+        {/* <I18nProvider locale={pageProps.locale} fallbackLocale={id}> */}
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+        {/* </I18nProvider> */}
 
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>

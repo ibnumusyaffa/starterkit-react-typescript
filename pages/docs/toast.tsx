@@ -1,10 +1,10 @@
 import * as React from 'react'
 
 import { Button } from '@/components/button'
-import { useToast } from '@/components/toast'
+import toast from '@/components/toast'
 
 export default function App() {
-  const toast = useToast()
+
   return (
     <div className="space-y-10">
       <div className="space-y-2">
@@ -84,11 +84,11 @@ export default function App() {
               toast.success({
                 title: 'Account created.',
                 description: "We've created your account for you",
-                position: 'top',
+                position: 'top-center',
               })
             }
           >
-            Top
+            Top center
           </Button>
           <Button
             variant="default"
@@ -122,11 +122,11 @@ export default function App() {
               toast.success({
                 title: 'Account created.',
                 description: "We've created your account for you",
-                position: 'bottom',
+                position: 'bottom-center',
               })
             }
           >
-            bottom
+            bottom center
           </Button>
           <Button
             variant="default"
