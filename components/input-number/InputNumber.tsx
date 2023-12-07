@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline'
-import cx from 'clsx'
+import cx from '@/lib/cx'
 import {
   AriaButtonProps,
   AriaNumberFieldProps,

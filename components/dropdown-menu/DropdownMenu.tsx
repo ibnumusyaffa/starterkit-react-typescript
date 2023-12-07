@@ -10,7 +10,7 @@ import React, {
 import { useControllableState } from '@/hooks'
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu'
-import cx from 'clsx'
+import cx from '@/lib/cx'
 import { AnimatePresence, motion } from 'framer-motion'
 
 const motionVariants = {

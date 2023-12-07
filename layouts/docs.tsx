@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Bars3Icon } from '@heroicons/react/24/solid'
-import cx from 'clsx'
+import cx from '@/lib/cx'
 
 import { useTheme } from '@/hooks/useTheme'
 import {

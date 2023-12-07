@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
-import cx from 'clsx'
+import cx from '@/lib/cx'
 
 import { Input } from './Input'
 

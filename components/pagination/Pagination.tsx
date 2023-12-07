@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useMemo } from 'react'
-import cx from 'clsx'
+import cx from '@/lib/cx'
 
 import { ChevronLeft, ChevronRight } from './Icons'
 

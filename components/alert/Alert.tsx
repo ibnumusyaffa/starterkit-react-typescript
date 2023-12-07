@@ -8,7 +8,7 @@ import {
   XCircleIcon,
   XMarkIcon,
 } from '@heroicons/react/24/solid'
-import cx from 'clsx'
+import cx from '@/lib/cx'
 
 export type AlertType = 'danger' | 'warning' | 'success' | 'info' | 'neutral'
 

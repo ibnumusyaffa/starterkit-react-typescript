@@ -6,7 +6,7 @@ import {
   XCircleIcon,
   XMarkIcon,
 } from '@heroicons/react/24/solid'
-import cx from 'clsx'
+import cx from '@/lib/cx'
 import toast, { ToastPosition } from 'react-hot-toast'
 
 type Status = 'success' | 'danger' | 'info' | 'warning'

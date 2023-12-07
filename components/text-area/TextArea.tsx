@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import cx from 'clsx'
+import cx from '@/lib/cx'
 
 export type TextAreaProps = Omit<React.ComponentProps<'textarea'>, 'size'> & {
   /** @default "md" */

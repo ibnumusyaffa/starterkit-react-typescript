@@ -2,7 +2,7 @@
 
 import React from 'react'
 import * as SwitchPrimitive from '@radix-ui/react-switch'
-import cx from 'clsx'
+import cx from '@/lib/cx'
 import { motion } from 'framer-motion'
 
 type SwitchProps = React.ComponentPropsWithoutRef<

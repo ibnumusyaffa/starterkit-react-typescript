@@ -1,5 +1,5 @@
 import React from 'react'
-import cx from 'clsx'
+import cx from '@/lib/cx'
 
 function Label({ children }: { children: React.ReactNode }) {
   return (

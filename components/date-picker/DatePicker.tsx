@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { CalendarIcon } from '@heroicons/react/24/outline'
 import { DateValue } from '@internationalized/date'
-import cx from 'clsx'
+import cx from '@/lib/cx'
 import { AnimatePresence } from 'framer-motion'
 import { AriaDatePickerProps, I18nProvider, useDatePicker } from 'react-aria'
 import { useDatePickerState } from 'react-stately'

@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useContext } from 'react'
-import cx from 'clsx'
+import cx from '@/lib/cx'
 
 import { InputGroupCtx } from '@/components/input/Input'
 

@@ -9,7 +9,7 @@ import React, {
 } from 'react'
 import { useControllableState } from '@/hooks'
 import * as TooltipPrimitive from '@radix-ui/react-tooltip'
-import cx from 'clsx'
+import cx from '@/lib/cx'
 import { AnimatePresence, motion } from 'framer-motion'
 
 type ProviderParams = {

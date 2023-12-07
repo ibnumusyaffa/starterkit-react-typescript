@@ -3,7 +3,7 @@
 import React, { createContext, useContext } from 'react'
 import { Slot, Slottable } from '@radix-ui/react-slot'
 import * as TabsPrimitive from '@radix-ui/react-tabs'
-import cx from 'clsx'
+import cx from '@/lib/cx'
 
 export type Variant = 'default' | 'outline' | 'pills'
 

@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import cx from 'clsx'
+import cx from '@/lib/cx'
 
 export type RadioProps = Omit<
   React.ComponentPropsWithRef<'input'>,

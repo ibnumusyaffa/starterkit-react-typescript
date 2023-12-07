@@ -54,6 +54,7 @@
     "react-select": "^5.8.0",
     "react-select-async-paginate": "^0.7.3",
     "react-stately": "^3.28.0",
+    "tailwind-merge": "^2.1.0",
     "tailwindcss": "3.3.5",
     "typescript": "5.3.2",
     "zod": "^3.22.4",

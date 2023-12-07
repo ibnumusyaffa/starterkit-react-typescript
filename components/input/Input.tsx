@@ -1,7 +1,7 @@
 'use client'
 
 import React, { createContext, useContext } from 'react'
-import cx from 'clsx'
+import cx from '@/lib/cx'
 
 export type InputProps = Omit<React.ComponentProps<'input'>, 'size'> & {
   /** @default "md" */

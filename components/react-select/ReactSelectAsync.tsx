@@ -2,7 +2,7 @@
 'use client'
 
 import React, { useId } from 'react'
-import cx from 'clsx'
+import cx from '@/lib/cx'
 import type { GroupBase, OptionsOrGroups } from 'react-select'
 import { AsyncPaginate, AsyncPaginateProps } from 'react-select-async-paginate'
 

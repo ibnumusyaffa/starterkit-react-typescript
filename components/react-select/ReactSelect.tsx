@@ -1,5 +1,5 @@
 import React from 'react'
-import cx from 'clsx'
+import cx from '@/lib/cx'
 import Select from 'react-select'
 
 type ReactSelectProps = Omit<

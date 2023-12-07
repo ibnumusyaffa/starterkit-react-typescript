@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { CalendarIcon } from '@heroicons/react/24/outline'
-import cx from 'clsx'
+import cx from '@/lib/cx'
 import { AnimatePresence } from 'framer-motion'
 import {
   AriaDateRangePickerProps,

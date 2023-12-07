@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import { XMarkIcon } from '@heroicons/react/24/solid'
 import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog'
-import cx from 'clsx'
+import cx from '@/lib/cx'
 import { AnimatePresence, motion } from 'framer-motion'
 
 const panelMotion = {

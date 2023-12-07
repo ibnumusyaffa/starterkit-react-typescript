@@ -9,7 +9,7 @@ import React, {
 } from 'react'
 import { useControllableState } from '@/hooks'
 import * as PopoverPrimitive from '@radix-ui/react-popover'
-import cx from 'clsx'
+import cx from '@/lib/cx'
 import { AnimatePresence, motion } from 'framer-motion'
 
 type PopoverProviderParams = {

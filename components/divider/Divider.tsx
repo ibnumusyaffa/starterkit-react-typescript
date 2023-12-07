@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import cx from 'clsx'
+import cx from '@/lib/cx'
 
 type DividerProps = {
   children?: React.ReactNode

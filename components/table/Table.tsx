@@ -6,7 +6,7 @@ import {
   ArrowsUpDownIcon,
   ArrowUpIcon,
 } from '@heroicons/react/24/solid'
-import cx from 'clsx'
+import cx from '@/lib/cx'
 import { AnimatePresence, motion } from 'framer-motion'
 
 import { Spinner } from '@/components/spinner'

@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext } from 'react'
 import { Slot, Slottable } from '@radix-ui/react-slot'
-import clsx from 'clsx'
+import cx from '@/lib/cx'
 
 type BreadcrumbProps = {
   children?: React.ReactNode
@@ -32,7 +32,7 @@ export function BreadcrumbItem({
   const Component = asChild ? Slot : 'button'
   return (
     <li
-      className={clsx(
+      className={cx(
         'group inline-flex items-center hover:cursor-pointer',
         'text-gray-600 last:font-medium last:text-gray-700'
       )}

@@ -10,7 +10,7 @@ import {
   isSameMonth,
   isWeekend,
 } from '@internationalized/date'
-import cx from 'clsx'
+import cx from '@/lib/cx'
 import {
   mergeProps,
   useCalendarCell,

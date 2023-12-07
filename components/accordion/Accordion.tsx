@@ -3,7 +3,7 @@
 import React from 'react'
 import { ChevronDownIcon } from '@heroicons/react/24/solid'
 import * as AccordionPrimitive from '@radix-ui/react-accordion'
-import cx from 'clsx'
+import cx from '@/lib/cx'
 
 export const AccordionRoot = AccordionPrimitive.Root
 

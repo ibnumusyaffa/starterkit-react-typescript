@@ -4,7 +4,7 @@ import React, { createContext, useContext } from 'react'
 import { UserIcon } from '@heroicons/react/24/solid'
 import * as AvatarPrimitive from '@radix-ui/react-avatar'
 import { Slot, Slottable } from '@radix-ui/react-slot'
-import cx from 'clsx'
+import cx from '@/lib/cx'
 
 import { generateColor } from './generateColor'
 

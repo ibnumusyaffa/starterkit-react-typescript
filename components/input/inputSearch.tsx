@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid'
-import cx from 'clsx'
+import cx from '@/lib/cx'
 
 import { Input } from './Input'
 

@@ -2,7 +2,7 @@
 
 import React, { forwardRef } from 'react'
 import { Slot, Slottable } from '@radix-ui/react-slot'
-import cx from 'clsx'
+import cx from '@/lib/cx'
 
 import { Spinner } from '@/components/spinner'
 
