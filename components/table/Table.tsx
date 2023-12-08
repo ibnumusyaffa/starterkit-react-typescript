@@ -8,6 +8,7 @@ import {
   ArrowUpIcon,
 } from '@heroicons/react/24/solid'
 import { AnimatePresence, motion } from 'framer-motion'
+
 import { Spinner } from '@/components/spinner'
 
 export type Direction = 'asc' | 'desc' | undefined
@@ -24,6 +25,7 @@ type ProviderParams = {
   striped: boolean
   hightlightOnHover: boolean
   stickyHeader: boolean
+  stickyOffset: number
   empty: boolean
   sort?: SortParams
   onChangeSort?: (params: SortParams) => void
@@ -36,6 +38,7 @@ const TableCtx = createContext<ProviderParams>({
   striped: false,
   hightlightOnHover: false,
   stickyHeader: false,
+  stickyOffset: 0,
   empty: false,
   sort: {
     column: '',
@@ -69,9 +72,10 @@ export function Th({
   className,
   columnKey,
   sortable,
+
   ...props
 }: ThProps) {
-  const { withColumnBorders, stickyHeader, sort, onChangeSort } =
+  const { withColumnBorders, stickyHeader, stickyOffset, sort, onChangeSort } =
     useContext(TableCtx)
 
   if (sortable === true && columnKey === undefined) {
@@ -113,13 +117,16 @@ export function Th({
         'border-b border-gray-300',
         {
           '[&:not(:last-child)]:border-r': withColumnBorders,
-          'sticky top-0': stickyHeader,
+          'sticky': stickyHeader,
         },
         {
           'cursor-pointer hover:bg-gray-50': sortable,
         },
         className
       )}
+      style={{
+        top: stickyHeader ? 0 + stickyOffset : undefined,
+      }}
       onClick={toggleSort}
     >
       <div className="flex items-center justify-between space-x-3">
@@ -295,6 +302,7 @@ type TableProos = {
   onChangeSort?: (params: SortParams) => void
   verticalAlignment?: VerticalAlignment
   rounded?: boolean
+  stickyOffset?: number
 }
 
 export function Table({
@@ -305,6 +313,7 @@ export function Table({
   striped = false,
   hightlightOnHover = false,
   stickyHeader = false,
+  stickyOffset = 0,
   empty = false,
   overflowXAuto = true,
   layout = 'auto',
@@ -314,9 +323,13 @@ export function Table({
   rounded,
 }: TableProos) {
   if (stickyHeader && overflowXAuto) {
-    throw new Error(
-      'stickyHeader and overflowXAuto cannot be true at the same time'
+    alert(
+      'stickyHeader and overflowXAuto cannot true at the same time'
     )
+  }
+
+  if (stickyHeader && rounded) {
+    alert('stickyHeader and rounded cannot true at the same time')
   }
 
   return (
@@ -327,6 +340,7 @@ export function Table({
         striped,
         hightlightOnHover,
         stickyHeader,
+        stickyOffset,
         empty,
         sort,
         onChangeSort,
@@ -338,14 +352,18 @@ export function Table({
           className={cx('relative w-full', {
             'overflow-x-auto': overflowXAuto,
             'border border-gray-300': withBorder,
-            'rounded': rounded,
+            'overflow-hidden rounded': rounded,
           })}
         >
           <table
-            className={cx('relative  w-full tabular-nums', 'border-spacing-0', {
-              'table-fixed': layout === 'fixed',
-              'table-layout': layout === 'auto',
-            })}
+            className={cx(
+              'relative  w-full tabular-nums',
+              'border-separate  border-spacing-0',
+              {
+                'table-fixed': layout === 'fixed',
+                'table-layout': layout === 'auto',
+              }
+            )}
           >
             {children}
           </table>

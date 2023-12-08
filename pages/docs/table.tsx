@@ -178,6 +178,7 @@ function Page() {
             verticalAlignment={verticalAlignment}
             onChangeSort={handleChangeSort}
             rounded={state.rounded}
+            stickyOffset={56}
           >
             <Thead>
               <Tr>
