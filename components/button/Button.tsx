@@ -1,8 +1,8 @@
 'use client'
 
 import React, { forwardRef } from 'react'
-import { Slot, Slottable } from '@radix-ui/react-slot'
 import cx from '@/lib/cx'
+import { Slot, Slottable } from '@radix-ui/react-slot'
 
 import { Spinner } from '@/components/spinner'
 
@@ -33,6 +33,8 @@ export type ButtonProps = React.ComponentProps<'button'> & {
 
   /** @default false */
   asChild?: boolean
+
+  className?: string
 }
 
 function variantStyles({
@@ -134,6 +136,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       loading = false,
       disabled = false,
       asChild = false,
+      className,
       ...props
     },
     ref
@@ -164,7 +167,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       'group-[.is-group]:last:!rounded-l-none',
 
       'group-[.is-group]:[&:not(:first-child):not(:last-child)]:!border-l-0',
-      'group-[.is-group]:last:!border-l-0'
+      'group-[.is-group]:last:!border-l-0',
+      className
     )
 
     return (

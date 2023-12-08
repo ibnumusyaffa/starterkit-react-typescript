@@ -1,8 +1,8 @@
 'use client'
 
 import React, { forwardRef } from 'react'
-import { Slot, Slottable } from '@radix-ui/react-slot'
 import cx from '@/lib/cx'
+import { Slot, Slottable } from '@radix-ui/react-slot'
 
 import { Spinner } from '@/components/spinner'
 
@@ -121,6 +121,7 @@ export const ButtonIcon = forwardRef<HTMLButtonElement, ButtonProps>(
       children,
       loading = false,
       disabled = false,
+      className,
       ...props
     },
     ref
@@ -137,10 +138,10 @@ export const ButtonIcon = forwardRef<HTMLButtonElement, ButtonProps>(
       variantStyles({ variant, color }),
       // size style
       {
-        'h-8 text-sm p-1': size === 'sm',
-        'h-10 text-base p-1.5': size === 'md',
-        'h-12 text-lg p-2': size === 'lg',
-        'h-14 text-xl p-2.5': size === 'xl',
+        'text-sm p-1': size === 'sm',
+        'text-base p-1.5': size === 'md',
+        'text-lg p-2': size === 'lg',
+        'text-xl p-2.5': size === 'xl',
       },
 
       //button group
@@ -150,7 +151,8 @@ export const ButtonIcon = forwardRef<HTMLButtonElement, ButtonProps>(
       'group-[.is-group]:last:!rounded-l-none',
 
       'group-[.is-group]:[&:not(:first-child):not(:last-child)]:!border-l-0',
-      'group-[.is-group]:last:!border-l-0'
+      'group-[.is-group]:last:!border-l-0',
+      className
     )
 
     return (

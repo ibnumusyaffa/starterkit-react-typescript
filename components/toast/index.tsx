@@ -29,7 +29,7 @@ const base = ({
       <div
         className={cx(
           'pointer-events-auto relative',
-          'min-w-[350px] max-w-[560px] ',
+          'lg:w-[360px] w-full',
           'rounded py-3 pl-3 pr-9',
           {
             'bg-success-600 text-white': status === 'success',

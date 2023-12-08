@@ -2,6 +2,7 @@
 
 /* eslint-disable prefer-const */
 import React from 'react'
+import cx from '@/lib/cx'
 import {
   CalendarDate,
   DateValue,
@@ -10,7 +11,6 @@ import {
   isSameMonth,
   isWeekend,
 } from '@internationalized/date'
-import cx from '@/lib/cx'
 import {
   mergeProps,
   useCalendarCell,
@@ -91,10 +91,6 @@ export function CalendarCell({
               'ring-2 ring-primary-300  ring-offset-1 group-focus:z-10':
                 isFocusVisible || isFocused,
 
-              //selected in start or end
-              'bg-primary-500 text-white hover:bg-primary-600':
-                (isSelected && !isRange) || isSelectionStart || isSelectionEnd,
-
               //selected but not in start or end
               'hover:bg-primary-200':
                 isSelected && isRange && !(isSelectionStart || isSelectionEnd),
@@ -103,6 +99,10 @@ export function CalendarCell({
               'cursor-default text-gray-300': allDisabled,
 
               'text-red-600': isWeekend(date, locale) && !allDisabled,
+
+              //selected in start or end
+              'bg-primary-500 text-white hover:bg-primary-600':
+                (isSelected && !isRange) || isSelectionStart || isSelectionEnd,
             }
           )}
         >

@@ -27,6 +27,7 @@ function Page() {
     striped: false,
     stickyHeader: false,
     overflowXAuto: true,
+    rounded: false,
   })
 
   const { sort, handleChangeSort } = useTableSort({
@@ -43,7 +44,7 @@ function Page() {
         <div className="text-4xl font-semibold text-gray-700">Table</div>
         <div className="text-gray-700">-</div>
       </div>
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-4">
         <div className="flex space-x-3">
           <Switch
             checked={state.empty}
@@ -112,6 +113,16 @@ function Page() {
         </div>
         <div className="flex space-x-3">
           <Switch
+            checked={state.rounded}
+            onCheckedChange={(value) =>
+              setState((prev) => ({ ...prev, rounded: value }))
+            }
+            id="rounded"
+            label="rounded"
+          ></Switch>
+        </div>
+        <div className="flex space-x-3">
+          <Switch
             checked={state.stickyHeader}
             onCheckedChange={(value) =>
               setState((prev) => ({
@@ -166,6 +177,7 @@ function Page() {
             sort={sort}
             verticalAlignment={verticalAlignment}
             onChangeSort={handleChangeSort}
+            rounded={state.rounded}
           >
             <Thead>
               <Tr>

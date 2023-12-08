@@ -1,14 +1,13 @@
 'use client'
 
 import React, { createContext, useContext } from 'react'
+import cx from '@/lib/cx'
 import {
   ArrowDownIcon,
   ArrowsUpDownIcon,
   ArrowUpIcon,
 } from '@heroicons/react/24/solid'
-import cx from '@/lib/cx'
 import { AnimatePresence, motion } from 'framer-motion'
-
 import { Spinner } from '@/components/spinner'
 
 export type Direction = 'asc' | 'desc' | undefined
@@ -145,7 +144,11 @@ export function Th({
   )
 }
 
-export function Td(props: React.ComponentProps<'td'>) {
+export function Td({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<'td'>) {
   const { withColumnBorders, verticalAlignment } = useContext(TableCtx)
   return (
     <td
@@ -158,32 +161,36 @@ export function Td(props: React.ComponentProps<'td'>) {
         'group-data-[selected=true]:border-y-2 group-data-[selected=true]:border-y-primary-500',
         'group-data-[selected=true]:last:border-r-2 group-data-[selected=true]:last:border-r-primary-500',
         'group-data-[selected=true]:first:border-l-2 group-data-[selected=true]:first:border-l-primary-500',
-
         {
           '[&:not(:last-child)]:border-r': withColumnBorders,
           'align-top': verticalAlignment === 'top',
           'align-middle': verticalAlignment === 'center',
           'align-bottom': verticalAlignment === 'bottom',
-        }
+        },
+        className
       )}
     >
-      {props.children}
+      {children}
     </td>
   )
 }
 
 type TrProps = React.ComponentProps<'tr'> & { selected?: boolean }
-export function Tr({ children, selected, ...props }: TrProps) {
+export function Tr({ children, selected, className, ...props }: TrProps) {
   const { striped, hightlightOnHover } = useContext(TableCtx)
   return (
     <tr
       {...props}
       data-selected={selected}
-      className={cx('group hover:cursor-default', {
-        'hover:bg-blue-50': hightlightOnHover,
-        'odd:bg-gray-100': striped,
-        'bg-primary-50': selected,
-      })}
+      className={cx(
+        'group hover:cursor-default',
+        {
+          'hover:bg-blue-50': hightlightOnHover,
+          'odd:bg-gray-100': striped,
+          'bg-primary-50': selected,
+        },
+        className
+      )}
     >
       {children}
     </tr>
@@ -235,7 +242,11 @@ function Loading({ show }: { show?: boolean }) {
   )
 }
 
-export function Thead(props: React.ComponentProps<'thead'>) {
+export function Thead({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<'thead'>) {
   const currentCtxValue = useContext(TableCtx)
   return (
     <TableCtx.Provider
@@ -246,17 +257,27 @@ export function Thead(props: React.ComponentProps<'thead'>) {
         hightlightOnHover: false,
       }}
     >
-      <thead {...props}>{props.children}</thead>
+      <thead {...props} className={className}>
+        {children}
+      </thead>
     </TableCtx.Provider>
   )
 }
 
-export function Tbody(props: React.ComponentProps<'tbody'>) {
+export function Tbody({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<'tbody'>) {
   const { empty } = useContext(TableCtx)
   if (empty) {
     return null
   }
-  return <tbody {...props}>{props.children}</tbody>
+  return (
+    <tbody {...props} className={className}>
+      {children}
+    </tbody>
+  )
 }
 
 type TableProos = {
@@ -273,6 +294,7 @@ type TableProos = {
   sort?: SortParams
   onChangeSort?: (params: SortParams) => void
   verticalAlignment?: VerticalAlignment
+  rounded?: boolean
 }
 
 export function Table({
@@ -289,6 +311,7 @@ export function Table({
   sort,
   onChangeSort,
   verticalAlignment = 'top',
+  rounded,
 }: TableProos) {
   if (stickyHeader && overflowXAuto) {
     throw new Error(
@@ -314,12 +337,12 @@ export function Table({
         <div
           className={cx('relative w-full', {
             'overflow-x-auto': overflowXAuto,
+            'border border-gray-300': withBorder,
+            'rounded': rounded,
           })}
         >
           <table
             className={cx('relative  w-full tabular-nums', 'border-spacing-0', {
-              'border border-gray-300 ': withBorder,
-              'border-opacity-0': !withBorder,
               'table-fixed': layout === 'fixed',
               'table-layout': layout === 'auto',
             })}

@@ -67,7 +67,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
             // variant style
             {
-              'border-0 bg-gray-100 focus:border focus:border-gray-300 focus:bg-white focus:ring-2':
+              'border-0 bg-gray-100 focus:border  focus:bg-white focus:ring-2':
                 variant === 'filled',
               'bg-white-100 border border-gray-300 focus:ring-2':
                 variant === 'outline',

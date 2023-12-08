@@ -1,8 +1,8 @@
 'use client'
 
 import React, { forwardRef } from 'react'
-import { Slot, Slottable } from '@radix-ui/react-slot'
 import cx from '@/lib/cx'
+import { Slot, Slottable } from '@radix-ui/react-slot'
 
 export type Variant = 'solid' | 'light' | 'light-outline' | 'outline'
 
@@ -153,7 +153,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
       <Component
         {...props}
         className={cx(
-          `box-border inline-flex h-fit items-center justify-center whitespace-nowrap  leading-none  focus:outline-none`,
+          `box-border inline-flex h-fit items-center justify-center whitespace-nowrap    focus:outline-none`,
           variantStyles({ variant, color }),
           {
             'rounded-none': rounded === 'none',
@@ -173,7 +173,8 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
           },
           {
             'w-full': fullWidth,
-          }
+          },
+          'leading-none'
         )}
         ref={ref}
       >
