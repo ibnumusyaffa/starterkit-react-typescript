@@ -10,7 +10,7 @@
 - 🎨 [TailwindCSS 3](https://tailwindcss.com)
 - 💎 Prebuilt customizable components using TailwindCSS, [Radix UI](https://www.radix-ui.com/),React Aria
 - 🚀 [Tanstack Query](https://tanstack.com/query) for async state management (fetching, caching, synchronizing)
-- 📋 React Hook Form + Zod 
+- 📋 React Hook Form + Yup
 - 💾 [Zustand](https://zustand-demo.pmnd.rs) for state management
 - 📅 Day.js for datetime formatting
 - 📁 Absolute Import and Path Alias — Import components using `@/` prefix
