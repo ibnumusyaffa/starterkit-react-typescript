@@ -82,7 +82,7 @@ export function Dialog({
   onOpenChange,
   children,
   closeOnOverlayClick = true,
-  verticalCentered = true,
+  verticalCentered = false,
   scrollBehavior = 'inside',
   size = 'md',
   ...props
