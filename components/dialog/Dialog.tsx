@@ -82,7 +82,7 @@ export function Dialog({
   onOpenChange,
   children,
   closeOnOverlayClick = true,
-  verticalCentered = false,
+  verticalCentered = true,
   scrollBehavior = 'inside',
   size = 'md',
   ...props
@@ -127,7 +127,7 @@ export function Dialog({
                     animate="animate"
                     exit="exit"
                     className={cx(
-                      'absolute mx-auto flex w-full flex-col',
+                      'fixed mx-auto flex w-full flex-col',
                       'bottom-0 left-0 right-0 top-0',
                       'h-min rounded-md bg-white',
                       'focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75',
