@@ -1,8 +1,8 @@
-import React from 'react'
 import {
   ArrowLeftOnRectangleIcon,
   Cog6ToothIcon,
 } from '@heroicons/react/24/outline'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import {
   ContextMenuContent,
@@ -17,13 +17,18 @@ import {
   ContextMenuTrigger,
 } from '@/components/context-menu'
 
-function Page() {
-  return (
-    <div className="space-y-10">
-      <div className="space-y-2">
-        <div className="text-4xl font-semibold text-gray-700">Context Menu</div>
-        <div className="text-gray-700">-</div>
-      </div>
+const meta = {
+  title: 'Components/ContextMenu',
+  component: ContextMenuRoot,
+} satisfies Meta<typeof ContextMenuRoot>
+
+export default meta
+
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
+  render: () => {
+    return (
       <ContextMenuRoot>
         <ContextMenuTrigger>
           <div className="flex h-56 w-full items-center justify-center border border-gray-300 bg-gray-50 p-5">
@@ -36,9 +41,6 @@ function Page() {
             <ContextMenuItem leftIcon={<Cog6ToothIcon className="h-5 w-5" />}>
               Account Settings
             </ContextMenuItem>
-            <ContextMenuItem leftIcon={<Cog6ToothIcon className="h-5 w-5" />}>
-              Support
-            </ContextMenuItem>
             <ContextMenuSub>
               <ContextMenuSubTrigger
                 leftIcon={<Cog6ToothIcon className="h-5 w-5" />}
@@ -46,11 +48,6 @@ function Page() {
                 More
               </ContextMenuSubTrigger>
               <ContextMenuSubContent>
-                <ContextMenuItem
-                  leftIcon={<Cog6ToothIcon className="h-5 w-5" />}
-                >
-                  Support
-                </ContextMenuItem>
                 <ContextMenuItem
                   leftIcon={<Cog6ToothIcon className="h-5 w-5" />}
                 >
@@ -77,8 +74,6 @@ function Page() {
           </ContextMenuGroup>
         </ContextMenuContent>
       </ContextMenuRoot>
-    </div>
-  )
+    )
+  },
 }
-
-export default Page

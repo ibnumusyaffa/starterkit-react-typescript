@@ -47,21 +47,7 @@ export function ContextMenuTrigger({
   )
 }
 
-export function ContextMenuArrow() {
-  return (
-    <ContextMenuPrimitive.Arrow asChild>
-      <div className="relative h-[7px] w-[13px]">
-        <div
-          className={cx(
-            'absolute h-2 w-2 rotate-45 bg-white',
-            'border-b border-r border-gray-300 border-opacity-50',
-            'left-0 right-0 top-[-3px] ml-auto mr-auto'
-          )}
-        ></div>
-      </div>
-    </ContextMenuPrimitive.Arrow>
-  )
-}
+
 
 export function ContextMenuRoot({
   children,

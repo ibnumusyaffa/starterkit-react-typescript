@@ -18,6 +18,7 @@ export type ButtonProps = React.ComponentProps<'button'> & {
   /** @default "primary" */
   color?: Color
 
+  /** children */
   children?: React.ReactNode
   leftIcon?: React.ReactNode
   rightIcon?: React.ReactNode
@@ -124,7 +125,7 @@ function variantStyles({
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  (
+  function Button(
     {
       size = 'md',
       variant = 'solid',
@@ -140,7 +141,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       ...props
     },
     ref
-  ) => {
+  ) {
     const Component = asChild ? Slot : 'button'
 
     const buttonStyle = cx(
@@ -195,8 +196,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     )
   }
 )
-
-Button.displayName = 'Button'
 
 export function ButtonGroup({ children }: { children: React.ReactNode }) {
   return <div className="is-group group relative flex">{children}</div>

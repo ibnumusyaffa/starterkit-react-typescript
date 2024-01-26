@@ -37,7 +37,7 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
 
           'data-[error=true]:border-danger-500 data-[error=true]:focus:ring-danger-500 data-[error=true]:focus:ring-opacity-25',
           {
-            'border bg-gray-100 focus:border focus:bg-white focus:ring-2':
+            'border-0 bg-gray-100 focus:border focus:bg-white focus:ring-2':
               variant === 'filled',
             'bg-white-100 border border-gray-300 focus:ring-2':
               variant === 'outline',
