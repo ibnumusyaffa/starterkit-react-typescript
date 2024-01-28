@@ -69,10 +69,7 @@
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
     "@storybook/addon-essentials": "^7.6.10",
-    "@storybook/addon-interactions": "^7.6.10",
     "@storybook/addon-links": "^7.6.10",
-    "@storybook/addon-mdx-gfm": "^7.6.10",
-    "@storybook/addon-onboarding": "^1.0.10",
     "@storybook/blocks": "^7.6.10",
     "@storybook/manager-api": "^7.6.10",
     "@storybook/nextjs": "^7.6.10",

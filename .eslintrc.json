@@ -7,9 +7,7 @@
     "plugin:storybook/recommended"
   ],
   "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "@typescript-eslint"
-  ],
+  "plugins": ["@typescript-eslint"],
   "rules": {
     "no-unused-vars": [
       "error",
@@ -19,6 +17,7 @@
         "varsIgnorePattern": "^_"
       }
     ],
-    "@typescript-eslint/no-empty-function": "off"
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/ban-ts-comment": "off"
   }
 }

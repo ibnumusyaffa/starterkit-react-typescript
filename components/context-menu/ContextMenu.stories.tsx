@@ -18,7 +18,7 @@ import {
 } from '@/components/context-menu'
 
 const meta = {
-  title: 'Components/ContextMenu',
+  title: 'Overlay/ContextMenu',
   component: ContextMenuRoot,
 } satisfies Meta<typeof ContextMenuRoot>
 
@@ -26,13 +26,13 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {
+export const BasicUsage: Story = {
   render: () => {
     return (
       <ContextMenuRoot>
         <ContextMenuTrigger>
           <div className="flex h-56 w-full items-center justify-center border border-gray-300 bg-gray-50 p-5">
-            <div>Click right here</div>
+            <div className='text-gray-600'>Right Click Here...</div>
           </div>
         </ContextMenuTrigger>
         <ContextMenuContent>

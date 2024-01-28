@@ -7,7 +7,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Button, ButtonGroup } from '@/components/button'
 
 const meta = {
-  title: 'Components/Button',
+  title: 'Forms/Button',
   component: Button,
 } satisfies Meta<typeof Button>
 
@@ -15,7 +15,7 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {
+export const BasicUsage: Story = {
   args: {
     children: 'Button',
   },

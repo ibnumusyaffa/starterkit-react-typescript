@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body, #__NEXT {
+html,
+body,
+#__NEXT {
   height: 100%;
 }
-
-
 
 :root {
   --color-primary-50: 240 249 255;
@@ -50,3 +50,16 @@ html, body, #__NEXT {
   --color-primary-950: 2 44 34;
 }
 
+.sky {
+  --color-sky-50: 240 249 255;
+  --color-sky-100: 224 242 254;
+  --color-sky-200: 186 230 253;
+  --color-sky-300: 125 211 252;
+  --color-sky-400: 56 189 248;
+  --color-sky-500: 14 165 233;
+  --color-sky-600: 2 132 199;
+  --color-sky-700: 3 105 161;
+  --color-sky-800: 7 89 133;
+  --color-sky-900: 12 74 110;
+  --color-sky-950: 8 47 73;
+}
