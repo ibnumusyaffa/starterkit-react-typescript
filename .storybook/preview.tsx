@@ -1,8 +1,15 @@
 import React from 'react'
 import type { Preview } from '@storybook/react'
+
 import theme from './theme'
+
 import '@/styles/globals.css'
 
+import { Inter as Font } from 'next/font/google'
+
+const font = Font({
+  subsets: ['latin'],
+})
 const preview: Preview = {
   globalTypes: {
     primaryColor: {
@@ -32,7 +39,7 @@ const preview: Preview = {
   decorators: [
     (Story, context) => {
       return (
-        <div className={context.globals.primaryColor}>
+        <div className={`${context.globals.primaryColor} ${font.className}`}>
           <Story />
         </div>
       )

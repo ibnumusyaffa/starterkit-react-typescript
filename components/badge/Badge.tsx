@@ -181,7 +181,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
         {withDot ? (
           <div
             className={cx(
-              'mr-2 rounded-full',
+              'mr-1.5 rounded-full',
               'h-1.5 w-1.5',
               dotStyles({ variant, color })
             )}
