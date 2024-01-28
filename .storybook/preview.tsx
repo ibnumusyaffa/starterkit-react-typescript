@@ -38,8 +38,15 @@ const preview: Preview = {
   },
   decorators: [
     (Story, context) => {
+      const body = document.querySelector('body')
+      if (body) {
+        body.classList.remove('purple', 'sky', 'green', font.className)
+
+        body.classList.add(context.globals.primaryColor)
+        body.classList.add(font.className)
+      }
       return (
-        <div className={`${context.globals.primaryColor} ${font.className}`}>
+        <div>
           <Story />
         </div>
       )
