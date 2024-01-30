@@ -7,7 +7,6 @@ import type { StoryObj } from '@storybook/react'
 
 import { Button } from '@/components/button'
 import {
-  DropdownMenuArrow,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
@@ -44,7 +43,6 @@ export const BasicUsage: StoryObj = {
           <Button variant="default">Dropdown Menu</Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuArrow></DropdownMenuArrow>
           <DropdownMenuItem>Account Settings</DropdownMenuItem>
           <DropdownMenuItem>Support</DropdownMenuItem>
         </DropdownMenuContent>
@@ -61,7 +59,6 @@ export const WithLeftIcon: Story = {
           <Button variant="default">Dropdown Menu</Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuArrow></DropdownMenuArrow>
           <DropdownMenuItem leftIcon={<Cog6ToothIcon className="h-5 w-5" />}>
             Account Settings
           </DropdownMenuItem>
@@ -82,7 +79,6 @@ export const WithRightIcon: Story = {
           <Button variant="default">Dropdown Menu</Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuArrow></DropdownMenuArrow>
           <DropdownMenuItem rightIcon={<Cog6ToothIcon className="h-5 w-5" />}>
             Account Settings
           </DropdownMenuItem>
@@ -103,7 +99,6 @@ export const GroupMenu: Story = {
           <Button variant="default">Dropdown Menu</Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuArrow></DropdownMenuArrow>
           <DropdownMenuGroup>
             <DropdownMenuLabel>Application</DropdownMenuLabel>
             <DropdownMenuItem>Account Settings</DropdownMenuItem>
@@ -127,7 +122,6 @@ export const SubMenu: Story = {
           <Button variant="default">Dropdown Menu</Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuArrow></DropdownMenuArrow>
           <DropdownMenuItem>Account Settings</DropdownMenuItem>
           <DropdownMenuSub>
             <DropdownMenuSubTrigger>More</DropdownMenuSubTrigger>
@@ -150,7 +144,6 @@ export const NestedSubMenu: Story = {
           <Button variant="default">Dropdown Menu</Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuArrow></DropdownMenuArrow>
           <DropdownMenuItem>Account Settings</DropdownMenuItem>
           <DropdownMenuSub>
             <DropdownMenuSubTrigger>More</DropdownMenuSubTrigger>
@@ -172,22 +165,6 @@ export const NestedSubMenu: Story = {
   },
 }
 
-export const WithoutArrow: Story = {
-  render: () => {
-    return (
-      <DropdownMenuRoot>
-        <DropdownMenuTrigger>
-          <Button variant="default">Dropdown Menu</Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          <DropdownMenuItem>Account Settings</DropdownMenuItem>
-          <DropdownMenuItem>Support</DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenuRoot>
-    )
-  },
-}
-
 export const DisableItem: Story = {
   render: () => {
     return (
@@ -196,7 +173,6 @@ export const DisableItem: Story = {
           <Button variant="default">Dropdown Menu</Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuArrow></DropdownMenuArrow>
           <DropdownMenuItem disabled>Disabled Item</DropdownMenuItem>
           <DropdownMenuItem>Support</DropdownMenuItem>
         </DropdownMenuContent>
@@ -258,7 +234,6 @@ export const SideOffsetAlign = {
             sideOffset={args.sideOffset}
             align={args.align}
           >
-            <DropdownMenuArrow></DropdownMenuArrow>
             <DropdownMenuItem leftIcon={<Cog6ToothIcon className="h-5 w-5" />}>
               Disabled Item
             </DropdownMenuItem>

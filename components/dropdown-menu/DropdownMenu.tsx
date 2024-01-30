@@ -8,9 +8,9 @@ import React, {
   useState,
 } from 'react'
 import { useControllableState } from '@/hooks'
+import cx from '@/lib/cx'
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu'
-import cx from '@/lib/cx'
 import { AnimatePresence, motion } from 'framer-motion'
 
 const motionVariants = {
@@ -50,22 +50,6 @@ export function DropdownMenuTrigger({
   )
 }
 
-export function DropdownMenuArrow() {
-  return (
-    <DropdownMenuPrimitive.Arrow asChild>
-      <div className="relative h-[7px] w-[13px]">
-        <div
-          className={cx(
-            'absolute h-2 w-2 rotate-45 bg-white',
-            'border-b border-r border-gray-300 border-opacity-50',
-            'left-0 right-0 top-[-3px] ml-auto mr-auto'
-          )}
-        ></div>
-      </div>
-    </DropdownMenuPrimitive.Arrow>
-  )
-}
-
 export function DropdownMenuRoot({
   children,
   open,
@@ -98,7 +82,7 @@ export const DropdownMenuContent = React.forwardRef<
   HTMLDivElement,
   DropdownMenuContentProps
 >(function DropdownMenuContent(
-  { children, side = 'bottom', align = 'center', ...props },
+  { children, side = 'bottom', align = 'center', sideOffset = 5, ...props },
   ref
 ) {
   const { open } = useContext(DropdownCtx)
@@ -124,8 +108,9 @@ export const DropdownMenuContent = React.forwardRef<
             asChild
             side={side}
             align={align}
+            sideOffset={sideOffset}
             ref={ref}
-            className="rounded bg-white px-0.5 py-0.5 shadow-lg ring-1 ring-black ring-opacity-10 focus:outline-none"
+            className="rounded border border-gray-300 bg-white px-0.5 py-0.5 shadow-lg"
           >
             <motion.div
               variants={motionVariants}
@@ -169,11 +154,11 @@ export function DropdownMenuItem({
         'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
         color === 'primary' && [
           'text-gray-700',
-          'data-[highlighted]:bg-primary-500 data-[highlighted]:text-white',
+          'data-[highlighted]:bg-gray-100',
         ],
         color === 'danger' && [
           'text-danger-600',
-          'data-[highlighted]:bg-danger-500 data-[highlighted]:text-white',
+          'data-[highlighted]:bg-danger-50',
         ]
       )}
     >
@@ -234,8 +219,8 @@ export function DropdownMenuSubTrigger({
         'relative flex items-center space-x-2 rounded px-3 py-2',
         'cursor-pointer  text-sm focus:outline-none',
         'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
-        'text-gray-900',
-        'data-[highlighted]:bg-primary-500 data-[highlighted]:text-white'
+        'text-gray-700',
+        'data-[highlighted]:bg-gray-100'
       )}
     >
       {leftIcon ? <div>{leftIcon}</div> : null}
@@ -263,7 +248,7 @@ export const DropdownMenuSubContent = React.forwardRef<
             {...props}
             asChild
             ref={ref}
-            className="rounded bg-white px-0.5 py-0.5 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+            className="rounded bg-white px-0.5 py-0.5 shadow-lg ring-1 ring-black ring-opacity-10 focus:outline-none"
           >
             <motion.div
               variants={motionVariants}

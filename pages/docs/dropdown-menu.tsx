@@ -6,7 +6,6 @@ import {
 
 import { Button } from '@/components/button'
 import {
-  DropdownMenuArrow,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
@@ -35,7 +34,6 @@ function Page() {
             <Button>Trigger</Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <DropdownMenuArrow></DropdownMenuArrow>
             <DropdownMenuGroup>
               <DropdownMenuLabel>Application</DropdownMenuLabel>
               <DropdownMenuItem

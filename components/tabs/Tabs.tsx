@@ -42,8 +42,8 @@ export function TabsTrigger({
 
   const variantStyle: Record<Variant, string> = {
     default: cx(
-      'flex items-center px-3 py-3 font-medium text-gray-700  border-transparent group ',
-      'data-[state=active]:bg-primary-50 data-[state=active]:text-primary-700',
+      'flex items-center px-5 py-3 font-medium text-gray-700  border-transparent group ',
+      'data-[state=active]:text-primary-700',
       {
         'border-b-[3px] data-[state=active]:border-b-primary-500':
           orientation === 'horizontal',

@@ -123,7 +123,7 @@ export const TooltipContent = React.forwardRef<
                 }}
                 className={cx('relative rounded px-2 py-2', {
                   'bg-gray-800 text-white': color === 'dark',
-                  'bg-white text-gray-700 shadow-md ring-1 ring-black ring-opacity-5':
+                  'bg-white text-gray-700  border border-gray-300 shadow':
                     color === 'light',
                 })}
               >
@@ -135,7 +135,7 @@ export const TooltipContent = React.forwardRef<
                         ' left-0 right-0 ml-auto mr-auto',
                         {
                           'top-[-4px] bg-gray-800': color === 'dark',
-                          'top-[-3.5px] border-b border-r border-black border-opacity-[0.15] bg-white shadow-md':
+                          'top-[-3.5px] border-b border-r border-gray-300 bg-white shadow-sm':
                             color === 'light',
                         }
                       )}

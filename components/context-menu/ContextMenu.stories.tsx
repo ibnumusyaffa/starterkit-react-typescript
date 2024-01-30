@@ -43,7 +43,7 @@ export const BasicUsage: Story = {
             </ContextMenuItem>
             <ContextMenuSub>
               <ContextMenuSubTrigger
-                leftIcon={<Cog6ToothIcon className="h-5 w-5" />}
+                leftIcon={<Cog6ToothIcon className="h-5 w-5 " />}
               >
                 More
               </ContextMenuSubTrigger>

@@ -7,9 +7,9 @@ import React, {
   useRef,
   useState,
 } from 'react'
+import cx from '@/lib/cx'
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
 import * as ContextMenuPrimitive from '@radix-ui/react-context-menu'
-import cx from '@/lib/cx'
 import { AnimatePresence, motion } from 'framer-motion'
 
 const motionVariants = {
@@ -46,8 +46,6 @@ export function ContextMenuTrigger({
     </ContextMenuPrimitive.Trigger>
   )
 }
-
-
 
 export function ContextMenuRoot({
   children,
@@ -99,7 +97,7 @@ export const ContextMenuContent = React.forwardRef<
             asChild
             {...props}
             ref={ref}
-            className="rounded bg-white px-0.5 py-0.5 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+            className="rounded border border-gray-300 bg-white px-0.5 py-0.5 shadow-lg"
           >
             <motion.div
               variants={motionVariants}
@@ -141,12 +139,12 @@ export function ContextMenuItem({
         'cursor-pointer  text-sm focus:outline-none',
         'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
         color === 'primary' && [
-          'text-gray-900',
-          'data-[highlighted]:bg-primary-500 data-[highlighted]:text-white',
+          'text-gray-700',
+          'data-[highlighted]:bg-gray-100',
         ],
         color === 'danger' && [
           'text-danger-600',
-          'data-[highlighted]:bg-danger-500 data-[highlighted]:text-white',
+          'data-[highlighted]:bg-danger-50',
         ]
       )}
     >
@@ -203,8 +201,8 @@ export function ContextMenuSubTrigger({
         'relative flex items-center space-x-2 rounded px-3 py-2',
         'cursor-pointer  text-sm focus:outline-none',
         'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
-        'text-gray-900',
-        'data-[highlighted]:bg-primary-500 data-[highlighted]:text-white'
+        'text-gray-700',
+        'data-[highlighted]:bg-gray-100'
       )}
     >
       {leftIcon ? <div>{leftIcon}</div> : null}
