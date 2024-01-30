@@ -3,9 +3,10 @@ import {
   Cog6ToothIcon,
   HeartIcon,
 } from '@heroicons/react/24/outline'
+import { ChevronDownIcon } from '@heroicons/react/24/solid'
 import type { StoryObj } from '@storybook/react'
 
-import { Button } from '@/components/button'
+import { Button, ButtonGroup } from '@/components/button'
 import {
   DropdownMenuContent,
   DropdownMenuGroup,
@@ -20,8 +21,7 @@ import {
 } from '@/components/dropdown-menu'
 
 const meta = {
-  title: 'Components/DropdownMenu',
-
+  title: 'Overlay/DropdownMenu',
   parameters: {
     layout: 'centered',
   },
@@ -32,10 +32,6 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const BasicUsage: StoryObj = {
-  args: {
-    someBool: true,
-  },
-
   render: () => {
     return (
       <DropdownMenuRoot>
@@ -246,6 +242,34 @@ export const SideOffsetAlign = {
           </DropdownMenuContent>
         </DropdownMenuRoot>
       </div>
+    )
+  },
+}
+
+export const WithButtonGroup: Story = {
+  render: () => {
+    return (
+      <ButtonGroup>
+        <Button variant="default">Download</Button>
+        <DropdownMenuRoot>
+          <DropdownMenuTrigger>
+            <Button variant="default">
+              <ChevronDownIcon className="h-4 w-4"></ChevronDownIcon>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuItem leftIcon={<Cog6ToothIcon className="h-5 w-5" />}>
+              Setting
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              leftIcon={<ArrowRightStartOnRectangleIcon className="h-5 w-5" />}
+              color="danger"
+            >
+              Danger Item
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenuRoot>
+      </ButtonGroup>
     )
   },
 }
