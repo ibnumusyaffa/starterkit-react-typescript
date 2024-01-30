@@ -1,6 +1,7 @@
 # React Starter
 
 [https://starterkit-react-typescript.vercel.app](https://starterkit-react-typescript.vercel.app)
+[https://storybook-starterkit.vercel.app](https://storybook-starterkit.vercel.app)
 
 ## What's in the stack ?
 
