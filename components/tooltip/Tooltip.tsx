@@ -66,7 +66,7 @@ export function TooltipRoot({
 export type TooltipContentProps = React.ComponentPropsWithoutRef<
   typeof TooltipPrimitive.Content
 > & {
-  color: 'dark' | 'light'
+  color?: 'dark' | 'light'
 }
 
 export const TooltipContent = React.forwardRef<
