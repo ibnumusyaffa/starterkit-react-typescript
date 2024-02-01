@@ -250,7 +250,7 @@ export const WithButtonGroup: Story = {
   render: () => {
     return (
       <ButtonGroup>
-        <Button variant="default">Download</Button>
+        <Button  variant="default">Download</Button>
         <DropdownMenuRoot>
           <DropdownMenuTrigger>
             <Button variant="default">

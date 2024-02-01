@@ -53,8 +53,8 @@ function Page() {
         </div>
 
         <Pagination
-          page={page}
-          onChange={(page) => setPage(page)}
+          currentPage={page}
+          onPageChange={(page) => setPage(page)}
           totalPages={10}
           {...state}
         ></Pagination>

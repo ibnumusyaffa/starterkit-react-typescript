@@ -3,7 +3,7 @@
 import React, { createContext, useContext } from 'react'
 import cx from '@/lib/cx'
 
-export type InputProps = Omit<React.ComponentProps<'input'>, 'size'> & {
+type InputProps = Omit<React.ComponentProps<'input'>, 'size'> & {
   /** @default "md" */
   size?: 'sm' | 'md' | 'lg' | 'xl'
 
@@ -25,7 +25,7 @@ function DefaultContainer({ children }: { children: React.ReactNode }) {
 }
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  (
+  function Input(
     {
       error,
       disabled,
@@ -36,7 +36,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       ...props
     },
     ref
-  ) => {
+  ) {
     const isGroup = useContext(InputGroupCtx)
     const Root = isGroup ? React.Fragment : DefaultContainer
     return (
@@ -58,21 +58,21 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             'focus:border-primary-500 focus:outline-none focus:ring-primary-500 focus:ring-opacity-25',
 
             //type="file"
-            'file:-ml-3 file:mr-3 file:h-full !py-0',
+            '!py-0 file:-ml-3 file:mr-3 file:h-full',
             'file:px-4 file:py-2',
             'file:font-medium file:leading-none file:text-gray-700',
             'file:border-0 file:bg-gray-100 file:ring-1 file:ring-gray-300 ',
-
-            'data-[error=true]:border-danger-500 data-[error=true]:focus:ring-danger-500 data-[error=true]:focus:ring-opacity-25',
-
             // variant style
             {
-              'border-0 bg-gray-100 focus:border  focus:bg-white focus:ring-2':
+              'border-0 bg-gray-100 focus:border focus:ring-2':
                 variant === 'filled',
               'bg-white-100 border border-gray-300 focus:ring-2':
                 variant === 'outline',
               'cursor-not-allowed bg-gray-100 opacity-75': disabled,
             },
+
+            'data-[error=true]:border data-[error=true]:border-danger-500 data-[error=true]:focus:ring-danger-500 data-[error=true]:focus:ring-opacity-25',
+
             //size style
             {
               'h-8 text-sm file:text-sm': size === 'sm',
@@ -102,8 +102,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             'group-[.is-group]:[&:not(:first-child):not(:last-child)]:!rounded-none',
             'group-[.is-group]:last:!rounded-l-none',
 
-            'group-[.is-group]:[&:not(:first-child):not(:last-child)]:!border-l-0',
-            'group-[.is-group]:last:!border-l-0'
+            // 'group-[.is-group]:[&:not(:first-child):not(:last-child)]:!border-l-0',
+            // 'group-[.is-group]:last:!border-l-0'
           )}
         />
 
@@ -117,14 +117,12 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   }
 )
 
-Input.displayName = 'Input'
-
 export function InputLeftAddon({ children }: { children: React.ReactNode }) {
   return (
     <div
       className={cx(
         'leading-1 flex items-center justify-center rounded-l text-gray-700',
-        'border border-l border-gray-300 bg-gray-100 px-3'
+        'border border-r-0 border-gray-300 bg-gray-100 px-3'
       )}
     >
       {children}
@@ -137,7 +135,7 @@ export function InputRightAddon({ children }: { children: React.ReactNode }) {
     <div
       className={cx(
         'leading-1 flex items-center justify-center rounded-r text-gray-700',
-        'border-y border-r border-gray-300 bg-gray-100 px-3'
+        'border border-l-0 border-gray-300 bg-gray-100 px-3'
       )}
     >
       {children}

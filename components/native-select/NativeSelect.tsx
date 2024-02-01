@@ -1,5 +1,4 @@
 'use client'
-
 import React, { useContext } from 'react'
 import cx from '@/lib/cx'
 
@@ -118,8 +117,12 @@ export const NativeSelect = React.forwardRef<
           'group-[.is-group]:[&:not(:first-child):not(:last-child)]:!rounded-none',
           'group-[.is-group]:last:!rounded-l-none',
 
-          'group-[.is-group]:[&:not(:first-child):not(:last-child)]:!border-l-0',
-          'group-[.is-group]:last:!border-l-0'
+          // 'group-[.is-group]:[&:not(:first-child):not(:last-child)]:!border-l-0',
+          // 'group-[.is-group]:last:!border-l-0'
+
+          'group-[.is-group]:[&:not(:first-child):not(:last-child)]:!-mr-[1px]',
+          'group-[.is-group]:last:!-ml-[1px]',
+          'group-[.is-group]:first:!-mr-[1px]'
         )}
       >
         {children}
@@ -127,44 +130,3 @@ export const NativeSelect = React.forwardRef<
     </Root>
   )
 })
-
-export function NativeSelectLeftAddon({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <div
-      className={cx(
-        'leading-1 flex items-center justify-center rounded-l text-gray-700',
-        'border border-l border-gray-300 bg-gray-100 px-3'
-      )}
-    >
-      {children}
-    </div>
-  )
-}
-
-export function NativeSelectRightAddon({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <div
-      className={cx(
-        'leading-1 flex items-center justify-center rounded-r text-gray-700',
-        'border-y border-r border-gray-300 bg-gray-100 px-3'
-      )}
-    >
-      {children}
-    </div>
-  )
-}
-export function NativeSelectGroup({ children }: { children: React.ReactNode }) {
-  return (
-    <InputGroupCtx.Provider value={true}>
-      <div className="is-group group relative flex w-full">{children}</div>
-    </InputGroupCtx.Provider>
-  )
-}

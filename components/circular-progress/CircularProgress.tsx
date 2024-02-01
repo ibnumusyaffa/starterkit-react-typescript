@@ -9,9 +9,9 @@ const sizeMapping = {
   xs: { svgSize: 24, stroke: 4 },
 }
 
-export type ProgressCircleElement = SVGSVGElement
+export type CircularProgressElement = SVGSVGElement
 
-export type ProgressCircleProps = Omit<
+export type CircularProgressProps = Omit<
   React.SVGProps<SVGSVGElement>,
   'value'
 > & {
@@ -45,9 +45,9 @@ export type ProgressCircleProps = Omit<
 }
 
 /* -------------------------------- Component ------------------------------- */
-export const ProgressCircle = React.forwardRef<
-  ProgressCircleElement,
-  ProgressCircleProps
+export const CircularProgress = React.forwardRef<
+  CircularProgressElement,
+  CircularProgressProps
 >((props, ref) => {
   const {
     className,
@@ -160,4 +160,4 @@ export const ProgressCircle = React.forwardRef<
   )
 })
 
-ProgressCircle.displayName = 'ProgressCircle'
+CircularProgress.displayName = 'CircularProgress'

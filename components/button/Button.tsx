@@ -167,8 +167,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       'group-[.is-group]:[&:not(:first-child):not(:last-child)]:!rounded-none',
       'group-[.is-group]:last:!rounded-l-none',
 
-      'group-[.is-group]:[&:not(:first-child):not(:last-child)]:!border-l-0',
-      'group-[.is-group]:last:!border-l-0',
+      'group-[.is-group]:[&:not(:first-child):not(:last-child)]:!-mr-[1px]',
+      'group-[.is-group]:last:!-ml-[1px]',
+      'group-[.is-group]:first:!-mr-[1px]',
       className
     )
 

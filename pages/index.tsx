@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ProgressCircle } from '@/components/progress-circle'
+import { CircularProgress } from '@/components/circular-progress'
 
 export default function Page() {
   const [value, setValue] = React.useState(0)
@@ -13,17 +13,17 @@ export default function Page() {
     return () => clearInterval(interval)
   }, [])
   const colors = ['xs', 'sm', 'md', 'lg', 'xl'] as const
-  
+
   return (
     <div className="space-y-5">
       {colors.map((item) => {
         return (
-          <ProgressCircle
+          <CircularProgress
             key={item}
             color="primary"
             value={value}
             size={item}
-          ></ProgressCircle>
+          ></CircularProgress>
         )
       })}
     </div>

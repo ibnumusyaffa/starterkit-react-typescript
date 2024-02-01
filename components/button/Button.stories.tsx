@@ -140,6 +140,12 @@ export const ButtonGroup_: Story = {
           <Button {...args} variant="outline">
             Button 3
           </Button>
+          <Button {...args} variant="outline">
+            Button 4
+          </Button>
+          <Button {...args} variant="outline">
+            Button 4
+          </Button>
         </ButtonGroup>
 
         <ButtonGroup>

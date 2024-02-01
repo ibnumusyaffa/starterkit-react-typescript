@@ -69,7 +69,7 @@ function Item({
 
 type UsePaginationParams = {
   /**  active page number */
-  page?: number
+  currentPage?: number
 
   /** Total amount of items */
   totalPages: number
@@ -81,31 +81,31 @@ type UsePaginationParams = {
   boundaries?: number
 
   /** Callback fired after change of each page */
-  onChange?: (page: number) => void
+  onPageChange?: (page: number) => void
 }
 export function usePagination({
-  page = 1,
+  currentPage = 1,
   totalPages,
   siblings = 1,
   boundaries = 1,
-  onChange,
+  onPageChange,
 }: UsePaginationParams) {
   const _totalPages = Math.max(Math.trunc(totalPages), 0)
 
   const setPage = (pageNumber: number) => {
     if (pageNumber <= 0) {
-      onChange?.(1)
+      onPageChange?.(1)
     } else if (pageNumber > _totalPages) {
-      onChange?.(_totalPages)
+      onPageChange?.(_totalPages)
     } else {
-      onChange?.(pageNumber)
+      onPageChange?.(pageNumber)
     }
   }
 
-  const next = () => onChange?.(page + 1)
-  const previous = () => onChange?.(page - 1)
-  const first = () => onChange?.(1)
-  const last = () => onChange?.(_totalPages)
+  const next = () => onPageChange?.(currentPage + 1)
+  const previous = () => onPageChange?.(currentPage - 1)
+  const first = () => onPageChange?.(1)
+  const last = () => onPageChange?.(_totalPages)
 
   const paginationRange = useMemo(() => {
     const totalPageNumbers = siblings * 2 + 3 + boundaries * 2
@@ -113,11 +113,15 @@ export function usePagination({
       return range(1, _totalPages)
     }
 
-    const leftSiblingIndex = Math.max(page - siblings, boundaries)
-    const rightSiblingIndex = Math.min(page + siblings, _totalPages - boundaries)
+    const leftSiblingIndex = Math.max(currentPage - siblings, boundaries)
+    const rightSiblingIndex = Math.min(
+      currentPage + siblings,
+      _totalPages - boundaries
+    )
 
     const shouldShowLeftDots = leftSiblingIndex > boundaries + 2
-    const shouldShowRightDots = rightSiblingIndex < _totalPages - (boundaries + 1)
+    const shouldShowRightDots =
+      rightSiblingIndex < _totalPages - (boundaries + 1)
 
     if (!shouldShowLeftDots && shouldShowRightDots) {
       const leftItemCount = siblings * 2 + boundaries + 2
@@ -144,11 +148,11 @@ export function usePagination({
       RIGHT_DOT,
       ...range(_totalPages - boundaries + 1, _totalPages),
     ]
-  }, [_totalPages, siblings, page, boundaries])
+  }, [_totalPages, siblings, currentPage, boundaries])
 
   return {
     range: paginationRange,
-    active: page,
+    active: currentPage,
     setPage,
     next,
     previous,
@@ -159,7 +163,7 @@ export function usePagination({
 
 type PaginationProps = {
   /**  active page number */
-  page?: number
+  currentPage?: number
 
   /** Total number of page */
   totalPages: number
@@ -171,7 +175,7 @@ type PaginationProps = {
   boundaries?: number
 
   /** Callback fired after change of each page */
-  onChange?: (page: number) => void
+  onPageChange?: (page: number) => void
 
   /** show page numbering, default true */
   withPageNumber?: boolean
@@ -184,16 +188,16 @@ export function Pagination({
   siblings = 1,
   boundaries = 1,
   withPageNumber = true,
-  page = 1,
-  onChange,
+  currentPage = 1,
+  onPageChange,
   totalPages,
   disabled,
 }: PaginationProps) {
   const { range, setPage, next, previous, active } = usePagination({
-    page,
+    currentPage,
     siblings,
     totalPages,
-    onChange,
+    onPageChange,
     boundaries,
   })
 

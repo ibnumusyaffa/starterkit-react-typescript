@@ -1,13 +1,7 @@
 import React from 'react'
 import { ArrowLongRightIcon } from '@heroicons/react/24/solid'
 
-import { Button } from '@/components/button'
-import {
-  NativeSelect,
-  NativeSelectGroup,
-  NativeSelectLeftAddon,
-  NativeSelectRightAddon,
-} from '@/components/native-select'
+import { NativeSelect } from '@/components/native-select'
 
 function Page() {
   return (
@@ -100,39 +94,6 @@ function Page() {
               >
                 <option>Test</option>
               </NativeSelect>
-            </div>
-          </div>
-        </div>
-
-        <div className="space-y-10">
-          <div className="space-y-3">
-            <div className="text-xl font-semibold text-gray-700">
-              Left/Right Addon
-            </div>
-            <div className="space-y-5 md:w-1/2">
-              <NativeSelectGroup>
-                <NativeSelectLeftAddon>https://</NativeSelectLeftAddon>
-                <NativeSelect fullWidth placeholder="Testt">
-                  <option>Test</option>
-                </NativeSelect>
-                <NativeSelectRightAddon>.com</NativeSelectRightAddon>
-              </NativeSelectGroup>
-            </div>
-          </div>
-        </div>
-
-        <div className="space-y-10">
-          <div className="space-y-3">
-            <div className="text-xl font-semibold text-gray-700">
-              With Button
-            </div>
-            <div className="flex  space-x-5 md:w-1/2">
-              <NativeSelectGroup>
-                <NativeSelect fullWidth placeholder="Test">
-                  <option>Test</option>
-                </NativeSelect>
-                <Button variant="default">Search</Button>
-              </NativeSelectGroup>
             </div>
           </div>
         </div>
