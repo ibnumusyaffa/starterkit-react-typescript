@@ -209,11 +209,12 @@ export const WithAddon: Story = {
 }
 
 export const WithButton: Story = {
-  render: () => {
+  args: {},
+  render: (args) => {
     return (
       <div className="space-y-5 md:w-1/2">
         <InputGroup>
-          <Input placeholder="Search..." autoComplete="off"></Input>
+          <Input {...args} placeholder="Search..." autoComplete="off"></Input>
           <Button
             variant="outline"
             leftIcon={
@@ -225,7 +226,7 @@ export const WithButton: Story = {
         </InputGroup>
 
         <InputGroup>
-          <Input placeholder="Search..." autoComplete="off"></Input>
+          <Input {...args} placeholder="Search..." autoComplete="off"></Input>
           <Button
             variant="default"
             leftIcon={
@@ -237,7 +238,7 @@ export const WithButton: Story = {
         </InputGroup>
 
         <InputGroup>
-          <Input placeholder="Search..." autoComplete="off"></Input>
+          <Input {...args} placeholder="Search..." autoComplete="off"></Input>
           <Button
             variant="solid"
             leftIcon={
@@ -254,7 +255,7 @@ export const WithButton: Story = {
 
 export const WithNativeSelect: Story = {
   args: {},
-  render: () => {
+  render: (args) => {
     return (
       <InputGroup>
         <NativeSelect placeholder="Test" >
@@ -263,7 +264,7 @@ export const WithNativeSelect: Story = {
           <option>Type 2</option>
           <option>Type 3</option>
         </NativeSelect>
-        <Input autoComplete="off" placeholder="Search..."></Input>
+        <Input {...args} autoComplete="off" placeholder="Search..."></Input>
         <Button variant="default">Search</Button>
       </InputGroup>
     )
@@ -272,14 +273,14 @@ export const WithNativeSelect: Story = {
 
 export const InputPassword_: Story = {
   args: {},
-  render: () => {
-    return <InputPassword placeholder="Password" />
+  render: (args) => {
+    return <InputPassword {...args} placeholder="Password" />
   },
 }
 
 export const InputFile: Story = {
   args: {},
-  render: () => {
-    return <Input type="file" placeholder="Password" />
+  render: (args) => {
+    return <Input {...args} type="file" placeholder="Password" />
   },
 }
