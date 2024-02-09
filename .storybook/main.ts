@@ -40,6 +40,7 @@ const config: StorybookConfig = {
       shouldRemoveUndefinedFromOptional: true,
       skipChildrenPropWithoutDoc: false,
       propFilter: (prop, component) => {
+        console.log(prop)
         if (
           [
             'children',
@@ -62,6 +63,11 @@ const config: StorybookConfig = {
         if (prop.parent?.fileName.includes('@radix-ui')) {
           return true
         }
+
+        if (prop.parent?.fileName.includes('@react-types')) {
+          return true
+        }
+
         if (prop.declarations !== undefined && prop.declarations.length > 0) {
           const hasPropAdditionalDescription = prop.declarations.find(
             (declaration) => {

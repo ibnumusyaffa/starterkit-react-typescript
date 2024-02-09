@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import cx from '@/lib/cx'
 import {
   CheckCircleIcon,
   ExclamationTriangleIcon,
@@ -8,7 +9,6 @@ import {
   XCircleIcon,
   XMarkIcon,
 } from '@heroicons/react/24/solid'
-import cx from '@/lib/cx'
 
 export type AlertType = 'danger' | 'warning' | 'success' | 'info' | 'neutral'
 
@@ -18,17 +18,17 @@ type CloseButtonProps = {
 }
 function CloseButton({ type = 'danger', onClick }: CloseButtonProps) {
   return (
-    <div className="absolute right-1.5 top-1.5">
+    <div className="absolute right-2.5 top-2">
       <button
         className={cx('h-5 w-5 rounded transition-all', {
-          'text-warning-800 hover:bg-warning-200 active:bg-warning-300':
+          'text-warning-700 hover:bg-warning-200 active:bg-warning-300':
             type === 'warning',
-          'text-danger-800 hover:bg-danger-200 active:bg-danger-300':
+          'text-danger-700 hover:bg-danger-200 active:bg-danger-300':
             type === 'danger',
-          'text-success-800 hover:bg-success-200 active:bg-success-300':
+          'text-success-700 hover:bg-success-200 active:bg-success-300':
             type === 'success',
-          'text-info-800 hover:bg-info-200 active:bg-info-300': type === 'info',
-          'text-gray-800 hover:bg-gray-200 active:bg-gray-300':
+          'text-info-700 hover:bg-info-200 active:bg-info-300': type === 'info',
+          'text-gray-700 hover:bg-gray-200 active:bg-gray-300':
             type === 'neutral',
         })}
         onClick={onClick}
@@ -68,6 +68,7 @@ export type AlertProps = {
   children?: React.ReactNode
   closeable?: boolean
   withIcon?: boolean
+  withAccent?: boolean
 }
 export function Alert({
   type = 'danger',
@@ -75,25 +76,34 @@ export function Alert({
   children,
   closeable = false,
   withIcon,
+  withAccent = false,
 }: AlertProps) {
   const [show, setShow] = React.useState(true)
 
   if (!show) {
     return null
   }
+
   return (
     <div
-      className={cx('relative flex items-start space-x-3 rounded p-3', {
-        'border-[1px] border-warning-300 bg-warning-50': type === 'warning',
-        'border-[1px] border-danger-300 bg-danger-50': type === 'danger',
-        'border-[1px] border-success-300 bg-success-50': type === 'success',
-        'border-[1px] border-info-300 bg-info-50': type === 'info',
-        'border-[1px] border-gray-300 bg-gray-50': type === 'neutral',
-      })}
+      className={cx(
+        'relative flex items-start space-x-3 rounded-r  px-3 py-3 ',
+        {
+          'border-warning-500 bg-warning-50': type === 'warning',
+          'border-danger-500 bg-danger-50': type === 'danger',
+          'border-success-500 bg-success-50': type === 'success',
+          'border-info-500 bg-info-50': type === 'info',
+          'border-gray-500 bg-gray-100': type === 'neutral',
+        },
+        {
+          'rounded-l': !withAccent,
+          'border-l-2': withAccent,
+        }
+      )}
     >
       {withIcon ? <Icon type={type}></Icon> : null}
       <div
-        className={cx('flex-1  space-y-1', {
+        className={cx('flex-1 space-y-1.5', {
           'text-warning-800': type === 'warning',
           'text-danger-800': type === 'danger',
           'text-success-800': type === 'success',
@@ -102,7 +112,7 @@ export function Alert({
         })}
       >
         {title ? (
-          <div className="font-medium leading-tight">{title}</div>
+          <div className="text-sm font-semibold leading-tight">{title}</div>
         ) : null}
         {children ? <div className="text-sm">{children}</div> : null}
       </div>

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
-import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline'
 import cx from '@/lib/cx'
+import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline'
 import {
   AriaButtonProps,
   AriaNumberFieldProps,
@@ -27,16 +27,21 @@ function Button(props: AriaButtonProps<'button'>) {
   )
 }
 
-type InputNumberProps = AriaNumberFieldProps & {
+type InputNumberProps = Omit<AriaNumberFieldProps, 'isDisabled'> & {
   hideStepper?: boolean
   icon?: React.ReactNode
   error?: boolean
   size?: 'sm' | 'md' | 'lg' | 'xl'
   locale?: string
+  disabled?: boolean
 }
 export const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
-  ({ error, size = 'md', icon, hideStepper, locale, ...props }, ref) => {
+  (
+    { error, size = 'md', icon, hideStepper, locale, disabled, ...otherProps },
+    ref
+  ) => {
     const defaultLocale = useLocale()
+    const props = { ...otherProps, isDisabled: disabled }
     const state = useNumberFieldState({
       ...props,
       locale: locale ? locale : defaultLocale.locale,
@@ -84,9 +89,12 @@ export const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
         >
           {icon ? (
             <div
-              className={cx('flex items-center justify-center px-2', {
-                'bg-gray-100 opacity-75': props.isDisabled,
-              })}
+              className={cx(
+                'flex items-center justify-center px-2 text-gray-700',
+                {
+                  'bg-gray-100 opacity-75': props.isDisabled,
+                }
+              )}
             >
               {icon}
             </div>

@@ -115,7 +115,7 @@ type AvatarMoreProps = {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 }
 
-export function AvatarMore({ children, size = 'md' }: AvatarMoreProps) {
+export function AvatarMore({ children, size = 'sm' }: AvatarMoreProps) {
   const { isGroup } = useContext(AvatarCtx)
   return (
     <AvatarPrimitive.Root asChild>

@@ -2,6 +2,12 @@ import React from 'react'
 import Link from 'next/link'
 
 import { Avatar, AvatarGroup, AvatarMore } from '@/components/avatar'
+import { Indicator } from '@/components/indicator'
+import {
+  TooltipContent,
+  TooltipRoot,
+  TooltipTrigger,
+} from '@/components/tooltip'
 
 function Page() {
   const src =
@@ -43,6 +49,29 @@ function Page() {
       </div>
 
       <div className="space-y-3">
+        <div className="text-xl font-semibold text-gray-700">With Tooltip</div>
+        <div className="flex space-x-5">
+          <TooltipRoot delayDuration={0}>
+            <TooltipTrigger>
+              <Avatar size="md" name="John Doe"></Avatar>
+            </TooltipTrigger>
+            <TooltipContent color="dark">John Doe</TooltipContent>
+          </TooltipRoot>
+        </div>
+      </div>
+
+      <div className="space-y-3">
+        <div className="text-xl font-semibold text-gray-700">
+          With Indicator
+        </div>
+        <div className="flex space-x-5">
+          <Indicator style={{ right: 8, bottom: 8 }} position="bottom-right">
+            <Avatar size="xs" name="John Doe"></Avatar>
+          </Indicator>
+        </div>
+      </div>
+
+      <div className="space-y-3">
         <div className="text-xl font-semibold text-gray-700">Group</div>
         <div className="flex space-x-5">
           <AvatarGroup>
@@ -51,6 +80,40 @@ function Page() {
             <Avatar name="medium dium"></Avatar>
             <Avatar name="large ge"></Avatar>
             <Avatar name="xtra large"></Avatar>
+            <AvatarMore>+4</AvatarMore>
+          </AvatarGroup>
+        </div>
+      </div>
+
+      <div className="space-y-3">
+        <div className="text-xl font-semibold text-gray-700">With Tooltip</div>
+        <div className="flex space-x-5">
+          <AvatarGroup>
+            <TooltipRoot delayDuration={0}>
+              <TooltipTrigger>
+                <Avatar name="xtra small"></Avatar>
+              </TooltipTrigger>
+              <TooltipContent color="dark">John Doe</TooltipContent>
+            </TooltipRoot>
+            <TooltipRoot delayDuration={0}>
+              <TooltipTrigger>
+                <Avatar name="s mall"></Avatar>
+              </TooltipTrigger>
+              <TooltipContent color="dark">Billy</TooltipContent>
+            </TooltipRoot>
+            <TooltipRoot delayDuration={0}>
+              <TooltipTrigger>
+                <Avatar name="medium dium"></Avatar>
+              </TooltipTrigger>
+              <TooltipContent color="dark">Michael</TooltipContent>
+            </TooltipRoot>
+            <TooltipRoot delayDuration={0}>
+              <TooltipTrigger>
+                <Avatar name="large ge"></Avatar>
+              </TooltipTrigger>
+              <TooltipContent color="dark">Jordan</TooltipContent>
+            </TooltipRoot>
+
             <AvatarMore>+4</AvatarMore>
           </AvatarGroup>
         </div>

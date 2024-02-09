@@ -1,4 +1,5 @@
 'use client'
+
 import React, { useContext } from 'react'
 import cx from '@/lib/cx'
 
@@ -81,20 +82,20 @@ export const NativeSelect = React.forwardRef<
           'form-select rounded pr-10 leading-tight text-gray-800',
           '!py-0 focus:border-primary-500 focus:outline-none focus:ring-primary-500 focus:ring-opacity-25',
 
-          'data-[error=true]:border-danger-500 data-[error=true]:focus:ring-danger-500 data-[error=true]:focus:ring-opacity-25',
           {
             //disable w-full when is group
             'w-full': fullWidth,
           },
           // variant style
           {
-            'border-0 bg-gray-100 focus:border focus:border-gray-300 focus:bg-white focus:ring-2':
+            'border-0 bg-gray-100 focus:border focus:ring-2':
               variant === 'filled',
             'bg-white-100 border border-gray-300 focus:ring-2':
               variant === 'outline',
 
             'cursor-not-allowed bg-gray-100 opacity-75': disabled,
           },
+          'data-[error=true]:border data-[error=true]:border-danger-500 data-[error=true]:focus:ring-danger-500 data-[error=true]:focus:ring-opacity-25',
           //size style
           {
             'h-8 text-sm': size === 'sm',

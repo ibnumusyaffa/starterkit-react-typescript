@@ -38,7 +38,7 @@ function Page() {
         <div className="space-y-3">
           <div className="text-xl font-semibold text-gray-700">Disabled</div>
           <div className="flex space-x-5 md:w-1/2">
-            <InputNumber label="example" isDisabled></InputNumber>
+            <InputNumber label="example" disabled></InputNumber>
           </div>
         </div>
       </div>
