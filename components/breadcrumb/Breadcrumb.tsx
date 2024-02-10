@@ -1,8 +1,8 @@
 'use client'
 
 import React, { createContext, useContext } from 'react'
-import { Slot, Slottable } from '@radix-ui/react-slot'
 import cx from '@/lib/cx'
+import { Slot, Slottable } from '@radix-ui/react-slot'
 
 type BreadcrumbProps = {
   children?: React.ReactNode
@@ -10,7 +10,7 @@ type BreadcrumbProps = {
 }
 const BreadcrumbCtx = createContext<BreadcrumbProps>({})
 
-export function Breadcrumb({ children, separator }: BreadcrumbProps) {
+export function Breadcrumb({ children, separator = '/' }: BreadcrumbProps) {
   return (
     <BreadcrumbCtx.Provider value={{ separator }}>
       <nav aria-label="breadcrumb">
@@ -41,7 +41,7 @@ export function BreadcrumbItem({
         <Slottable>{children}</Slottable>
       </Component>
       <div className="pointer-events-none mx-2 group-last:hidden">
-        {separator ? separator : '/'}
+        {separator}
       </div>
     </li>
   )
