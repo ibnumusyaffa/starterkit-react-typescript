@@ -14,6 +14,7 @@ import {
   InputLeftAddon,
   InputPassword,
   InputRightAddon,
+  InputSearch,
 } from '@/components/input'
 import { NativeSelect } from '@/components/native-select'
 
@@ -275,6 +276,14 @@ export const InputPassword_: Story = {
   args: {},
   render: (args) => {
     return <InputPassword {...args} placeholder="Password" />
+  },
+}
+
+
+export const InputSearch_: Story = {
+  args: {},
+  render: (args) => {
+    return <InputSearch {...args} placeholder="Password" />
   },
 }
 

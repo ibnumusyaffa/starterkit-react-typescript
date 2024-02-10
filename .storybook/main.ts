@@ -40,7 +40,6 @@ const config: StorybookConfig = {
       shouldRemoveUndefinedFromOptional: true,
       skipChildrenPropWithoutDoc: false,
       propFilter: (prop, component) => {
-        console.log(prop)
         if (
           [
             'children',
