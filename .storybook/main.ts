@@ -49,6 +49,9 @@ const config: StorybookConfig = {
             'type',
             'disabled',
             'name',
+            'checked',
+            'defaultChecked',
+            'ref',
           ].includes(prop.name)
         ) {
           return true

@@ -2,7 +2,8 @@ import React from 'react'
 import Link from 'next/link'
 import { EyeIcon, PencilIcon, TrashIcon } from '@heroicons/react/24/outline'
 
-import { ButtonGroup, ButtonIcon, Color } from '@/components/button'
+import { ButtonGroup, Color } from '@/components/button'
+import { ButtonIcon } from '@/components/button-icon'
 import { NativeSelect } from '@/components/native-select'
 
 function Page() {

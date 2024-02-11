@@ -45,9 +45,7 @@ export const BasicUsage: Story = {
 }
 
 export const DescriptionOnly: Story = {
-  args: {
-    withIcon: true,
-  },
+  args: {},
   render: (args) => {
     return (
       <Alert {...args}>

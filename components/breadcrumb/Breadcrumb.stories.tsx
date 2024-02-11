@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import React from 'react'
 import Link from 'next/link'
 import { ChevronRightIcon } from '@heroicons/react/24/solid'
@@ -37,8 +38,26 @@ export const CustomSeparator: StoryObj = {
     )
   },
 }
+export const WithLink: StoryObj = {
+  render: () => {
+    return (
+      <Breadcrumb>
+        <BreadcrumbItem asChild>
+          <a href="/docs/button">Home</a>
+        </BreadcrumbItem>
+        <BreadcrumbItem asChild>
+          <a href="/docs/button">Product</a>
+        </BreadcrumbItem>
+        <BreadcrumbItem asChild>
+          <a href="/docs/button">Detail</a>
+        </BreadcrumbItem>
+      </Breadcrumb>
+    )
+  },
+}
 
-export const RenderAsLink: StoryObj = {
+
+export const WithNextLink: StoryObj = {
   render: () => {
     return (
       <Breadcrumb>
@@ -55,3 +74,5 @@ export const RenderAsLink: StoryObj = {
     )
   },
 }
+
+

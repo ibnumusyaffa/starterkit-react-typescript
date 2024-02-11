@@ -6,7 +6,14 @@ import { Slot, Slottable } from '@radix-ui/react-slot'
 
 import { Spinner } from '@/components/spinner'
 
-import { Color, Variant } from './button-types'
+export type Variant = 'solid' | 'light' | 'default' | 'outline' | 'subtle'
+export type Color =
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'warning'
+  | 'info'
+  | 'danger'
 
 type ButtonProps = React.ComponentProps<'button'> & {
   /** @default "md" */
@@ -56,7 +63,7 @@ function variantStyles({
       }
     case 'light':
       return {
-        'focus:ring-2 focus:ring-offset-2  focus:ring-opacity-50': true,
+        'focus:ring-2 focus:ring-offset-1  focus:ring-opacity-50': true,
         'bg-primary-50 enabled:hover:bg-primary-100 enabled:active:bg-primary-200 focus:ring-primary-300 text-primary-600':
           color === 'primary',
         'bg-secondary-50 enabled:hover:bg-secondary-100 enabled:active:bg-secondary-200 focus:ring-secondary-300 text-secondary-600':
@@ -91,7 +98,7 @@ function variantStyles({
       }
     case 'subtle':
       return {
-        'focus:ring-2 focus:ring-offset-2 focus:ring-opacity-40': true,
+        'focus:ring-2 focus:ring-offset-1 focus:ring-opacity-40': true,
         'enabled:hover:bg-primary-50 enabled:active:bg-primary-100 focus:ring-primary-300 text-primary-600':
           color === 'primary',
         'enabled:hover:bg-secondary-50 enabled:active:bg-secondary-100 focus:ring-secondary-300 text-secondary-600':
@@ -130,7 +137,7 @@ export const ButtonIcon = forwardRef<HTMLButtonElement, ButtonProps>(
 
     const buttonStyle = cx(
       // base style
-      'focus:outline-none font-medium rounded flex h-full items-center justify-center',
+      'focus:outline-none font-medium rounded flex h-full items-center justify-center leading-none',
       {
         'opacity-50 cursor-not-allowed': disabled,
         'cursor-not-allowed': loading,
@@ -138,10 +145,10 @@ export const ButtonIcon = forwardRef<HTMLButtonElement, ButtonProps>(
       variantStyles({ variant, color }),
       // size style
       {
-        'text-sm p-1': size === 'sm',
-        'text-base p-1.5': size === 'md',
-        'text-lg p-2': size === 'lg',
-        'text-xl p-2.5': size === 'xl',
+        'text-sm h-6 w-6': size === 'sm',
+        'text-base h-8 w-8': size === 'md',
+        'text-lg h-10 w-10': size === 'lg',
+        'text-xl h-12 w-12': size === 'xl',
       },
 
       //button group
