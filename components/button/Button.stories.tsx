@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import {
   ArrowLongLeftIcon,
   ArrowLongRightIcon,
@@ -330,5 +331,23 @@ export const FullWidth: Story = {
   },
   render: (args) => {
     return <Button {...args}>{args.children}</Button>
+  },
+}
+
+export const RenderAsLink: Story = {
+  args: {},
+  render: () => {
+    return (
+      <div className="flex space-x-5">
+        <Button asChild>
+          <a href="http://google.com" target="_blank">
+            Render as link (a)
+          </a>
+        </Button>
+        <Button asChild>
+          <Link href="/docs/checkbox"> Render as next/link</Link>
+        </Button>
+      </div>
+    )
   },
 }
