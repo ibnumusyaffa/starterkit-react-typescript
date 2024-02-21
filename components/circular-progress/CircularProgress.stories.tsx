@@ -27,20 +27,27 @@ export const BasicUsage: Story = {
 
       return () => clearInterval(interval)
     }, [])
-    const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const
 
     return (
       <div className="space-y-5">
-        {sizes.map((size) => {
-          return (
-            <CircularProgress
-              key={size}
-              {...args}
-              value={value}
-              size={size}
-            ></CircularProgress>
-          )
-        })}
+        <CircularProgress {...args} value={value}></CircularProgress>
+      </div>
+    )
+  },
+}
+
+export const Size: Story = {
+  args: {
+    color: 'primary',
+  },
+  render: (args) => {
+    return (
+      <div className="space-y-5">
+        <CircularProgress {...args} size='xs' value={50}></CircularProgress>
+        <CircularProgress {...args} size='sm'  value={50}></CircularProgress>
+        <CircularProgress {...args} size='md'  value={50}></CircularProgress>
+        <CircularProgress {...args} size='lg'  value={50}></CircularProgress>
+        <CircularProgress {...args} size='xl'  value={50}></CircularProgress>
       </div>
     )
   },
