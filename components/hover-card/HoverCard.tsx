@@ -8,8 +8,8 @@ import React, {
   useState,
 } from 'react'
 import { useControllableState } from '@/hooks'
-import * as HoverCardPrimitive from '@radix-ui/react-hover-card'
 import cx from '@/lib/cx'
+import * as HoverCardPrimitive from '@radix-ui/react-hover-card'
 import { AnimatePresence, motion } from 'framer-motion'
 
 type HoverCardProviderParams = {
@@ -61,8 +61,7 @@ export function HoverCardArrow() {
           className={cx(
             'absolute h-2 w-2 rotate-45',
             'left-0 right-0 ml-auto mr-auto',
-            'top-[-3.5px] bg-white shadow-md',
-            'border-b border-r border-black border-opacity-[0.15]'
+            'top-[-4px] border-b border-r border-gray-300 bg-white shadow-sm'
           )}
         ></div>
       </div>
@@ -113,7 +112,7 @@ export function HoverCardContent({
                 scale: 0.97,
                 transition: { duration: 0.1, ease: 'easeIn' },
               }}
-              className="rounded bg-white p-3 shadow ring-1 ring-black ring-opacity-5 focus:outline-none"
+              className="rounded  border border-gray-300 bg-white  p-3 text-gray-700 shadow"
             >
               {children}
             </motion.div>

@@ -1,7 +1,7 @@
 import React from 'react'
 
 type HeadingProps = {
-  children: React.ReactNode
+  children?: React.ReactNode
 }
 
 export function H1({ children }: HeadingProps) {
