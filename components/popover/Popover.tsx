@@ -8,8 +8,8 @@ import React, {
   useState,
 } from 'react'
 import { useControllableState } from '@/hooks'
-import * as PopoverPrimitive from '@radix-ui/react-popover'
 import cx from '@/lib/cx'
+import * as PopoverPrimitive from '@radix-ui/react-popover'
 import { AnimatePresence, motion } from 'framer-motion'
 
 type PopoverProviderParams = {
@@ -65,8 +65,7 @@ export function PopoverArrow() {
           className={cx(
             'absolute h-2 w-2 rotate-45',
             'left-0 right-0 ml-auto mr-auto',
-            'top-[-3.5px] bg-white shadow-md',
-            'border-b border-r border-black border-opacity-[0.15]'
+            'top-[-4px] border-b border-r border-gray-300 bg-white shadow-sm'
           )}
         ></div>
       </div>
@@ -78,6 +77,7 @@ export function PopoverContent({
   children,
   side = 'bottom',
   align = 'center',
+  sideOffset = 2,
   ...props
 }: React.ComponentProps<typeof PopoverPrimitive.Content>) {
   const { open } = usePopover()
@@ -99,6 +99,7 @@ export function PopoverContent({
             {...props}
             side={side}
             align={align}
+            sideOffset={sideOffset}
             asChild
             forceMount
           >
@@ -117,7 +118,7 @@ export function PopoverContent({
                 scale: 0.97,
                 transition: { duration: 0.1, ease: 'easeIn' },
               }}
-              className="rounded bg-white p-3 shadow ring-1 ring-black ring-opacity-5 focus:outline-none"
+              className="rounded  border border-gray-300 bg-white  p-3 text-gray-700 shadow"
             >
               {children}
             </motion.div>
