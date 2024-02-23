@@ -1,10 +1,12 @@
 type SpinnerProps = {
+  /*Classname */
   className?: string
 }
 
-export function Spinner({ className }: SpinnerProps) {
+export function Spinner({ className, ...props }: SpinnerProps) {
   return (
     <svg
+      {...props}
       className={className}
       viewBox="0 0 38 38"
       xmlns="http://www.w3.org/2000/svg"

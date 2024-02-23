@@ -38,11 +38,10 @@ const config: StorybookConfig = {
       shouldExtractValuesFromUnion: false,
       shouldExtractLiteralValuesFromEnum: true,
       shouldRemoveUndefinedFromOptional: true,
-      skipChildrenPropWithoutDoc: false,
+      skipChildrenPropWithoutDoc: true,
       propFilter: (prop, component) => {
         if (
           [
-            'children',
             'onChange',
             'value',
             'placeholder',

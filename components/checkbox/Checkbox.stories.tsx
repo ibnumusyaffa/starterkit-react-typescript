@@ -11,65 +11,79 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
+export const BasicUsage: Story = {
+  args: {
+    label: 'Label',
+    name: 'example',
+    value: '1',
+  },
+  render: (args) => {
+    return <Checkbox {...args}></Checkbox>
+  },
+}
+
 export const State: Story = {
-  args: {},
   render: () => {
     return (
-      <div>
-        <div className="flex flex-wrap gap-5">
-          <Checkbox label="disabled" name="name" value="1" disabled></Checkbox>
-          <Checkbox label="enable" name="name" value="1"></Checkbox>
-          <Checkbox
-            label="disabled checked"
-            checked
-            name="name"
-            value="1"
-            disabled
-          ></Checkbox>
-          <Checkbox
-            label="enable checked"
-            name="name"
-            checked
-            value="2"
-          ></Checkbox>
-        </div>
-        <div className="flex flex-wrap gap-5">
-          <Checkbox
-            indeterminate
-            label="disabled indeterminate"
-            name="name"
-            value="1"
-            disabled
-          ></Checkbox>
-          <Checkbox
-            indeterminate
-            label="enable indeterminate"
-            name="name"
-            value="1"
-          ></Checkbox>
-          <Checkbox
-            indeterminate
-            label="disabled indeterminate"
-            checked
-            name="name"
-            value="1"
-            disabled
-          ></Checkbox>
-          <Checkbox
-            indeterminate
-            label="enable indeterminate"
-            name="name"
-            checked
-            value="2"
-          ></Checkbox>
-        </div>
+      <div className="flex flex-wrap gap-5">
+        <Checkbox label="disabled" name="name" value="1" disabled></Checkbox>
+        <Checkbox label="enable" name="name" value="1"></Checkbox>
+        <Checkbox
+          label="disabled checked"
+          checked
+          name="name"
+          value="1"
+          disabled
+        ></Checkbox>
+        <Checkbox
+          label="enable checked"
+          name="name"
+          checked
+          value="2"
+        ></Checkbox>
+      </div>
+    )
+  },
+}
+
+export const IndeterminateState: Story = {
+  render: () => {
+    return (
+      <div className="flex flex-wrap gap-5">
+        <Checkbox
+          indeterminate
+          label="disabled indeterminate"
+          name="name"
+          value="1"
+          disabled
+        ></Checkbox>
+        <Checkbox
+          indeterminate
+          label="enable indeterminate"
+          name="name"
+          value="1"
+        ></Checkbox>
+        <Checkbox
+          indeterminate
+          label="disabled indeterminate"
+          checked
+          name="name"
+          value="1"
+          disabled
+        ></Checkbox>
+        <Checkbox
+          indeterminate
+          label="enable indeterminate"
+          name="name"
+          checked
+          value="2"
+        ></Checkbox>
       </div>
     )
   },
 }
 
 export const Size: Story = {
-  args: {},
   render: () => {
     return (
       <div className="flex space-x-5 align-top">
