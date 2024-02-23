@@ -323,13 +323,19 @@ export function Table({
   rounded,
 }: TableProos) {
   if (stickyHeader && overflowXAuto) {
-    alert(
-      'stickyHeader and overflowXAuto cannot true at the same time'
+    return (
+      <div className="border border-red-300 bg-red-50 p-2">
+        <span className='font-semibold'>stickyHeader</span> and <span className='font-semibold'>overflowXAuto</span> cannot true at the same time
+      </div>
     )
   }
 
   if (stickyHeader && rounded) {
-    alert('stickyHeader and rounded cannot true at the same time')
+    return (
+      <div className="border border-red-300 bg-red-50 p-2">
+        <span className='font-semibold'>stickyHeader</span> and <span className='font-semibold'>rounded</span> cannot true at the same time
+      </div>
+    )
   }
 
   return (
