@@ -1,9 +1,9 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
+import cx from '@/lib/cx'
 import { CalendarIcon } from '@heroicons/react/24/outline'
 import { DateValue } from '@internationalized/date'
-import cx from '@/lib/cx'
 import { AnimatePresence } from 'framer-motion'
 import { AriaDatePickerProps, I18nProvider, useDatePicker } from 'react-aria'
 import { useDatePickerState } from 'react-stately'
@@ -14,25 +14,18 @@ import { DateField } from './DateField'
 import { Dialog } from './Dialog'
 import { Popover } from './Popover'
 
-export function DatePicker(
-  props: AriaDatePickerProps<DateValue> & {
-    error?: boolean
-    required?: boolean
-    locale?: string
-  }
-) {
+export type DatePickerProps = AriaDatePickerProps<DateValue> & {
+  error?: boolean
+  required?: boolean
+  locale?: string
+}
+export function DatePicker(props: DatePickerProps) {
   const state = useDatePickerState(props)
   const ref = React.useRef(null)
-  const {
-    groupProps,
-    labelProps,
-    fieldProps,
-    buttonProps,
-    dialogProps,
-    calendarProps,
-  } = useDatePicker(props, state, ref)
+  const { groupProps, fieldProps, buttonProps, dialogProps, calendarProps } =
+    useDatePicker(props, state, ref)
 
-  const allError = state.validationState === 'invalid' || props.error
+  const allError = state.isInvalid || props.error
 
   //this is hack for framer motion
   const [isOpen, setIsOpen] = useState(false)
@@ -41,19 +34,8 @@ export function DatePicker(
   }, [state.isOpen])
 
   return (
-    <I18nProvider locale={props.locale}>
+    <I18nProvider locale={props.locale ?? "en-UK"}>
       <div className="relative flex w-full flex-col text-left">
-        {props.label ? (
-          <div
-            {...labelProps}
-            className="mb-2 block font-medium leading-none text-gray-700"
-          >
-            {props.label}
-            {props.required ? (
-              <span className="ml-1 text-danger-500">*</span>
-            ) : null}
-          </div>
-        ) : null}
         <div
           {...groupProps}
           ref={ref}

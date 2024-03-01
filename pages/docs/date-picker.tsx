@@ -54,6 +54,7 @@ function Page() {
               granularity="day"
               label="day (default)"
             ></DatePicker>
+            {value3?.toString()}
             <DatePicker
               value={value3}
               onChange={setValue3}
