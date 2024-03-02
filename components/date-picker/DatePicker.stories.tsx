@@ -1,15 +1,20 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 
 import React from 'react'
-import { DateValue, parseDate, parseDateTime } from '@internationalized/date'
+import { parseDate, parseDateTime } from '@internationalized/date'
+import type { DateValue } from '@internationalized/date'
 import type { Meta, StoryObj } from '@storybook/react'
+import { DateRange } from 'react-aria'
 
-import { DatePicker } from '@/components/date-picker'
+import { DatePicker, DateRangePicker } from '@/components/date-picker'
 import {
   FormControl,
   FormDescription,
   FormLabel,
 } from '@/components/form-control'
+
+import { InputGroup } from '../input'
+import { NativeSelect } from '../native-select'
 
 const meta = {
   title: 'Forms/DatePicker',
@@ -128,6 +133,47 @@ export const PlaceholderValue: Story = {
           <FormDescription>
             First focus value when user interact with Datepicker
           </FormDescription>
+        </FormControl>
+      </div>
+    )
+  },
+}
+
+export const DateRangePicker_: StoryObj = {
+  args: {},
+  render: () => {
+    const [value, setValue] = React.useState<DateRange>()
+    return (
+      <div className="space-y-3">
+        <FormControl>
+          <FormLabel>Single Calendar</FormLabel>
+          <DateRangePicker value={value} onChange={setValue}></DateRangePicker>
+        </FormControl>
+        <FormControl>
+          <FormLabel>Multiple Calendar</FormLabel>
+          <DateRangePicker
+            value={value}
+            onChange={setValue}
+            multiCalendar
+          ></DateRangePicker>
+        </FormControl>
+        <FormControl>
+          <FormLabel>With Preset</FormLabel>
+          <InputGroup>
+            <NativeSelect>
+              <option>Select Period</option>
+              <option>Today</option>
+              <option>Yesterday</option>
+              <option>Last 7 Days</option>
+              <option>Last 14 Days</option>
+              <option>Last Month</option>
+            </NativeSelect>
+            <DateRangePicker
+              value={value}
+              onChange={setValue}
+              multiCalendar
+            ></DateRangePicker>
+          </InputGroup>
         </FormControl>
       </div>
     )

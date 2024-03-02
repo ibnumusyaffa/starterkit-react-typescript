@@ -1,6 +1,6 @@
 import { ArgTypes, Meta, Stories } from '@storybook/blocks'
 
-import { DatePicker } from '@/components/date-picker'
+import { DatePicker, DateRangePicker } from '@/components/date-picker'
 
 import * as DatePickerStories from './DatePicker.stories'
 
@@ -9,9 +9,17 @@ import * as DatePickerStories from './DatePicker.stories'
 # DatePicker
 
 ```tsx
-import { DatePicker } from '@/components/date-picker'
+import { DateValue, parseDate, parseDateTime } from '@internationalized/date'
+
+import { DatePicker, DateRangePicker } from '@/components/date-picker'
 ```
 
+## DatePicker
+
 <ArgTypes of={DatePicker} />
+
+## DateRangePicker
+
+<ArgTypes of={DateRangePicker} />
 
 <Stories />

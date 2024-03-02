@@ -1,8 +1,8 @@
 import { useRef } from 'react'
+import cx from '@/lib/cx'
 import { useTimeField } from '@react-aria/datepicker'
 import { useLocale } from '@react-aria/i18n'
 import { useTimeFieldState } from '@react-stately/datepicker'
-import cx from '@/lib/cx'
 import { AriaTimeFieldProps, TimeValue } from 'react-aria'
 
 import { DateSegment } from './DateSegment'
@@ -20,22 +20,10 @@ export function InputTime(props: InputTimeProps) {
   })
 
   const ref = useRef<HTMLDivElement>(null)
-  const { fieldProps, labelProps } = useTimeField(props, state, ref)
-  const allError = state.validationState === 'invalid' || props.error
+  const { fieldProps } = useTimeField(props, state, ref)
+  const allError = state.isInvalid || props.error
   return (
     <div className="relative flex w-full flex-col text-left">
-      {props.label ? (
-        <div
-          {...labelProps}
-          className="mb-2 block font-medium leading-none text-gray-700"
-        >
-          {props.label}
-          {props.required ? (
-            <span className="ml-1 text-danger-500">*</span>
-          ) : null}
-        </div>
-      ) : null}
-
       <div
         {...fieldProps}
         ref={ref}

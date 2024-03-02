@@ -1,8 +1,8 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { CalendarIcon } from '@heroicons/react/24/outline'
 import cx from '@/lib/cx'
+import { CalendarIcon } from '@heroicons/react/24/outline'
 import { AnimatePresence } from 'framer-motion'
 import {
   AriaDateRangePickerProps,
@@ -30,7 +30,6 @@ export function DateRangePicker(
   const ref = React.useRef(null)
   const {
     groupProps,
-    labelProps,
     startFieldProps,
     endFieldProps,
     buttonProps,
@@ -49,23 +48,13 @@ export function DateRangePicker(
   return (
     <I18nProvider locale={props.locale}>
       <div className="relative flex w-full flex-col text-left">
-        {props.label ? (
-          <div
-            {...labelProps}
-            className="mb-2 block font-medium leading-none text-gray-700"
-          >
-            {props.label}
-            {props.required ? (
-              <span className="ml-1 text-danger-500">*</span>
-            ) : null}
-          </div>
-        ) : null}
         <div
           {...groupProps}
           ref={ref}
           className={cx(
             'flex items-center justify-center rounded border pr-1',
             'h-10',
+            'group-[.is-group]:first:!rounded-l-none',
             'focus-within:ring-2  focus-within:ring-opacity-25',
             {
               'cursor-not-allowed bg-gray-100 opacity-75': props.isDisabled,
