@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Progress } from '@/components/progress'
 
 const meta = {
-  title: 'Data Display/Progress',
+  title: 'Feedback/Progress',
   component: Progress,
 } satisfies Meta<typeof Progress>
 
