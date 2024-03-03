@@ -1,17 +1,17 @@
 'use client'
 
 import React, { createContext, useContext } from 'react'
+import cx from '@/lib/cx'
 import { Slot, Slottable } from '@radix-ui/react-slot'
 import * as TabsPrimitive from '@radix-ui/react-tabs'
-import cx from '@/lib/cx'
 
 export type Variant = 'default' | 'outline' | 'pills'
 
 type TabsProviderPrams = {
   variant: Variant
-  orientation?: 'vertical' | 'horizontal'
-  grow?: boolean
-  align?: 'start' | 'center' | 'end'
+  orientation: 'vertical' | 'horizontal'
+  grow: boolean
+  align: 'start' | 'center' | 'end'
 }
 
 const TabCtx = createContext<TabsProviderPrams>({
@@ -42,7 +42,7 @@ export function TabsTrigger({
 
   const variantStyle: Record<Variant, string> = {
     default: cx(
-      'flex items-center px-5 py-3 font-medium text-gray-700  border-transparent group ',
+      'flex items-center px-4 py-3 font-medium text-gray-700  border-transparent group ',
       'data-[state=active]:text-primary-700',
       {
         'border-b-[3px] data-[state=active]:border-b-primary-500':
@@ -85,9 +85,9 @@ export function TabsTrigger({
   return (
     <TabsPrimitive.Trigger {...props} asChild disabled={disabled}>
       <Component className={variantStyle[variant]}>
-        <div className="mr-2"> {leftSection}</div>
+        {leftSection ? <div className="mr-2"> {leftSection}</div> : null}
         <Slottable>{children}</Slottable>
-        <div className="ml-2"> {rightSection}</div>
+        {rightSection ? <div className="ml-2">{rightSection}</div> : null}
       </Component>
     </TabsPrimitive.Trigger>
   )
@@ -126,14 +126,14 @@ export function TabsList({ children }: { children?: React.ReactNode }) {
   )
 }
 
-type TabsRootProps = React.ComponentProps<typeof TabsPrimitive.Tabs> &
-  TabsProviderPrams
+type TabsRootProps = React.ComponentProps<typeof TabsPrimitive.Root> &
+  Partial<TabsProviderPrams>
 
 export function TabsRoot({
-  orientation,
-  variant,
-  align,
-  grow,
+  orientation = 'horizontal',
+  variant = 'default',
+  align = 'start',
+  grow = false,
   activationMode = 'manual',
   ...props
 }: TabsRootProps) {
@@ -157,8 +157,15 @@ export function TabsRoot({
 export function TabsContent(
   props: React.ComponentProps<typeof TabsPrimitive.Content>
 ) {
+  const { orientation } = useContext(TabCtx)
   return (
-    <TabsPrimitive.Content className="p-3" {...props}>
+    <TabsPrimitive.Content
+      className={cx({
+        'py-3': orientation === 'horizontal',
+        'px-3': orientation === 'vertical',
+      })}
+      {...props}
+    >
       {props.children}
     </TabsPrimitive.Content>
   )
