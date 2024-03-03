@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Cog6ToothIcon } from '@heroicons/react/24/outline'
 import type { Meta, StoryObj } from '@storybook/react'
 
@@ -122,7 +123,7 @@ export const Vertical: Story = {
 
 export const WithIcon: Story = {
   args: {
-    orientation: 'vertical',
+    orientation: 'horizontal',
   },
   render: (args) => {
     return (
@@ -194,6 +195,35 @@ export const WithIcon: Story = {
               Right Icon
             </TabsTrigger>
             <TabsTrigger value="tab3">Setting</TabsTrigger>
+          </TabsList>
+          <TabsContent value="tab1">Content 1</TabsContent>
+          <TabsContent value="tab2">Content 2</TabsContent>
+          <TabsContent value="tab3">Content 3</TabsContent>
+        </TabsRoot>
+      </div>
+    )
+  },
+}
+
+export const RenderAsChild: Story = {
+  args: {
+    orientation: 'horizontal',
+  },
+  render: (args) => {
+    return (
+      <div className="space-y-20">
+        <TabsRoot {...args} variant="default" defaultValue="tab1">
+          <TabsList>
+            <TabsTrigger value="tab1" asChild>
+              <button onClick={() => alert('here')}>Render as Button</button>
+            </TabsTrigger>
+
+            <TabsTrigger value="tab2" asChild>
+              <Link href="/docs/button"> Render as next/link</Link>
+            </TabsTrigger>
+            <TabsTrigger value="tab3" asChild>
+              <a href="http://www.google.com"> Render as Link</a>
+            </TabsTrigger>
           </TabsList>
           <TabsContent value="tab1">Content 1</TabsContent>
           <TabsContent value="tab2">Content 2</TabsContent>

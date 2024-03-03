@@ -24,7 +24,6 @@ const TabCtx = createContext<TabsProviderPrams>({
 type TabsTriggerProps = React.ComponentPropsWithoutRef<
   typeof TabsPrimitive.Trigger
 > & {
-  asChild?: boolean
   leftSection?: React.ReactNode
   rightSection?: React.ReactNode
 }

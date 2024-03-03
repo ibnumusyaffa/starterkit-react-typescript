@@ -56,7 +56,7 @@ const config: StorybookConfig = {
           return true
         }
 
-        const hides = ['className', 'asChild']
+        const hides = ['className']
 
         if (hides.includes(prop.name)) {
           return false

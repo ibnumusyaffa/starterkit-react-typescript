@@ -129,3 +129,24 @@ export const GroupTooltip: Story = {
     )
   },
 }
+
+export const RenderAsChild: Story = {
+  render: () => {
+    return (
+      <div className="flex space-x-5">
+        <div className="flex items-center space-x-4">
+          <Avatar src="https://google.com/not-found" name="Ibnu M" asChild>
+            <button onClick={() => alert('clicked')}></button>
+          </Avatar>
+          <div>Render as button</div>
+        </div>
+        <div className="flex items-center space-x-4">
+          <Avatar asChild>
+            <a href="http://google.com" target="_blank"></a>
+          </Avatar>
+          <div>Render as link (a)</div>
+        </div>
+      </div>
+    )
+  },
+}

@@ -334,7 +334,7 @@ export const FullWidth: Story = {
   },
 }
 
-export const RenderAsLink: Story = {
+export const RenderAsChild: Story = {
   args: {},
   render: () => {
     return (

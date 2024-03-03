@@ -154,3 +154,23 @@ export const Rounded: Story = {
     )
   },
 }
+
+export const RenderAsChild: Story = {
+  args: {
+    size: 'sm',
+  },
+  render: (args) => {
+    return (
+      <div className="space-x-5">
+        <Badge {...args} variant="light" asChild>
+          <button>render as button</button>
+        </Badge>
+        <Badge {...args} variant="light" asChild>
+          <a href="http://google.com" target="_blank">
+            rendar as link (a)
+          </a>
+        </Badge>
+      </div>
+    )
+  },
+}
