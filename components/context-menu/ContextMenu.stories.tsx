@@ -18,7 +18,7 @@ import {
 } from '@/components/context-menu'
 
 const meta = {
-  title: 'Overlay/ContextMenu',
+  title: 'Components/ContextMenu',
   component: ContextMenuRoot,
 } satisfies Meta<typeof ContextMenuRoot>
 

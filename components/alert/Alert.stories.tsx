@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Alert } from '@/components/alert'
 
 const meta = {
-  title: 'Feedback/Alert',
+  title: 'Components/Alert',
   component: Alert,
 } satisfies Meta<typeof Alert>
 

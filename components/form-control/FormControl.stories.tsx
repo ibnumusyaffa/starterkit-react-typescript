@@ -10,7 +10,7 @@ import {
 import { Input } from '@/components/input'
 
 const meta = {
-  title: 'Forms/FormControl',
+  title: 'Components/FormControl',
   component: FormControl,
 } satisfies Meta<typeof FormControl>
 

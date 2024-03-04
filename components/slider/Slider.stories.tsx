@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Slider } from '@/components/slider'
 
 const meta = {
-  title: 'Forms/Slider',
+  title: 'Components/Slider',
   component: Slider,
 } satisfies Meta<typeof Slider>
 

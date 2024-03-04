@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { TabsContent, TabsList, TabsRoot, TabsTrigger } from '@/components/tabs'
 
 const meta = {
-  title: 'Navigation/Tabs',
+  title: 'Components/Tabs',
   component: TabsRoot,
 } satisfies Meta<typeof TabsRoot>
 

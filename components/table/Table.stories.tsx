@@ -7,7 +7,7 @@ import { EmptyState } from '@/components/empty-state'
 import { Table, TableEmpty, Tbody, Td, Th, Thead, Tr } from '@/components/table'
 
 const meta = {
-  title: 'Data Display/Table',
+  title: 'Components/Table',
   component: Table,
 } satisfies Meta<typeof Table>
 

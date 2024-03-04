@@ -12,7 +12,7 @@ import {
 import { Button } from '@/components/button'
 
 const meta = {
-  title: 'Overlay/AlertDialog',
+  title: 'Components/AlertDialog',
 }
 
 export default meta

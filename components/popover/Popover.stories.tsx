@@ -9,7 +9,7 @@ import {
 } from '@/components/popover'
 
 const meta = {
-  title: 'Overlay/Popover',
+  title: 'Components/Popover',
   parameters: {
     layout: 'centered',
   },

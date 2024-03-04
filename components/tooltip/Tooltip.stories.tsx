@@ -8,7 +8,7 @@ import {
 } from '@/components/tooltip'
 
 const meta = {
-  title: 'Overlay/Tooltip',
+  title: 'Components/Tooltip',
   parameters: {
     layout: 'centered',
   },

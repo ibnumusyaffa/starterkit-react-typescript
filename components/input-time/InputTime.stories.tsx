@@ -8,7 +8,7 @@ import { FormControl, FormLabel } from '@/components/form-control'
 import { InputTime } from '@/components/input-time'
 
 const meta = {
-  title: 'Forms/InputTime',
+  title: 'Components/InputTime',
   component: InputTime,
 } satisfies Meta<typeof InputTime>
 

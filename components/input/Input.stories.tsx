@@ -19,7 +19,7 @@ import {
 import { NativeSelect } from '@/components/native-select'
 
 const meta = {
-  title: 'Forms/Input',
+  title: 'Components/Input',
   component: Input,
 } satisfies Meta<typeof Input>
 

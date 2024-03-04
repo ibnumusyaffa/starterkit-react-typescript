@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { CircularProgress } from '@/components/circular-progress'
 
 const meta = {
-  title: 'Data Display/CircularProgress',
+  title: 'Components/CircularProgress',
   component: CircularProgress,
 } satisfies Meta<typeof CircularProgress>
 

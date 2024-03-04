@@ -8,7 +8,7 @@ import {
 } from '@/components/hover-card'
 
 const meta = {
-  title: 'Overlay/HoverCard',
+  title: 'Components/HoverCard',
   parameters: {
     layout: 'centered',
   },

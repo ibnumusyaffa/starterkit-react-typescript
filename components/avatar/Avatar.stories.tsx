@@ -8,7 +8,7 @@ import {
 } from '@/components/tooltip'
 
 const meta = {
-  title: 'Data Display/Avatar',
+  title: 'Components/Avatar',
   component: Avatar,
 } satisfies Meta<typeof Avatar>
 
