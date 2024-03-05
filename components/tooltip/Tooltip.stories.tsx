@@ -60,12 +60,11 @@ export const WithoutDelay: StoryObj = {
 }
 
 export const Position: StoryObj = {
-  
   render: () => {
     const sides = ['top', 'right', 'bottom', 'left'] as const
     const aligns = ['start', 'center', 'end'] as const
     return (
-      <div className="flex gap-5 flex-wrap">
+      <div className="flex flex-wrap gap-5">
         {sides.map((side, sideIndex) => {
           return aligns.map((align, alignIndex) => {
             return (

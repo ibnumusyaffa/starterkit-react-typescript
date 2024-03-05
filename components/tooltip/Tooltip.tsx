@@ -8,8 +8,8 @@ import React, {
   useState,
 } from 'react'
 import { useControllableState } from '@/hooks'
-import * as TooltipPrimitive from '@radix-ui/react-tooltip'
 import cx from '@/lib/cx'
+import * as TooltipPrimitive from '@radix-ui/react-tooltip'
 import { AnimatePresence, motion } from 'framer-motion'
 
 type ProviderParams = {
@@ -123,7 +123,7 @@ export const TooltipContent = React.forwardRef<
                 }}
                 className={cx('relative rounded px-2 py-2', {
                   'bg-gray-800 text-white': color === 'dark',
-                  'bg-white text-gray-700  border border-gray-300 shadow':
+                  'border border-gray-300  bg-white text-gray-700 shadow':
                     color === 'light',
                 })}
               >

@@ -325,7 +325,9 @@ export function Table({
   if (stickyHeader && overflowXAuto) {
     return (
       <div className="border border-red-300 bg-red-50 p-2">
-        <span className='font-semibold'>stickyHeader</span> and <span className='font-semibold'>overflowXAuto</span> cannot true at the same time
+        <span className="font-semibold">stickyHeader</span> and{' '}
+        <span className="font-semibold">overflowXAuto</span> cannot true at the
+        same time
       </div>
     )
   }
@@ -333,7 +335,9 @@ export function Table({
   if (stickyHeader && rounded) {
     return (
       <div className="border border-red-300 bg-red-50 p-2">
-        <span className='font-semibold'>stickyHeader</span> and <span className='font-semibold'>rounded</span> cannot true at the same time
+        <span className="font-semibold">stickyHeader</span> and{' '}
+        <span className="font-semibold">rounded</span> cannot true at the same
+        time
       </div>
     )
   }

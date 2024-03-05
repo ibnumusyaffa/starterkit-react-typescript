@@ -1,4 +1,5 @@
 import React from 'react'
+import cx from '@/lib/cx'
 import {
   CheckCircleIcon,
   ExclamationCircleIcon,
@@ -6,7 +7,6 @@ import {
   XCircleIcon,
   XMarkIcon,
 } from '@heroicons/react/24/solid'
-import cx from '@/lib/cx'
 import toast, { ToastPosition } from 'react-hot-toast'
 
 type Status = 'success' | 'danger' | 'info' | 'warning'
@@ -29,7 +29,7 @@ const base = ({
       <div
         className={cx(
           'pointer-events-auto relative',
-          'lg:w-[360px] w-full',
+          'w-full lg:w-[360px]',
           'rounded py-3 pl-3 pr-9',
           {
             'bg-success-600 text-white': status === 'success',

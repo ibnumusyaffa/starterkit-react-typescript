@@ -2,9 +2,9 @@
 
 import React, { useEffect, useRef, useState } from 'react'
 import { useOnClickOutside } from '@/hooks'
+import cx from '@/lib/cx'
 import { XMarkIcon } from '@heroicons/react/24/solid'
 import * as DialogPrimitive from '@radix-ui/react-dialog'
-import cx from '@/lib/cx'
 import { AnimatePresence, motion } from 'framer-motion'
 
 const overlayMotion = {

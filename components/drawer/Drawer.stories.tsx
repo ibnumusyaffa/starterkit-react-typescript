@@ -23,7 +23,7 @@ export const BasicUsage: StoryObj = {
     const [open, setOpen] = React.useState(false)
     const [placement, setPlacement] = React.useState<'right' | 'left'>('right')
     return (
-      <div className='space-x-3'>
+      <div className="space-x-3">
         <Button
           variant="default"
           onClick={() => {

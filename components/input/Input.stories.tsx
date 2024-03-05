@@ -279,7 +279,6 @@ export const InputPassword_: Story = {
   },
 }
 
-
 export const InputSearch_: Story = {
   args: {},
   render: (args) => {

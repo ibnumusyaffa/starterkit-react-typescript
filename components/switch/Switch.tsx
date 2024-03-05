@@ -1,8 +1,8 @@
 'use client'
 
 import React from 'react'
-import * as SwitchPrimitive from '@radix-ui/react-switch'
 import cx from '@/lib/cx'
+import * as SwitchPrimitive from '@radix-ui/react-switch'
 import { motion } from 'framer-motion'
 
 type SwitchProps = React.ComponentPropsWithoutRef<

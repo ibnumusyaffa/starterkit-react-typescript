@@ -100,7 +100,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             'group-[.is-group]:focus:z-10',
             'group-[.is-group]:first:!rounded-r-none',
             'group-[.is-group]:[&:not(:first-child):not(:last-child)]:!rounded-none',
-            'group-[.is-group]:last:!rounded-l-none',
+            'group-[.is-group]:last:!rounded-l-none'
 
             // 'group-[.is-group]:[&:not(:first-child):not(:last-child)]:!border-l-0',
             // 'group-[.is-group]:last:!border-l-0'

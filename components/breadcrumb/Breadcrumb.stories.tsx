@@ -56,7 +56,6 @@ export const WithLink: StoryObj = {
   },
 }
 
-
 export const WithNextLink: StoryObj = {
   render: () => {
     return (
@@ -74,5 +73,3 @@ export const WithNextLink: StoryObj = {
     )
   },
 }
-
-

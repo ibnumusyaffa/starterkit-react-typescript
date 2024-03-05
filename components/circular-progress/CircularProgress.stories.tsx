@@ -43,11 +43,11 @@ export const Size: Story = {
   render: (args) => {
     return (
       <div className="space-y-5">
-        <CircularProgress {...args} size='xs' value={50}></CircularProgress>
-        <CircularProgress {...args} size='sm'  value={50}></CircularProgress>
-        <CircularProgress {...args} size='md'  value={50}></CircularProgress>
-        <CircularProgress {...args} size='lg'  value={50}></CircularProgress>
-        <CircularProgress {...args} size='xl'  value={50}></CircularProgress>
+        <CircularProgress {...args} size="xs" value={50}></CircularProgress>
+        <CircularProgress {...args} size="sm" value={50}></CircularProgress>
+        <CircularProgress {...args} size="md" value={50}></CircularProgress>
+        <CircularProgress {...args} size="lg" value={50}></CircularProgress>
+        <CircularProgress {...args} size="xl" value={50}></CircularProgress>
       </div>
     )
   },

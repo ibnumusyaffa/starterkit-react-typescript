@@ -1,8 +1,8 @@
 'use client'
 
 import React from 'react'
-import { MagnifyingGlassIcon } from '@heroicons/react/24/solid'
 import cx from '@/lib/cx'
+import { MagnifyingGlassIcon } from '@heroicons/react/24/solid'
 
 import { Input } from './Input'
 

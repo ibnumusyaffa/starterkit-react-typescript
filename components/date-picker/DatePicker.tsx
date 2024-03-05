@@ -34,7 +34,7 @@ export function DatePicker(props: DatePickerProps) {
   }, [state.isOpen])
 
   return (
-    <I18nProvider locale={props.locale ?? "en-UK"}>
+    <I18nProvider locale={props.locale ?? 'en-UK'}>
       <div className="relative flex w-full flex-col text-left">
         <div
           {...groupProps}

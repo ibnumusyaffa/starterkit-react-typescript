@@ -32,7 +32,7 @@ const ScrollBar = React.forwardRef<
     orientation={orientation}
     forceMount
     className={cx(
-      'flex touch-none select-none  transition-opacity data-[state=hidden]:opacity-0 data-[state=visible]:opacity-90 duration-200',
+      'flex touch-none select-none  transition-opacity duration-200 data-[state=hidden]:opacity-0 data-[state=visible]:opacity-90',
       orientation === 'vertical' &&
         'h-full w-2 border-l border-l-transparent p-[1px]',
       orientation === 'horizontal' &&
@@ -41,7 +41,10 @@ const ScrollBar = React.forwardRef<
     )}
     {...props}
   >
-    <ScrollAreaPrimitive.Thumb forceMount className="relative flex-1 rounded-full bg-gray-400 " />
+    <ScrollAreaPrimitive.Thumb
+      forceMount
+      className="relative flex-1 rounded-full bg-gray-400 "
+    />
   </ScrollAreaPrimitive.Scrollbar>
 ))
 ScrollBar.displayName = ScrollAreaPrimitive.ScrollAreaScrollbar.displayName

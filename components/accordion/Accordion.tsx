@@ -1,9 +1,9 @@
 'use client'
 
 import React from 'react'
+import cx from '@/lib/cx'
 import { ChevronDownIcon } from '@heroicons/react/24/solid'
 import * as AccordionPrimitive from '@radix-ui/react-accordion'
-import cx from '@/lib/cx'
 
 export const AccordionRoot = AccordionPrimitive.Root
 

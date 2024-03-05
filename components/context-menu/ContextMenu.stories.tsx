@@ -32,7 +32,7 @@ export const BasicUsage: Story = {
       <ContextMenuRoot>
         <ContextMenuTrigger>
           <div className="flex h-56 w-full items-center justify-center border border-gray-300 bg-gray-50 p-5">
-            <div className='text-gray-600'>Right Click Here...</div>
+            <div className="text-gray-600">Right Click Here...</div>
           </div>
         </ContextMenuTrigger>
         <ContextMenuContent>
