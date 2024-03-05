@@ -2,7 +2,6 @@ import * as React from 'react'
 
 import { OtpInput } from '@/components/otp-input'
 import { ScrollArea } from '@/components/scroll-area'
-import { Skeleton } from '@/components/skeleton'
 
 const tags = Array.from({ length: 50 }).map(
   (_, i, a) => `v1.2.0-beta.${a.length - i}`
@@ -23,8 +22,6 @@ export default function ScrollAreaDemo() {
           ))}
         </div>
       </ScrollArea>
-
-      <Skeleton className="h-32 w-full"></Skeleton>
 
       <OtpInput></OtpInput>
     </div>
