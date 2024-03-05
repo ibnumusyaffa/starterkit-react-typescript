@@ -259,7 +259,7 @@ export const WithNativeSelect: Story = {
   render: (args) => {
     return (
       <InputGroup>
-        <NativeSelect placeholder="Test" >
+        <NativeSelect>
           <option>All Type</option>
           <option>Type 1</option>
           <option>Type 2</option>

@@ -58,7 +58,7 @@ export const Size: Story = {
         <NativeSelect {...args} fullWidth size="sm">
           <option>sm</option>
         </NativeSelect>
-        <NativeSelect {...args} fullWidth size="md" placeholder="Testt">
+        <NativeSelect {...args} fullWidth size="md">
           <option>md</option>
         </NativeSelect>
         <NativeSelect {...args} fullWidth size="lg">
