@@ -1,14 +1,6 @@
 import React from 'react'
 import cx from '@/lib/cx'
 
-function Label({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="translate-y-[-0.5px] text-xs leading-none text-white">
-      {children}
-    </div>
-  )
-}
-
 export type IndicatorProps = {
   position?:
     | 'top-left'
@@ -19,8 +11,7 @@ export type IndicatorProps = {
     | 'bottom-right'
   animatePing?: boolean
   color?: 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'danger'
-  label?: string
-  count?: number
+  label?: React.ReactNode
   children?: React.ReactNode
   style?: React.CSSProperties
 }
@@ -30,12 +21,20 @@ export function Indicator({
   animatePing,
   color = 'primary',
   label,
-  count,
   children,
   style,
 }: IndicatorProps) {
+  let length = 0
+  if (typeof label === 'string') {
+    length = label.length
+  }
+
+  if (typeof label === 'number') {
+    length = String(label).length
+  }
+
   return (
-    <div className="flex">
+    <div className='flex'>
       <div className="relative">
         <span
           style={style}
@@ -72,12 +71,12 @@ export function Indicator({
               ></span>
             ) : null}
 
-            {count === undefined && label === undefined ? (
+            {label === undefined ? (
               <div
                 className={cx(
                   'relative flex items-center justify-center px-1',
                   'rounded-full border border-white ',
-                  'h-[15px] min-w-[15px] ',
+                  'h-3.5 w-3.5 ',
                   {
                     'bg-primary-500': color === 'primary',
                     'bg-secondary-500': color === 'secondary',
@@ -90,12 +89,12 @@ export function Indicator({
               ></div>
             ) : null}
 
-            {count ? (
+            {label ? (
               <div
                 className={cx(
-                  'relative flex items-center justify-center px-1',
+                  'relative flex items-center justify-center',
                   'rounded-full border border-white ',
-                  'h-[22px] min-w-[22px] ',
+                  'px h-5 min-w-5 text-nowrap leading-none',
                   {
                     'bg-primary-500': color === 'primary',
                     'bg-secondary-500': color === 'secondary',
@@ -103,30 +102,16 @@ export function Indicator({
                     'bg-info-500': color === 'info',
                     'bg-warning-500': color === 'warning',
                     'bg-danger-500': color === 'danger',
-                  }
-                )}
-              >
-                <Label>{count >= 100 ? '99+' : count}</Label>
-              </div>
-            ) : null}
-
-            {label !== undefined ? (
-              <div
-                className={cx(
-                  'relative flex  items-center  justify-center   px-2',
-                  'rounded-full border border-white ',
-                  'h-[22px] min-w-max',
+                  },
                   {
-                    'bg-primary-500': color === 'primary',
-                    'bg-secondary-500': color === 'secondary',
-                    'bg-success-500': color === 'success',
-                    'bg-info-500': color === 'info',
-                    'bg-warning-500': color === 'warning',
-                    'bg-danger-500': color === 'danger',
+                    'px-1': length === 2,
+                    'px-1.5': length > 2,
                   }
                 )}
               >
-                <Label>{label}</Label>
+                <div className="translate-y-[-0.5px] text-xs leading-none text-white">
+                  {label}
+                </div>
               </div>
             ) : null}
           </div>

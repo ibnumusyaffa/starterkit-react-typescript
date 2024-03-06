@@ -1,10 +1,11 @@
 import React from 'react'
+import { CheckIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 import { Indicator } from '@/components/indicator'
 
 function Page() {
   return (
-    <div className="space-y-10">
+    <div className="space-y-10 p-10">
       <div className="space-y-2">
         <div className="text-4xl font-semibold text-gray-700">Indicator</div>
         <div className="text-gray-700">-</div>
@@ -56,19 +57,22 @@ function Page() {
         <div className="text-xl font-semibold text-gray-700">Count</div>
         <div className="flex flex-wrap gap-5">
           <div className="flex flex-wrap gap-5">
-            <Indicator count={0}>
+            <Indicator label={0}>
               <div className="h-20 w-20 rounded  bg-gray-300"></div>
             </Indicator>
-            <Indicator count={1}>
+            <Indicator label={1}>
               <div className="h-20 w-20 rounded  bg-gray-300"></div>
             </Indicator>
-            <Indicator count={10}>
+            <Indicator label={10}>
               <div className="h-20 w-20 rounded  bg-gray-300"></div>
             </Indicator>
-            <Indicator count={99}>
+            <Indicator label={99}>
               <div className="h-20 w-20 rounded  bg-gray-300"></div>
             </Indicator>
-            <Indicator count={1000}>
+            <Indicator label={1000}>
+              <div className="h-20 w-20 rounded  bg-gray-300"></div>
+            </Indicator>
+            <Indicator label={'99+'}>
               <div className="h-20 w-20 rounded  bg-gray-300"></div>
             </Indicator>
           </div>
@@ -81,6 +85,22 @@ function Page() {
           <Indicator label="New">
             <div className="h-20 w-20 rounded  bg-gray-300"></div>
           </Indicator>
+        </div>
+      </div>
+
+      <div className="space-y-5">
+        <div className="text-xl font-semibold text-gray-700">With Icon</div>
+        <div className="flex flex-wrap gap-5">
+          <Indicator
+            color="success"
+            label={<CheckIcon className="h-3 w-3 stroke-2"></CheckIcon>}
+          >
+            <div className="h-20 w-20 rounded  bg-gray-300"></div>
+          </Indicator>
+          <Indicator color="danger"    label={<XMarkIcon className="h-3 w-3 stroke-2"></XMarkIcon>}>
+            <div className="h-20 w-20 rounded  bg-gray-300"></div>
+          </Indicator>
+
         </div>
       </div>
 
@@ -118,17 +138,17 @@ function Page() {
           <div className="flex flex-wrap gap-5">
             <Indicator
               style={{ left: 15, top: 5 }}
-              count={9}
+              label={9}
               position="top-left"
             >
               <div className="h-20 w-20 rounded-full  bg-gray-300"></div>
             </Indicator>
-            <Indicator count={9} position="top-center">
+            <Indicator label={9} position="top-center">
               <div className="h-20 w-20 rounded-full  bg-gray-300"></div>
             </Indicator>
             <Indicator
               style={{ right: 15, top: 5 }}
-              count={9}
+              label={9}
               position="top-right"
             >
               <div className="h-20 w-20 rounded-full  bg-gray-300"></div>
@@ -137,17 +157,17 @@ function Page() {
           <div className="flex flex-wrap gap-5">
             <Indicator
               style={{ left: 15, bottom: 5 }}
-              count={9}
+              label={9}
               position="bottom-left"
             >
               <div className="h-20 w-20 rounded-full  bg-gray-300"></div>
             </Indicator>
-            <Indicator count={9} position="bottom-center">
+            <Indicator label={9} position="bottom-center">
               <div className="h-20 w-20 rounded-full  bg-gray-300"></div>
             </Indicator>
             <Indicator
               style={{ right: 15, bottom: 5 }}
-              count={9}
+              label={9}
               position="bottom-right"
             >
               <div className="h-20 w-20 rounded-full  bg-gray-300"></div>

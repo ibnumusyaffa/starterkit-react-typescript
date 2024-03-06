@@ -13,7 +13,9 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const BasicUsage: Story = {
-  args: {},
+  args: {
+    numInputs: 5,
+  },
   render: (args) => {
     const [value, setValue] = React.useState('')
     return <OtpInput {...args} value={value} onChange={setValue} />
@@ -28,12 +30,10 @@ export const Error: Story = {
   },
 }
 
-
 export const Disabled: Story = {
   args: {},
   render: (args) => {
     const [value, setValue] = React.useState('')
-    return <OtpInput {...args} disabled  value={value} onChange={setValue} />
+    return <OtpInput {...args} disabled value={value} onChange={setValue} />
   },
 }
-
