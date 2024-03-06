@@ -34,7 +34,7 @@ export function Indicator({
   }
 
   return (
-    <div className='flex'>
+    <div className="flex">
       <div className="relative">
         <span
           style={style}
@@ -71,24 +71,6 @@ export function Indicator({
               ></span>
             ) : null}
 
-            {label === undefined ? (
-              <div
-                className={cx(
-                  'relative flex items-center justify-center px-1',
-                  'rounded-full border border-white ',
-                  'h-3.5 w-3.5 ',
-                  {
-                    'bg-primary-500': color === 'primary',
-                    'bg-secondary-500': color === 'secondary',
-                    'bg-success-500': color === 'success',
-                    'bg-info-500': color === 'info',
-                    'bg-warning-500': color === 'warning',
-                    'bg-danger-500': color === 'danger',
-                  }
-                )}
-              ></div>
-            ) : null}
-
             {label ? (
               <div
                 className={cx(
@@ -113,7 +95,23 @@ export function Indicator({
                   {label}
                 </div>
               </div>
-            ) : null}
+            ) : (
+              <div
+                className={cx(
+                  'relative flex items-center justify-center px-1',
+                  'rounded-full border border-white ',
+                  'h-3.5 w-3.5 ',
+                  {
+                    'bg-primary-500': color === 'primary',
+                    'bg-secondary-500': color === 'secondary',
+                    'bg-success-500': color === 'success',
+                    'bg-info-500': color === 'info',
+                    'bg-warning-500': color === 'warning',
+                    'bg-danger-500': color === 'danger',
+                  }
+                )}
+              ></div>
+            )}
           </div>
         </span>
         {children}
