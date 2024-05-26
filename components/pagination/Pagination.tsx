@@ -3,7 +3,7 @@
 import React, { useMemo } from 'react'
 import cx from '@/lib/cx'
 
-import { ChevronLeft, ChevronRight } from './Icons'
+import { ChevronLeft, ChevronRight, DotsHorizontal } from './Icons'
 
 const LEFT_DOT = 'left'
 const RIGHT_DOT = 'right'
@@ -33,33 +33,25 @@ function Item({
       {...props}
       disabled={disabled || disabledWithoutOpacity}
       className={cx(
-        'flex items-center justify-center rounded text-sm focus:outline-none',
+        'flex items-center justify-center rounded text-sm focus:outline-none ',
         'focus:border-primary-300 focus:ring-2 focus:ring-primary-500 focus:ring-opacity-25',
         // 'focus-visible:ring-2 focus-visible:border-primary-500 focus-visible:ring-primary-300 ', //keyboard
 
         'group-[.is-group]:focus:z-10',
-        'group-[.is-group]:first:!rounded-r-none',
-        'group-[.is-group]:[&:not(:first-child):not(:last-child)]:!rounded-none',
-        'group-[.is-group]:last:!rounded-l-none',
-
-        'group-[.is-group]:[&:not(:first-child):not(:last-child)]:!border-l-0',
-        'group-[.is-group]:last:!border-l-0',
 
         //size,
         {
-          'h-8 min-w-[2rem] md:h-9 md:min-w-[2.25rem]': true,
+          'h-8 min-w-[2rem] md:h-9 md:min-w-[2.25rem] px-2.5': true,
         },
         {
-          'border border-gray-300 ': !active,
-          'border border-transparent text-white': active,
+          'border border-gray-200  bg-white  ': !active,
+          'border border-transparent text-white bg-primary-500 hover:bg-primary-600': active,
 
           'cursor-not-allowed opacity-50': disabled,
+          'active:bg-gray-100 hover:bg-gray-50': !disabled && !active,
           'pointer-events-none': disabledWithoutOpacity,
         },
-        {
-          'bg-white': !active,
-          'bg-primary-500': active,
-        }
+       
       )}
     >
       {children}
@@ -204,13 +196,13 @@ export function Pagination({
   disabled = disabled || totalPages === 0
 
   return (
-    <div className="is-group group flex">
+    <div className="is-group group flex space-x-1.5 text-gray-700">
       <Item onClick={previous} disabled={active === 1 || disabled}>
         <div className="flex items-center space-x-1 px-2">
           <div>
             <ChevronLeft></ChevronLeft>
           </div>
-          <div className="hidden md:block">Prev</div>
+          <div className="hidden md:block">Previous</div>
         </div>
       </Item>
 
@@ -218,9 +210,12 @@ export function Pagination({
         range.map((pageNumber) => {
           if (pageNumber === LEFT_DOT || pageNumber === RIGHT_DOT) {
             return (
-              <Item key={pageNumber} disabled={disabled} disabledWithoutOpacity>
-                ...
-              </Item>
+              <div
+                key={pageNumber}
+                className="flex items-center px-2 text-gray-600"
+              >
+                <DotsHorizontal />
+              </div>
             )
           }
           return (

@@ -15,7 +15,7 @@ type Story = StoryObj<typeof meta>
 
 export const BasicUsage: Story = {
   args: {
-    totalPages: 100,
+    totalPages: 10000,
   },
   render: (args) => {
     const [currentPage, setCurrentPage] = React.useState(1)
