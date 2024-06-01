@@ -5,7 +5,7 @@ import { Button } from '@/components/button'
 import toast from '@/components/toast'
 
 const meta = {
-  title: 'Components/Toast',
+  title: 'Feedback/Toast',
 }
 
 export default meta

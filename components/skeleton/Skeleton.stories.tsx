@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Skeleton } from '@/components/skeleton'
 
 const meta = {
-  title: 'Components/Skeleton',
+  title: 'Feedback/Skeleton',
   component: Skeleton,
 } satisfies Meta<typeof Skeleton>
 

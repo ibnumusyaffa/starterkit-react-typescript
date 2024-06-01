@@ -7,7 +7,7 @@ import type { StoryObj } from '@storybook/react'
 import { Breadcrumb, BreadcrumbItem } from '@/components/breadcrumb'
 
 const meta = {
-  title: 'Components/Breadcrumb',
+  title: 'Navigation/Breadcrumb',
 }
 
 export default meta

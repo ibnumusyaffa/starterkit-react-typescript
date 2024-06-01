@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { NativeSelect } from '@/components/native-select'
 
 const meta = {
-  title: 'Components/NativeSelect',
+  title: 'Forms/NativeSelect',
   component: NativeSelect,
 } satisfies Meta<typeof NativeSelect>
 

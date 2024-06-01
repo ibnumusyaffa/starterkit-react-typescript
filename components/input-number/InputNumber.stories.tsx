@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { InputNumber } from '@/components/input-number'
 
 const meta = {
-  title: 'Components/InputNumber',
+  title: 'Forms/InputNumber',
   component: InputNumber,
 } satisfies Meta<typeof InputNumber>
 

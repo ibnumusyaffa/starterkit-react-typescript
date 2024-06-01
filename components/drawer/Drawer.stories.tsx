@@ -12,7 +12,7 @@ import {
 } from '@/components/drawer'
 
 const meta = {
-  title: 'Components/Drawer',
+  title: 'Overlay/Drawer',
 }
 
 export default meta

@@ -13,7 +13,7 @@ import {
 } from '@/components/dialog'
 
 const meta = {
-  title: 'Components/Dialog',
+  title: 'Overlay/Dialog',
 }
 
 export default meta

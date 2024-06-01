@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { H1, H2, H3, H4, H5, H6 } from '@/components/heading'
 
 const meta = {
-  title: 'Components/Heading',
+  title: 'Typography/Heading',
   component: H1,
 } satisfies Meta<typeof H1>
 

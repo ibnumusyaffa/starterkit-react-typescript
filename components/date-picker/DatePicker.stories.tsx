@@ -17,7 +17,7 @@ import { InputGroup } from '../input'
 import { NativeSelect } from '../native-select'
 
 const meta = {
-  title: 'Components/DatePicker',
+  title: 'Forms/DatePicker',
   component: DatePicker,
 } satisfies Meta<typeof DatePicker>
 

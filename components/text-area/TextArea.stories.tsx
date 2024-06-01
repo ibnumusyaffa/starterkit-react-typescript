@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { TextArea } from '@/components/text-area'
 
 const meta = {
-  title: 'Components/TextArea',
+  title: 'Forms/TextArea',
   component: TextArea,
 } satisfies Meta<typeof TextArea>
 

@@ -6,7 +6,7 @@ import { Button } from '@/components/button'
 import { Divider } from '@/components/divider'
 
 const meta = {
-  title: 'Components/Divider',
+  title: 'Misc/Divider',
   component: Divider,
 } satisfies Meta<typeof Divider>
 

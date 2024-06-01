@@ -8,7 +8,7 @@ import {
 } from '@/components/accordion'
 
 const meta = {
-  title: 'Components/Accordion',
+  title: 'Data Display/Accordion',
 }
 
 export default meta

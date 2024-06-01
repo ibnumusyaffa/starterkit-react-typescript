@@ -362,7 +362,7 @@ export function Table({
           className={cx('relative w-full', {
             'overflow-x-auto': overflowXAuto,
             'border border-gray-300': withBorder,
-            'overflow-hidden rounded': rounded,
+            'overflow-hidden rounded-md': rounded,
           })}
         >
           <table

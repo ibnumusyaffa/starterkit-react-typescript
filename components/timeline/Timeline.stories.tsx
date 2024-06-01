@@ -16,7 +16,7 @@ import {
 } from '@/components/timeline'
 
 const meta = {
-  title: 'Components/Timeline',
+  title: 'Data Display/Timeline',
 }
 
 export default meta

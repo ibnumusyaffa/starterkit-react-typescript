@@ -4,7 +4,7 @@ import type { StoryObj } from '@storybook/react'
 import { OptionType, ReactSelect } from '@/components/react-select'
 
 const meta = {
-  title: 'Components/ReactSelect',
+  title: 'Forms/ReactSelect',
 }
 
 export default meta

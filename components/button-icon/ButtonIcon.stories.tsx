@@ -6,7 +6,7 @@ import { ButtonGroup } from '@/components/button'
 import { ButtonIcon } from '@/components/button-icon'
 
 const meta = {
-  title: 'Components/ButtonIcon',
+  title: 'Forms/ButtonIcon',
   component: ButtonIcon,
 } satisfies Meta<typeof ButtonIcon>
 

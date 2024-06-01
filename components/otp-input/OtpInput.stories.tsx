@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { OtpInput } from '@/components/otp-input'
 
 const meta = {
-  title: 'Components/OtpInput',
+  title: 'Forms/OtpInput',
   component: OtpInput,
 } satisfies Meta<typeof OtpInput>
 

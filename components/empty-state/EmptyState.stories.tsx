@@ -7,7 +7,7 @@ import { Button } from '@/components/button'
 import { EmptyState } from '@/components/empty-state'
 
 const meta = {
-  title: 'Components/EmptyState',
+  title: 'Data Display/EmptyState',
   component: EmptyState,
 } satisfies Meta<typeof EmptyState>
 

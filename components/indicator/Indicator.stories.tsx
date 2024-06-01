@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Indicator } from '@/components/indicator'
 
 const meta = {
-  title: 'Components/Indicator',
+  title: 'Data Display/Indicator',
   component: Indicator,
 } satisfies Meta<typeof Indicator>
 

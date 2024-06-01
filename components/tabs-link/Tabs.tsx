@@ -1,8 +1,8 @@
 'use client'
 
 import React, { createContext, useContext } from 'react'
+import Link from 'next/link'
 import cx from '@/lib/cx'
-import * as TabsPrimitive from '@radix-ui/react-tabs'
 
 export type Variant = 'default' | 'pills'
 
@@ -20,18 +20,20 @@ const TabCtx = createContext<TabsProviderPrams>({
   align: 'start',
 })
 
-type TabsTriggerProps = React.ComponentPropsWithoutRef<
-  typeof TabsPrimitive.Trigger
-> & {
+type TabsTriggerProps = React.ComponentProps<typeof Link> & {
   leftSection?: React.ReactNode
   rightSection?: React.ReactNode
+  disabled?: boolean
+  active?: boolean
 }
 
 export function TabsTrigger({
   children,
+  href,
   disabled,
   leftSection,
   rightSection,
+  active,
   ...props
 }: TabsTriggerProps) {
   const { orientation, variant, grow } = useContext(TabCtx)
@@ -64,21 +66,25 @@ export function TabsTrigger({
       }
     ),
   }
+
   return (
-    <TabsPrimitive.Trigger {...props} asChild disabled={disabled}>
-      <button className={variantStyle[variant]}>
-        {leftSection ? <div className="mr-2"> {leftSection}</div> : null}
-        {children}
-        {rightSection ? <div className="ml-2">{rightSection}</div> : null}
-      </button>
-    </TabsPrimitive.Trigger>
+    <Link
+      href={disabled ? '#' : href}
+      data-state={active ? 'active' : 'inactive'}
+      {...props}
+      className={variantStyle[variant]}
+    >
+      {leftSection ? <div className="mr-2"> {leftSection}</div> : null}
+      {children}
+      {rightSection ? <div className="ml-2">{rightSection}</div> : null}
+    </Link>
   )
 }
 
 export function TabsList({ children }: { children?: React.ReactNode }) {
   const { orientation, variant, align } = useContext(TabCtx)
   return (
-    <TabsPrimitive.List
+    <div
       className={cx(
         'flex max-w-full',
         {
@@ -100,51 +106,29 @@ export function TabsList({ children }: { children?: React.ReactNode }) {
       )}
     >
       {children}
-    </TabsPrimitive.List>
+    </div>
   )
 }
 
-type TabsRootProps = React.ComponentProps<typeof TabsPrimitive.Root> &
-  Partial<TabsProviderPrams>
+type TabsRootProps = Partial<TabsProviderPrams> & { children?: React.ReactNode }
 
 export function TabsRoot({
   orientation = 'horizontal',
   variant = 'default',
   align = 'start',
   grow = false,
-  activationMode = 'manual',
   ...props
 }: TabsRootProps) {
   return (
     <TabCtx.Provider value={{ orientation, variant, align, grow }}>
-      <TabsPrimitive.Root
-        {...props}
-        activationMode={activationMode}
-        orientation={orientation}
+      <div
         className={cx({
           'block': orientation === 'horizontal',
           'flex flex-row': orientation === 'vertical',
         })}
       >
         {props.children}
-      </TabsPrimitive.Root>
+      </div>
     </TabCtx.Provider>
-  )
-}
-
-export function TabsContent(
-  props: React.ComponentProps<typeof TabsPrimitive.Content>
-) {
-  const { orientation } = useContext(TabCtx)
-  return (
-    <TabsPrimitive.Content
-      className={cx({
-        'py-3': orientation === 'horizontal',
-        'px-3': orientation === 'vertical',
-      })}
-      {...props}
-    >
-      {props.children}
-    </TabsPrimitive.Content>
   )
 }
