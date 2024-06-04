@@ -7,7 +7,7 @@ import { useQuery } from '@tanstack/react-query'
 
 import AppLayout from '@/layouts/AppLayout'
 import { Spinner } from '@/components/spinner'
-import { useRequireAuth } from '@/store/auth'
+import { useRequireAuth } from '@/common/auth'
 
 function Page() {
   useRequireAuth()

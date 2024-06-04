@@ -18,7 +18,7 @@ import {
 } from '@/components/form-control'
 import { Input, InputPassword } from '@/components/input'
 import Logo from '@/components/Logo'
-import { useAuth, useRedirectIfAuthenticated } from '@/store/auth'
+import { useAuth, useRedirectIfAuthenticated } from '@/common/auth'
 
 const schema = z.object({
   email: z

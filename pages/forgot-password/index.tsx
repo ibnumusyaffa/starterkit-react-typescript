@@ -16,7 +16,7 @@ import {
 import { Input } from '@/components/input'
 import Logo from '@/components/Logo'
 import toast from '@/components/toast'
-import { useRedirectIfAuthenticated } from '@/store/auth'
+import { useRedirectIfAuthenticated } from '@/common/auth'
 
 const schema = z.object({
   email: z

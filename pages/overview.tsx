@@ -1,7 +1,7 @@
 import React from 'react'
 
 import AppLayout from '@/layouts/AppLayout'
-import { useRequireAuth } from '@/store/auth'
+import { useRequireAuth } from '@/common/auth'
 
 export default function Page() {
   useRequireAuth()

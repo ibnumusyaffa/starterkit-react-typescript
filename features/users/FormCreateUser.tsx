@@ -16,7 +16,7 @@ import {
 } from '@/components/form-control'
 import { Input, InputPassword } from '@/components/input'
 import toast from '@/components/toast'
-import { useRequireAuth } from '@/store/auth'
+import { useRequireAuth } from '@/common/auth'
 
 type FormData = z.infer<typeof createSchema>
 

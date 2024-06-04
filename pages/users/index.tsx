@@ -31,7 +31,7 @@ import { InputSearch } from '@/components/input'
 import { Pagination } from '@/components/pagination'
 import { Table, TableEmpty, Tbody, Td, Th, Thead, Tr } from '@/components/table'
 import toast from '@/components/toast'
-import { useRequireAuth } from '@/store/auth'
+import { useRequireAuth } from '@/common/auth'
 
 function Page() {
   useRequireAuth()

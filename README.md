@@ -26,6 +26,8 @@
 ├── components # global components used across the entire application
 │   ├── button.tsx
 │   └── input.tsx
+├── common # shared/common feature like auth
+│   └── auth
 ├── features # feature spesific code or components
 │   ├── checkout
 │   ├── login
@@ -45,7 +47,6 @@
 ├── services # all REST api 
 │   ├── login.ts
 │   └── users.ts
-├── store # global state
 ├── styles # global style
 ├── types # shared types for entire application
 └── utils # utils or helper

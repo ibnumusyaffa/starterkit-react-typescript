@@ -4,7 +4,7 @@ import { FormCreateUser } from '@/features/users/FormCreateUser'
 import { ChevronLeftIcon } from '@heroicons/react/24/outline'
 
 import AppLayout from '@/layouts/AppLayout'
-import { useRequireAuth } from '@/store/auth'
+import { useRequireAuth } from '@/common/auth'
 
 function Page() {
   useRequireAuth()

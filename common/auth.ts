@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import * as axios from '@/lib/axios'
+import { getProfile } from '@/services/profile'
+import { useQuery } from '@tanstack/react-query'
 import Cookies from 'js-cookie'
 import { create } from 'zustand'
 
@@ -75,4 +77,12 @@ export function useRedirectIfAuthenticated() {
       return
     }
   }, [isAuthenticated, router])
+}
+
+export function useProfile() {
+  return useQuery({
+    queryKey: ['profile'],
+    queryFn: () => getProfile(),
+    staleTime: 1000 * 60 * 5, //5 minutes
+  })
 }

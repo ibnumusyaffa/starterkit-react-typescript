@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useAuth, useProfile } from '@/common/auth'
 import { logout } from '@/services/auth'
 import {
   ArrowLeftOnRectangleIcon,
@@ -11,7 +12,6 @@ import {
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import cx from 'clsx'
 
-import useProfile from '@/hooks/useProfile'
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -28,7 +28,6 @@ import {
 } from '@/components/dropdown-menu'
 import Logo from '@/components/Logo'
 import toast from '@/components/toast'
-import { useAuth } from '@/store/auth'
 
 function ProfileDropdown() {
   const { removeAuth } = useAuth()
