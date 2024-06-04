@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { roleObj, roles } from '@/constants/role'
-import { loadProvince } from '@/services/province'
-import { loadRegency } from '@/services/regency'
 import { deleteUser, getUsers } from '@/services/user'
 import { PlusIcon } from '@heroicons/react/24/outline'
 import {
@@ -16,12 +13,9 @@ import {
   parseAsInteger,
   parseAsString,
   useQueryState,
-  useQueryStates,
 } from 'next-usequerystate'
-import toast from 'react-hot-toast'
 
 import { useDebounce } from '@/hooks/useDebounce'
-import { usePermission } from '@/hooks/usePermission'
 import AppLayout from '@/layouts/AppLayout'
 import {
   AlertDialog,
@@ -35,17 +29,12 @@ import { EmptyState } from '@/components/empty-state'
 import { FormControl, FormLabel } from '@/components/form-control'
 import { InputSearch } from '@/components/input'
 import { Pagination } from '@/components/pagination'
-import {
-  OptionType,
-  ReactSelect,
-  ReactSelectAsync,
-} from '@/components/react-select'
 import { Table, TableEmpty, Tbody, Td, Th, Thead, Tr } from '@/components/table'
+import toast from '@/components/toast'
 import { useRequireAuth } from '@/store/auth'
 
 function Page() {
   useRequireAuth()
-  usePermission('user-management')
   const router = useRouter()
 
   const [page, setPage] = useQueryState('page', parseAsInteger.withDefault(1))
@@ -59,36 +48,6 @@ function Page() {
   const [skipResetPage, setSkipResetPage] = useState(true)
   const debouncedKeyword = useDebounce(keyword, 300)
 
-  const [role, setRole] = useQueryStates({
-    role_label: parseAsString,
-    role_value: parseAsInteger,
-  })
-
-  const selectedRole = {
-    label: role.role_label,
-    value: role.role_value,
-  }
-
-  const [province, setProvince] = useQueryStates({
-    province_label: parseAsString,
-    province_value: parseAsInteger,
-  })
-
-  const selectedProvince = {
-    label: province.province_label,
-    value: province.province_value,
-  }
-
-  const [regency, setRegency] = useQueryStates({
-    regency_label: parseAsString,
-    regency_value: parseAsInteger,
-  })
-
-  const selectedRegency = {
-    label: regency.regency_label,
-    value: regency.regency_value,
-  }
-
   useEffect(() => {
     if (skipResetPage) {
       setSkipResetPage(false)
@@ -98,24 +57,12 @@ function Page() {
   }, [debouncedKeyword])
 
   const { data, status, isFetching } = useQuery({
-    queryKey: [
-      'users',
-      page,
-      limit,
-      debouncedKeyword,
-      selectedRole.value,
-      selectedProvince.value,
-      selectedRegency.value,
-    ],
+    queryKey: ['users', page, limit, debouncedKeyword],
     queryFn: () =>
       getUsers({
         page,
-        pagesize: limit,
+        limit: limit,
         keyword: debouncedKeyword,
-        role_id: selectedRole.value,
-        province_id: selectedProvince.value,
-        regency_id: selectedRegency.value,
-        status: 1,
       }),
     placeholderData: keepPreviousData,
     enabled: router.isReady,
@@ -128,11 +75,12 @@ function Page() {
   const mutation = useMutation({
     mutationFn: deleteUser,
     onSuccess: () => {
-      toast.success('User berhasil dihapus.')
+      toast.success({ description: 'User berhasil dihapus.' })
+      setPage(1)
       queryClient.invalidateQueries({ queryKey: ['users'] })
     },
     onError: () => {
-      toast.error('User gagal dihapus.')
+      toast.danger({ description: 'User gagal dihapus.' })
       queryClient.invalidateQueries({ queryKey: ['users'] })
     },
     onSettled: () => {
@@ -185,85 +133,6 @@ function Page() {
               onChange={(e) => setKeyword(e.target.value)}
             />
           </FormControl>
-          <FormControl>
-            <FormLabel>Role Pelapor</FormLabel>
-            <ReactSelect
-              isClearable
-              placeholder="Pilih Role"
-              onChange={(option: unknown) => {
-                const newOption = option as OptionType | null
-                const value = newOption
-                  ? { role_value: newOption.value, role_label: newOption.label }
-                  : { role_value: null, role_label: '' }
-
-                setRole(value)
-                setPage(1)
-              }}
-              value={
-                router.isReady && selectedRole.value ? selectedRole : undefined
-              }
-              options={roles}
-            />
-          </FormControl>
-          <FormControl>
-            <FormLabel>Provinsi</FormLabel>
-            <ReactSelectAsync
-              placeholder="Pilih Provinsi"
-              isClearable
-              menuPlacement="auto"
-              debounceTimeout={200}
-              loadOptions={loadProvince}
-              onChange={(option: unknown) => {
-                const newOption = option as OptionType | null
-                const value = newOption
-                  ? {
-                      province_value: newOption.value,
-                      province_label: newOption.label,
-                    }
-                  : { province_value: null, province_label: '' }
-
-                setProvince(value)
-                setRegency({ regency_value: null, regency_label: '' })
-                setPage(1)
-              }}
-              value={
-                router.isReady && selectedProvince.value
-                  ? selectedProvince
-                  : undefined
-              }
-            />
-          </FormControl>
-          <FormControl>
-            <FormLabel>Kab./Kota</FormLabel>
-            <ReactSelectAsync
-              placeholder="Pilih Kab./Kota"
-              key={selectedProvince?.value}
-              isClearable
-              menuPlacement="auto"
-              debounceTimeout={200}
-              loadOptions={loadRegency}
-              onChange={(option: unknown) => {
-                const newOption = option as OptionType | null
-                const value = newOption
-                  ? {
-                      regency_value: newOption.value,
-                      regency_label: newOption.label,
-                    }
-                  : { regency_value: null, regency_label: '' }
-
-                setRegency(value)
-                setPage(1)
-              }}
-              value={
-                router.isReady && selectedRegency.value
-                  ? selectedRegency
-                  : undefined
-              }
-              additional={{
-                province_id: selectedProvince?.value ?? undefined,
-              }}
-            />
-          </FormControl>
         </form>
       </div>
       <div className="px-10 py-10">
@@ -275,9 +144,9 @@ function Page() {
             <Tr>
               <Th>Name</Th>
               <Th>Email</Th>
-              <Th>No.Hp</Th>
-              <Th>Role</Th>
-              <Th>Lokasi</Th>
+              <Th>Updated at</Th>
+              <Th>Created at</Th>
+
               <Th>Action</Th>
             </Tr>
           </Thead>
@@ -289,25 +158,14 @@ function Page() {
                     <Tr key={index}>
                       <Td>{item.name}</Td>
                       <Td>{item.email}</Td>
-                      <Td>{item.phone_number ? item.phone_number : '-'}</Td>
-                      <Td>{roleObj[item.role_id]}</Td>
-                      <Td>
-                        {item.regency_name}
-                        {item.regency_name ? ',' : null} {item.province_name}
-                      </Td>
+                      <Td>{item.updated_at}</Td>
+                      <Td>{item.created_at} </Td>
+
                       <Td>
                         <div className="flex space-x-1">
                           <Button asChild variant="subtle" size="sm">
                             <Link
-                              href={`/users/detail/${item.uuid}`}
-                              className="!font-bold text-gray-800"
-                            >
-                              Detail
-                            </Link>
-                          </Button>
-                          <Button asChild variant="subtle" size="sm">
-                            <Link
-                              href={`/users/edit/${item.uuid}`}
+                              href={`/users/edit/${item.id}`}
                               className="!font-bold text-gray-800"
                             >
                               Edit
@@ -315,7 +173,7 @@ function Page() {
                           </Button>
                           <Button
                             onClick={() => {
-                              setDeleteId(item.uuid)
+                              setDeleteId(item.id)
                               setShowAlert(true)
                             }}
                             variant="subtle"
@@ -343,7 +201,7 @@ function Page() {
 
           <Pagination
             currentPage={page}
-            totalPages={data?.total_page ?? 0}
+            totalPages={data?.meta.totalPages ?? 0}
             onPageChange={(page) => {
               setPage(page)
             }}

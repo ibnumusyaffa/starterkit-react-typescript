@@ -47,27 +47,9 @@ export default function Page() {
 
   const { mutate, status } = useMutation({
     mutationFn: login,
-    onSuccess: (r) => {
-      const allowedRoleId = [1, 4]
-      const roleId = r.user.role_id
-      if (allowedRoleId.includes(roleId)) {
-        setErrorMessage('')
-        setAuth(r.access_token)
-        if (roleId === 1) {
-          localStorage.setItem('role_id', roleId.toString())
-          router.push('/overview')
-          return
-        }
-
-        if (roleId === 4) {
-          localStorage.setItem('role_id', roleId.toString())
-          router.push('/hasil-suara-tps')
-          return
-        }
-        return
-      }
-
-      setErrorMessage('Role anda tidak dapat login melalui web')
+    onSuccess: (response) => {
+      setAuth(response.token)
+      router.push('/overview')
     },
     onError: (error: AxiosError) => {
       const response = error.response?.data as LoginRespErr

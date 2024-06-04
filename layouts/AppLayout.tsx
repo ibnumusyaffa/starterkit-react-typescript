@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { roleObj } from '@/constants/role'
 import { logout } from '@/services/auth'
 import {
   ArrowLeftOnRectangleIcon,
@@ -11,9 +10,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import cx from 'clsx'
-import toast from 'react-hot-toast'
 
-import { permissions } from '@/hooks/usePermission'
 import useProfile from '@/hooks/useProfile'
 import {
   AlertDialog,
@@ -30,6 +27,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/dropdown-menu'
 import Logo from '@/components/Logo'
+import toast from '@/components/toast'
 import { useAuth } from '@/store/auth'
 
 function ProfileDropdown() {
@@ -46,7 +44,7 @@ function ProfileDropdown() {
       router.push('/')
     },
     onError: () => {
-      toast.error('Logout gagal')
+      toast.danger({ description: 'Logout gagal' })
     },
   })
 
@@ -61,16 +59,13 @@ function ProfileDropdown() {
         ></AlertDialogContent>
         <AlertDialogFooter>
           <AlertDialogCancel>
-            <Button  variant="default">
-              Batal
-            </Button>
+            <Button variant="default">Batal</Button>
           </AlertDialogCancel>
           <Button
             onClick={() => mutate()}
             loading={status === 'pending'}
             color="danger"
             variant="solid"
-            
           >
             Ya, Keluar
           </Button>
@@ -82,9 +77,7 @@ function ProfileDropdown() {
             <button className="flex items-center justify-between gap-3 focus:outline-none">
               <div className="flex flex-col justify-start text-sm">
                 <div className="text-left font-semibold text-gray-700">
-                  {profile.data?.role_id
-                    ? roleObj[profile.data?.role_id]
-                    : null}
+                  Admin
                 </div>
                 <div className="text-gray-600">{profile.data?.email}</div>
               </div>
@@ -161,8 +154,6 @@ function Menu({
 function AppLayout({ children }: { children: React.ReactNode }) {
   const profile = useProfile()
 
-  const roleId = profile.data?.role_id as keyof typeof permissions
-  const allowedPages = permissions[roleId] || []
   return (
     <div className="relative z-0 h-full">
       {/* TopBar */}
@@ -179,21 +170,17 @@ function AppLayout({ children }: { children: React.ReactNode }) {
         <nav className="fixed left-0 top-14 min-h-full w-[250px] space-y-0.5 border-r border-gray-300 p-5">
           {profile.status === 'success' ? (
             <React.Fragment>
-              {allowedPages.includes('overview') ? (
-                <Menu
-                  href="/overview"
-                  title="Overview"
-                  icon={<ChartBarIcon className="h-5 w-5 " />}
-                />
-              ) : null}
+              <Menu
+                href="/overview"
+                title="Overview"
+                icon={<ChartBarIcon className="h-5 w-5 " />}
+              />
 
-              {allowedPages.includes('user-management') ? (
-                <Menu
-                  href="/users"
-                  title="User Management"
-                  icon={<UsersIcon className="h-5 w-5 " />}
-                />
-              ) : null}
+              <Menu
+                href="/users"
+                title="User Management"
+                icon={<UsersIcon className="h-5 w-5 " />}
+              />
             </React.Fragment>
           ) : (
             <div className="space-y-1.5">

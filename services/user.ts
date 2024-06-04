@@ -1,102 +1,54 @@
-import { RoleKey } from '@/constants/role'
 import axios from '@/lib/axios'
 
-type User = {
-  id: number
-  uuid: string
-  name: string
+export type User = {
+  created_at: string
+  updated_at: string
   email: string
-  role_id: RoleKey
-  referal_code: string
-  status: number
-  province_id: number
-  province_name: string
-  regency_id: number
-  regency_name: string
-  phone_number: string
+  name: string
+  id: string
 }
 
-type UserList = {
-  page: number
-  pagination: number
-  total_page: number
+type Users = {
+  meta: {
+    totalPages: number
+    total: number
+    page: number
+    limit: number
+  }
   data: User[]
 }
 
-type getUserParams = {
+type UserParams = {
   page: number | null
-  pagesize: number
+  limit: number
   keyword: string | null
-  role_id: number | null
-  province_id: number | null
-  regency_id: number | null
-  status: number
 }
 
-export async function getUsers(params: getUserParams): Promise<UserList> {
+export async function getUsers(params: UserParams): Promise<Users> {
   const response = await axios.get('/users', {
     params,
   })
   return response.data
 }
 
-export type UserDetail = {
-  created_at: string
-  email: string
-  id: number
-  name: string
-  profile: {
-    address: string
-    date_of_birth: string
-    gender: number
-    id: number
-    idcard_number: string
-    idcard_type: number
-    job: string
-    phone: string
-    place_of_birth: string
-    user_id: number
-  }
-  province_id: number
-  province_name: string
-  referal_code: string
-  regency_id: number
-  regency_name: string
-  role_id: number
-  status: number
-  updated_at: string
-  uuid: string
-}
-
-export async function getUserById(id: string): Promise<UserDetail> {
-  const response = await axios.get(`/user/${id}`)
+export async function getUserById(id: string): Promise<User> {
+  const response = await axios.get(`/users/${id}`)
   return response.data
 }
 
 export async function deleteUser(id: string) {
-  return axios.delete(`/user/${id}`)
+  return axios.delete(`/users/${id}`)
 }
 
-export type RequestBody = {
+export type CreateReqBody = {
   password?: string
   name?: string
   email?: string
-  province_id?: number
-  regency_id?: number
-  role_id?: number
-  profile?: {
-    phone?: string
-    gender?: number
-  }
 }
 
 export type ErrorResponse = {
-  error: string
   errors: Error[]
   message: string
-  path: string
-  status: number
-  timestamp: string
 }
 
 export interface Error {
@@ -104,12 +56,15 @@ export interface Error {
   message: string
 }
 
-export async function createUser(data: RequestBody) {
-  return axios.post(`/user`, data)
+export async function createUser(data: CreateReqBody) {
+  return axios.post(`/users`, data)
 }
 
-export async function editUser(id: string, data: RequestBody) {
-  const response = await axios.put(`/user/${id}`, data)
-
+export type UpdateReqBody = {
+  name?: string
+  email?: string
+}
+export async function editUser(id: string, data: UpdateReqBody) {
+  const response = await axios.put(`/users/${id}`, data)
   return response.data
 }

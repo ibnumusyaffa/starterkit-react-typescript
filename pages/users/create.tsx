@@ -1,15 +1,14 @@
 import React from 'react'
+import { useRouter } from 'next/router'
 import { FormCreateUser } from '@/features/users/FormCreateUser'
 import { ChevronLeftIcon } from '@heroicons/react/24/outline'
 
 import AppLayout from '@/layouts/AppLayout'
 import { useRequireAuth } from '@/store/auth'
-import { useRouter } from 'next/router'
-import { usePermission } from '@/hooks/usePermission'
 
 function Page() {
   useRequireAuth()
-  usePermission('user-management')
+
   const router = useRouter()
   return (
     <AppLayout>

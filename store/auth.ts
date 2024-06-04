@@ -70,17 +70,9 @@ export function useRedirectIfAuthenticated() {
   const router = useRouter()
 
   useEffect(() => {
-    const roleId = parseInt(localStorage.getItem('role_id') as string)
     if (isAuthenticated) {
-      if (roleId === 1) {
-        router.push('/overview')
-        return
-      }
-
-      if (roleId === 4) {
-        router.push('/hasil-suara-tps')
-        return
-      }
+      router.push('/overview')
+      return
     }
   }, [isAuthenticated, router])
 }

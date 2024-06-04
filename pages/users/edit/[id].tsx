@@ -5,14 +5,12 @@ import { getUserById } from '@/services/user'
 import { ChevronLeftIcon } from '@heroicons/react/24/solid'
 import { useQuery } from '@tanstack/react-query'
 
-import { usePermission } from '@/hooks/usePermission'
 import AppLayout from '@/layouts/AppLayout'
 import { Spinner } from '@/components/spinner'
 import { useRequireAuth } from '@/store/auth'
 
 function Page() {
   useRequireAuth()
-  usePermission('user-management')
 
   const router = useRouter()
 
@@ -38,7 +36,7 @@ function Page() {
         {status === 'success' ? (
           <FormEditUser data={data}></FormEditUser>
         ) : null}
-        {status === 'loading' ? (
+        {status === 'pending' ? (
           <div className="mt-10 flex h-full flex-col items-center justify-center space-y-3">
             <Spinner className="h-7 w-7"></Spinner>
             <span className="text-gray-700">Loading...</span>

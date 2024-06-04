@@ -1,9 +1,9 @@
 import React from 'react'
+import { useRouter } from 'next/router'
 import { forgotPassword } from '@/services/auth'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
-import toast from 'react-hot-toast'
 import { z } from 'zod'
 
 import AuthLayout from '@/layouts/AuthLayout'
@@ -15,6 +15,7 @@ import {
 } from '@/components/form-control'
 import { Input } from '@/components/input'
 import Logo from '@/components/Logo'
+import toast from '@/components/toast'
 import { useRedirectIfAuthenticated } from '@/store/auth'
 
 const schema = z.object({
@@ -27,6 +28,7 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>
 
 export default function Page() {
+  const router = useRouter()
   const {
     register,
     handleSubmit,
@@ -40,9 +42,11 @@ export default function Page() {
   const { mutate, status } = useMutation({
     mutationFn: forgotPassword,
     onSuccess: (response) => {
-      toast.success(response.message, {
-        position: 'top-center',
+      toast.success({
+        position:'top-center',
+        description: response.message,
       })
+      router.push('/')
     },
   })
 

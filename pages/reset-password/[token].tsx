@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useRouter } from 'next/router'
 import { resetPassword, resetPasswordErr } from '@/services/auth'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useForm } from 'react-hook-form'
-import toast from 'react-hot-toast'
 import { z } from 'zod'
 
 import AuthLayout from '@/layouts/AuthLayout'
@@ -17,21 +16,22 @@ import {
 } from '@/components/form-control'
 import { InputPassword } from '@/components/input'
 import Logo from '@/components/Logo'
+import toast from '@/components/toast'
 import { useRedirectIfAuthenticated } from '@/store/auth'
 
 const schema = z
   .object({
-    new_password: z.string().min(1, { message: 'Password wajib diisi' }),
-    confirmation_password: z
+    password: z.string().min(1, { message: 'Password wajib diisi' }),
+    password_confirmation: z
       .string()
       .min(1, { message: 'Konfirmasi Password wajib diisi' }),
   })
   .partial()
-  .superRefine(({ confirmation_password, new_password }, ctx) => {
-    if (confirmation_password !== new_password) {
+  .superRefine(({ password_confirmation, password }, ctx) => {
+    if (password_confirmation !== password) {
       ctx.addIssue({
         code: 'custom',
-        path: ['confirmation_password'],
+        path: ['password_confirmation'],
         message: 'Konfirmasi password tidak sama',
       })
     }
@@ -52,25 +52,23 @@ export default function Page() {
   const router = useRouter()
   useRedirectIfAuthenticated()
 
-  useEffect(() => {
-    if (router.isReady) {
-      const isAllowed = localStorage.getItem('email_verification')
-      if (isAllowed !== router.query.email) {
-        router.push('/')
-      }
-    }
-  }, [router.isReady])
-
   const { mutate, status } = useMutation({
     mutationFn: resetPassword,
     onSuccess: (response) => {
-      toast.success(response.message)
+      toast.success({
+        position: 'top-center',
+        description: response.message,
+      })
       localStorage.clear()
       router.push('/')
     },
     onError: (error: AxiosError) => {
       const response = error.response?.data as resetPasswordErr
-      toast.error(response.message)
+
+      toast.danger({
+        position: 'top-center',
+        description: response.message,
+      })
       if (response.errors.length > 0) {
         for (const item of response.errors) {
           setError(item.field as keyof FormData, {
@@ -98,9 +96,8 @@ export default function Page() {
             onSubmit={handleSubmit((value) => {
               mutate({
                 ...value,
-                token: localStorage.getItem(
-                  router.query.email as string
-                ) as string,
+                email: router.query.email as string,
+                token: router.query.token as string,
               })
             })}
           >
@@ -109,13 +106,11 @@ export default function Page() {
               <InputPassword
                 placeholder="Masukkan Password Baru"
                 defaultValue=""
-                error={Boolean(errors.new_password?.message)}
-                {...register('new_password')}
+                error={Boolean(errors.password?.message)}
+                {...register('password')}
               ></InputPassword>
-              {errors.new_password?.message && (
-                <FormErrorMessage>
-                  {errors.new_password?.message}
-                </FormErrorMessage>
+              {errors.password?.message && (
+                <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
               )}
             </FormControl>
             <FormControl>
@@ -123,12 +118,12 @@ export default function Page() {
               <InputPassword
                 placeholder="Masukkan Konfirmasi Password Baru"
                 defaultValue=""
-                error={Boolean(errors.confirmation_password?.message)}
-                {...register('confirmation_password')}
+                error={Boolean(errors.password_confirmation?.message)}
+                {...register('password_confirmation')}
               ></InputPassword>
-              {errors.confirmation_password?.message && (
+              {errors.password_confirmation?.message && (
                 <FormErrorMessage>
-                  {errors.confirmation_password?.message}
+                  {errors.password_confirmation?.message}
                 </FormErrorMessage>
               )}
             </FormControl>

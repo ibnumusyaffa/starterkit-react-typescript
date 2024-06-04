@@ -304,7 +304,7 @@ type TableProos = {
 }
 
 export function Table({
-  withBorder = true,
+  withBorder = false,
   children,
   loading = false,
   withColumnBorders = false,
@@ -359,7 +359,7 @@ export function Table({
         <div
           className={cx('relative w-full', {
             'overflow-x-auto': overflowXAuto,
-            'border-y border-gray-300': withBorder,
+            'border border-gray-300': withBorder,
             'overflow-hidden rounded-md': rounded,
           })}
         >
