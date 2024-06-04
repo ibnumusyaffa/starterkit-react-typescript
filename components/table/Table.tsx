@@ -165,9 +165,9 @@ export function Td({
         'text-left text-gray-800',
         'border-t border-gray-300 group-[:first-of-type]:border-t-0 ',
         //selected style
-        'group-data-[selected=true]:border-y-2 group-data-[selected=true]:border-y-primary-500',
-        'group-data-[selected=true]:last:border-r-2 group-data-[selected=true]:last:border-r-primary-500',
-        'group-data-[selected=true]:first:border-l-2 group-data-[selected=true]:first:border-l-primary-500',
+        // 'group-data-[selected=true]:border-y-2 group-data-[selected=true]:border-y-primary-500',
+        // 'group-data-[selected=true]:last:border-r-2 group-data-[selected=true]:last:border-r-primary-500',
+        'group-data-[selected=true]:first:border-l-4 group-data-[selected=true]:first:border-l-primary-500',
         {
           '[&:not(:last-child)]:border-r': withColumnBorders,
           'align-top': verticalAlignment === 'top',
@@ -194,7 +194,7 @@ export function Tr({ children, selected, className, ...props }: TrProps) {
         {
           'hover:bg-blue-50': hightlightOnHover,
           'odd:bg-gray-100': striped,
-          'bg-primary-50': selected,
+          'bg-primary-50 hover:bg-primary-100': selected,
         },
         className
       )}
