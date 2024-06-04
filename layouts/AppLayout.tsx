@@ -40,7 +40,7 @@ function ProfileDropdown() {
     onSuccess: () => {
       removeAuth()
       queryClient.clear()
-      router.push('/')
+      router.push('/login')
     },
     onError: () => {
       toast.danger({ description: 'Logout gagal' })
@@ -170,7 +170,7 @@ function AppLayout({ children }: { children: React.ReactNode }) {
           {profile.status === 'success' ? (
             <React.Fragment>
               <Menu
-                href="/overview"
+                href="/"
                 title="Overview"
                 icon={<ChartBarIcon className="h-5 w-5 " />}
               />

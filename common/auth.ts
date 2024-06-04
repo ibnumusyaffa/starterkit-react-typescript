@@ -62,7 +62,7 @@ export function useRequireAuth() {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      router.push('/')
+      router.push('/login')
     }
   }, [isAuthenticated, router])
 }
@@ -73,7 +73,7 @@ export function useRedirectIfAuthenticated() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      router.push('/overview')
+      router.push('/')
       return
     }
   }, [isAuthenticated, router])

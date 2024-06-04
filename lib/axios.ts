@@ -19,8 +19,8 @@ instance.interceptors.response.use(
     if (error.response && error.response.status === 401) {
       Cookies.remove('token')
       localStorage.clear()
-      if (window.location.pathname !== '/') {
-        window.location.href = '/'
+      if (window.location.pathname !== '/login') {
+        window.location.href = '/login'
       }
     }
     return Promise.reject(error)
