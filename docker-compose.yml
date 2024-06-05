@@ -4,4 +4,4 @@ services:
     container_name: my-app
     build: ./
     ports:
-        - 4000:3000
+        - 7801:3000
