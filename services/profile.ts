@@ -4,7 +4,7 @@ export type ProfileResponse = {
   created_at: string
   updated_at: string
   email: string
-  name: number
+  name: string
   id: string
 }
 

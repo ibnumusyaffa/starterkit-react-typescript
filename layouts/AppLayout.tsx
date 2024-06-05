@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 import { useAuth, useProfile } from '@/common/auth'
 import { logout } from '@/services/auth'
 import {
-  ArrowLeftOnRectangleIcon,
   ChartBarIcon,
   ChevronDownIcon,
   UsersIcon,
@@ -19,15 +18,33 @@ import {
   AlertDialogContent,
   AlertDialogFooter,
 } from '@/components/alert-dialog'
+import { Avatar } from '@/components/avatar'
 import { Button } from '@/components/button'
 import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuRoot,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/dropdown-menu'
-import Logo from '@/components/Logo'
 import toast from '@/components/toast'
+
+function ProfileButton({ name }: { name: string }) {
+  return (
+    <div className="flex w-full items-center  focus:outline-none">
+      <Avatar size="xs" name={name}></Avatar>
+      <div className="flex flex-1 flex-col pl-3 text-sm ">
+        <div className="w-36 truncate text-ellipsis text-left font-semibold text-gray-700">
+          {name}
+        </div>
+        <div className="text-left text-gray-600">Admin</div>
+      </div>
+      <div className="50 pl-3">
+        <ChevronDownIcon className="h-4 w-4 text-gray-700"></ChevronDownIcon>
+      </div>
+    </div>
+  )
+}
 
 function ProfileDropdown() {
   const { removeAuth } = useAuth()
@@ -73,27 +90,32 @@ function ProfileDropdown() {
       <DropdownMenuRoot>
         <DropdownMenuTrigger>
           {profile.status === 'success' ? (
-            <button className="flex items-center justify-between gap-3 focus:outline-none">
-              <div className="flex flex-col justify-start text-sm">
-                <div className="text-left font-semibold text-gray-700">
-                  Admin
-                </div>
-                <div className="text-gray-600">{profile.data?.email}</div>
-              </div>
-              <div>
-                <ChevronDownIcon className="h-5 w-5 text-gray-700"></ChevronDownIcon>
-              </div>
+            <button>
+              <ProfileButton name={profile.data.name}></ProfileButton>
             </button>
           ) : (
             <div className="h-8 w-40 animate-pulse rounded bg-gray-200"></div>
           )}
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuItem
-            color="danger"
-            onClick={() => setOpen(true)}
-            leftIcon={<ArrowLeftOnRectangleIcon className="h-5 w-5" />}
-          >
+          <DropdownMenuItem>
+            {profile.status === 'success' ? (
+              <div className="space-y-0.5">
+                <div className="text-sm">Signed in as</div>
+                <div className="text-sm font-medium">{profile.data.email}</div>
+              </div>
+            ) : (
+              <div className="h-8 w-40 animate-pulse rounded bg-gray-200"></div>
+            )}
+          </DropdownMenuItem>
+          <DropdownMenuSeparator></DropdownMenuSeparator>
+          <DropdownMenuItem onClick={() => setOpen(true)}>
+            <div className="w-32">Account</div>
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setOpen(true)}>
+            <div className="w-32">Settings</div>
+          </DropdownMenuItem>
+          <DropdownMenuItem color="danger" onClick={() => setOpen(true)}>
             <div className="w-32">Logout</div>
           </DropdownMenuItem>
         </DropdownMenuContent>
@@ -117,33 +139,18 @@ function Menu({
   const isActive =
     router.pathname === href || router.pathname.startsWith(`${href}/`)
 
-  if (!clickable) {
-    return (
-      <div
-        className={cx(
-          'flex h-10 !w-full items-center gap-3 rounded px-3  font-medium ',
-          {
-            'bg-primary-500 text-white': isActive,
-            'text-gray-800': !isActive,
-          }
-        )}
-      >
-        {icon}
-        <div className="text-sm">{title}</div>
-      </div>
-    )
-  }
   return (
     <Link
       href={clickable ? href : '#'}
-      className={cx(
-        'flex h-10 !w-full items-center gap-3 rounded px-3  font-medium ',
-        {
-          'bg-primary-500 text-white': isActive,
-          'text-gray-800': !isActive,
-        }
-      )}
+      className={cx('relative flex h-10 !w-full items-center  gap-3  px-7', {
+        'bg-primary-100 font-medium text-primary-700': isActive,
+        'text-gray-800': !isActive,
+      })}
     >
+      {isActive ? (
+        <div className="absolute left-0 top-0 h-full w-0.5 bg-primary-500"></div>
+      ) : null}
+
       {icon}
       <div className="text-sm">{title}</div>
     </Link>
@@ -155,18 +162,11 @@ function AppLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="relative z-0 h-full">
-      {/* TopBar */}
-      <div
-        className={cx(
-          'fixed top-0 z-20 flex h-14 w-[calc(100%-var(--removed-body-scroll-bar-size,0%))] items-center  justify-between border-b border-gray-300  bg-white px-5'
-        )}
-      >
-        <Logo className="h-8"></Logo>
-        <ProfileDropdown />
-      </div>
-      <div className="relative z-10 pl-[250px] pt-14">
-        {/* Sidebar */}
-        <nav className="fixed left-0 top-14 min-h-full w-[250px] space-y-0.5 border-r border-gray-300 p-5">
+      <div className="relative z-10 h-full pl-[250px]">
+        <nav className="fixed left-0  min-h-full w-[250px]   bg-gray-50">
+          <div className="flex h-16 items-center px-5">
+            <ProfileDropdown />
+          </div>
           {profile.status === 'success' ? (
             <React.Fragment>
               <Menu
@@ -182,7 +182,7 @@ function AppLayout({ children }: { children: React.ReactNode }) {
               />
             </React.Fragment>
           ) : (
-            <div className="space-y-1.5">
+            <div className="space-y-1.5 px-5">
               <div className="h-10 animate-pulse rounded bg-gray-200"></div>
               <div className="h-10 animate-pulse rounded bg-gray-200"></div>
               <div className="h-10 animate-pulse rounded bg-gray-200"></div>
@@ -191,7 +191,7 @@ function AppLayout({ children }: { children: React.ReactNode }) {
           )}
         </nav>
 
-        <main className="">{children}</main>
+        <main className="min-h-full border-l border-gray-300">{children}</main>
       </div>
     </div>
   )

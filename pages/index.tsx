@@ -8,7 +8,7 @@ export default function Page() {
 
   return (
     <AppLayout>
-      <div className="p-10">Overview</div>
+      <div className="h-full py-5 px-10">Overview</div>
     </AppLayout>
   )
 }
