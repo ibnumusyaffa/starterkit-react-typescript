@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useRequireAuth } from '@/common/auth'
 import { deleteUser, getUsers } from '@/services/user'
 import { PlusIcon } from '@heroicons/react/24/outline'
 import {
@@ -13,6 +14,7 @@ import {
   parseAsInteger,
   parseAsString,
   useQueryState,
+  useQueryStates,
 } from 'next-usequerystate'
 
 import { useDebounce } from '@/hooks/useDebounce'
@@ -31,37 +33,43 @@ import { InputSearch } from '@/components/input'
 import { Pagination } from '@/components/pagination'
 import { Table, TableEmpty, Tbody, Td, Th, Thead, Tr } from '@/components/table'
 import toast from '@/components/toast'
-import { useRequireAuth } from '@/common/auth'
 
 function Page() {
   useRequireAuth()
   const router = useRouter()
 
-  const [page, setPage] = useQueryState('page', parseAsInteger.withDefault(1))
+  const [filter, setFilter] = useQueryStates(
+    {
+      page: parseAsInteger.withDefault(1),
+      limit: parseAsInteger.withDefault(10),
+    },
+    {
+      history: 'push',
+    }
+  )
 
-  const limit = 10
   const [keyword, setKeyword] = useQueryState(
     'keyword',
     parseAsString.withDefault('')
   )
-
   const [skipResetPage, setSkipResetPage] = useState(true)
   const debouncedKeyword = useDebounce(keyword, 300)
 
   useEffect(() => {
+    // skip the reset page on first load only
     if (skipResetPage) {
       setSkipResetPage(false)
       return
     }
-    setPage(1)
+    setFilter({ page: 1 })
   }, [debouncedKeyword])
 
   const { data, status, isFetching } = useQuery({
-    queryKey: ['users', page, limit, debouncedKeyword],
+    queryKey: ['users', debouncedKeyword, filter.page, filter.limit],
     queryFn: () =>
       getUsers({
-        page,
-        limit: limit,
+        page: filter.page,
+        limit: filter.limit,
         keyword: debouncedKeyword,
       }),
     placeholderData: keepPreviousData,
@@ -76,7 +84,7 @@ function Page() {
     mutationFn: deleteUser,
     onSuccess: () => {
       toast.success({ description: 'User berhasil dihapus.' })
-      setPage(1)
+      setFilter({ page: 1 })
       queryClient.invalidateQueries({ queryKey: ['users'] })
     },
     onError: () => {
@@ -85,7 +93,7 @@ function Page() {
     },
     onSettled: () => {
       setShowAlert(false)
-      setPage(1)
+      setFilter({ page: 1 })
     },
   })
 
@@ -146,7 +154,6 @@ function Page() {
               <Th>Email</Th>
               <Th>Updated at</Th>
               <Th>Created at</Th>
-
               <Th>Action</Th>
             </Tr>
           </Thead>
@@ -198,12 +205,11 @@ function Page() {
 
         <div className=" flex items-center justify-between px-5  py-5">
           <div className="flex items-center space-x-3 text-sm text-gray-700"></div>
-
           <Pagination
-            currentPage={page}
+            currentPage={filter.page}
             totalPages={data?.meta.totalPages ?? 0}
             onPageChange={(page) => {
-              setPage(page)
+              setFilter({ page: page })
             }}
           ></Pagination>
         </div>

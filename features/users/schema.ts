@@ -1,36 +1,32 @@
-import { z } from 'zod'
+import * as yup from 'yup'
 
-export const editSchema = z
-  .object({
-    email: z
-      .string()
-      .min(1, { message: 'Email wajib diisi' })
-      .email('Format harus email'),
+export const editSchema = yup.object({
+  email: yup
+    .string()
+    .required('Email wajib diisi')
+    .email('Format email tidak valid'),
+  name: yup.string().required('Nama wajib diisi'),
+})
 
-    name: z.string().min(1, { message: 'Nama wajib diisi' }),
-  })
-  .partial()
+export const createSchema = yup.object({
+  email: yup
+    .string()
+    .required('Email wajib diisi')
+    .email('Format email tidak valid'),
+  name: yup.string().required('Nama wajib diisi'),
 
-export const createSchema = z
-  .object({
-    name: z.string().min(1, { message: 'Nama Sesuai KTP wajib diisi' }),
-    email: z
-      .string()
-      .min(1, { message: 'Email wajib diisi' })
-      .email('Format harus email'),
-
-    password: z.string().min(1, { message: 'Password wajib diisi' }),
-    password_confirmation: z
-      .string()
-      .min(1, { message: 'Konfirmasi password wajib diisi' }),
-  })
-  .partial()
-  .superRefine(({ password_confirmation, password }, ctx) => {
-    if (password_confirmation !== password) {
-      ctx.addIssue({
-        code: 'custom',
-        path: ['password_confirmation'],
-        message: 'The passwords did not match',
-      })
-    }
-  })
+  password: yup
+    .string()
+    .required('Password wajib diisi')
+    .min(6, 'Password minimal karakter adalah 6'),
+  password_confirmation: yup
+    .string()
+    .required('Konfirmasi password wajib diisi')
+    .test(
+      'passwords-match',
+      'Konfirmasi password harus sama dengan password',
+      function (value, context) {
+        return value === context.parent.password
+      }
+    ),
+})

@@ -1,12 +1,13 @@
 import React from 'react'
 import { useRouter } from 'next/router'
+import { useRequireAuth } from '@/common/auth'
 import { createSchema } from '@/features/users/schema'
 import { createUser, ErrorResponse } from '@/services/user'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { yupResolver } from '@hookform/resolvers/yup'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { z } from 'zod'
+import * as yup from 'yup'
 
 import { Button } from '@/components/button'
 import {
@@ -16,9 +17,8 @@ import {
 } from '@/components/form-control'
 import { Input, InputPassword } from '@/components/input'
 import toast from '@/components/toast'
-import { useRequireAuth } from '@/common/auth'
 
-type FormData = z.infer<typeof createSchema>
+type FormData = yup.InferType<typeof createSchema>
 
 export function FormCreateUser() {
   useRequireAuth()
@@ -29,7 +29,7 @@ export function FormCreateUser() {
     formState: { errors },
   } = useForm<FormData>({
     defaultValues: {},
-    resolver: zodResolver(createSchema),
+    resolver: yupResolver(createSchema),
   })
 
   const router = useRouter()

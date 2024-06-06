@@ -109,10 +109,10 @@ function ProfileDropdown() {
             )}
           </DropdownMenuItem>
           <DropdownMenuSeparator></DropdownMenuSeparator>
-          <DropdownMenuItem onClick={() => setOpen(true)}>
+          <DropdownMenuItem>
             <div className="w-32">Account</div>
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setOpen(true)}>
+          <DropdownMenuItem>
             <div className="w-32">Settings</div>
           </DropdownMenuItem>
           <DropdownMenuItem color="danger" onClick={() => setOpen(true)}>

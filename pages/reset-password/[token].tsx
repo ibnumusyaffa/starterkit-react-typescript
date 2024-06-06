@@ -1,11 +1,12 @@
 import React from 'react'
 import { useRouter } from 'next/router'
+import { useRedirectIfAuthenticated } from '@/common/auth'
 import { resetPassword, resetPasswordErr } from '@/services/auth'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { yupResolver } from '@hookform/resolvers/yup'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
+import * as yup from 'yup'
 
 import AuthLayout from '@/layouts/AuthLayout'
 import { Button } from '@/components/button'
@@ -17,27 +18,25 @@ import {
 import { InputPassword } from '@/components/input'
 import Logo from '@/components/Logo'
 import toast from '@/components/toast'
-import { useRedirectIfAuthenticated } from '@/common/auth'
 
-const schema = z
-  .object({
-    password: z.string().min(1, { message: 'Password wajib diisi' }),
-    password_confirmation: z
-      .string()
-      .min(1, { message: 'Konfirmasi Password wajib diisi' }),
-  })
-  .partial()
-  .superRefine(({ password_confirmation, password }, ctx) => {
-    if (password_confirmation !== password) {
-      ctx.addIssue({
-        code: 'custom',
-        path: ['password_confirmation'],
-        message: 'Konfirmasi password tidak sama',
-      })
-    }
-  })
+const schema = yup.object({
+  password: yup
+    .string()
+    .required('Password wajib diisi')
+    .min(6, 'Password minimal karakter adalah 6'),
+  password_confirmation: yup
+    .string()
+    .required('Konfirmasi password wajib diisi')
+    .test(
+      'passwords-match',
+      'Konfirmasi password harus sama dengan password',
+      function (value, context) {
+        return value === context.parent.password
+      }
+    ),
+})
 
-type FormData = z.infer<typeof schema>
+type FormData = yup.InferType<typeof schema>
 
 export default function Page() {
   const {
@@ -46,7 +45,7 @@ export default function Page() {
     setError,
     formState: { errors },
   } = useForm<FormData>({
-    resolver: zodResolver(schema),
+    resolver: yupResolver(schema),
   })
 
   const router = useRouter()

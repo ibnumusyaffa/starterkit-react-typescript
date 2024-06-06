@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useAuth, useRedirectIfAuthenticated } from '@/common/auth'
 import { login, LoginRespErr } from '@/services/auth'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { yupResolver } from '@hookform/resolvers/yup'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
+import * as yup from 'yup'
 
 import AuthLayout from '@/layouts/AuthLayout'
 import { Alert } from '@/components/alert'
@@ -18,17 +19,13 @@ import {
 } from '@/components/form-control'
 import { Input, InputPassword } from '@/components/input'
 import Logo from '@/components/Logo'
-import { useAuth, useRedirectIfAuthenticated } from '@/common/auth'
 
-const schema = z.object({
-  email: z
-    .string()
-    .min(1, { message: 'Email wajib diisi' })
-    .email('Email tidak valid'),
-  password: z.string().min(1, { message: 'Password wajib diisi' }),
+const schema = yup.object({
+  email: yup.string().email('Email tidak valid').required('Email wajib diisi'),
+  password: yup.string().required('Password wajib diisi'),
 })
 
-type FormData = z.infer<typeof schema>
+type FormData = yup.InferType<typeof schema>
 
 export default function Page() {
   const {
@@ -36,7 +33,7 @@ export default function Page() {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
-    resolver: zodResolver(schema),
+    resolver: yupResolver(schema),
   })
 
   const [errorMessage, setErrorMessage] = useState('')

@@ -32,8 +32,10 @@ export function useAuth() {
   function removeAuth() {
     axios.removeToken()
     setIsAuthenticated(false)
-    localStorage.clear()
     Cookies.remove('token')
+    if (typeof window !== 'undefined') {
+      localStorage.clear()
+    }
   }
 
   return {
@@ -46,13 +48,17 @@ export function useAuth() {
 }
 
 export function useAuthSetup() {
-  const { setAuth, initialized, setIsAuthenticated } = useAuth()
+  const { setAuth, initialized, removeAuth } = useAuth()
   const token = Cookies.get('token')
-  if (token && !initialized) {
+
+  if (initialized) {
+    return
+  }
+  if (token) {
     setAuth(token)
   }
-  if (!token && !initialized) {
-    setIsAuthenticated(false)
+  if (!token) {
+    removeAuth()
   }
 }
 

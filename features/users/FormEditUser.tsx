@@ -2,11 +2,9 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import { editSchema } from '@/features/users/schema'
 import { editUser, ErrorResponse, UpdateReqBody, User } from '@/services/user'
-import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { z } from 'zod'
 
 import { Button } from '@/components/button'
 import {
@@ -16,8 +14,10 @@ import {
 } from '@/components/form-control'
 import { Input } from '@/components/input'
 import toast from '@/components/toast'
+import * as yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
 
-type FormData = z.infer<typeof editSchema>
+type FormData = yup.InferType<typeof editSchema>
 export function FormEditUser({
   data,
   disabled,
@@ -35,7 +35,7 @@ export function FormEditUser({
       email: data.email,
       name: data.name,
     },
-    resolver: zodResolver(editSchema),
+    resolver: yupResolver(editSchema),
   })
 
   const router = useRouter()

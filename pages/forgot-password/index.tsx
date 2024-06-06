@@ -1,10 +1,10 @@
 import React from 'react'
 import { useRouter } from 'next/router'
+import { useRedirectIfAuthenticated } from '@/common/auth'
 import { forgotPassword } from '@/services/auth'
-import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
+import { yupResolver } from '@hookform/resolvers/yup'
 
 import AuthLayout from '@/layouts/AuthLayout'
 import { Button } from '@/components/button'
@@ -16,16 +16,13 @@ import {
 import { Input } from '@/components/input'
 import Logo from '@/components/Logo'
 import toast from '@/components/toast'
-import { useRedirectIfAuthenticated } from '@/common/auth'
+import * as yup from 'yup'
 
-const schema = z.object({
-  email: z
-    .string()
-    .min(1, { message: 'Email wajib diisi' })
-    .email('Format harus email'),
+const schema = yup.object({
+  email: yup.string().email('Email tidak valid').required('Email wajib diisi'),
 })
 
-type FormData = z.infer<typeof schema>
+type FormData = yup.InferType<typeof schema>
 
 export default function Page() {
   const router = useRouter()
@@ -34,7 +31,7 @@ export default function Page() {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
-    resolver: zodResolver(schema),
+    resolver: yupResolver(schema),
   })
 
   useRedirectIfAuthenticated()
@@ -43,7 +40,7 @@ export default function Page() {
     mutationFn: forgotPassword,
     onSuccess: (response) => {
       toast.success({
-        position:'top-center',
+        position: 'top-center',
         description: response.message,
       })
       router.push('/')
