@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import cx from '@/lib/cx'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
-import { XMarkIcon } from '@heroicons/react/24/solid'
+import { CloseButton } from '@/components/close-button'
 import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog'
 import { AnimatePresence, motion } from 'framer-motion'
 
@@ -51,13 +51,7 @@ function IconSection() {
 export function AlertDialogCloseButton() {
   return (
     <AlertDialogPrimitive.Cancel asChild>
-      <button
-        className={cx(
-          'absolute right-2 top-2 rounded p-0.5 text-gray-800 hover:bg-gray-200 active:bg-gray-300'
-        )}
-      >
-        <XMarkIcon className="h-5 w-5"></XMarkIcon>
-      </button>
+      <CloseButton className={cx('absolute right-2 top-2')}></CloseButton>
     </AlertDialogPrimitive.Cancel>
   )
 }

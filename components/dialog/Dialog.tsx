@@ -3,9 +3,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useOnClickOutside } from '@/hooks'
 import cx from '@/lib/cx'
-import { XMarkIcon } from '@heroicons/react/24/solid'
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 import { AnimatePresence, motion } from 'framer-motion'
+
+import { CloseButton } from '@/components/close-button'
 
 const overlayMotion = {
   initial: {
@@ -57,13 +58,7 @@ export function DialogFooter({ children }: { children?: React.ReactNode }) {
 export function DialogCloseButton() {
   return (
     <DialogPrimitive.Close asChild>
-      <button
-        className={cx(
-          'absolute right-2 top-2 rounded p-0.5 text-gray-800 hover:bg-gray-200 active:bg-gray-300'
-        )}
-      >
-        <XMarkIcon className="h-5 w-5"></XMarkIcon>
-      </button>
+      <CloseButton className={cx('absolute right-2 top-2')}></CloseButton>
     </DialogPrimitive.Close>
   )
 }
