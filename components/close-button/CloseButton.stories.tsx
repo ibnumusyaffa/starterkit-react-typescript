@@ -20,7 +20,7 @@ export const BasicUsage: Story = {
 
 export const Size: Story = {
   args: {},
-  render: (args) => {
+  render: () => {
     return (
       <div className='flex flex-col'>
         <CloseButton size="sm"></CloseButton>
