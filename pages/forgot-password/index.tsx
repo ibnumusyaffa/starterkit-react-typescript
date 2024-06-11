@@ -43,7 +43,7 @@ export default function Page() {
         position: 'top-center',
         description: response.message,
       })
-      router.push('/')
+      router.push('/login')
     },
   })
 
@@ -76,7 +76,7 @@ export default function Page() {
               )}
             </FormControl>
 
-            <div className="flex justify-end  text-gray-600">
+            <div className="flex items-center text-gray-600 text-sm">
               Link perubahan kata sandi akan dikirim ke email anda
             </div>
             <div>

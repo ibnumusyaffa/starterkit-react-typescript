@@ -359,7 +359,7 @@ export function Table({
         <div
           className={cx('relative w-full', {
             'overflow-x-auto': overflowXAuto,
-            'border border-gray-300': withBorder,
+            'border-y  border-gray-300': withBorder,
             'overflow-hidden rounded-md': rounded,
           })}
         >

@@ -28,7 +28,7 @@ import {
 } from '@/components/alert-dialog'
 import { Button } from '@/components/button'
 import { EmptyState } from '@/components/empty-state'
-import { FormControl, FormLabel } from '@/components/form-control'
+import { FormControl } from '@/components/form-control'
 import { InputSearch } from '@/components/input'
 import { Pagination } from '@/components/pagination'
 import { Table, TableEmpty, Tbody, Td, Th, Thead, Tr } from '@/components/table'
@@ -123,95 +123,103 @@ function Page() {
           </Button>
         </AlertDialogFooter>
       </AlertDialog>
-      <div className="flex h-16 items-center justify-between border-b border-gray-300 px-10">
-        <div className="text-lg font-bold text-gray-800">Data User</div>
-        <div>
-          <Button asChild leftIcon={<PlusIcon className="h-4 w-4"></PlusIcon>}>
-            <Link href="/users/create">Buat User</Link>
-          </Button>
+      <div className="px-10 py-5 ">
+        <div className="flex h-16 items-center justify-between ">
+          <div className="text-xl font-bold text-gray-800">List Users</div>
+          <div>
+            <Button
+              asChild
+              leftIcon={<PlusIcon className="h-4 w-4"></PlusIcon>}
+            >
+              <Link href="/users/create">Buat User</Link>
+            </Button>
+          </div>
         </div>
-      </div>
-      <div className="flex h-28   items-center border-b border-gray-300 px-10">
-        <form className="grid w-full grid-cols-[2fr_1fr_1fr_1fr] gap-x-5">
-          <FormControl>
-            <FormLabel>Cari</FormLabel>
-            <InputSearch
-              placeholder="Tulis nama, email"
-              value={keyword}
-              onChange={(e) => setKeyword(e.target.value)}
-            />
-          </FormControl>
-        </form>
-      </div>
-      <div className="px-10 py-10">
-        <Table
-          empty={data?.data?.length === 0}
-          loading={status === 'pending' || isFetching}
-        >
-          <Thead>
-            <Tr>
-              <Th>Name</Th>
-              <Th>Email</Th>
-              <Th>Updated at</Th>
-              <Th>Created at</Th>
-              <Th>Action</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            {status === 'success' ? (
-              <React.Fragment>
-                {data?.data?.map((item, index) => {
-                  return (
-                    <Tr key={index}>
-                      <Td>{item.name}</Td>
-                      <Td>{item.email}</Td>
-                      <Td>{item.updated_at}</Td>
-                      <Td>{item.created_at} </Td>
+        <div className="flex h-20 items-center">
+          <form className="grid w-full grid-cols-[2fr_1fr_1fr_1fr] gap-x-5">
+            <FormControl>
+              <InputSearch
+                placeholder="Tulis nama, email"
+                value={keyword}
+                onChange={(e) => setKeyword(e.target.value)}
+              />
+            </FormControl>
+          </form>
+        </div>
+        <div className="">
+          <Table
+            withBorder
+            empty={data?.data?.length === 0}
+            loading={status === 'pending' || isFetching}
+          >
+            <Thead>
+              <Tr>
+                <Th>Name</Th>
+                <Th>Email</Th>
+                <Th>Updated at</Th>
+                <Th>Created at</Th>
+                <Th>Action</Th>
+              </Tr>
+            </Thead>
+            <Tbody>
+              {status === 'success' ? (
+                <React.Fragment>
+                  {data?.data?.map((item, index) => {
+                    return (
+                      <Tr key={index}>
+                        <Td>{item.name}</Td>
+                        <Td>{item.email}</Td>
+                        <Td>{item.updated_at}</Td>
+                        <Td>{item.created_at} </Td>
 
-                      <Td>
-                        <div className="flex space-x-1">
-                          <Button asChild variant="subtle" size="sm">
-                            <Link
-                              href={`/users/edit/${item.id}`}
-                              className="!font-bold text-gray-800"
+                        <Td>
+                          <div className="flex space-x-1">
+                            <Button asChild variant="subtle" size="sm">
+                              <Link
+                                href={`/users/edit/${item.id}`}
+                                
+                              >
+                                Edit
+                              </Link>
+                            </Button>
+                            <Button
+                              onClick={() => {
+                                setDeleteId(item.id)
+                                setShowAlert(true)
+                              }}
+                              variant="subtle"
+                              size="sm"
                             >
-                              Edit
-                            </Link>
-                          </Button>
-                          <Button
-                            onClick={() => {
-                              setDeleteId(item.id)
-                              setShowAlert(true)
-                            }}
-                            variant="subtle"
-                            size="sm"
-                          >
-                            <span className="font-bold text-gray-500">
-                              Hapus
-                            </span>
-                          </Button>
-                        </div>
-                      </Td>
-                    </Tr>
-                  )
-                })}
-              </React.Fragment>
-            ) : null}
-          </Tbody>
-          <TableEmpty>
-            <EmptyState withIcon title="Pencarian Tidak Ditemukan"></EmptyState>
-          </TableEmpty>
-        </Table>
+                              <span className="text-gray-600">
+                                Hapus
+                              </span>
+                            </Button>
+                          </div>
+                        </Td>
+                      </Tr>
+                    )
+                  })}
+                </React.Fragment>
+              ) : null}
+            </Tbody>
+            <TableEmpty>
+              <EmptyState
+                withIcon
+                title="Pencarian Tidak Ditemukan"
+              ></EmptyState>
+            </TableEmpty>
+          </Table>
 
-        <div className=" flex items-center justify-between px-5  py-5">
-          <div className="flex items-center space-x-3 text-sm text-gray-700"></div>
-          <Pagination
-            currentPage={filter.page}
-            totalPages={data?.meta.totalPages ?? 0}
-            onPageChange={(page) => {
-              setFilter({ page: page })
-            }}
-          ></Pagination>
+          <div className=" flex items-center justify-between h-20">
+            <div className="flex items-center space-x-3 text-sm text-gray-700"></div>
+            <Pagination
+              currentPage={filter.page}
+              totalPages={data?.meta.totalPages ?? 0}
+              onPageChange={(page) => {
+                setFilter({ page: page })
+              }}
+            ></Pagination>
+          </div>
         </div>
       </div>
     </AppLayout>

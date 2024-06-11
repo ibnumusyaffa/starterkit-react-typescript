@@ -59,7 +59,7 @@ export default function Page() {
         description: response.message,
       })
       localStorage.clear()
-      router.push('/')
+      router.push('/login')
     },
     onError: (error: AxiosError) => {
       const response = error.response?.data as resetPasswordErr
@@ -128,9 +128,8 @@ export default function Page() {
             </FormControl>
 
             <div className="flex justify-end text-sm text-gray-700">
-              Gunakan kombinasi huruf, angka, simbol, dan memuat huruf kapital
-              untuk kombinasi yang kuat. Serta panjang kata sandi setidaknya 8
-              karakter.
+              Gunakan kombinasi huruf, angka, simbol, termasuk huruf kapital,
+              dengan panjang minimal 8 karakter untuk kata sandi yang kuat.
             </div>
             <div>
               <Button loading={status === 'pending'} type="submit" fullWidth>
