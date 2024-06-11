@@ -11,12 +11,11 @@ import { AnimatePresence, motion } from 'framer-motion'
 
 import { Spinner } from '@/components/spinner'
 
-export type Direction = 'asc' | 'desc' | undefined
 export type VerticalAlignment = 'top' | 'center' | 'bottom'
 
-export type SortParams = {
+type SortParams = {
   column?: string
-  direction: Direction
+  direction?: string
 }
 
 type ProviderParams = {
@@ -89,20 +88,20 @@ export function Th({
 
     const currentDirection = sort?.direction
 
-    let nextDirection: Direction = undefined
+    let nextDirection = ''
     if (currentDirection === 'asc') {
       nextDirection = 'desc'
     }
 
     if (currentDirection === 'desc') {
-      nextDirection = undefined
+      nextDirection = ''
     }
 
     if (!currentDirection) {
       nextDirection = 'asc'
     }
     onChangeSort?.({
-      column: nextDirection ? columnKey : undefined,
+      column: nextDirection ? columnKey : '',
       direction: nextDirection,
     })
   }
@@ -381,17 +380,4 @@ export function Table({
       </div>
     </TableCtx.Provider>
   )
-}
-
-export function useTableSort({ column = '', direction = 'asc' }: SortParams) {
-  const [sort, setSort] = React.useState<SortParams>({
-    column,
-    direction,
-  })
-
-  function handleChangeSort(value: SortParams) {
-    setSort(value)
-  }
-
-  return { sort, handleChangeSort }
 }

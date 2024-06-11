@@ -18,6 +18,7 @@ import {
 } from 'next-usequerystate'
 
 import { useDebounce } from '@/hooks/useDebounce'
+import { useTableSort } from '@/hooks/useTableSort'
 import AppLayout from '@/layouts/AppLayout'
 import {
   AlertDialog,
@@ -64,13 +65,20 @@ function Page() {
     setFilter({ page: 1 })
   }, [debouncedKeyword])
 
+  const { sort, handleChangeSort } = useTableSort({
+    column: 'created_at',
+    direction: 'desc',
+  })
+
   const { data, status, isFetching } = useQuery({
-    queryKey: ['users', debouncedKeyword, filter.page, filter.limit],
+    queryKey: ['users', debouncedKeyword, filter.page, filter.limit, sort],
     queryFn: () =>
       getUsers({
         page: filter.page,
         limit: filter.limit,
         keyword: debouncedKeyword,
+        sort_column: sort.column,
+        sort_direction: sort.direction,
       }),
     placeholderData: keepPreviousData,
     enabled: router.isReady,
@@ -151,13 +159,19 @@ function Page() {
             withBorder
             empty={data?.data?.length === 0}
             loading={status === 'pending' || isFetching}
+            sort={sort}
+            onChangeSort={handleChangeSort}
           >
             <Thead>
               <Tr>
-                <Th>Name</Th>
+                <Th sortable columnKey="name">
+                  Name
+                </Th>
                 <Th>Email</Th>
                 <Th>Updated at</Th>
-                <Th>Created at</Th>
+                <Th sortable columnKey="created_at">
+                  Created at
+                </Th>
                 <Th>Action</Th>
               </Tr>
             </Thead>
@@ -175,12 +189,7 @@ function Page() {
                         <Td>
                           <div className="flex space-x-1">
                             <Button asChild variant="subtle" size="sm">
-                              <Link
-                                href={`/users/edit/${item.id}`}
-                                
-                              >
-                                Edit
-                              </Link>
+                              <Link href={`/users/edit/${item.id}`}>Edit</Link>
                             </Button>
                             <Button
                               onClick={() => {
@@ -190,9 +199,7 @@ function Page() {
                               variant="subtle"
                               size="sm"
                             >
-                              <span className="text-gray-600">
-                                Hapus
-                              </span>
+                              <span className="text-gray-600">Hapus</span>
                             </Button>
                           </div>
                         </Td>
@@ -210,7 +217,7 @@ function Page() {
             </TableEmpty>
           </Table>
 
-          <div className=" flex items-center justify-between h-20">
+          <div className=" flex h-20 items-center justify-between">
             <div className="flex items-center space-x-3 text-sm text-gray-700"></div>
             <Pagination
               currentPage={filter.page}

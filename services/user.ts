@@ -19,9 +19,11 @@ type Users = {
 }
 
 type UserParams = {
-  page: number | null
-  limit: number
-  keyword: string | null
+  page?: number
+  limit?: number
+  keyword?: string
+  sort_column?: string
+  sort_direction?: string
 }
 
 export async function getUsers(params: UserParams): Promise<Users> {
