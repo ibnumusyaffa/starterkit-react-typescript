@@ -47,7 +47,7 @@ export const Avatar = React.forwardRef<HTMLSpanElement, AvatarProps>(
               '-mr-3': isGroup,
             },
             {
-              'h-9  w-9': size === 'xs',
+              'h-8  w-8': size === 'xs',
               'h-10  w-10': size === 'sm',
               'h-12  w-12': size === 'md',
               'h-14  w-14': size === 'lg',
