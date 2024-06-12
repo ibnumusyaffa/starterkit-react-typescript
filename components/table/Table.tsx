@@ -161,10 +161,11 @@ export function Td({
       {...props}
       className={cx(
         'px-2 py-3',
-        'text-left text-gray-800',
+        'text-left text-gray-800 leading-tight',
         'border-t border-gray-300 group-[:first-of-type]:border-t-0 ',
         //selected style
-        'group-data-[selected=true]:first:border-l-4 group-data-[selected=true]:first:border-l-primary-500',
+        'group-data-[selected=true]:first:border-l-[3px] ',
+        'group-data-[selected=true]:first:border-l-primary-500',
         {
           '[&:not(:last-child)]:border-r': withColumnBorders,
           'align-top': verticalAlignment === 'top',

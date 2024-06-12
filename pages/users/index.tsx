@@ -28,13 +28,14 @@ import {
   AlertDialogFooter,
 } from '@/components/alert-dialog'
 import { Button } from '@/components/button'
+import { Checkbox } from '@/components/checkbox'
 import { EmptyState } from '@/components/empty-state'
 import { FormControl } from '@/components/form-control'
 import { InputSearch } from '@/components/input'
 import { Pagination } from '@/components/pagination'
 import { Table, TableEmpty, Tbody, Td, Th, Thead, Tr } from '@/components/table'
 import toast from '@/components/toast'
-
+import dayjs from "dayjs"
 function Page() {
   useRequireAuth()
   const router = useRouter()
@@ -85,7 +86,7 @@ function Page() {
   })
 
   const [showAlert, setShowAlert] = useState(false)
-  const [deleteId, setDeleteId] = useState('')
+  const [deleteId, setDeleteId] = useState(0)
   const queryClient = useQueryClient()
 
   const mutation = useMutation({
@@ -104,6 +105,32 @@ function Page() {
       setFilter({ page: 1 })
     },
   })
+
+  const [selectedRows, setSelectedRows] = useState<number[]>([])
+
+  function toggleSelectRow(id: number) {
+    setSelectedRows((prevSelectedRows) =>
+      prevSelectedRows.includes(id)
+        ? prevSelectedRows.filter((rowId) => rowId !== id)
+        : [...prevSelectedRows, id]
+    )
+  }
+
+  function toggleSelectAll() {
+    setSelectedRows((prevSelectedRows) => {
+      if (prevSelectedRows.length >= 10) {
+        return []
+      }
+      if (status === 'success') {
+        return data?.data.map((item) => item.id)
+      }
+      return []
+    })
+  }
+
+  function clearSelectedRow() {
+    setSelectedRows([])
+  }
 
   return (
     <AppLayout>
@@ -149,7 +176,10 @@ function Page() {
               <InputSearch
                 placeholder="Tulis nama, email"
                 value={keyword}
-                onChange={(e) => setKeyword(e.target.value)}
+                onChange={(e) => {
+                  setKeyword(e.target.value)
+                  clearSelectedRow()
+                }}
               />
             </FormControl>
           </form>
@@ -157,13 +187,26 @@ function Page() {
         <div className="">
           <Table
             withBorder
-            empty={data?.data?.length === 0}
+            empty={data?.data.length === 0 || data === undefined}
             loading={status === 'pending' || isFetching}
             sort={sort}
+            verticalAlignment="center"
             onChangeSort={handleChangeSort}
           >
             <Thead>
               <Tr>
+                <Th className="min-w-12">
+                  <div className="flex items-center justify-center">
+                    <Checkbox
+                      onChange={() => toggleSelectAll()}
+                      size="sm"
+                      indeterminate={
+                        selectedRows.length > 0 && selectedRows.length < 10
+                      }
+                      checked={selectedRows.length > 0}
+                    ></Checkbox>
+                  </div>
+                </Th>
                 <Th sortable columnKey="name">
                   Name
                 </Th>
@@ -178,13 +221,25 @@ function Page() {
             <Tbody>
               {status === 'success' ? (
                 <React.Fragment>
-                  {data?.data?.map((item, index) => {
+                  {data.data.map((item) => {
                     return (
-                      <Tr key={index}>
+                      <Tr
+                        selected={selectedRows.includes(item.id)}
+                        key={item.id}
+                      >
+                        <Td className="min-w-12">
+                          <div className="flex items-center justify-center">
+                            <Checkbox
+                              onClick={() => toggleSelectRow(item.id)}
+                              size="sm"
+                              checked={selectedRows.includes(item.id)}
+                            ></Checkbox>
+                          </div>
+                        </Td>
                         <Td>{item.name}</Td>
                         <Td>{item.email}</Td>
-                        <Td>{item.updated_at}</Td>
-                        <Td>{item.created_at} </Td>
+                        <Td>{dayjs(item.updated_at).format('YYYY-MM-DD hh:mm:ss')}</Td>
+                        <Td>{dayjs(item.created_at).format('YYYY-MM-DD hh:mm:ss')}</Td>
 
                         <Td>
                           <div className="flex space-x-1">
@@ -224,6 +279,7 @@ function Page() {
               totalPages={data?.meta.totalPages ?? 0}
               onPageChange={(page) => {
                 setFilter({ page: page })
+                clearSelectedRow()
               }}
             ></Pagination>
           </div>

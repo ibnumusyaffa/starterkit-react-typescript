@@ -5,7 +5,7 @@ export type User = {
   updated_at: string
   email: string
   name: string
-  id: string
+  id: number
 }
 
 type Users = {
@@ -38,7 +38,7 @@ export async function getUserById(id: string): Promise<User> {
   return response.data
 }
 
-export async function deleteUser(id: string) {
+export async function deleteUser(id: number) {
   return axios.delete(`/users/${id}`)
 }
 
