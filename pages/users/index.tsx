@@ -10,6 +10,7 @@ import {
   useQuery,
   useQueryClient,
 } from '@tanstack/react-query'
+import dayjs from 'dayjs'
 import {
   parseAsInteger,
   parseAsString,
@@ -35,7 +36,7 @@ import { InputSearch } from '@/components/input'
 import { Pagination } from '@/components/pagination'
 import { Table, TableEmpty, Tbody, Td, Th, Thead, Tr } from '@/components/table'
 import toast from '@/components/toast'
-import dayjs from "dayjs"
+
 function Page() {
   useRequireAuth()
   const router = useRouter()
@@ -159,18 +160,19 @@ function Page() {
         </AlertDialogFooter>
       </AlertDialog>
       <div className="px-10 py-5 ">
-        <div className="flex h-16 items-center justify-between ">
-          <div className="text-xl font-bold text-gray-800">List Users</div>
+        <div className="flex h-14 items-center justify-between ">
+          <div className="text-xl font-bold text-gray-800">Manage Users</div>
+
           <div>
             <Button
               asChild
               leftIcon={<PlusIcon className="h-4 w-4"></PlusIcon>}
             >
-              <Link href="/users/create">Buat User</Link>
+              <Link href="/users/create">Create User</Link>
             </Button>
           </div>
         </div>
-        <div className="flex h-20 items-center">
+        <div className="mt-3 flex h-20 items-center border-t border-gray-300">
           <form className="grid w-full grid-cols-[2fr_1fr_1fr_1fr] gap-x-5">
             <FormControl>
               <InputSearch
@@ -195,7 +197,7 @@ function Page() {
           >
             <Thead>
               <Tr>
-                <Th className="min-w-12">
+                <Th className="min-w-10">
                   <div className="flex items-center justify-center">
                     <Checkbox
                       onChange={() => toggleSelectAll()}
@@ -227,7 +229,7 @@ function Page() {
                         selected={selectedRows.includes(item.id)}
                         key={item.id}
                       >
-                        <Td className="min-w-12">
+                        <Td className="min-w-10">
                           <div className="flex items-center justify-center">
                             <Checkbox
                               onClick={() => toggleSelectRow(item.id)}
@@ -238,8 +240,12 @@ function Page() {
                         </Td>
                         <Td>{item.name}</Td>
                         <Td>{item.email}</Td>
-                        <Td>{dayjs(item.updated_at).format('YYYY-MM-DD hh:mm:ss')}</Td>
-                        <Td>{dayjs(item.created_at).format('YYYY-MM-DD hh:mm:ss')}</Td>
+                        <Td>
+                          {dayjs(item.updated_at).format('YYYY-MM-DD hh:mm:ss')}
+                        </Td>
+                        <Td>
+                          {dayjs(item.created_at).format('YYYY-MM-DD hh:mm:ss')}
+                        </Td>
 
                         <Td>
                           <div className="flex space-x-1">
