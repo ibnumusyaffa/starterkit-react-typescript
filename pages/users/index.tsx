@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useRequireAuth } from '@/common/auth'
 import { deleteUser, getUsers } from '@/services/user'
 import { PlusIcon } from '@heroicons/react/24/outline'
 import {
@@ -38,7 +37,6 @@ import { Table, TableEmpty, Tbody, Td, Th, Thead, Tr } from '@/components/table'
 import toast from '@/components/toast'
 
 function Page() {
-  useRequireAuth()
   const router = useRouter()
 
   const [filter, setFilter] = useQueryStates(
@@ -232,7 +230,7 @@ function Page() {
                         <Td className="min-w-10">
                           <div className="flex items-center justify-center">
                             <Checkbox
-                              onClick={() => toggleSelectRow(item.id)}
+                              onChange={() => toggleSelectRow(item.id)}
                               size="sm"
                               checked={selectedRows.includes(item.id)}
                             ></Checkbox>

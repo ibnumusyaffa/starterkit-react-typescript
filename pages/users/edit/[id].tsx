@@ -1,6 +1,5 @@
 import React from 'react'
 import { useRouter } from 'next/router'
-import { useRequireAuth } from '@/common/auth'
 import { FormEditUser } from '@/features/users/FormEditUser'
 import { getUserById } from '@/services/user'
 import { useQuery } from '@tanstack/react-query'
@@ -9,8 +8,6 @@ import AppLayout from '@/layouts/AppLayout'
 import { Spinner } from '@/components/spinner'
 
 function Page() {
-  useRequireAuth()
-
   const router = useRouter()
 
   const { data, status } = useQuery({

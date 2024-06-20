@@ -430,7 +430,7 @@ export const OverflowX: Story = {
         <Table overflowXAuto>
           <Thead>
             <Tr>
-              <Th className='w-1/2'>Column 1</Th>
+              <Th className="w-1/2">Column 1</Th>
               <Th>Column 2</Th>
               <Th>Column 3</Th>
             </Tr>
@@ -439,18 +439,9 @@ export const OverflowX: Story = {
             {[...Array(3)].map((item, index) => {
               return (
                 <Tr key={index}>
-                  <Td>
-                    LoremIpsumissimplydummytextoftheprintingand
-                  
-                  </Td>
-                  <Td>
-                    LoremIpsumissimplydummytextoftheprintingand
-                  
-                  </Td>
-                  <Td>
-                    LoremIpsumissimplydummytextoftheprintingand
-                  
-                  </Td>
+                  <Td>LoremIpsumissimplydummytextoftheprintingand</Td>
+                  <Td>LoremIpsumissimplydummytextoftheprintingand</Td>
+                  <Td>LoremIpsumissimplydummytextoftheprintingand</Td>
                 </Tr>
               )
             })}

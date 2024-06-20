@@ -3,9 +3,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 import cx from '@/lib/cx'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
-import { CloseButton } from '@/components/close-button'
 import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog'
 import { AnimatePresence, motion } from 'framer-motion'
+
+import { CloseButton } from '@/components/close-button'
 
 const panelMotion = {
   initial: {

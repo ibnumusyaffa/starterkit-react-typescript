@@ -40,7 +40,7 @@ export function TabsTrigger({
 
   const variantStyle: Record<Variant, string> = {
     default: cx(
-      'flex items-center px-3 py-3 font-medium text-gray-700  border-transparent group ',
+      'group flex items-center border-transparent px-3 py-3  font-medium text-gray-700 ',
       'data-[state=active]:text-primary-700',
       {
         'border-b-[3px] data-[state=active]:border-b-primary-500':
@@ -55,9 +55,9 @@ export function TabsTrigger({
       }
     ),
     pills: cx(
-      'flex items-center px-3 py-2 font-medium rounded text-gray-500 group',
+      'group flex items-center rounded px-3 py-2 font-medium text-gray-500',
       'data-[state=active]:bg-primary-500 data-[state=active]:text-white',
-      'data-[state=active]:ring-1 ring-black ring-opacity-5 data-[state=active]:shadow-sm',
+      'ring-black ring-opacity-5 data-[state=active]:shadow-sm data-[state=active]:ring-1',
       {
         'flex-1': grow,
       },

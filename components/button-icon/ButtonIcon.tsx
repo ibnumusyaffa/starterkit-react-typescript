@@ -137,18 +137,18 @@ export const ButtonIcon = forwardRef<HTMLButtonElement, ButtonProps>(
 
     const buttonStyle = cx(
       // base style
-      'focus:outline-none font-medium rounded flex h-full items-center justify-center leading-none',
+      'flex h-full items-center justify-center rounded font-medium leading-none focus:outline-none',
       {
-        'opacity-50 cursor-not-allowed': disabled,
+        'cursor-not-allowed opacity-50': disabled,
         'cursor-not-allowed': loading,
       },
       variantStyles({ variant, color }),
       // size style
       {
-        'text-sm h-6 w-6': size === 'sm',
-        'text-base h-8 w-8': size === 'md',
-        'text-lg h-10 w-10': size === 'lg',
-        'text-xl h-12 w-12': size === 'xl',
+        'h-6 w-6 text-sm': size === 'sm',
+        'h-8 w-8 text-base': size === 'md',
+        'h-10 w-10 text-lg': size === 'lg',
+        'h-12 w-12 text-xl': size === 'xl',
       },
 
       //button group

@@ -161,7 +161,7 @@ export function Td({
       {...props}
       className={cx(
         'px-2 py-3',
-        'text-left text-gray-800 leading-tight',
+        'text-left leading-tight text-gray-800',
         'border-t border-gray-300 group-[:first-of-type]:border-t-0 ',
         //selected style
         'group-data-[selected=true]:first:border-l-[3px] ',

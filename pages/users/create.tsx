@@ -1,12 +1,9 @@
 import React from 'react'
-import { useRequireAuth } from '@/common/auth'
 import { FormCreateUser } from '@/features/users/FormCreateUser'
 
 import AppLayout from '@/layouts/AppLayout'
 
 function Page() {
-  useRequireAuth()
-
   return (
     <AppLayout>
       <div className="px-10 py-5">

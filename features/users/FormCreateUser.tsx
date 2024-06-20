@@ -1,6 +1,5 @@
 import React from 'react'
 import { useRouter } from 'next/router'
-import { useRequireAuth } from '@/common/auth'
 import { createSchema } from '@/features/users/schema'
 import { createUser, ErrorResponse } from '@/services/user'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -21,7 +20,6 @@ import toast from '@/components/toast'
 type FormData = yup.InferType<typeof createSchema>
 
 export function FormCreateUser() {
-  useRequireAuth()
   const {
     register,
     handleSubmit,

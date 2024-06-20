@@ -146,9 +146,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     const buttonStyle = cx(
       // base style
-      'inline-flex items-center justify-center px-3 focus:outline-none font-medium rounded',
+      'inline-flex items-center justify-center rounded px-3 font-medium focus:outline-none',
       {
-        'opacity-50 cursor-not-allowed': disabled,
+        'cursor-not-allowed opacity-50': disabled,
         'cursor-not-allowed': loading,
         'w-full': fullWidth,
       },

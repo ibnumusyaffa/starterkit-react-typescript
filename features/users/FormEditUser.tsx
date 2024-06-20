@@ -2,9 +2,11 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import { editSchema } from '@/features/users/schema'
 import { editUser, ErrorResponse, UpdateReqBody, User } from '@/services/user'
+import { yupResolver } from '@hookform/resolvers/yup'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import * as yup from 'yup'
 
 import { Button } from '@/components/button'
 import {
@@ -14,8 +16,6 @@ import {
 } from '@/components/form-control'
 import { Input } from '@/components/input'
 import toast from '@/components/toast'
-import * as yup from 'yup'
-import { yupResolver } from '@hookform/resolvers/yup'
 
 type FormData = yup.InferType<typeof editSchema>
 export function FormEditUser({

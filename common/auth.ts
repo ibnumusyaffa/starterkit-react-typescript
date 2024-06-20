@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-import { useRouter } from 'next/router'
 import * as axios from '@/lib/axios'
 import { getProfile } from '@/services/profile'
 import { useQuery } from '@tanstack/react-query'
@@ -33,9 +31,7 @@ export function useAuth() {
     axios.removeToken()
     setIsAuthenticated(false)
     Cookies.remove('token')
-    if (typeof window !== 'undefined') {
-      localStorage.clear()
-    }
+    localStorage.clear()
   }
 
   return {
@@ -48,41 +44,16 @@ export function useAuth() {
 }
 
 export function useAuthSetup() {
-  const { setAuth, initialized, removeAuth } = useAuth()
-  const token = Cookies.get('token')
+  const { setAuth, initialized } = useAuth()
 
   if (initialized) {
     return
   }
+
+  const token = Cookies.get('token')
   if (token) {
     setAuth(token)
   }
-  if (!token) {
-    removeAuth()
-  }
-}
-
-export function useRequireAuth() {
-  const { isAuthenticated } = useAuth()
-  const router = useRouter()
-
-  useEffect(() => {
-    if (!isAuthenticated) {
-      router.push('/login')
-    }
-  }, [isAuthenticated, router])
-}
-
-export function useRedirectIfAuthenticated() {
-  const { isAuthenticated } = useAuth()
-  const router = useRouter()
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      router.push('/')
-      return
-    }
-  }, [isAuthenticated, router])
 }
 
 export function useProfile() {

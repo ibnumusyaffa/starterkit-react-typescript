@@ -50,7 +50,6 @@ function ProfileButton({ name }: { name: string }) {
 function ProfileDropdown() {
   const { removeAuth } = useAuth()
   const [open, setOpen] = useState(false)
-  const router = useRouter()
   const queryClient = useQueryClient()
 
   const { mutate, status } = useMutation({
@@ -58,7 +57,7 @@ function ProfileDropdown() {
     onSuccess: () => {
       removeAuth()
       queryClient.clear()
-      router.push('/login')
+      window.location.href = '/auth/login'
     },
     onError: () => {
       toast.danger({ description: 'Logout gagal' })
@@ -146,7 +145,7 @@ function Menu({
       className={cx(
         'relative flex h-12 !w-full items-center gap-3 px-7 transition-colors',
         {
-          'bg-gray-200 font-medium text-primary-600 bg-opacity-60': isActive,
+          'bg-gray-200 bg-opacity-60 font-medium text-primary-600': isActive,
           'text-gray-600 hover:bg-gray-100': !isActive,
         }
       )}
@@ -176,7 +175,7 @@ function AppLayout({ children }: { children: React.ReactNode }) {
           </div>
           <nav className="">
             {profile.status === 'success' ? (
-              <div className='space-y-0.5'>
+              <div className="space-y-0.5">
                 <Menu
                   href="/"
                   title="Overview"

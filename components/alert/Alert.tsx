@@ -20,7 +20,7 @@ function CloseButton({ type = 'danger', onClick }: CloseButtonProps) {
   return (
     <div className="absolute right-2.5 top-2">
       <button
-        className={cx('p-1 h-7 w-7 rounded transition-all', {
+        className={cx('h-7 w-7 rounded p-1 transition-all', {
           'text-warning-700 hover:bg-warning-200 active:bg-warning-300':
             type === 'warning',
           'text-danger-700 hover:bg-danger-200 active:bg-danger-300':

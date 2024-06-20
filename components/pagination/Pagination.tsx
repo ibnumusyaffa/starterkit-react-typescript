@@ -41,17 +41,17 @@ function Item({
 
         //size,
         {
-          'h-8 min-w-[2rem] md:h-9 md:min-w-[2.25rem] px-2.5': true,
+          'h-8 min-w-[2rem] px-2.5 md:h-9 md:min-w-[2.25rem]': true,
         },
         {
           'border border-gray-200  bg-white  ': !active,
-          'border border-transparent text-white bg-primary-500 hover:bg-primary-600': active,
+          'border border-transparent bg-primary-500 text-white hover:bg-primary-600':
+            active,
 
           'cursor-not-allowed opacity-50': disabled,
-          'active:bg-gray-100 hover:bg-gray-50': !disabled && !active,
+          'hover:bg-gray-50 active:bg-gray-100': !disabled && !active,
           'pointer-events-none': disabledWithoutOpacity,
-        },
-       
+        }
       )}
     >
       {children}

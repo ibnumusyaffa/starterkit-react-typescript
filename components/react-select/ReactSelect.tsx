@@ -17,7 +17,7 @@ export function ReactSelect(props: ReactSelectProps) {
       isDisabled={props.disabled}
       classNames={{
         control: ({ isFocused }) =>
-          cx('!border  !rounded !shadow-none !h-10', {
+          cx('!h-10  !rounded !border !shadow-none', {
             '!border-gray-300': !props.error,
             '!border-danger-500': props.error,
             '!border-primary-500 !outline-none !ring-2 !ring-primary-500 !ring-opacity-25':

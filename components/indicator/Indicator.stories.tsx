@@ -148,50 +148,45 @@ export const Position: Story = {
   },
 }
 
-
 export const Offset: Story = {
   render: () => {
     return (
       <div className="space-y-5">
-          <div className="flex flex-wrap gap-5">
-            <Indicator
-              style={{ left: 15, top: 5 }}
-              label={9}
-              position="top-left"
-            >
-              <div className="h-20 w-20 rounded-full  bg-gray-300"></div>
-            </Indicator>
-            <Indicator label={9} position="top-center">
-              <div className="h-20 w-20 rounded-full  bg-gray-300"></div>
-            </Indicator>
-            <Indicator
-              style={{ right: 15, top: 5 }}
-              label={9}
-              position="top-right"
-            >
-              <div className="h-20 w-20 rounded-full  bg-gray-300"></div>
-            </Indicator>
-          </div>
-          <div className="flex flex-wrap gap-5">
-            <Indicator
-              style={{ left: 15, bottom: 5 }}
-              label={9}
-              position="bottom-left"
-            >
-              <div className="h-20 w-20 rounded-full  bg-gray-300"></div>
-            </Indicator>
-            <Indicator label={9} position="bottom-center">
-              <div className="h-20 w-20 rounded-full  bg-gray-300"></div>
-            </Indicator>
-            <Indicator
-              style={{ right: 15, bottom: 5 }}
-              label={9}
-              position="bottom-right"
-            >
-              <div className="h-20 w-20 rounded-full  bg-gray-300"></div>
-            </Indicator>
-          </div>
+        <div className="flex flex-wrap gap-5">
+          <Indicator style={{ left: 15, top: 5 }} label={9} position="top-left">
+            <div className="h-20 w-20 rounded-full  bg-gray-300"></div>
+          </Indicator>
+          <Indicator label={9} position="top-center">
+            <div className="h-20 w-20 rounded-full  bg-gray-300"></div>
+          </Indicator>
+          <Indicator
+            style={{ right: 15, top: 5 }}
+            label={9}
+            position="top-right"
+          >
+            <div className="h-20 w-20 rounded-full  bg-gray-300"></div>
+          </Indicator>
         </div>
+        <div className="flex flex-wrap gap-5">
+          <Indicator
+            style={{ left: 15, bottom: 5 }}
+            label={9}
+            position="bottom-left"
+          >
+            <div className="h-20 w-20 rounded-full  bg-gray-300"></div>
+          </Indicator>
+          <Indicator label={9} position="bottom-center">
+            <div className="h-20 w-20 rounded-full  bg-gray-300"></div>
+          </Indicator>
+          <Indicator
+            style={{ right: 15, bottom: 5 }}
+            label={9}
+            position="bottom-right"
+          >
+            <div className="h-20 w-20 rounded-full  bg-gray-300"></div>
+          </Indicator>
+        </div>
+      </div>
     )
   },
 }

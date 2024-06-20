@@ -22,7 +22,7 @@ export const Size: Story = {
   args: {},
   render: () => {
     return (
-      <div className='flex flex-col'>
+      <div className="flex flex-col">
         <CloseButton size="sm"></CloseButton>
         <CloseButton size="md"></CloseButton>
         <CloseButton size="lg"></CloseButton>

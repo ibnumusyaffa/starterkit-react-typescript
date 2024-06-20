@@ -2,12 +2,12 @@ import React from 'react'
 import type { AppProps } from 'next/app'
 import { Inter as Font } from 'next/font/google'
 import Head from 'next/head'
+import { useAuthSetup } from '@/common/auth'
 import { I18nProvider } from '@/locales'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { Toaster } from 'react-hot-toast'
 
-import { useAuthSetup } from '@/common/auth'
 import id from '@/locales/id'
 
 import '@/styles/globals.css'
@@ -21,6 +21,7 @@ const queryClient = new QueryClient()
 
 function MyApp({ Component, pageProps }: AppProps) {
   useAuthSetup()
+
   return (
     <>
       <style jsx global>{`

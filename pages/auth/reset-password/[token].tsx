@@ -1,6 +1,5 @@
 import React from 'react'
 import { useRouter } from 'next/router'
-import { useRedirectIfAuthenticated } from '@/common/auth'
 import { resetPassword, resetPasswordErr } from '@/services/auth'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useMutation } from '@tanstack/react-query'
@@ -49,7 +48,6 @@ export default function Page() {
   })
 
   const router = useRouter()
-  useRedirectIfAuthenticated()
 
   const { mutate, status } = useMutation({
     mutationFn: resetPassword,
@@ -59,7 +57,7 @@ export default function Page() {
         description: response.message,
       })
       localStorage.clear()
-      router.push('/login')
+      router.push('/auth/login')
     },
     onError: (error: AxiosError) => {
       const response = error.response?.data as resetPasswordErr
