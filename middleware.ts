@@ -1,20 +1,22 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-export function middleware(request: NextRequest) {
-  const isAuthenticated = request.cookies.get('token')?.value
+function arrayStartsWith(paths: Array<string>, path: string) {
+  return paths.some((p) => path.startsWith(p))
+}
 
-  //redirect if not authenticated
-  if (isAuthenticated && request.nextUrl.pathname.startsWith('/auth')) {
+export function middleware(request: NextRequest) {
+  const token = request.cookies.get('token')?.value
+  const path = request.nextUrl.pathname
+
+  if (token && path.startsWith('/auth')) {
     return NextResponse.redirect(new URL('/', request.url))
   }
 
-  if (!isAuthenticated && request.nextUrl.pathname === '/') {
-    return NextResponse.redirect(new URL('/auth/login', request.url))
-  }
-
-  if (!isAuthenticated && request.nextUrl.pathname.startsWith('/users')) {
-    return NextResponse.redirect(new URL('/auth/login', request.url))
+  if (!token) {
+    if (path === '/' || arrayStartsWith(['/users'], path)) {
+      return NextResponse.redirect(new URL('/auth/login', request.url))
+    }
   }
 
   return NextResponse.next()
